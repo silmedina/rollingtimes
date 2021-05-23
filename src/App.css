@@ -31,4 +31,7 @@
 
 /* estilos barra menu */
 
+#navBlock{
+  position: fixed;
+}
 
