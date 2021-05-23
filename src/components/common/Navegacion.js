@@ -17,7 +17,6 @@ const Navegacion = () => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
     }
-
     return (
         <Fragment>
             <Desktop>
