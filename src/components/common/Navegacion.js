@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import LogoNav from './img/LogoNav.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,43 +9,65 @@ import { useMediaQuery } from 'react-responsive';
 
 
 const Navegacion = () => {
-    const Default = ({ children }) => {
-        const isNotMobile = useMediaQuery({ minWidth: 768 })
-        return isNotMobile ? children : null
+    const Desktop = ({ children }) => {
+        const isDesktop = useMediaQuery({ minWidth: 992 })
+        return isDesktop ? children : null
     }
     const Mobile = ({ children }) => {
-        const isMobile = useMediaQuery({ maxWidth: 767 })
+        const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
     }
 
     return (
-
-        <div>
-
-            <Default>
-                <Navbar className="bg5">
-                    <Form inline className='mr-auto'>
+        <Fragment>
+            <Desktop>
+                <Navbar collapseOnSelect expand="lg" className="bg5">
+                    {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Form inline className='mr-5'>
                         <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                         <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
                     </Form>
+                    <Nav variant="tabs" defaultActiveKey="/home" className='bg5 mr-auto'>
+                        <Nav.Item>
+                            <Nav.Link className='color1' href="/home">Home</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-1">Ultimo Momento</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-2">Política</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-3">Economía</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-4">Sociedad</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-5">Mundo</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-6">Deportes</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className='color1' eventKey="link-7">Espectáculos</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+{/* --Aqui agregar api del clima -------------------------------------------------------------------------------------*/}
                     <Nav className=''>
                         <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
                         <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
                     </Nav>
                 </Navbar>
-                <Logo/>
-                <Categorias/>
-            </Default>
+            </Desktop>
 
             <Mobile>
-                <Navbar ollapseOnSelect expand="lg" bg="" className="bg5">
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    {/* Colocar bandera cuando el dispositivo es sm muestra imagen*/}
-
+                <Navbar collapseOnSelect expand="lg" bg="" className="bg5">
                     <div className='mr-2'>
                         <img src={LogoNav} alt="logo" />
                     </div>
-
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Form >
                             <Form.Control type="text" placeholder="Buscar" className="mr-2" />
@@ -53,7 +75,7 @@ const Navegacion = () => {
                                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                             </Button>
                         </Form>
-                        <Nav className="ml-5 mr-auto dark">
+                        <Nav className="ml-5 mr-5 dark">
                             <Nav.Link href="#ultimo">Ultimo Momento</Nav.Link>
                             <Nav.Link href="#politica">Política</Nav.Link>
                             <Nav.Link href="#economia">Economía</Nav.Link>
@@ -69,7 +91,7 @@ const Navegacion = () => {
                     </Navbar.Collapse>
                 </Navbar>
             </Mobile>
-        </div>
+        </Fragment>
     );
 };
 
