@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const colores = {
@@ -120,11 +120,6 @@ const Boton = styled.button`
 	}
 `;
 
-const MensajeExito = styled.p`
-	font-size: 14px;
-	color: ${colores.exito};
-`;
-
 const MensajeError = styled.div`
 	height: 45px;
 	line-height: 45px;
@@ -150,6 +145,5 @@ export {
 	ContenedorTerminos,
 	ContenedorBotonCentrado,
 	Boton,
-	MensajeExito,
 	MensajeError
 };

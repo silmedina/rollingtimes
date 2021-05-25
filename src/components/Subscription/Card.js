@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cardlogo from "../../assets/card-logo.png";
 import { Modal, Button } from "react-bootstrap";
-import Formu from "./FormularioM";
+import FormularioReg from "./FormularioReg";
 
 const Card = (attribute) => {
   const [show, setShow] = useState(false);
@@ -13,7 +13,7 @@ const Card = (attribute) => {
     <div className="card">
       <div className="p-1">
         <div className="card-body text-center">
-          <img src={cardlogo} alt="cardlogo.png" className="px-5"></img>
+          <img src={cardlogo} alt="cardlogo.png"></img>
         </div>
         <h3 className="card-title text-center">{attribute.title}</h3>
         <h4 className="text-center pt-2">{attribute.precio}</h4>
@@ -37,7 +37,7 @@ const Card = (attribute) => {
               <Modal.Title>Suscripcion RollingTimes</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Formu />
+              <FormularioReg />
             </Modal.Body>
           </Modal>
         </div>

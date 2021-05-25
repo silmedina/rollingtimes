@@ -5,7 +5,6 @@ import {
   ContenedorTerminos,
   ContenedorBotonCentrado,
   Boton,
-  MensajeExito,
   MensajeError,
 } from "./Formulario";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,16 +12,16 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import Swal from "sweetalert2"
 
-const FormularioM = () => {
-  const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
-  const [apellido, cambiarApellido] = useState({ campo: "", valido: null });
-  const [direccion, cambiarDireccion] = useState({ campo: "", valido: null });
-  const [localidad, cambiarLocalidad] = useState({ campo: "", valido: null });
-  const [postal, cambiarPostal] = useState({ campo: "", valido: null });
-  const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
-  const [telefono, cambiarTelefono] = useState({ campo: "", valido: null });
-  const [terminos, cambiarTerminos] = useState(false);
-  const [formularioValido, cambiarFormularioValido] = useState(null);
+const FormularioReg = () => {
+  const [nombre, setNombre] = useState({ campo: "", valido: null });
+  const [apellido, setApellido] = useState({ campo: "", valido: null });
+  const [direccion, setDireccion] = useState({ campo: "", valido: null });
+  const [localidad, setLocalidad] = useState({ campo: "", valido: null });
+  const [postal, setPostal] = useState({ campo: "", valido: null });
+  const [correo, setCorreo] = useState({ campo: "", valido: null });
+  const [telefono, setTelefono] = useState({ campo: "", valido: null });
+  const [terminos, setTerminos] = useState(false);
+  const [formularioValido, setFormularioValido] = useState(null);
 
   const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/,
@@ -33,7 +32,7 @@ const FormularioM = () => {
   };
 
   const onChangeTerminos = (e) => {
-    cambiarTerminos(e.target.checked);
+    setTerminos(e.target.checked);
   };
 
   const onSubmit = (e) => {
@@ -49,16 +48,16 @@ const FormularioM = () => {
       telefono.valido === "true" &&
       terminos
     ) {
-      cambiarFormularioValido(true);
-      cambiarNombre({ campo: "", valido: null });
-      cambiarApellido({ campo: "", valido: null });
-      cambiarDireccion({ campo: "", valido: null });
-      cambiarLocalidad({ campo: "", valido: null });
-      cambiarPostal({ campo: "", valido: null });
-      cambiarCorreo({ campo: "", valido: null });
-      cambiarTelefono({ campo: "", valido: null });
+      setFormularioValido(true);
+      setNombre({ campo: "", valido: null });
+      setApellido({ campo: "", valido: null });
+      setDireccion({ campo: "", valido: null });
+      setLocalidad({ campo: "", valido: null });
+      setPostal({ campo: "", valido: null });
+      setCorreo({ campo: "", valido: null });
+      setTelefono({ campo: "", valido: null });
     } else {
-      cambiarFormularioValido(false);
+      setFormularioValido(false);
     }
   };
 
@@ -67,47 +66,47 @@ const FormularioM = () => {
       <Formulario action="" onSubmit={onSubmit}>
         <Input
           estado={nombre}
-          cambiarEstado={cambiarNombre}
+          cambiarEstado={setNombre}
           tipo="text"
           label="Nombre"
-          placeholder="John Doe"
+          placeholder="Juan"
           name="usuario"
           leyendaError="El nombre solo puede contener letras y espacios entre 3 a 40 caracteres."
           expresionRegular={expresiones.nombre}
         />
         <Input
           estado={apellido}
-          cambiarEstado={cambiarApellido}
+          cambiarEstado={setApellido}
           tipo="text"
           label="Apellido"
-          placeholder="John Doe"
+          placeholder="Gutierrez"
           name="apellido"
           leyendaError="El nombre solo puede contener letras y espacios entre 3 a 40 caracteres."
           expresionRegular={expresiones.nombre}
         />
         <Input
           estado={direccion}
-          cambiarEstado={cambiarDireccion}
+          cambiarEstado={setDireccion}
           tipo="text"
           label="Direccion"
-          placeholder="John Doe"
+          placeholder="Gral. Paz 547"
           name="direccion"
           leyendaError="La direccion solo puede contener letras y espacios entre 5 a 80 caracteres."
           expresionRegular={expresiones.direccion}
         />
         <Input
           estado={localidad}
-          cambiarEstado={cambiarLocalidad}
+          cambiarEstado={setLocalidad}
           tipo="text"
           label="Localidad"
-          placeholder="John Doe"
+          placeholder="San Miguel de Tucumán"
           name="localidad"
           leyendaError="La localidad solo puede contener letras y espacios entre 5 a 80 caracteres."
           expresionRegular={expresiones.direccion}
         />
         <Input
           estado={postal}
-          cambiarEstado={cambiarPostal}
+          cambiarEstado={setPostal}
           tipo="text"
           label="Postal"
           placeholder="4000"
@@ -117,19 +116,19 @@ const FormularioM = () => {
         />
         <Input
           estado={correo}
-          cambiarEstado={cambiarCorreo}
+          cambiarEstado={setCorreo}
           tipo="email"
           label="Correo Electrónico"
-          placeholder="john@correo.com"
+          placeholder="juan.gutierrez@correo.com"
           name="correo"
           leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
           expresionRegular={expresiones.correo}
         />
         <Input
           estado={telefono}
-          cambiarEstado={cambiarTelefono}
+          cambiarEstado={setTelefono}
           tipo="text"
-          label="Teléfono"
+          label="Teléfono (sin espacios y guiones)"
           placeholder="3813242445"
           name="telefono"
           leyendaError="El telefono solo puede contener numeros entre 7 a 14 dígitos."
@@ -171,4 +170,4 @@ const FormularioM = () => {
   );
 };
 
-export default FormularioM;
+export default FormularioReg;
