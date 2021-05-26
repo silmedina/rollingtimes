@@ -2,7 +2,7 @@ import React from 'react';
 
 const inicio = () => {
     return (
-        <div>
+        <div className='bg5'>
             <h1 className='my-3'>Prueba de router</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus ad, quibusdam ex adipisci neque minus nobis dolor ab dicta distinctio vitae eos quaerat totam esse nam, porro, repellat voluptate. Modi.
             Fugiat, suscipit quia similique cupiditate esse pariatur reiciendis? Officia nemo iusto iure deleniti natus rem a autem, aut non totam rerum expedita quaerat voluptatem aliquid animi et labore cum? Nam.

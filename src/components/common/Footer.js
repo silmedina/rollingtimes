@@ -9,7 +9,7 @@ const Footer = () => {
     
     return (
         <Fragment>
-                <header className='bg4 d-flex  align-items-center'>
+                <header className='bg1 d-flex  align-items-center'>
                     <div className='col-sm-12 col-md-5'>
                         <div>
                             <a className='mx-2 my-3 color1' style={{ fontSize: '30px' }} href="#"><FontAwesomeIcon icon={faFacebookSquare} /></a>
@@ -22,7 +22,7 @@ const Footer = () => {
                         <img src={logoSm} alt="logo" />
                     </div>
                 </header>
-                <section className='bg4 d-flex justify-content-between align-items-center py-5'>
+                <section className='bg1 d-flex justify-content-between align-items-center py-5'>
                         <div className='col-sm-6 col-md-4' >
                            <a className='color5' href="#"><h4>Sobre Nosotros</h4></a> 
                         </div>
@@ -30,7 +30,7 @@ const Footer = () => {
                             <a className='color5' href="#"><h4>Contacto</h4></a>
                         </div>
                 </section>
-                <footer className='text-center bg4 m-0'>
+                <footer className='text-center bg1 m-0'>
                     <h5>&copy; Todos los derechos reservados</h5>
                 </footer>
         </Fragment>

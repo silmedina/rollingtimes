@@ -36,7 +36,7 @@ const Navegacion = () => {
     return (
         <Fragment>
             <Desktop>
-                <Navbar collapseOnSelect expand="lg" className="bg5 fixed-top"  >
+                <Navbar collapseOnSelect expand="lg" className="bg1 fixed-top"  >
                     {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     {(showLogo === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
