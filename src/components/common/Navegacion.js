@@ -36,7 +36,7 @@ const Navegacion = () => {
     return (
         <Fragment>
             <Desktop>
-                <Navbar collapseOnSelect expand="lg" className="bg1 fixed-top"  >
+                <Navbar collapseOnSelect expand="lg" className="bg5 fixed-top" id='navBlock' >
                     {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     {(showLogo === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
@@ -57,7 +57,7 @@ const Navegacion = () => {
                             <NavDropdown.Item href="#action/3.7">Deportes</NavDropdown.Item><hr />
                             <NavDropdown.Item href="#action/3.8">Espectáculos</NavDropdown.Item><hr />
                             </NavDropdown>) :
-                        (<Nav variant="tabs" defaultActiveKey="/home" className='bg5 mr-auto'>
+                        (<Nav variant="tabs" defaultActiveKey="/home" className='bg5 mr-auto' id='nav'>
                             <Nav.Item>
                                 <Nav.Link className='color1' href="/home">Home</Nav.Link>
                             </Nav.Item>

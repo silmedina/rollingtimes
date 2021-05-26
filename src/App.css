@@ -32,6 +32,5 @@
 /* estilos barra menu */
 
 #navBlock{
-  position: fixed;
+  box-shadow: #222222;
 }
-
