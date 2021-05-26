@@ -45,6 +45,7 @@ const Navegacion = () => {
                         <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                         <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
                     </Form>
+
                     {(showDrop === true) ?
                         (<NavDropdown className="color1 mr-auto" title="Categorias" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Home</NavDropdown.Item><hr />
@@ -55,7 +56,7 @@ const Navegacion = () => {
                             <NavDropdown.Item href="#action/3.6">Mundo</NavDropdown.Item><hr />
                             <NavDropdown.Item href="#action/3.7">Deportes</NavDropdown.Item><hr />
                             <NavDropdown.Item href="#action/3.8">Espectáculos</NavDropdown.Item><hr />
-                        </NavDropdown>) :
+                            </NavDropdown>) :
                         (<Nav variant="tabs" defaultActiveKey="/home" className='bg5 mr-auto'>
                             <Nav.Item>
                                 <Nav.Link className='color1' href="/home">Home</Nav.Link>
