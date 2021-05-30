@@ -4,6 +4,7 @@ import "./AboutUs.css";
 import SIL from "../../assets/SIL.jpg";
 import img1 from "../../assets/imgPorDefecto.png";
 import DAVID from "../../assets/DAVID.jpg";
+import TULIO from "../../assets/TULIO.jpeg";
 
 const AboutUs = () => {
   return (
@@ -18,17 +19,17 @@ const AboutUs = () => {
                 title="Sil Medina"
                 text1="Developer"
                 text2='Customer Cure Representative and QA trainee at Rollingcode "Se un punto de referencia de calidad" '
-                width={"16rem"}
+                width={"14rem"}
               />
             </div>
 
             <div className="m-3">
               <AboutUsCard
-                image={img1}
+                image={TULIO}
                 title="Tulio"
                 text1="Developer"
                 text2="Frase"
-                width={"13.5rem"}
+                width={"14rem"}
               />
             </div>
             <div className="m-3">
@@ -37,7 +38,16 @@ const AboutUs = () => {
                 title="David Sarhid"
                 text1="Developer"
                 text2="Frase"
-                width={"13.5rem"}
+                width={"14rem"}
+              />
+            </div>
+            <div className="m-3">
+              <AboutUsCard
+                image={img1}
+                title="Benjamín Dracnizarek"
+                text1="Developer"
+                text2='Frase '
+                width={"14rem"}
               />
             </div>
           </div>

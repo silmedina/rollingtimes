@@ -1,8 +1,8 @@
-.about-cardRounded{
+#about-cardRounded{
     border-top-left-radius: 45%;
     border-top-right-radius: 45%;
 }
-.about-cardRounded2{
+#about-cardRounded2{
     border-radius: 50%;
 }
 
