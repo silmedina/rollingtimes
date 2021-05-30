@@ -14,7 +14,7 @@ const ItemCategoria = (props) => {
                }
            </p>
            <div>
-               <Link className='btn btn-warning mr-3 text-light'to={`/categorias`}><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></Link>
+               <Link className='btn btn-warning mr-3 text-light'to={`/categorias/editar/${props.categoria._id}`}><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></Link>
                <Button variant='danger'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></Button>
            </div>
        </ListGroup.Item>

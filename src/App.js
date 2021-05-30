@@ -5,7 +5,9 @@ import Navegacion from "./components/common/Navegacion";
 import Footer from "./components/common/Footer";
 import Inicio from "./components/Inicio";
 import ListarCategorias from "./components/ListarCategorias";
+import EditarCategoria from "./components/EditarCategoria";
 import {useState, useEffect} from 'react';
+
 
 function App() {
   const [categorias, setCategorias] = useState([]);
@@ -16,7 +18,7 @@ function App() {
 
   const  consultarCategorias = async ()=>{
     try {
-      const url = process.env.REACT_APP_URL_LISTAR_CATEGORIAS;
+      const url = process.env.REACT_APP_URL_CATEGORIA;
       const respuesta = await fetch( url);
       const informacion = await respuesta.json();
       if(respuesta.status === 200){
@@ -37,6 +39,9 @@ function App() {
         </Route>
         <Route exact path="/categorias">
           <ListarCategorias categorias={categorias} />
+        </Route>
+        <Route exact path="/categorias/editar/:id">
+          <EditarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
       </Switch>
       <Footer />
