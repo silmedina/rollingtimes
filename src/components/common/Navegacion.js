@@ -5,19 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from 'react-responsive';
 import logoSm from './img/logoSm.png';
+import Categoria from './Categoria.js';
+import Cotizacion from './Cotizacion';
+import Logo from './Logo';
+import Menudespleg from './Menudespleg';
 
 
 const Navegacion = () => {
-    const [showLogo, setShowLogo] = useState(false);
-    const [showDrop, setShowDrop] = useState(false);
-   
+    const [compactNav, setcompactNav] = useState(false);
+
     const cambiarNav = () => {
         if (window.scrollY >= 20) {
-            setShowLogo(true);
-            setShowDrop(true);
+            setcompactNav(true);
         } else {
-            setShowLogo(false);
-            setShowDrop(false);
+            setcompactNav(false);
         }
     }
     window.addEventListener('scroll', cambiarNav)
@@ -36,62 +37,28 @@ const Navegacion = () => {
     return (
         <Fragment>
             <Desktop>
-                <Navbar collapseOnSelect expand="lg" className="bg5 fixed-top" id='navBlock' >
-                    {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    {(showLogo === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
-                    }
-                    <Form inline className='mr-2'>
-                        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
-                    </Form>
+                <div className="d-flex flex-column">
+                    <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        {(compactNav === true) ? (<Menudespleg/>) : (null)}
 
-                    {(showDrop === true) ?
-                        (<NavDropdown className="color1 mr-auto" title="Categorias" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Home</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.2">Ultimo Momento</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.3">Política</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.4">Economía</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.5">Sociedad</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.6">Mundo</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.7">Deportes</NavDropdown.Item><hr />
-                            <NavDropdown.Item href="#action/3.8">Espectáculos</NavDropdown.Item><hr />
-                            </NavDropdown>) :
-                        (<Nav variant="tabs" defaultActiveKey="/home" className='bg5 mr-auto' id='nav'>
-                            <Nav.Item>
-                                <Nav.Link className='color1' href="/home">Home</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-1">Ultimo Momento</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-2">Política</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-3">Economía</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-4">Sociedad</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-5">Mundo</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-6">Deportes</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link className='color1' eventKey="link-7">Espectáculos</Nav.Link>
-                            </Nav.Item>
-                        </Nav>)
-                    }
-
-
-                    {/* --Aqui agregar api del clima -------------------------------------------------------------------------------------*/}
-                    <Nav className=''>
-                        <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
-                        <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
-                    </Nav>
-                </Navbar>
+                        {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
+                        }
+                        <Form inline className=''>
+                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
+                        </Form>
+                        <Nav className='ml-auto'>
+                            <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
+                            <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
+                        </Nav>
+                    </Navbar>
+                    <div>
+                        {(compactNav === false) ? (<Logo />) : (null)}
+                        {(compactNav === false) ? (<Cotizacion />) : (null)}
+                        {(compactNav === false) ? (<Categoria />) : (null)}
+                    </div>
+                </div>
             </Desktop>
 
             <Mobile>
@@ -102,7 +69,7 @@ const Navegacion = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Form >
-                            <Form.Control type="text" placeholder="Buscar" className="mr-2"/>
+                            <Form.Control type="text" placeholder="Buscar" className="mr-2" />
                             <Button className='my-2' variant="outline-dark">
                                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                             </Button>

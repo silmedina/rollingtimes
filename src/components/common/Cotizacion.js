@@ -1,12 +1,23 @@
 import React from 'react';
+import { Navbar, Nav, Table, Button, NavDropdown } from 'react-bootstrap';
+
 
 const Cotizacion = () => {
-// Consultar api
+    // Consultar api
 
     return (
-        <div>
-            
-        </div>
+
+        <Table bordered hover size="sm"  className='bg5 text-center m-0'>
+            <thead className=''>
+                <tr>
+                    <th>Dolar: 145</th>
+                    <th>Euro: 166</th>
+                    <th>Bitcoin: 32k</th>
+                    <th>Ethe: 32k</th>
+                </tr>
+            </thead>
+        </Table>
+
     );
 };
 
