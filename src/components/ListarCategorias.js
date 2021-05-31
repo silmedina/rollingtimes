@@ -13,7 +13,7 @@ const ListarCategorias = (props) => {
             <Link className='btn btn-success text-light'to={`/categorias/nuevo`}><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar nueva Categoria</Link>
             <ListGroup className='my-5'>
                 {
-                    props.categorias.map((cat) => <ItemCategoria categoria={cat} key={cat._id}></ItemCategoria>)
+                    props.categorias.map((cat) => <ItemCategoria categoria={cat} key={cat._id} consultarCategorias={props.consultarCategorias}></ItemCategoria>)
                 }
             </ListGroup>
         </Container>
