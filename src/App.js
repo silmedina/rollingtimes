@@ -6,6 +6,7 @@ import Footer from "./components/common/Footer";
 import Inicio from "./components/Inicio";
 import ListarCategorias from "./components/ListarCategorias";
 import EditarCategoria from "./components/EditarCategoria";
+import AgregarCategoria from "./components/AgregarCategoria";
 import {useState, useEffect} from 'react';
 
 
@@ -38,10 +39,13 @@ function App() {
           <Inicio />
         </Route>
         <Route exact path="/categorias">
-          <ListarCategorias categorias={categorias} />
+          <ListarCategorias categorias={categorias} consultarCategorias={consultarCategorias}/>
         </Route>
         <Route exact path="/categorias/editar/:id">
           <EditarCategoria consultarCategorias={consultarCategorias}/>
+        </Route>
+        <Route exact path="/categorias/nuevo">
+          <AgregarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
       </Switch>
       <Footer />
