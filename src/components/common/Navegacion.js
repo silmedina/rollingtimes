@@ -9,7 +9,7 @@ import Categoria from './Categoria.js';
 import Cotizacion from './Cotizacion';
 import Logo from './Logo';
 import Menudespleg from './Menudespleg';
-
+import { Link } from "react-router-dom";
 
 const Navegacion = () => {
     const [compactNav, setcompactNav] = useState(false);
@@ -49,7 +49,12 @@ const Navegacion = () => {
                         </Form>
                         <Nav className='ml-auto'>
                             <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
-                            <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
+                            {/* <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button> */}
+                            <Link
+                                className="btn mx-2 my-1 outline-dark"
+                                to={`/suscripcion`}
+                                >Suscribite
+                            </Link>
                         </Nav>
                     </Navbar>
                     <div>

@@ -51,6 +51,9 @@ function App() {
         <Route exact path="/categorias/nuevo">
           <AgregarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
+        <Route exact path="/suscripcion">
+          <Subscription/>
+        </Route>
       </Switch>
       <Footer />
     </Router>
