@@ -33,7 +33,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Navegacion /> */}
+      <Navegacion />
       <Switch>
         <Route exact path="/">
           <Inicio />
