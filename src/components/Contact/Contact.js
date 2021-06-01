@@ -9,7 +9,6 @@ import {
 import Iframe from "react-iframe";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
-//import { withRouter } from "react-router-dom";
 
 const Contact = () => {
   const [nombre, setNombre] = useState("");
@@ -181,7 +180,7 @@ const Contact = () => {
             <div>
               <h6 className="text-center my-4">
                 También te sugerimos visitar
-                <a href="/">Preguntas Frecuentes</a>
+                <a href="/"> Preguntas Frecuentes</a>
               </h6>
               <span></span>
             </div>

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import cardlogo from "../../assets/card-logo.png";
-import { Modal, Button } from "react-bootstrap";
-import FormularioReg from "./FormularioReg";
+import { Button } from "react-bootstrap";
+//import FormularioReg from "./FormularioReg";
+import FormRegistro from "./FormRegistro";
 
-const Card = (attribute) => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Card = (props) => {
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <div className="card">
@@ -15,31 +13,20 @@ const Card = (attribute) => {
         <div className="card-body text-center">
           <img src={cardlogo} alt="cardlogo.png"></img>
         </div>
-        <h3 className="card-title text-center">{attribute.title}</h3>
-        <h4 className="text-center pt-2">{attribute.precio}</h4>
+        <h3 className="card-title text-center">{props.title}</h3>
+        <h4 className="text-center pt-2">{props.precio}</h4>
         <div className="p-3">
           <h6>Beneficios</h6>
-          <p className="card-text text-secondary">{attribute.texto}</p>
+          <p className="card-text text-secondary">{props.texto}</p>
           <div className="text-center pb-4">
             <Button
               className="btn btn-outline-secondary text-light"
-              onClick={handleShow}
+              onClick={() => setModalShow(true)}
             >
               Suscribirme
             </Button>
           </div>
-          <Modal
-            show={show}
-            onHide={handleClose}
-            keyboard={false}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Suscripcion RollingTimes</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <FormularioReg />
-            </Modal.Body>
-          </Modal>
+          <FormRegistro show={modalShow} onHide={() => setModalShow(false)} />
         </div>
       </div>
     </div>

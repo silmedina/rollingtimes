@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import {
-    Formulario,
-    ContenedorBotonCentrado,
-    Boton,
-    MensajeError,
-  } from "../Subscription/Formulario";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import Input from "../Subscription/Input";
 import Swal from "sweetalert2"
 
 const FormularioLog = () => {
