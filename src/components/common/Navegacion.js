@@ -30,8 +30,7 @@ const Navegacion = () => {
     const Mobile = ({ children }) => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
-    }
-
+    } 
 
 
     return (
@@ -54,7 +53,7 @@ const Navegacion = () => {
                         </Nav>
                     </Navbar>
                     <div>
-                        {(compactNav === false) ? (<Logo />) : (null)}
+                        {(compactNav === false) ? (<Logo/>) : (null)}
                         {(compactNav === false) ? (<Cotizacion />) : (null)}
                         {(compactNav === false) ? (<Categoria />) : (null)}
                     </div>

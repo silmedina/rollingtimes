@@ -1,8 +1,5 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser } from '@fortawesome/free-solid-svg-icons'
-{/* <i class="fas fa-bars"></i> */}
 
 const Menudespleg = () => {
     return (
