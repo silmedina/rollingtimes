@@ -9,6 +9,10 @@ import EditarCategoria from "./components/EditarCategoria";
 import AgregarCategoria from "./components/AgregarCategoria";
 import {useState, useEffect} from 'react';
 
+import Subscription from './components/Subscription/Subscription'
+//import Login from './components/Login/Login';
+//import AboutUs from './components/AboutUs/AboutUs'
+//import Contact from './components/Contact/Contact'
 
 function App() {
   const [categorias, setCategorias] = useState([]);
