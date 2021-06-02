@@ -28,7 +28,6 @@ function App() {
       const informacion = await respuesta.json();
       if(respuesta.status === 200){
         setCategorias(informacion);
-        console.log(informacion)
       }
     } catch (error) {
       console.log(error);      

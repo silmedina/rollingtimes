@@ -69,6 +69,24 @@ const validarConsulta = (tipoConsulta) => {
     return false;
   }
 };
+
+const validarNombreCategoria = (nombreCategoria) => {
+  if (nombreCategoria.trim() === '') {
+    return {esValido:false , mensaje:'Debe ingresar un nombre de categoria'}
+  }
+
+  if (nombreCategoria.trim().length > 30) {
+    return {esValido:false , mensaje:'Debe ingresar una categoria de menos de 30 caracteres'}
+  }
+
+  const expresion = /^[a-zA-Z\s]*$/; 
+  if (!expresion.test(nombreCategoria)) {    
+    return {esValido:false , mensaje:'Debe ingresar caracteres validos para el nombre de categoria'}
+  }
+
+  return {esValido:true , mensaje:'Nombre valido'}  
+} 
+
 export {
   validarNombre,
   validarApellido,
@@ -79,4 +97,5 @@ export {
   validarEmail,
   validarTextArea,
   validarConsulta,
+  validarNombreCategoria,
 };
