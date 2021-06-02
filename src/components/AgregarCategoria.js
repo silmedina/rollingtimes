@@ -72,6 +72,7 @@ const AgregarCategoria = (props) => {
             onChange={(e) => {
               setNombreCategoria(e.target.value);
             }}
+            maxLength='30'
           ></Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit" className="w-100 my-5">

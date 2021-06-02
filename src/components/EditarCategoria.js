@@ -2,13 +2,14 @@ import React, {useEffect,useState,useRef} from 'react';
 import {Button, Alert, Form, Container} from 'react-bootstrap';
 import {useParams, withRouter} from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import { validarNombreCategoria } from "./Validaciones";
 
 const EditarCategoria = (props) => {
     const id = useParams().id;
     const nombreCategoriaRef = useRef('');
     const [categoria, setCategoria] = useState({});
     const [error, setError] = useState(false);
+    const [mensajeError, setMensajeError] = useState('');
 
     const URL = process.env.REACT_APP_URL_CATEGORIA+'/'+id;
 
@@ -35,7 +36,9 @@ const EditarCategoria = (props) => {
     const handleSudmit = async(e)=>{
         e.preventDefault();
 
-        if(nombreCategoriaRef.current.value!==''){
+        const validacionCategoriaResult = validarNombreCategoria(nombreCategoriaRef.current.value);
+
+        if(validacionCategoriaResult.esValido){
             setError(false);
             try {
                const  categoriaModificada = {
@@ -48,7 +51,9 @@ const EditarCategoria = (props) => {
                    body:JSON.stringify(categoriaModificada)
                })
 
-               if(respuesta.status===200){
+               const informacion = await respuesta.json();
+
+               if (respuesta.status===200){
                    Swal.fire(
                       'Categoria Modificada',
                       'La categoria se modifico con exito',
@@ -57,7 +62,13 @@ const EditarCategoria = (props) => {
 
                    props.consultarCategorias();
                    props.history.push('/categorias');
-               }
+               } else if (respuesta.status === 500) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: informacion.mensaje,
+                  });
+            }
 
             
             } catch (error) {
@@ -69,6 +80,7 @@ const EditarCategoria = (props) => {
             }
         }else{
             setError(true);
+            setMensajeError(validacionCategoriaResult.mensaje);
         }
     }
 
@@ -78,11 +90,11 @@ const EditarCategoria = (props) => {
                 <h1 className= 'text-center my-5'>Editar Categoria</h1>
                 <Form.Group>
                     <Form.Label>Nombre de Categoria*</Form.Label>
-                    <Form.Control type='text' ref={nombreCategoriaRef} defaultValue={categoria.nombre}></Form.Control>
+                    <Form.Control type='text' maxLength='35' ref={nombreCategoriaRef} defaultValue={categoria.nombre}></Form.Control>
                 </Form.Group>
                 <Button variant='primary' type='submit' className='w-100 my-5'>Guardar</Button>
                 {
-                    error?<Alert variant='warning' >El nombre de la categoria es obligatorio</Alert>:null
+                    error?<Alert variant='warning' >{mensajeError}</Alert>:null
                 }
            </Form>
        </Container>

@@ -75,7 +75,7 @@ const validarNombreCategoria = (nombreCategoria) => {
     return {esValido:false , mensaje:'Debe ingresar un nombre de categoria'}
   }
 
-  if (nombreCategoria.trim().length > 30) {
+  if (nombreCategoria.trim().length > 35) {
     return {esValido:false , mensaje:'Debe ingresar una categoria de menos de 30 caracteres'}
   }
 
