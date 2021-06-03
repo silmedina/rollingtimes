@@ -4,9 +4,6 @@ import { Nav } from 'react-bootstrap';
 import Climate from './Climate';
 
 
-
-
-
 const Logo = () => {
     const [clima, setClima] = useState({})
     const ciudad = 'san Miguel de Tucuman';
@@ -26,13 +23,9 @@ const Logo = () => {
         const respuesta = await fetch(URL_Clima);
         const data = await respuesta.json();
         // console.log(data);
-
       setClima(data);
     }
     // console.log(clima);
-       
-
-
 
     return (
         <Nav className=' bg5 px-5 py-3'>
@@ -45,7 +38,7 @@ const Logo = () => {
                 <input type="text" placeholder="pais" />
                 <button>Buscar</button>
                 </div> */}
-                <Climate clima ={clima}/>
+                <Climate clima = {clima}/>
             </div>
         </Nav>
 
