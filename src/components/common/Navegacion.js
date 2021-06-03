@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import LogoNav from './img/LogoNav.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import logoSm from './img/logoSm.png';
 import Categoria from './Categoria.js';
@@ -12,9 +12,7 @@ import Menudespleg from './Menudespleg';
 
 
 const Navegacion = () => {
-
     const [compactNav, setcompactNav] = useState(false);
-    
 
     const cambiarNav = () => {
         if (window.scrollY >= 20) {
@@ -33,8 +31,6 @@ const Navegacion = () => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
     }
-
-
   
 
 
@@ -57,6 +53,7 @@ const Navegacion = () => {
                             <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
                         </Nav>
                     </Navbar>
+                    <hr className='my-0' id='hr'/>
                     <div>
                         {(compactNav === false) ? (<Logo />) : (null)}
                         {(compactNav === false) ? (<Cotizacion />) : (null)}

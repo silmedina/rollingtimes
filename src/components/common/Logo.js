@@ -6,12 +6,12 @@ import Climate from './Climate';
 
 const Logo = () => {
     const [clima, setClima] = useState({})
-    const ciudad = 'san Miguel de Tucuman';
+    const ciudad = 'san miguel de tucuman';
     const getCiudad = ciudad.replace(/ /g, "%20").toLowerCase();
     const pais = 'argentina';
     const getPais = pais.replace(/ /g, "%20").toLowerCase();
-    // CambiarKE-------------------------------------------------------------------------------------------
-    const URL_Clima = `http://api.openweathermap.org/data/2.5/weather?q=${getCiudad},${getPais}&appid=70bea3ec52e1948d8099a3d90fe8f150&units=metric`;
+    // CambiarKEY-------------------------------------------------------------------------------------------
+    const URL_Clima = `http://api.openweathermap.org/data/2.5/weather?q=${getCiudad}&appid=70bea3ec52e1948d8099a3d90fe8f150&units=metric`;
 
     //    Clima 
 

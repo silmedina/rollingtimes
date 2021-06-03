@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+
 
 const Climate =  (props) => {
-    // console.log(props);
+    console.log(props);
+
     const ciudad = props.clima.name;
     const pais = props.clima.sys && props.clima.sys.country;
     const descripcion = props.clima.weather && props.clima.weather[0].description;
+    const icono = props.clima.weather && props.clima.weather[0].icon; 
     const temperatura = props.clima.main && props.clima.main.temp;
     const minTemp = props.clima.main && props.clima.main.temp_min;
     const maxTemp = props.clima.main && props.clima.main.temp_max;
     const humedad = props.clima.main && props.clima.main.humidity;
+
     return (
-        <div>
-             {/* Ciudad, provincia */}
-             <h3> {ciudad},{pais} </h3>
+        <div className="container">
+            <div className="cards">
+             <p>{ciudad}, {pais}</p>
             {/* icon  */}
-             {/* temperatura actual  */}
-            <h3>{temperatura}°C</h3>
-            <h4>{descripcion}</h4>
-            {/* temperaturas minima y max */}
-            <h5>Min: {minTemp}°c - Max: {maxTemp}°C </h5>
-            <p>Humedad: {humedad} </p> 
+
+            <h5 className="">{temperatura}°C - {descripcion}</h5>
+            {/* <p>Min: {minTemp}°C - Max: {maxTemp}°C </p> */}
+            {/* <p>Humedad: {humedad} </p>  */}
+            </div>
         </div>
     );
 };
