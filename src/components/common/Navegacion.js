@@ -12,7 +12,9 @@ import Menudespleg from './Menudespleg';
 
 
 const Navegacion = () => {
+
     const [compactNav, setcompactNav] = useState(false);
+    
 
     const cambiarNav = () => {
         if (window.scrollY >= 20) {
@@ -30,7 +32,10 @@ const Navegacion = () => {
     const Mobile = ({ children }) => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
-    } 
+    }
+
+  
+    // console.log(city);
 
 
     return (
@@ -39,7 +44,7 @@ const Navegacion = () => {
                 <div className="d-flex flex-column">
                     <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        {(compactNav === true) ? (<Menudespleg/>) : (null)}
+                        {(compactNav === true) ? (<Menudespleg />) : (null)}
 
                         {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
                         }
@@ -53,7 +58,7 @@ const Navegacion = () => {
                         </Nav>
                     </Navbar>
                     <div>
-                        {(compactNav === false) ? (<Logo/>) : (null)}
+                        {(compactNav === false) ? (<Logo />) : (null)}
                         {(compactNav === false) ? (<Cotizacion />) : (null)}
                         {(compactNav === false) ? (<Categoria />) : (null)}
                     </div>
