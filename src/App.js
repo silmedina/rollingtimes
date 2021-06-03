@@ -10,6 +10,8 @@ import AgregarCategoria from "./components/AgregarCategoria";
 import {useState, useEffect} from 'react';
 
 import Subscription from './components/Subscription/Subscription'
+import Error404 from "./components/Error404";
+import Contact from "./components/Contact/Contact";
 //import Login from './components/Login/Login';
 //import AboutUs from './components/AboutUs/AboutUs'
 //import Contact from './components/Contact/Contact'
@@ -52,6 +54,12 @@ function App() {
         </Route>
         <Route exact path="/suscripcion">
           <Subscription/>
+        </Route>
+        <Route exact path="/contacto">
+          <Contact/>
+        </Route>
+        <Route path="*">
+          <Error404/>
         </Route>
       </Switch>
       <Footer />
