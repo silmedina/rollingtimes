@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Climate =  (props) => {
-    console.log(props);
+    // console.log(props);
     const ciudad = props.clima.name;
     const pais = props.clima.sys && props.clima.sys.country;
     const descripcion = props.clima.weather && props.clima.weather[0].description;

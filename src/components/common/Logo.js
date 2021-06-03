@@ -28,7 +28,7 @@ const Logo = () => {
     // console.log(clima);
 
     return (
-        <Nav className=' bg5 px-5 py-3'>
+        <Nav className=' bg5 px-5 py-3 d-flex align-items-center'>
             <div className='mr-auto'>
                 <img src={LogoNav} alt="logo" />
             </div>

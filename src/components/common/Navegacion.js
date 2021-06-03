@@ -34,8 +34,8 @@ const Navegacion = () => {
         return isMobile ? children : null
     }
 
+
   
-    // console.log(city);
 
 
     return (
