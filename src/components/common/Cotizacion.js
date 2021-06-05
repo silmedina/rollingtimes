@@ -14,6 +14,10 @@ const Cotizacion = () => {
                     <th>Euro: 166</th>
                     <th>Bitcoin: 32k</th>
                     <th>Ethe: 32k</th>
+                    <th>Dolar: 145</th>
+                    <th>Euro: 166</th>
+                    <th>Bitcoin: 32k</th>
+                    <th>Ethe: 32k</th>
                 </tr>
             </thead>
         </Table>
