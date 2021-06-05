@@ -32,5 +32,18 @@
 /* estilos barra menu */
 
 #navBlock{
-  box-shadow: #222222;
+  /* box-shadow:#222222; */
+}
+#navDesk{
+  width: 100%;
+  position:fixed;
+}
+#navExpand{
+  display: block;
+}
+#dropdown-button:after {
+  display:none;
+}
+#barrasIcon{
+  color: #ec4e20;
 }
