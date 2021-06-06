@@ -14,10 +14,56 @@ import Contact from "./components/Contact/Contact";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
+  const [dolar, setDolar] = useState({});
+  const [euro, setEuro] = useState({});
+  const [real, setReal] = useState({});
   
   useEffect(()=>{
     consultarCategorias();
+    consultarDolar();
+    consultarEuro();
+    consultarReal();
   },[]);
+
+  
+  const consultarDolar = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_DOLAR;
+
+      const respuesta = await fetch(url);
+      const cotizacionDolar = await respuesta.json();
+
+      setDolar(JSON.parse(cotizacionDolar));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const consultarEuro = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_EURO;
+
+      const respuesta = await fetch(url);
+      const cotizacionEuro = await respuesta.json();
+
+      setEuro(JSON.parse(cotizacionEuro));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const consultarReal = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_REAL;
+
+      const respuesta = await fetch(url);
+      const cotizacionReal = await respuesta.json();
+
+      setReal(JSON.parse(cotizacionReal));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const consultarCategorias = async () => {
     try {
@@ -34,7 +80,7 @@ function App() {
 
   return (
     <Router>
-      <Navegacion />
+      <Navegacion dolar={dolar} euro={euro} real={real}/>
       <Switch>
         <Route exact path="/">
           <Inicio />

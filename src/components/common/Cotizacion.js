@@ -1,28 +1,31 @@
-import React from 'react';
-import { Navbar, Nav, Table, Button, NavDropdown } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 
+const Cotizacion = (props) => {
 
-const Cotizacion = () => {
-    // Consultar api
-
-    return (
-
-        <Table bordered hover size="sm"  className='bg5 text-center m-0'>
-            <thead className=''>
-                <tr>
-                    <th>Dolar: 145</th>
-                    <th>Euro: 166</th>
-                    <th>Bitcoin: 32k</th>
-                    <th>Ethe: 32k</th>
-                    <th>Dolar: 145</th>
-                    <th>Euro: 166</th>
-                    <th>Bitcoin: 32k</th>
-                    <th>Ethe: 32k</th>
-                </tr>
-            </thead>
-        </Table>
-
-    );
+  return (
+    <Table bordered hover size="sm" className="bg5 text-center m-0">
+      <thead className="">
+        <tr>
+          {props.dolar.compra ? (
+            <th>
+              Dolar: Compra {props.dolar.compra} Venta {props.dolar.venta}
+            </th>
+          ) : null}
+          {props.euro.compra ? (
+            <th>
+              Euro: Compra {props.euro.compra} Venta {props.euro.venta}
+            </th>
+          ) : null}
+          {props.real.compra ? (
+            <th>
+              Real: Compra {props.real.compra} Venta {props.real.venta}
+            </th>
+          ) : null}
+        </tr>
+      </thead>
+    </Table>
+  );
 };
 
 export default Cotizacion;

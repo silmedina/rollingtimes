@@ -11,7 +11,7 @@ import Logo from './Logo';
 import Menudespleg from './Menudespleg';
 
 
-const Navegacion = () => {
+const Navegacion = (props) => {
     const [compactNav, setcompactNav] = useState(false);
 
     const cambiarNav = () => {
@@ -58,7 +58,7 @@ const Navegacion = () => {
                         </Navbar>
                         <div className="" id="navExpand">
                             <Logo />
-                            <Cotizacion />
+                            <Cotizacion dolar={props.dolar} euro={props.euro} real={props.real}/>
                             <Categoria />
                         </div>
                     </div>
