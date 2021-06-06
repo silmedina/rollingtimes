@@ -1,5 +1,6 @@
-import "./App.css";
+import {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navegacion from "./components/common/Navegacion";
 import Footer from "./components/common/Footer";
@@ -7,8 +8,6 @@ import Inicio from "./components/Inicio";
 import ListarCategorias from "./components/ListarCategorias";
 import EditarCategoria from "./components/EditarCategoria";
 import AgregarCategoria from "./components/AgregarCategoria";
-import {useState, useEffect} from 'react';
-
 import Subscription from './components/Subscription/Subscription'
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
@@ -18,17 +17,63 @@ import Login from './components/Login/Login';
 
 function App() {
   const [categorias, setCategorias] = useState([]);
+  const [dolar, setDolar] = useState({});
+  const [euro, setEuro] = useState({});
+  const [real, setReal] = useState({});
   
   useEffect(()=>{
     consultarCategorias();
+    consultarDolar();
+    consultarEuro();
+    consultarReal();
   },[]);
 
-  const  consultarCategorias = async ()=>{
+  
+  const consultarDolar = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_DOLAR;
+
+      const respuesta = await fetch(url);
+      const cotizacionDolar = await respuesta.json();
+
+      setDolar(JSON.parse(cotizacionDolar));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const consultarEuro = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_EURO;
+
+      const respuesta = await fetch(url);
+      const cotizacionEuro = await respuesta.json();
+
+      setEuro(JSON.parse(cotizacionEuro));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const consultarReal = async () => {
+    try {
+      const url = process.env.REACT_APP_URL_REAL;
+
+      const respuesta = await fetch(url);
+      const cotizacionReal = await respuesta.json();
+
+      setReal(JSON.parse(cotizacionReal));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const consultarCategorias = async () => {
     try {
       const url = process.env.REACT_APP_URL_CATEGORIA;
       const respuesta = await fetch( url);
       const informacion = await respuesta.json();
-      if(respuesta.status === 200){
+      if (respuesta.status === 200) {
         setCategorias(informacion);
       }
     } catch (error) {
@@ -38,7 +83,7 @@ function App() {
 
   return (
     <Router>
-      <Navegacion />
+      <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/>
       <Switch>
         <Route exact path="/">
           <Inicio />
