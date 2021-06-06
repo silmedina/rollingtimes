@@ -3,9 +3,7 @@ import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import {
-  validarEmail
-} from "../Validaciones";
+import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -16,29 +14,58 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log=(email)
+    console.log = email;
 
     if (
-      validarEmail(email) 
-      //&& validar password con bcryptjs 
+      validarEmail(email)
+      //&& validar password con bcryptjs
     ) {
-        Swal.fire(
+      console.log("correcta validacion");
+      try {
+        const loginComparacion = {
+          email,
+          password,
+        };
+
+        const respuesta = await fetch("http://localhost:4001/api/login/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(loginComparacion),
+        });
+
+        console.log(respuesta);
+
+        console.log("despues respuesta");
+
+        if (respuesta.status === 201) {
+          Swal.fire(
             "Bien hecho!",
-            "La suscripcion se realizo correctamente!",
+            "El inicio de sesion se realizo correctamente!",
             "success"
           );
+        } else {
+          if (respuesta.status === 404) {
+            Swal.fire(
+              "Error",
+              "Por algun motivo no se pudo iniciar sesion correctamente!",
+              "error"
+            );
+          }
+        }
+      } catch (error) {
+        console.log(error);
+        Swal.fire(
+          "Error",
+          "Por algun motivo no se pudo iniciar sesion correctamente!",
+          "error"
+        );
+      }
     } else {
-      Swal.fire(
-        "Error!",
-        "La suscripcion se realizo correctamente!",
-        "error"
-      );
+      Swal.fire("Error", "El usuario o contraseña no coinciden", "error");
     }
-
-  }
+  };
 
   return (
     <div>
@@ -89,6 +116,7 @@ const Login = () => {
                     name="password"
                     type="password"
                     placeholder="Contraseña"
+                    onChange={(e) => setPassword(e.target.value)}
                     minLength={4}
                     maxLength={20}
                     required
@@ -105,16 +133,20 @@ const Login = () => {
                 </Form.Group>
               </Col>
             </Form.Row>
-            <Button className="mx-2 my-1" variant="outline-success" type="submit">
-            Enviar
-          </Button>
-          <Button
-            className="mx-2 my-1"
-            onClick={handleClose}
-            variant="outline-dark"
-          >
-            Close
-          </Button>
+            <Button
+              className="mx-2 my-1"
+              variant="outline-success"
+              type="submit"
+            >
+              Enviar
+            </Button>
+            <Button
+              className="mx-2 my-1"
+              onClick={handleClose}
+              variant="outline-dark"
+            >
+              Close
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

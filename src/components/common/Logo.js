@@ -16,7 +16,7 @@ const Logo = () => {
     //    Clima 
 
     useEffect(() => {
-        ejecutarClima();
+        //ejecutarClima();
     }, []);
 
     const ejecutarClima = async () => {
