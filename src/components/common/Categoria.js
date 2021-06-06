@@ -7,7 +7,7 @@ import { Navbar, Nav, Form, Button, Container } from 'react-bootstrap';
 const Categoria = () => {
     return (
         <Fragment>
-            <Nav variant="tabs" defaultActiveKey="/home" className='bg5 px-5 d-flex justify-content-center' id='nav'>
+            <Nav variant="tabs" defaultActiveKey="/home" className='bg5 pt-2 d-flex justify-content-center' id='nav'>
                 <Nav.Item>
                     <Nav.Link className='color1' href="/home">Home</Nav.Link>
                 </Nav.Item>
