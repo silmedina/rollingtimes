@@ -2,22 +2,26 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import LogoNav from './img/LogoNav.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useMediaQuery } from 'react-responsive';
 import logoSm from './img/logoSm.png';
 import Categoria from './Categoria.js';
 import Cotizacion from './Cotizacion';
 import Logo from './Logo';
 import Menudespleg from './Menudespleg';
-import { Link } from "react-router-dom";
+
 
 const Navegacion = () => {
     const [compactNav, setcompactNav] = useState(false);
 
     const cambiarNav = () => {
-        if (window.scrollY >= 20) {
+        if (window.scrollY >= 30) {
+            const nuevaClaseExpa = document.getElementById('navExpand');
+            nuevaClaseExpa.style.display = "none";
             setcompactNav(true);
-        } else {
+        } else if (window.scrollY < 30) {
+            const nuevaClaseExpa = document.getElementById('navExpand');
+            nuevaClaseExpa.style.display = "block";
             setcompactNav(false);
         }
     }
@@ -31,38 +35,32 @@ const Navegacion = () => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
     }
-  
 
 
     return (
         <Fragment>
             <Desktop>
                 <div className="d-flex flex-column">
-                    <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        {(compactNav === true) ? (<Menudespleg />) : (null)}
-
-                        {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
-                        }
-                        <Form inline className=''>
-                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
-                        </Form>
-                        <Nav className='ml-auto'>
-                            <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
-                            {/* <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button> */}
-                            <Link
-                                className="btn mx-2 my-1 outline-dark"
-                                to={`/suscripcion`}
-                                >Suscribite
-                            </Link>
-                        </Nav>
-                    </Navbar>
-                    <hr className='my-0' id='hr'/>
-                    <div>
-                        {(compactNav === false) ? (<Logo />) : (null)}
-                        {(compactNav === false) ? (<Cotizacion />) : (null)}
-                        {(compactNav === false) ? (<Categoria />) : (null)}
+                    <div className="bg3" id="navDesk">
+                        <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
+                            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                            {(compactNav === true) ? (<Menudespleg />) : (null)}
+                            {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
+                            }
+                            <Form inline className='m-3'>
+                                <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                                <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
+                            </Form>
+                            <Nav className='ml-auto'>
+                                <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
+                                <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
+                            </Nav>
+                        </Navbar>
+                        <div className="" id="navExpand">
+                            <Logo />
+                            <Cotizacion />
+                            <Categoria />
+                        </div>
                     </div>
                 </div>
             </Desktop>

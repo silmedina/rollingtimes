@@ -1,11 +1,13 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Menudespleg = () => {
     return (
         <Dropdown>
-        <Dropdown.Toggle id="dropdown-button-dark" variant="outline-dark mr-3">
-        {/* <FontAwesomeIcon icon={faBars}></FontAwesomeIcon> */}
+        <Dropdown.Toggle id="dropdown-button" variant="" className="mr-3">
+        <h3><FontAwesomeIcon icon={faBars} id="barrasIcon"></FontAwesomeIcon></h3>
         </Dropdown.Toggle>
     
         <Dropdown.Menu variant="dark">
