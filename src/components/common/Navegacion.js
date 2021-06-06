@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import LogoNav from './img/LogoNav.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import logoSm from './img/logoSm.png';
 import Categoria from './Categoria.js';
@@ -30,7 +30,8 @@ const Navegacion = () => {
     const Mobile = ({ children }) => {
         const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 })
         return isMobile ? children : null
-    } 
+    }
+  
 
 
     return (
@@ -39,7 +40,7 @@ const Navegacion = () => {
                 <div className="d-flex flex-column">
                     <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        {(compactNav === true) ? (<Menudespleg/>) : (null)}
+                        {(compactNav === true) ? (<Menudespleg />) : (null)}
 
                         {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
                         }
@@ -57,8 +58,9 @@ const Navegacion = () => {
                             </Link>
                         </Nav>
                     </Navbar>
+                    <hr className='my-0' id='hr'/>
                     <div>
-                        {(compactNav === false) ? (<Logo/>) : (null)}
+                        {(compactNav === false) ? (<Logo />) : (null)}
                         {(compactNav === false) ? (<Cotizacion />) : (null)}
                         {(compactNav === false) ? (<Categoria />) : (null)}
                     </div>
