@@ -85,7 +85,7 @@ const validarNombreCategoria = (nombreCategoria) => {
   }
 
   return {esValido:true , mensaje:'Nombre valido'}  
-} 
+}
 
 export {
   validarNombre,
@@ -97,5 +97,5 @@ export {
   validarEmail,
   validarTextArea,
   validarConsulta,
-  validarNombreCategoria,
+  validarNombreCategoria
 };

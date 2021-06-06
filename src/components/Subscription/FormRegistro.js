@@ -9,18 +9,18 @@ import {
   validarTelefono,
   validarEmail,
 } from "../Validaciones";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const FormRegistro = (props) => {
+  const URL = process.env.REACT_APP_API_URL;
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
-  const [direccion, setDireccion] = useState("");
   const [localidad, setLocalidad] = useState("");
-  const [postal, setPostal] = useState("");
+  const [direccion, setDireccion] = useState("");
   const [email, setEmail] = useState("");
   const [telefono, setTelefono] = useState("");
+  const [postal, setPostal] = useState("");
   const [terminos, setTerminos] = useState(false);
-  //const [formularioValido, setFormularioValido] = useState(null);
 
   const onChangeTerminos = (e) => {
     setTerminos(e.target.checked);
@@ -39,12 +39,9 @@ const FormRegistro = (props) => {
     ) {
       props.onHide();
     }
-    else{
-        
-    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -57,13 +54,56 @@ const FormRegistro = (props) => {
       validarPostal(postal) &&
       terminos
     ) {
-        Swal.fire(
+      console.log("correcta validacion");
+      try {
+        const suscripcion = {
+          nombre,
+          apellido,
+          localidad,
+          direccion,
+          email,
+          telefono,
+          postal,
+        };
+        const configuracion = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(suscripcion),
+        };
+
+        const respuesta = await fetch(URL, configuracion);
+        console.log(respuesta);
+        console.log("despues respuesta");
+
+        if (respuesta.status === 201) {
+          Swal.fire(
             "Bien hecho!",
             "La suscripcion se realizo correctamente!",
             "success"
           );
+          props.consultarAPI();
+        }
+        else{
+          if (respuesta.status === 404){
+            Swal.fire(
+              "Error",
+              "Por algun motivo no se pudo suscribir correctamente!",
+              "error"
+            );
+          }
+        }
+      } catch (error) {
+        console.log("error catch");
+        console.log(error);
+        Swal.fire(
+          "Error",
+          "Por algun motivo no se pudo suscribir correctamente!",
+          "error"
+        );
+      }
     } else {
-        //setFormularioValido(false);
+      console.log("error validacion");
+      Swal.fire("Error", "Algun campo no se completo como deberia!", "error");
     }
   };
 
@@ -150,7 +190,7 @@ const FormRegistro = (props) => {
                       placeholder="rollingnews.contacto@gmail.com"
                       onChange={(e) => setEmail(e.target.value)}
                       minLength={10}
-                      maxLength={30}
+                      maxLength={40}
                       required
                     />
                   </Form.Group>
