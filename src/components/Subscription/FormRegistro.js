@@ -12,7 +12,7 @@ import {
 import Swal from "sweetalert2";
 
 const FormRegistro = (props) => {
-  const URL = process.env.REACT_APP_API_URL;
+  //const URL = process.env.REACT_APP_URL_SUSCRIPCION;
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [localidad, setLocalidad] = useState("");
@@ -56,7 +56,7 @@ const FormRegistro = (props) => {
     ) {
       console.log("correcta validacion");
       try {
-        const suscripcion = {
+        const suscripcionNueva = {
           nombre,
           apellido,
           localidad,
@@ -65,14 +65,15 @@ const FormRegistro = (props) => {
           telefono,
           postal,
         };
-        const configuracion = {
+
+        const respuesta = await fetch('http://localhost:4001/api/suscripcion/', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(suscripcion),
-        };
+          body: JSON.stringify(suscripcionNueva),
+        });
 
-        const respuesta = await fetch(URL, configuracion);
         console.log(respuesta);
+
         console.log("despues respuesta");
 
         if (respuesta.status === 201) {
@@ -81,10 +82,9 @@ const FormRegistro = (props) => {
             "La suscripcion se realizo correctamente!",
             "success"
           );
-          props.consultarAPI();
-        }
-        else{
-          if (respuesta.status === 404){
+          
+        } else {
+          if (respuesta.status === 404) {
             Swal.fire(
               "Error",
               "Por algun motivo no se pudo suscribir correctamente!",
