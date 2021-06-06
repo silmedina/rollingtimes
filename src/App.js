@@ -80,7 +80,7 @@ function App() {
 
   return (
     <Router>
-      <Navegacion dolar={dolar} euro={euro} real={real}/>
+      <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/>
       <Switch>
         <Route exact path="/">
           <Inicio />

@@ -17,8 +17,10 @@ const Navegacion = (props) => {
     const cambiarNav = () => {
         if (window.scrollY >= 30) {
             const nuevaClaseExpa = document.getElementById('navExpand');
-            nuevaClaseExpa.style.display = "none";
-            setcompactNav(true);
+            if (nuevaClaseExpa){
+                nuevaClaseExpa.style.display = "none";
+                setcompactNav(true);
+            }
         } else if (window.scrollY < 30) {
             const nuevaClaseExpa = document.getElementById('navExpand');
             nuevaClaseExpa.style.display = "block";
@@ -44,7 +46,7 @@ const Navegacion = (props) => {
                     <div className="bg3" id="navDesk">
                         <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                            {(compactNav === true) ? (<Menudespleg />) : (null)}
+                            {(compactNav === true) ? (<Menudespleg categorias={props.categorias}/>) : (null)}
                             {(compactNav === true) ? (<img className='mr-3' src={logoSm} alt="logo" />) : (null)
                             }
                             <Form inline className='m-3'>
@@ -59,7 +61,7 @@ const Navegacion = (props) => {
                         <div className="" id="navExpand">
                             <Logo />
                             <Cotizacion dolar={props.dolar} euro={props.euro} real={props.real}/>
-                            <Categoria />
+                            <Categoria categorias={props.categorias}/>
                         </div>
                     </div>
                 </div>
@@ -79,13 +81,11 @@ const Navegacion = (props) => {
                             </Button>
                         </Form>
                         <Nav className="ml-5 mr-5 dark">
-                            <Nav.Link href="#ultimo">Ultimo Momento</Nav.Link>
-                            <Nav.Link href="#politica">Política</Nav.Link>
-                            <Nav.Link href="#economia">Economía</Nav.Link>
-                            <Nav.Link href="#sociedad">Sociedad</Nav.Link>
-                            <Nav.Link href="#mundo">Mundo</Nav.Link>
-                            <Nav.Link href="#deportes">Deportes</Nav.Link>
-                            <Nav.Link href="#espetaculos">Espetáculos</Nav.Link>
+                            {props.categorias.map((categoria) => (
+                                <Nav.Link href="/">
+                                {categoria.nombre}
+                                </Nav.Link>
+                            ))}
                         </Nav>
                         <Nav>
                             <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
