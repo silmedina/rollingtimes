@@ -42,6 +42,7 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
+          handleClose();
         } else {
           if (respuesta.status === 201) {
             Swal.fire(
