@@ -1,0 +1,119 @@
+#BoardNoticiasContainer {
+  background-color: #d8d8d8;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main container Card */
+#CardNoticiaContainer {
+  min-height: 400px;
+  max-width: 400px;
+  background-color: white;
+  margin: 15px;
+  overflow: hidden;
+}
+
+/* Imagen y categoria */
+#CardNoticiaInfo {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+#CardNoticiaInfo img {
+  max-width: 500px;
+}
+
+#CardNoticiaInfo p {
+  position: absolute;
+  z-index: 1;
+  margin-top: 35px;
+  color: white;
+  min-width: 100px;
+  padding: 6px 25px;
+  font-weight: 100;
+  font-size: 15px;
+  text-transform: uppercase;
+  background-color: #222222;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* Titulos y descripcion */
+#CardNoticiaBody {
+  padding: 20px;
+}
+
+#CardNoticiaTitulos {
+  display: flex;
+  align-items: center;
+  width: auto;
+  max-width: 500px;
+  min-height: 80px;
+}
+
+#CardNoticiaTitulos h4 {
+  padding-left: 20px;
+  opacity: 0.85;
+  font-family: "Roboto Slab", serif;
+  font-weight: 900;
+}
+
+#CardFechaContainer {
+  display: flex;
+  color: #ec4e20;
+}
+
+#CardFechaContainer h1 {
+  font-weight: 800;
+}
+
+#CardFechaContainer #CardFechaContainer-MY {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 10px;
+}
+
+#CardFechaContainer #CardFechaContainer-MY p {
+  height: auto;
+  margin: 0;
+  font-weight: 800;
+}
+
+#CardNoticiaDescripcion {
+  padding-top: 20px;
+  width: 100%;
+}
+
+#CardNoticiaDescripcion p {
+  opacity: 0.9;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#CardNoticiaDescripcion a {
+  opacity: 1;
+  color: #ec4e20;
+  text-decoration: none;
+  min-width: 100%;
+  font-size: 15px;
+  border-bottom: 1px solid #ec4e20;
+  padding: 2px;
+}
+
+/* Footer */
+#CardNoticiaFooter {
+  background-color: #afafb1;
+  padding: 10px 45px;
+  display: flex;
+  justify-content: space-between;
+  color: whitesmoke;
+}
+
+#CardNoticiaFooter p {
+  margin: 0;
+  height: auto;
+  padding: 0;
+}
