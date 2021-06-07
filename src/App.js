@@ -11,7 +11,7 @@ import AgregarCategoria from "./components/AgregarCategoria";
 import Subscription from './components/Subscription/Subscription'
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
-import Login from './components/Login/Login';
+
 //import AboutUs from './components/AboutUs/AboutUs'
 //import Contact from './components/Contact/Contact'
 
@@ -102,9 +102,6 @@ function App() {
         </Route>
         <Route exact path="/contacto">
           <Contact/>
-        </Route>
-        <Route exact path="/login">
-          <Login/>
         </Route>
         <Route path="*">
           <Error404/>

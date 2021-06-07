@@ -32,7 +32,7 @@ const validarLocalidad = (localidad) => {
 };
 const validarPostal = (postal) => {
   const expresion = /^[0-9]/;
-  if (postal.trim() !== "" && expresion.test(postal)) {
+  if (postal.trim() !== "" && expresion.test(postal) && postal.length === 4) {
     return true;
   } else {
     return false;

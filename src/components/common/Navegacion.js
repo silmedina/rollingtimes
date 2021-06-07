@@ -9,6 +9,7 @@ import Categoria from './Categoria.js';
 import Cotizacion from './Cotizacion';
 import Logo from './Logo';
 import Menudespleg from './Menudespleg';
+import Login from '../Login/Login';
 
 
 const Navegacion = (props) => {
@@ -54,7 +55,7 @@ const Navegacion = (props) => {
                                 <Button className='' variant="outline-dark"><FontAwesomeIcon icon={faSearch}></FontAwesomeIcon></Button>
                             </Form>
                             <Nav className='ml-auto'>
-                                <Button className='mx-2 my-1' variant='outline-dark'>Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon></Button>
+                                <Login/>
                                 <Button className='mx-2 my-1' variant='outline-dark'>Suscribite</Button>
                             </Nav>
                         </Navbar>

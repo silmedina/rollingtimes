@@ -18,8 +18,9 @@ const FormRegistro = (props) => {
   const [localidad, setLocalidad] = useState("");
   const [direccion, setDireccion] = useState("");
   const [email, setEmail] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [postal, setPostal] = useState("");
+  const [password, setPassword] = useState("");
+  const [telefono, setTelefono] = useState();
+  const [postal, setPostal] = useState();
   const [terminos, setTerminos] = useState(false);
 
   const onChangeTerminos = (e) => {
@@ -54,7 +55,6 @@ const FormRegistro = (props) => {
       validarPostal(postal) &&
       terminos
     ) {
-      console.log("correcta validacion");
       try {
         const suscripcionNueva = {
           nombre,
@@ -62,6 +62,7 @@ const FormRegistro = (props) => {
           localidad,
           direccion,
           email,
+          password,
           telefono,
           postal,
         };
@@ -74,8 +75,6 @@ const FormRegistro = (props) => {
 
         console.log(respuesta);
 
-        console.log("despues respuesta");
-
         if (respuesta.status === 201) {
           Swal.fire(
             "Bien hecho!",
@@ -87,7 +86,13 @@ const FormRegistro = (props) => {
           if (respuesta.status === 404) {
             Swal.fire(
               "Error",
-              "Por algun motivo no se pudo suscribir correctamente!",
+              "Por algun motivo no se pudo suscribir correctamente.",
+              "error"
+            );
+          }else{
+            Swal.fire(
+              "El usuario y/o telefono ya se encuentra registrado",
+              "Intente suscribirse con otro correo electronico y/o telefono",
               "error"
             );
           }
@@ -101,6 +106,16 @@ const FormRegistro = (props) => {
           "error"
         );
       }
+      e.target.reset();
+      setNombre("");
+      setApellido("");
+      setLocalidad("");
+      setDireccion("");
+      setEmail("");
+      setPassword("");
+      setTelefono();
+      setPostal();
+      setTerminos(false);
     } else {
       console.log("error validacion");
       Swal.fire("Error", "Algun campo no se completo como deberia!", "error");
@@ -194,6 +209,19 @@ const FormRegistro = (props) => {
                       required
                     />
                   </Form.Group>
+                  <Form.Group>
+                    <Form.Label>
+                      <span className="text-danger">*</span> Contraseña
+                    </Form.Label>
+                    <Form.Control
+                      name="password"
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      minLength={4}
+                      maxLength={20}
+                      required
+                    />
+                  </Form.Group>
                 </Col>
               </Form.Row>
               <Form.Row>
@@ -223,9 +251,9 @@ const FormRegistro = (props) => {
                       name="postal"
                       type="text"
                       placeholder="4000"
-                      onChange={(e) => setPostal(e.target.value)}
                       minLength={4}
                       maxLength={4}
+                      onChange={(e) => setPostal(e.target.value)}
                       required
                     />
                   </Form.Group>
@@ -237,7 +265,6 @@ const FormRegistro = (props) => {
                   type="checkbox"
                   label="Acepto los terminos y condiciones"
                   onChange={onChangeTerminos}
-                  checked={terminos}
                   required
                 ></Form.Check>
               </Form.Group>

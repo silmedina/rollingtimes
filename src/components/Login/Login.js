@@ -16,18 +16,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log = email;
 
     if (
       validarEmail(email)
-      //&& validar password con bcryptjs
     ) {
-      console.log("correcta validacion");
       try {
         const loginComparacion = {
           email,
           password,
         };
+
+        console.log(loginComparacion)
 
         const respuesta = await fetch("http://localhost:4001/api/login/", {
           method: "POST",
@@ -37,19 +36,23 @@ const Login = () => {
 
         console.log(respuesta);
 
-        console.log("despues respuesta");
-
-        if (respuesta.status === 201) {
+        if (respuesta.status === 200) {
           Swal.fire(
             "Bien hecho!",
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
         } else {
-          if (respuesta.status === 404) {
+          if (respuesta.status === 201) {
             Swal.fire(
               "Error",
-              "Por algun motivo no se pudo iniciar sesion correctamente!",
+              "Password incorrecta!",
+              "error"
+            );
+          }else{
+            Swal.fire(
+              "Error",
+              "Usuario no encontrado!",
               "error"
             );
           }
@@ -69,7 +72,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="text-center pb-4">
+      <div className="text-center">
         <Button
           className="mx-2 my-1"
           onClick={handleShow}
