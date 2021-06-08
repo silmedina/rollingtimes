@@ -72,20 +72,60 @@ const validarConsulta = (tipoConsulta) => {
 
 const validarNombreCategoria = (nombreCategoria) => {
   if (nombreCategoria.trim() === '') {
-    return {esValido:false , mensaje:'Debe ingresar un nombre de categoria'}
+    return { esValido: false, mensaje: 'Debe ingresar un nombre de categoria' }
   }
 
   if (nombreCategoria.trim().length > 35) {
-    return {esValido:false , mensaje:'Debe ingresar una categoria de menos de 30 caracteres'}
+    return { esValido: false, mensaje: 'Debe ingresar una categoria de menos de 30 caracteres' }
   }
 
-  const expresion = /^[a-zA-Z\s]*$/; 
-  if (!expresion.test(nombreCategoria)) {    
-    return {esValido:false , mensaje:'Debe ingresar caracteres validos para el nombre de categoria'}
+  const expresion = /^[a-zA-Z\s]*$/;
+  if (!expresion.test(nombreCategoria)) {
+    return { esValido: false, mensaje: 'Debe ingresar caracteres validos para el nombre de categoria' }
   }
 
   return {esValido:true , mensaje:'Nombre valido'}  
+} 
+  return {esValido:true , mensaje:'Nombre valido'}  
+  return { esValido: true, mensaje: 'Nombre valido' }
 }
+
+const validarUrlImagen = (urlImagen) => {
+  const expresion = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  if (urlImagen !== "" && expresion.test(urlImagen)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const validarTitulo = (titulo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/;  //{7,50}
+  if (titulo.trim() !== "" && expresion.test(titulo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const validarSubtitulo = (subtitulo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{10,250}
+  if (subtitulo.trim() !== "" && expresion.test(subtitulo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const validarCuerpo = (cuerpo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{90,600}
+  if (cuerpo.trim() !== "" && expresion.test(cuerpo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
+
+
 
 export {
   validarNombre,
@@ -97,5 +137,9 @@ export {
   validarEmail,
   validarTextArea,
   validarConsulta,
-  validarNombreCategoria
+  validarNombreCategoria,
+  validarUrlImagen,
+  validarTitulo,
+  validarSubtitulo,
+  validarCuerpo
 };
