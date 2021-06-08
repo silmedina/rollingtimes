@@ -66,9 +66,9 @@ const Navegacion = (props) => {
               </Form>
               <Nav className="ml-auto">
                 <Login/>
-                <Button className="mx-2 my-1" variant="outline-dark">
+                {/* <Button className="mx-2 my-1" variant="outline-dark">
                   Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-                </Button>
+                </Button> */}
                 <Button className="mx-2 my-1" variant="outline-dark">
                   Suscribite
                 </Button>
