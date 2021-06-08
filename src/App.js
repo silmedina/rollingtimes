@@ -81,7 +81,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/> */}
+      <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/>
       <Switch>
         <Route exact path="/">
           <Inicio />

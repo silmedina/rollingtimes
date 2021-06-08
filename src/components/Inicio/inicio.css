@@ -1,3 +1,7 @@
+#InicioContainer {
+    background-color: whitesmoke;
+}
+
 .componente {
     min-width: 100vw;
     min-height: 80px;
