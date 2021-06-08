@@ -8,10 +8,12 @@ import "./Inicio/inicio.css";
 
 const inicio = () => {
   return (
-    <div>
-      <BannerCovid />
-
+    <div id='InicioContainer'>
       <CarouselNoticias />
+
+      <div style={{ padding: "2rem 0" }}>
+        <BannerCovid />
+      </div>
 
       <BoardNoticias />
     </div>
