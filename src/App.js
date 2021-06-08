@@ -11,6 +11,7 @@ import AgregarCategoria from "./components/AgregarCategoria";
 import Subscription from './components/Subscription/Subscription'
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
+import DetalleNoticia from "./components/DetalleNoticia";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
@@ -80,7 +81,7 @@ function App() {
 
   return (
     <Router>
-      <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/>
+      {/* <Navegacion dolar={dolar} euro={euro} real={real} categorias={categorias}/> */}
       <Switch>
         <Route exact path="/">
           <Inicio />
@@ -90,6 +91,9 @@ function App() {
         </Route>
         <Route exact path="/categorias/editar/:id">
           <EditarCategoria consultarCategorias={consultarCategorias}/>
+        </Route>
+        <Route exact path="/noticia/:id">
+          <DetalleNoticia />
         </Route>
         <Route exact path="/categorias/nuevo">
           <AgregarCategoria consultarCategorias={consultarCategorias}/>

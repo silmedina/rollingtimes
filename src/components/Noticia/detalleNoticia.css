@@ -1,0 +1,47 @@
+#DetalleNoticiaContainer {
+  width: 100%;
+}
+
+#DetalleNoticiaContainer * {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+#NoticiaContainer {
+  align-items: flex-start;
+  width: 100%;
+  overflow: hidden;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#CategoriaRoot {
+  color: #ec4e20;
+}
+
+.noticia-titulo {
+  font-size: 60px;
+  font-weight: 900;
+  font-family: "Roboto Slab", serif;
+  padding: 1rem 0;
+}
+
+#NoticiaImagen {
+  max-width: 950px;
+  padding: 2rem 0;
+}
+
+#NoticiaDescripcion {
+  font-size: 19px;
+  font-family: "Roboto", sans-serif;
+}
+
+#NoticiaDescripcion::first-letter {
+  font-size: 56px;
+  font-weight: 900;
+  font-family: "Roboto Slab", serif;
+}
