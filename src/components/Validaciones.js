@@ -85,9 +85,6 @@ const validarNombreCategoria = (nombreCategoria) => {
   }
 
   return {esValido:true , mensaje:'Nombre valido'}  
-} 
-  return {esValido:true , mensaje:'Nombre valido'}  
-  return { esValido: true, mensaje: 'Nombre valido' }
 }
 
 const validarUrlImagen = (urlImagen) => {
