@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ItemNoticia = (props) => {
+
     const eliminarNoticia = (id) => {
         Swal.fire({
-          title: "Estas seguro de eliminar la noticia?",
+          title: "Estas seguro de eliminar esta noticia?",
           text: "No podras recuperar la noticia eliminada",
           icon: "warning",
           showCancelButton: true,
@@ -20,11 +21,13 @@ const ItemNoticia = (props) => {
           if (result.isConfirmed) {
             try {
               const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
-              const respuesta = await fetch(URLNOT, {
+              const respuesta = await fetch(URLNOT,{
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" },
+                headers:{ 
+                  "Content-Type": "application/json"
+                 }
               });
-    
+    console.log(respuesta);
               if (respuesta.status === 200) {
                 Swal.fire(
                   "noticia Eliminada",
@@ -48,12 +51,9 @@ const ItemNoticia = (props) => {
 
     return (
      <ListGroup.Item className="d-flex justify-content-between">
-        <p>{props.noticia.nombre}</p>
+        <p>{props.noticia.titular}</p>
         <div>
-          <Link
-            className="btn btn-warning mr-3 text-light"
-            to={`/noticias/editar/${props.noticia._id}`}
-          >
+          <Link className="btn btn-warning mr-3 text-light" to={`/noticias/editar/${props.noticia._id}`} >
             <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
           </Link>
           <Button

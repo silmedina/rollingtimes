@@ -15,7 +15,7 @@ const Navegacion = () => {
     const [compactNav, setcompactNav] = useState(false);
 
     const cambiarNav = () => {
-        if (window.scrollY >= 20) {
+        if (window.scrollY.isDesktop >= 20) {
             setcompactNav(true);
         } else {
             setcompactNav(false);
@@ -36,7 +36,7 @@ const Navegacion = () => {
     return (
         <Fragment>
             <Desktop>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column ">
                     <Navbar collapseOnSelect expand="lg" className="bg5" id='navBlock' >
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         {(compactNav === true) ? (<Menudespleg/>) : (null)}
@@ -66,7 +66,7 @@ const Navegacion = () => {
             </Desktop>
 
             <Mobile>
-                <Navbar collapseOnSelect expand="lg" bg="" className="bg5">
+                <Navbar collapseOnSelect expand="lg" bg="" className="bg5 fixed-top">
                     <div className='mr-2'>
                         <img src={LogoNav} alt="logo" />
                     </div>

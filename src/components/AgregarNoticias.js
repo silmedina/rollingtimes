@@ -8,9 +8,9 @@ import { validarNombre, validarNombreCategoria, validarTextArea, validarUrlImage
 
 
 const Noticias = (props) => {
-  const URLNOT = process.env.REACT_APP_URL_NOTICIAS;
+  const URLNOT = process.env.REACT_APP_URL_NOTICIA;
   const [titular, setTitular] = useState("");
-  const [Bajada, setBajada] = useState("");
+  const [bajada, setBajada] = useState("");
   const [cuerpo, setCuerpo] = useState("");
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -29,11 +29,11 @@ const Noticias = (props) => {
     // validacion
     if (
       validarTextArea(titular) &&
-            validarTextArea(bajada) &&
-            validarTextArea(cuerpo) &&
-            validarUrlImagen(imagen) &&
-            validarNombreCategoria(categoria) &&
-            validarNombre(autor)
+      validarTextArea(bajada) &&
+      validarTextArea(cuerpo) &&
+      validarUrlImagen(imagen) &&
+      validarNombreCategoria(categoria) &&
+      validarNombre(autor)
 
     ) {
       // validacion falla, entonces mostrar un cartel de error
@@ -43,20 +43,18 @@ const Noticias = (props) => {
       // si esta bien la validacion entonces agregar el producto en la API
 
       //crear el objeto que tengo que enviar a la API
-  
+
       const noticia = {
         titular,
-        Bajada,
+        bajada,
         cuerpo,
         imagen,
         categoria,
         autor,
         fecha
-
       }
       console.log(noticia);
       //  enviar el request o solicitud POST
-
       try {
         //  codigo normal
         const configuracion = {
@@ -67,7 +65,7 @@ const Noticias = (props) => {
           body: JSON.stringify(noticia)
         }
 
-        const respuesta = await fetch(URLNOT, configuracion)
+        const respuesta = await fetch(URLNOT,configuracion)
         console.log(respuesta)
         if (respuesta.status === 201) {
           // mostrar cartel de que se agrego el producto
@@ -77,7 +75,7 @@ const Noticias = (props) => {
             'success'
           )
           props.consultarNoticias();
-          }
+        }
       } catch (error) {
         console.log(error);
       }
@@ -121,7 +119,7 @@ const Noticias = (props) => {
           <Form.Control
             type="text"
             placeholder="Pegue la URL de la imagen"
-          onChange={(e) => setImagen(e.target.value)}
+            onChange={(e) => setImagen(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -133,7 +131,7 @@ const Noticias = (props) => {
           <Form.Control
             type="text"
             placeholder="Nombre del autor"
-          onChange={(e) => setAutor(e.target.value)}
+            onChange={(e) => setAutor(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -142,7 +140,16 @@ const Noticias = (props) => {
           <Form.Control
             type="text"
             placeholder="Ingrese la fecha"
-          onChange={(e) => setFecha(e.target.value)}
+            onChange={(e) => setFecha(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>categoria</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese la categoria"
+            onChange={(e) => setCategoria(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

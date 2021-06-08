@@ -2,31 +2,32 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Button, Alert, Form, Container } from 'react-bootstrap';
 import { useParams, withRouter } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { validarNombre, validarNombreCategoria, validarTextArea, validarUrlImagen } from "./Validaciones";
+import { validarNombre, validarNombreCategoria, validarTitulo, validarUrlImagen, validarSubtitulo, validarCuerpo } from "./Validaciones";
 
 const EditarNoticia = (props) => {
-    const URLNOT = process.env.REACT_APP_URL_NOTICIAS;
     const { id } = useParams();
     const titularRef = useRef('');
     const bajadaRef = useRef('');
     const cuerpoRef = useRef('');
     const imagenRef = useRef('');
+    //cambiar a categoria a state
     const categoriaRef = useRef('');
     const autorRef = useRef('');
     const fechaRef = useRef('');
     const [noticia, setNoticia] = useState({});
     const [error, setError] = useState(false);
-    const [mensajeError, setMensajeError] = useState('');
+    // const [mensajeError, setMensajeError] = useState('');
+    const URLNOT = process.env.REACT_APP_URL_NOTICIA + '/' + id;
+
 
 
     useEffect(() => {
-        consultarNoticia();
-    })
+        getNoticia();
+    }, []);
 
-    const consultarNoticia = async () => {
+    const getNoticia = async () => {
         try {
             const respuesta = await fetch(URLNOT);
-            console.log(respuesta);
             if (respuesta.status === 200) {
                 const resp = await respuesta.json();
                 setNoticia(resp);
@@ -42,17 +43,16 @@ const EditarNoticia = (props) => {
 
     }
 
-
     const handleSudmit = async (e) => {
         e.preventDefault();
         if (
-            // validar los campos
-            validarTextArea(titular) &&
-            validarTextArea(bajada) &&
-            validarTextArea(cuerpo) &&
-            validarUrlImagen(imagen) &&
-            validarNombreCategoria(categoria) &&
-            validarNombre(autor)
+            // validar los campos (no validar imagen)
+            validarTitulo(titularRef.current.value) &&
+            validarSubtitulo(bajadaRef.current.value) &&
+            validarCuerpo(cuerpoRef.current.value) &&
+            validarUrlImagen(imagenRef.current.value) &&
+            validarNombreCategoria(categoriaRef.current.value) &&
+            validarNombre(autorRef.current.value)
         ) {
             setError(false);
             try {
@@ -66,7 +66,7 @@ const EditarNoticia = (props) => {
                     fecha: fechaRef.current.value
                 }
 
-                const respuesta = await fetch(URL, {
+                const respuesta = await fetch(URLNOT, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(noticiaModificada)
@@ -76,39 +76,31 @@ const EditarNoticia = (props) => {
 
                 if (respuesta.status === 200) {
                     Swal.fire(
-                        'Categoria Modificada',
-                        'La categoria se modifico con exito',
+                        'Nota Modificada',
+                        'La nota se modifico con exito',
                         'success'
                     );
 
                     props.consultarNoticias();
-                    props.history.push('/categorias');
-                } else if (respuesta.status === 500) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: informacion.mensaje,
-                    });
+                    props.history.push('/noticias');
                 }
-
-
             } catch (error) {
+                console.log(error);
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Ha ocurrido un error al guardar la noticia.',
+                    text: 'Ha ocurrido un error al guardar la nota.',
                 })
             }
         } else {
             setError(true);
-            setMensajeError(validacionCategoriaResult.mensaje);
         }
     }
 
     return (
         <Container>
-            <Form className="my-5" onSubmit={handleSubmit}>
-                <h1 className="text-center my-5">Agregar Noticia</h1>
+            <Form className="my-5" onSubmit={handleSudmit}>
+                <h1 className="text-center my-5">Editar la nota</h1>
                 {/* titular */}
                 <Form.Group>
                     <Form.Label>Titulo de Noticia (Titular)</Form.Label>
@@ -128,12 +120,11 @@ const EditarNoticia = (props) => {
                     ></Form.Control>
                 </Form.Group>
                 {/* cuerpo */}
-
                 <Form.Group>
                     <Form.Label>Cuerpo de la noticia</Form.Label>
                     <Form.Control as="textarea"
                         placeholder="Ingrese una descripcion detallada"
-                        ref={cuerpoRef} defaultValue={producto.cuerpo}
+                        ref={cuerpoRef} defaultValue={noticia.cuerpo}
 
                     ></Form.Control>
                 </Form.Group>
@@ -143,7 +134,7 @@ const EditarNoticia = (props) => {
                     <Form.Control
                         type="text"
                         placeholder="Pegue la URL de la imagen"
-                        ref={imagenRef} defaultValue={producto.imagen}
+                        ref={imagenRef} defaultValue={noticia.imagen}
                     ></Form.Control>
                 </Form.Group>
 
@@ -155,7 +146,7 @@ const EditarNoticia = (props) => {
                     <Form.Control
                         type="text"
                         placeholder="Nombre del autor"
-                        ref={autorRef} defaultValue={producto.autor}
+                        ref={autorRef} defaultValue={noticia.autor}
                     ></Form.Control>
                 </Form.Group>
 
@@ -164,7 +155,7 @@ const EditarNoticia = (props) => {
                     <Form.Control
                         type="text"
                         placeholder="Ingrese la fecha"
-                        ref={fechaRef} defaultValue={producto.fecha}
+                        ref={fechaRef} defaultValue={noticia.fecha}
                     ></Form.Control>
                 </Form.Group>
 
@@ -208,7 +199,7 @@ const EditarNoticia = (props) => {
                     Guardar
         </Button>
                 {
-                    (error === true) ? (<Alert variant="warning">Todos los campos son obligatorios</Alert>) : (null)
+                    error ? <Alert variant='warning' >Todos los campos son reuqeridos.</Alert> : null
                 }
 
             </Form>
@@ -217,4 +208,4 @@ const EditarNoticia = (props) => {
 };
 
 
-export default EditarNoticia;
+export default withRouter(EditarNoticia);

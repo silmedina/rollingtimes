@@ -8,7 +8,6 @@ import ListarCategorias from "./components/ListarCategorias";
 import EditarCategoria from "./components/EditarCategoria";
 import AgregarCategoria from "./components/AgregarCategoria";
 import { useState, useEffect } from 'react';
-
 import Subscription from './components/Subscription/Subscription'
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
@@ -25,9 +24,11 @@ function App() {
   const [categorias, setCategorias] = useState([]);
   const [noticias, setNoticias] = useState([]);
 
-
   useEffect(() => {
     consultarCategorias();
+  }, []);
+
+  useEffect(()=> {
     consultarNoticias();
   }, []);
 
@@ -43,24 +44,25 @@ function App() {
       console.log(error);
     }
   }
+  // console.log(categorias);
 
   const consultarNoticias = async () => {
     try {
-      const urlNoticias = process.env.REACT_APP_URL_NOTICIAS;
-      const resp = await fetch(urlNoticias);
+      const urln = process.env.REACT_APP_URL_NOTICIA;
+      const resp = await fetch(urln);
       const data = await resp.json();
-      if (respuesta.status === 200) {
+      if (resp.status === 200) {
         setNoticias(data);
       }
     } catch (error) {
       console.log(error);
     }
   }
-
+// console.log(noticias);
 
 return (
   <Router>
-    {/* <Navegacion /> */}
+    <Navegacion />
     <Switch>
       <Route exact path="/">
         <Inicio />
@@ -72,7 +74,7 @@ return (
         <EditarCategoria consultarCategorias={consultarCategorias} />
       </Route>
       <Route exact path="/categorias/nuevo">
-        <AgregarCategoria consultarCategorias={consultarCategorias} />
+        <AgregarCategoria consultarCategorias={consultarNoticias} />
       </Route>
       <Route exact path="/suscripcion">
         <Subscription />
@@ -83,13 +85,13 @@ return (
       <Route exact path="/administracion">
         <Administracion />
       </Route>
-      <Route exact path="/administracion/noticias" >
+      <Route exact path="/noticias" >
         <ListarNoticias noticias={noticias} consultarNoticias={consultarNoticias}/>
       </Route>
-      <Route exact path="administracion//noticias/editar/:id">
+      <Route exact path="/noticias/editar/:id">
         <EditarNoticia consultarNoticias={consultarNoticias} />
       </Route>
-      <Route exact path="/administracion/noticias/agregar" >
+      <Route exact path="/noticias/agregar" >
         <AgregarNoticias consultarNoticias={consultarNoticias} />
       </Route>
       <Route path="*">

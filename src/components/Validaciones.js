@@ -95,6 +95,30 @@ const validarUrlImagen = (urlImagen) => {
     return false;
   }
 };
+const validarTitulo = (titulo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]{7,50}/;
+  if (titulo.trim() !== "" && expresion.test(titulo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const validarSubtitulo = (subtitulo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]{10,250}/;
+  if (subtitulo.trim() !== "" && expresion.test(subtitulo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const validarCuerpo = (cuerpo) => {
+  const expresion = /^[a-zA-ZÀ-ÿ\s]{90,600}/;
+  if (cuerpo.trim() !== "" && expresion.test(cuerpo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 
 
@@ -112,4 +136,7 @@ export {
   validarConsulta,
   validarNombreCategoria,
   validarUrlImagen,
+  validarTitulo,
+  validarSubtitulo,
+  validarCuerpo
 };
