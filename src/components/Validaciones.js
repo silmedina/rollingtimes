@@ -96,7 +96,7 @@ const validarUrlImagen = (urlImagen) => {
   }
 };
 const validarTitulo = (titulo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]{7,50}/;
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/;  //{7,50}
   if (titulo.trim() !== "" && expresion.test(titulo)) {
     return true;
   } else {
@@ -104,7 +104,7 @@ const validarTitulo = (titulo) => {
   }
 };
 const validarSubtitulo = (subtitulo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]{10,250}/;
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{10,250}
   if (subtitulo.trim() !== "" && expresion.test(subtitulo)) {
     return true;
   } else {
@@ -112,7 +112,7 @@ const validarSubtitulo = (subtitulo) => {
   }
 };
 const validarCuerpo = (cuerpo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]{90,600}/;
+  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{90,600}
   if (cuerpo.trim() !== "" && expresion.test(cuerpo)) {
     return true;
   } else {

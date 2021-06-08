@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { validarNombre, validarNombreCategoria, validarTitulo, validarUrlImagen, validarSubtitulo, validarCuerpo } from "./Validaciones";
 
 const EditarNoticia = (props) => {
-    const { id } = useParams();
+    const  {id}  = useParams();
     const titularRef = useRef('');
     const bajadaRef = useRef('');
     const cuerpoRef = useRef('');
@@ -16,7 +16,7 @@ const EditarNoticia = (props) => {
     const fechaRef = useRef('');
     const [noticia, setNoticia] = useState({});
     const [error, setError] = useState(false);
-    // const [mensajeError, setMensajeError] = useState('');
+    const [mensajeError, setMensajeError] = useState('');
     const URLNOT = process.env.REACT_APP_URL_NOTICIA + '/' + id;
 
 
@@ -25,7 +25,7 @@ const EditarNoticia = (props) => {
         getNoticia();
     }, []);
 
-    const getNoticia = async () => {
+    const getNoticia = async() => {
         try {
             const respuesta = await fetch(URLNOT);
             if (respuesta.status === 200) {
@@ -65,14 +65,13 @@ const EditarNoticia = (props) => {
                     autor: autorRef.current.value,
                     fecha: fechaRef.current.value
                 }
-
                 const respuesta = await fetch(URLNOT, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(noticiaModificada)
                 })
 
-                const informacion = await respuesta.json();
+                // const informacion = await respuesta.json();
 
                 if (respuesta.status === 200) {
                     Swal.fire(
@@ -80,20 +79,23 @@ const EditarNoticia = (props) => {
                         'La nota se modifico con exito',
                         'success'
                     );
-
                     props.consultarNoticias();
                     props.history.push('/noticias');
                 }
-            } catch (error) {
+            } 
+            catch (error) {
                 console.log(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Ha ocurrido un error al guardar la nota.',
-                })
+               
             }
         } else {
             setError(true);
+            // setMensajeError(validacionCategoriaResult.mensaje);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al guardar la nota.',
+            })
+
         }
     }
 
@@ -139,6 +141,14 @@ const EditarNoticia = (props) => {
                 </Form.Group>
 
                 {/* categoria */}
+                <Form.Group>
+          <Form.Label>categoria</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Ingrese la categoria"
+            ref={categoriaRef} defaultValue={noticia.categoria}
+          ></Form.Control>
+        </Form.Group>
 
                 {/* autor */}
                 <Form.Group>
