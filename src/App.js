@@ -85,6 +85,19 @@ function App() {
     }
   };
 
+  const consultarNoticias = async () => {
+    try {
+      const urln = process.env.REACT_APP_URL_NOTICIA;
+      const resp = await fetch(urln);
+      const data = await resp.json();
+      if (resp.status === 200) {
+        setNoticias(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Router>
       <Navegacion
