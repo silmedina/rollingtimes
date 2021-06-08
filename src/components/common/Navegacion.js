@@ -16,13 +16,13 @@ const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
 
   const cambiarNav = () => {
-    if (window.scrollY >= 30) {
+    if (window.scrollY.isDesktop >= 30) {
       const nuevaClaseExpa = document.getElementById("navExpand");
       if (nuevaClaseExpa) {
         nuevaClaseExpa.style.display = "none";
         setcompactNav(true);
       }
-    } else if (window.scrollY < 30) {
+    } else if (window.scrollY.isDesktop < 30) {
       const nuevaClaseExpa = document.getElementById("navExpand");
       nuevaClaseExpa.style.display = "block";
       setcompactNav(false);
