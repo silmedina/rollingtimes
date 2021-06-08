@@ -24,6 +24,22 @@
   margin: 15px;
   overflow: hidden;
   padding: 0;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+#CardNoticiaContainer:hover h4 {
+  transition: 0.2s;
+  color: #ec4e20;
+}
+
+#CardNoticiaContainer:hover img {
+  transition:  0.5s;
+}
+
+#CardNoticiaContainer:hover img {
+  transition: 4s;
+  transform: scale(1.1);
 }
 
 /* Imagen y categoria */

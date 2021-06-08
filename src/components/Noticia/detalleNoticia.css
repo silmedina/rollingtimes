@@ -1,5 +1,6 @@
 #DetalleNoticiaContainer {
   width: 100%;
+  background-color: whitesmoke;
 }
 
 #DetalleNoticiaContainer * {
@@ -10,6 +11,8 @@
   align-items: flex-start;
   width: 100%;
   overflow: hidden;
+  background-color: white;
+  padding: 5rem;
 }
 
 .flex-column {
@@ -30,18 +33,60 @@
   padding: 1rem 0;
 }
 
+.imagen-container {
+  padding: 2rem 0;
+}
+
+.imagen-container p {
+  font-weight: 600;
+  opacity: 0.5;
+}
+
 #NoticiaImagen {
   max-width: 950px;
-  padding: 2rem 0;
 }
 
 #NoticiaDescripcion {
   font-size: 19px;
   font-family: "Roboto", sans-serif;
+  white-space: break-spaces;
+  line-height: 1.5;
+  word-spacing: 5px;
 }
 
 #NoticiaDescripcion::first-letter {
   font-size: 56px;
   font-weight: 900;
   font-family: "Roboto Slab", serif;
+
+  padding: 0 0.3rem;
+  margin: 0 0.3rem 0 0;
+
+  float: left;
+  line-height: 1;
+  -webkit-initial-letter: 3;
+  initial-letter: 3;
+}
+
+.side-noticias {
+  background-color: whitesmoke;
+  padding-top: 6rem;
+}
+
+.pulicidad-section {
+  padding: 2rem 0;
+}
+
+#NoticiaComentario {
+  font-size: 40px;
+  font-weight: 600;
+  font-style: italic;
+  font-family: "Roboto Slab", serif;
+  opacity: 0.4;
+}
+
+#Autor {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  opacity: 0.8;
 }
