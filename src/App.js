@@ -12,6 +12,9 @@ import Subscription from './components/Subscription/Subscription'
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
 
+//import AboutUs from './components/AboutUs/AboutUs'
+//import Contact from './components/Contact/Contact'
+
 function App() {
   const [categorias, setCategorias] = useState([]);
   const [dolar, setDolar] = useState({});

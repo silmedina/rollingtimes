@@ -9,6 +9,8 @@ import {
 import Iframe from "react-iframe";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+import LogoSm from "../common/img/logoSm.png";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [nombre, setNombre] = useState("");
@@ -79,8 +81,9 @@ const Contact = () => {
       <Form.Row>
         <Col className="mr-4">
           <h2 className="text-center text-primary">Mensajes y consultas</h2>
-          <p>Complete el formulario para enviar su consulta y/o sugerencia.</p>({" "}
-          <span className="text-danger">*</span> ) CAMPOS OBLIGATORIOS
+          <p>
+            Complete el formulario para enviar su consulta y/o sugerencia.
+          </p>( <span className="text-danger">*</span> ) CAMPOS OBLIGATORIOS
           <Form className="mt-3" onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>
@@ -150,7 +153,10 @@ const Contact = () => {
           <article>
             <div className="d-flex row justify-content-center">
               <Card border="dark" style={{ width: "23rem" }}>
-                <Card.Header className="text-center">***LOGO***</Card.Header>
+                <Card.Header className="text-center">
+                  {" "}
+                  <img src={LogoSm} alt="Logo" />{" "}
+                </Card.Header>
                 <Card.Body>
                   <h4 className="text-primary">Casa Central</h4>
                   <div className="pb-3">
@@ -171,7 +177,7 @@ const Contact = () => {
                   <div className="pb-3">
                     Para publicitar en la web:
                     <p>
-                      <strong>example@gmail.com</strong>
+                      <strong>rollingnews-contacto@gmail.com</strong>
                     </p>
                   </div>
                 </Card.Body>
@@ -180,7 +186,12 @@ const Contact = () => {
             <div>
               <h6 className="text-center my-4">
                 También te sugerimos visitar
-                <a href="/"> Preguntas Frecuentes</a>
+                <Link
+                  className="mx-1 outline-dark"
+                  to={`/error404`}
+                >
+                 Preguntas Frecuentes
+                </Link>
               </h6>
               <span></span>
             </div>

@@ -1,14 +1,16 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Navbar, Nav, Form, Button, NavDropdown } from "react-bootstrap";
-import LogoNav from "./img/LogoNav.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from "react-responsive";
-import logoSm from "./img/logoSm.png";
-import Categoria from "./Categoria.js";
-import Cotizacion from "./Cotizacion";
-import Logo from "./Logo";
-import Menudespleg from "./Menudespleg";
+import React, { Fragment, useState, useEffect } from 'react';
+import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
+import LogoNav from './img/LogoNav.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { useMediaQuery } from 'react-responsive';
+import logoSm from './img/logoSm.png';
+import Categoria from './Categoria.js';
+import Cotizacion from './Cotizacion';
+import Logo from './Logo';
+import Menudespleg from './Menudespleg';
+import Login from '../Login/Login';
+
 
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
@@ -63,9 +65,10 @@ const Navegacion = (props) => {
                 </Button>
               </Form>
               <Nav className="ml-auto">
-                <Button className="mx-2 my-1" variant="outline-dark">
+                <Login/>
+                {/* <Button className="mx-2 my-1" variant="outline-dark">
                   Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-                </Button>
+                </Button> */}
                 <Button className="mx-2 my-1" variant="outline-dark">
                   Suscribite
                 </Button>
