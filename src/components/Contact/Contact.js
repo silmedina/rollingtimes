@@ -67,7 +67,7 @@ const Contact = () => {
   };
 
   return (
-    <Container className="my-5 ml-2">
+    <Container className="my-5">
       <Form.Row className="d-flex row justify-content-center">
         <h2 className="text-center mb-3 color2">¿Como contactarnos?</h2>
         <Iframe
