@@ -21,6 +21,7 @@
     "react-scripts": "4.0.3",
     "sweetalert2": "^11.0.15",
     "sweetalert2-react-content": "^4.0.1",
+    "weather-icons": "git+https://github.com/erikflowers/weather-icons.git",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
