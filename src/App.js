@@ -16,7 +16,7 @@ import AgregarNoticias from "./components/AgregarNoticias";
 import ListarNoticias from "./components/ListarNoticias";
 import EditarNoticia from "./components/EditarNoticia";
 //import Login from './components/Login/Login';
-//import AboutUs from './components/AboutUs/AboutUs'
+import AboutUs from './components/AboutUs/AboutUs'
 import DetalleNoticia from "./components/DetalleNoticia";
 
 function App() {
@@ -133,8 +133,14 @@ function App() {
         <Route exact path="/contacto">
           <Contact />
         </Route>
+        <Route exact path="/about">
+          <AboutUs />
+        </Route>
         <Route exact path="/administracion">
           <Administracion />
+        </Route>
+        <Route exact path="/detallenoticia">
+          <DetalleNoticia />
         </Route>
         <Route exact path="/noticias">
           <ListarNoticias

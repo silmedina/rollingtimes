@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
+import "./Login.css";
+import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -17,16 +19,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      validarEmail(email)
-    ) {
+    if (validarEmail(email)) {
       try {
         const loginComparacion = {
           email,
           password,
         };
 
-        console.log(loginComparacion)
+        console.log(loginComparacion);
 
         const respuesta = await fetch("http://localhost:4001/api/login/", {
           method: "POST",
@@ -45,17 +45,9 @@ const Login = () => {
           handleClose();
         } else {
           if (respuesta.status === 201) {
-            Swal.fire(
-              "Error",
-              "Password incorrecta!",
-              "error"
-            );
-          }else{
-            Swal.fire(
-              "Error",
-              "Usuario no encontrado!",
-              "error"
-            );
+            Swal.fire("Error", "Password incorrecta!", "error");
+          } else {
+            Swal.fire("Error", "Usuario no encontrado!", "error");
           }
         }
       } catch (error) {
@@ -82,54 +74,66 @@ const Login = () => {
           Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
         </Button>
       </div>
-      <Modal show={show} onHide={handleClose} keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title> Inicio de Sesión </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal show={show} onHide={handleClose} keyboard={false} className="px-0">
+        <Modal.Body className="p-0">
+          <h3 className="text-center login-title">Inicio de Sesión</h3>
           <Form onSubmit={handleSubmit}>
-            <Modal.Title className="text-center pb-3">
-              Ingresa con tus redes sociales
-            </Modal.Title>
+            <h5 className="text-center mx-1 py-2 h5-titulo my-0">
+              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus redes sociales</i>
+            </h5>
+            <div className="my-4">
             <Col className="text-center m-2">
-              <Button variant="outline-primary">Facebook</Button>
+              <Link to="/error404">
+              <button className="boton-facebook" onClick={handleClose}><FaFacebookF className="mb-1 mr-2"/>Facebook</button>
+              </Link>
             </Col>
             <Col className="text-center m-2">
-              <Button variant="outline-danger">Google</Button>
+              <Link to="/error404">
+              <button className="boton-google" onClick={handleClose}><FaGoogle className="mb-1 mr-2"/>Google</button>
+              </Link>
             </Col>
-            <Modal.Title className="text-center py-3 ">
-              Ingresa con tus credenciales
-            </Modal.Title>
+            </div>
+
+            <h5 className="text-center mx-1 py-2 h5-titulo ">
+              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus credenciales</i>
+            </h5>
             <Form.Row className="mx-4">
               <Col>
                 <Form.Group>
-                  <Form.Label>Correo Electronico</Form.Label>
-                  <Form.Control
-                    name="email"
-                    type="email"
-                    placeholder="E-mail"
-                    onChange={(e) => setEmail(e.target.value)}
-                    minLength={10}
-                    maxLength={40}
-                    required
-                  />
+                  <div className="col-login">
+                    <input
+                      className="effect-input input-email"
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      minLength={10}
+                      maxLength={40}
+                      required
+                    />
+                    <span className="focus-border"></span>
+                  </div>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control
-                    name="password"
-                    type="password"
-                    placeholder="Contraseña"
-                    onChange={(e) => setPassword(e.target.value)}
-                    minLength={4}
-                    maxLength={20}
-                    required
-                  />
+                  <div className="col-login">
+                    <input
+                      className="effect-input input-password"
+                      name="password"
+                      type="password"
+                      placeholder="Contraseña"
+                      onChange={(e) => setPassword(e.target.value)}
+                      minLength={4}
+                      maxLength={20}
+                      required
+                    />
+                    <span className="focus-border"></span>
+                  </div>
                   <div className="mt-2">
                     <Link
                       className="mx-1 pt-1 outline-dark"
                       to={`/error404`}
                       size="small"
+                      onClick={handleClose}
                     >
                       Olvidé mi contraseña
                     </Link>
@@ -137,20 +141,20 @@ const Login = () => {
                 </Form.Group>
               </Col>
             </Form.Row>
-            <Button
-              className="mx-2 my-1"
-              variant="outline-success"
-              type="submit"
-            >
-              Enviar
-            </Button>
-            <Button
-              className="mx-2 my-1"
-              onClick={handleClose}
-              variant="outline-dark"
-            >
-              Close
-            </Button>
+            <div className="text-center p-3">
+              <button
+                className="mx-2 my-1 background-orange button-send-close"
+                type="submit"
+              >
+                Enviar
+              </button>
+              <button
+                className="mx-2 my-1 background-black button-send-close"
+                onClick={handleClose}
+              >
+                Cerrar
+              </button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>

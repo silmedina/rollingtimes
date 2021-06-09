@@ -146,11 +146,21 @@ console.log(props.categorias);
             onChange={(e) => setFecha(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Select aria-label="Default select example" eventKey={categoria._id}>
+
+
+        <Form.Control as="select" name="" id="">
+        {
+          props.categorias.map( (cat) => <CategoriasButton categoria={cat}></CategoriasButton>)
+        }
+
+        </Form.Control>
+
+
+        {/* <Form.Select aria-label="Default select example" eventKey={categoria._id}>
         {
           props.categorias.map((cat) => <CategoriasButton categoria={cat}></CategoriasButton>)
         }
-        </Form.Select>
+        </Form.Select> */}
 
         {/* <CategoriasButton categoria={props.categorias}></CategoriasButton> */}
 

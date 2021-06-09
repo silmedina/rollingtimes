@@ -6,16 +6,17 @@ import { useParams, withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { validarNombre, validarNombreCategoria, validarTextArea, validarUrlImagen } from "./Validaciones";
 
-const CategoriasButton = (props) => {
-    console.log(props.categoria.nombre);
+const CategoriasButton = (cat) => {
+    console.log(cat.categoria.nombre);
+
     return (
         <Fragment>
+            <option>{cat.categoria.nombre}</option>
         
-                {/* <Form.Select aria-label="Default select example">
+                 {/* <Form.Select aria-label="Default select example">
                     <option>{props.categoria.nombre}</option>
-                </Form.Select> */}
+                 </Form.Select> */}
 
-<option>{props.categoria.nombre}</option>
             
             
         </Fragment>
