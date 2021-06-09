@@ -99,3 +99,56 @@
 #mobilNav{
   position: sticky;
 }
+
+#notfoundlinks a {
+  opacity: 1;
+  color: #ec4e20;
+  text-decoration: none;
+  min-width: 100%;
+  font-size: 15px;
+  /* border-bottom: 1px solid #ec4e20; */
+  padding: 2px;
+}
+
+#notfoundlinks  a:hover {
+  opacity: 1;
+  color: #ec4e20;
+  text-decoration: none;
+  min-width: 100%;
+  font-size: 15px;
+  /* border-bottom: 1px solid #ec4e20; */
+  padding: 2px;
+}
+
+.categoria-titulo {
+  font-weight: 600;
+  font-family: "Roboto Slab", serif;
+}
+
+.categoria-subtitulo {
+  font-weight: 400;
+  font-family: "Roboto Slab", serif;
+}
+
+.categoria-texto {
+  font-weight: 100;
+  font-family: "Roboto Slab", serif;
+}
+
+.btn-primario-categoria
+{
+    background-color: #ec4e20 !important; 
+    border-color: #ec4e20
+}
+
+.btn-eliminar-categoria
+{
+    background-color: #222222 !important; 
+    border-color: #222222
+}
+
+.btn-editar-categoria
+{
+    background-color: #537D8D !important; 
+    border-color: #537D8D
+}

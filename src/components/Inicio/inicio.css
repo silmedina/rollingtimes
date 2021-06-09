@@ -15,22 +15,3 @@
     background-color: rgb(128, 135, 233);
 }
 
-#notfoundlinks a {
-    opacity: 1;
-    color: #ec4e20;
-    text-decoration: none;
-    min-width: 100%;
-    font-size: 15px;
-    /* border-bottom: 1px solid #ec4e20; */
-    padding: 2px;
-}
-
-#notfoundlinks  a:hover {
-    opacity: 1;
-    color: #ec4e20;
-    text-decoration: none;
-    min-width: 100%;
-    font-size: 15px;
-    /* border-bottom: 1px solid #ec4e20; */
-    padding: 2px;
-}
