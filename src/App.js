@@ -146,7 +146,9 @@ function App() {
           <EditarNoticia consultarNoticias={consultarNoticias} />
         </Route>
         <Route exact path="/noticias/agregar">
-          <AgregarNoticias consultarNoticias={consultarNoticias} />
+          <AgregarNoticias 
+          categorias={categorias}
+          consultarNoticias={consultarNoticias} />
         </Route>
         <Route path="*">
           <Error404 />
