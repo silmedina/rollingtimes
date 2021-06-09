@@ -168,7 +168,7 @@ const Contact = () => {
         </Col>
         <Col>
           <article>
-            <div className="d-flex row justify-content-center mx-1">
+            <div className="d-flex row justify-content-center mx-1 mt-5">
               <Card border="dark" style={{ width: "23rem" }}>
                 <Card.Header className="text-center p-1">
                   {" "}
