@@ -69,15 +69,16 @@
 
 /* estilos barra menu */
 
-#navBlock{
-  /* box-shadow:#222222; */
+#compactNav{
+  /* display: none; */
 }
 #navDesk{
   width: 100%;
-  position:fixed;
+  /* position:fixed; */
 }
 #navExpand{
-  display: block;
+  
+  /* position:initial; */
 }
 #dropdown-button:after {
   display:none;
@@ -85,8 +86,12 @@
 #barrasIcon{
   color: #ec4e20;
 }
-
 #hr{
   background-color:#ec4e20;
   
+}
+@media screen and (min-width: 350px) and (max-width: 992px) {
+  #mobilNav {
+    display: none;
+  }
 }
