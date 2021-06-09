@@ -15,6 +15,22 @@ import Login from '../Login/Login';
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
 
+  
+  const cambiarNav = () => {
+    if (window.screen.width > 992 && window.scrollY > 5 ) {
+      const nuevaClaseExpa = document.getElementById("navExpand");
+      // if (nuevaClaseExpa) {
+      nuevaClaseExpa.style.display = "none";
+      setcompactNav(true);
+      // }
+    } else if (window.screen.width > 992 && window.scrollY <= 5) {
+      const nuevaClaseExpa = document.getElementById("navExpand");
+      nuevaClaseExpa.style.display = "inline";
+      setcompactNav(false);
+    }
+  };
+  window.addEventListener("scroll", cambiarNav);
+
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -22,24 +38,9 @@ const Navegacion = (props) => {
   };
 
   const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 });
+    const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 991 });
     return isMobile ? children : null;
   };
-  
-  const cambiarNav = () => {
-    if (window.scrollY >= 10) {
-      const nuevaClaseExpa = document.getElementById("navExpand");
-      // if (nuevaClaseExpa) {
-      nuevaClaseExpa.style.display = "none";
-      console.log("hola");
-      setcompactNav(true);
-      // }
-    } else if (window.scrollY < 10) {
-      setcompactNav(false);
-    }
-  };
-  window.addEventListener("scroll", cambiarNav);
-
 
 
   return (
@@ -49,24 +50,12 @@ const Navegacion = (props) => {
           <div className="bg3" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5" >
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
               {compactNav === true ? (
                 <Menudespleg categorias={props.categorias} />
               ) : null}
               {compactNav === true ? (
                 <img className="mr-3" src={logoSm} alt="logo" />
               ) : null}
-{/* {compactNav === true ? (
-              <div className="" id="">
-                <Menudespleg categorias={props.categorias} />
-                <img className="mr-3" src={logoSm} alt="logo" />
-              </div> ) : null} */}
-
-              {/* <div className="" id="compactNav">
-                <Menudespleg categorias={props.categorias} />
-                <img className="mr-3" src={logoSm} alt="logo" />
-              </div> */}
-
               <Form inline className="m-3">
                 <Form.Control
                   type="text"
@@ -88,7 +77,6 @@ const Navegacion = (props) => {
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
-              <h2>hola</h2>
               <Logo />
               <Cotizacion
                 dolar={props.dolar}
@@ -102,24 +90,25 @@ const Navegacion = (props) => {
       </Desktop>
 
       <Mobile> 
-        <Navbar collapseOnSelect expand="lg" bg="" className="bg5 stiky-top" id="mobilNav">
-          <div className="mr-2">
+        <Navbar collapseOnSelect expand="lg" bg="" className="bg5 stiky-top">
+          <div>
             <img src={LogoNav} alt="logo" />
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav" >
-            <Form>
-              <Form.Control type="text" placeholder="Buscar" className="mr-2" />
-              <Button className="my-2" variant="outline-dark">
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Form className="d-flex pt-3 w-75">
+              <Form.Control type="text" placeholder="Buscar" className="mr-1" />
+              <Button variant="outline-dark">
                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
               </Button>
             </Form>
+            <hr />
             <Nav className="ml-5 mr-5 dark">
               {props.categorias.map((categoria) => (
                 <Nav.Link href="/">{categoria.nombre}</Nav.Link>
               ))}
             </Nav>
-            <Nav>
+            <Nav className="w-75">
               <Button className="mx-2 my-1" variant="outline-dark">
                 Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
               </Button>
