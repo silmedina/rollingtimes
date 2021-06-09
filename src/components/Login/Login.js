@@ -77,20 +77,24 @@ const Login = () => {
         <Modal.Body className="p-0">
           <h3 className="text-center login-title">Inicio de Sesión</h3>
           <Form onSubmit={handleSubmit}>
-            <h5 className="text-center mx-1 py-2 my-0">
-              <i className="pl-1 titulo-secundario">Ingresa con tus redes sociales</i>
+            <h5 className="text-center mx-1 py-2 h5-titulo my-0">
+              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus redes sociales</i>
             </h5>
             <div className="my-4">
             <Col className="text-center m-2">
-              <button className="button-send-close boton-facebook">Facebook</button>
+              <Link to="/error404">
+              <button className="boton-facebook" onClick={handleClose}>Facebook</button>
+              </Link>
             </Col>
             <Col className="text-center m-2">
-              <button className="button-send-close boton-google">Google</button>
+              <Link to="/error404">
+              <button className="boton-google" onClick={handleClose}>Google</button>
+              </Link>
             </Col>
             </div>
 
-            <h5 className="text-center mx-1 py-2 ">
-              <i className="pl-1 titulo-secundario">Ingresa con tus credenciales</i>
+            <h5 className="text-center mx-1 py-2 h5-titulo ">
+              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus credenciales</i>
             </h5>
             <Form.Row className="mx-4">
               <Col>
@@ -128,6 +132,7 @@ const Login = () => {
                       className="mx-1 pt-1 outline-dark"
                       to={`/error404`}
                       size="small"
+                      onClick={handleClose}
                     >
                       Olvidé mi contraseña
                     </Link>

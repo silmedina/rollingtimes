@@ -20,6 +20,7 @@ h1,
 h2,
 h3,
 h4,
+h5,
 strong {
   font-family: "Roboto Slab";
   font-weight: 800;
@@ -121,20 +122,36 @@ small {
 /* BOTONES + EFECTOS */
 
 .boton-facebook {
-  border-radius: 5px;
+    font-family: "Roboto Slab";
+    font-weight: 100;
+    font-size: 20px;
   padding-left: 30%;
   padding-right: 30%;
   transform: translateY(-3px);
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
   background-color: #247df1;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px;
+  width: 400px;
+  color: white;
 }
 .boton-google {
-  border-radius: 5px;
-  padding-left: 33%;
-  padding-right: 33%;
-  background-color: #ec4e20;
+    font-family: "Roboto Slab";
+    font-weight: 100;
+    font-size: 20px;
+  padding-left: 30%;
+  padding-right: 30%;
   transform: translateY(-3px);
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ec4e20;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px;
+  width: 400px;
+  color: white;
 }
 .boton-facebook:hover {
   background-color: rgb(0, 80, 253);
@@ -163,15 +180,15 @@ small {
 
 /* TITULO */
 
-h5 {
+.h5-titulo {
   font-family: "Roboto Slab";
-  font-weight: 400;
+  font-weight: 100;
   color: #222222;
   font-size: 25px;
   text-align: center;
   position: relative;
 }
-h5:before {
+.h5-titulo:before {
   position: absolute;
   content: "";
   width: 100%;
@@ -180,11 +197,13 @@ h5:before {
   background: #222222;
   height: 1px;
 }
-h5 i {
+.h5-titulo,.i-titulo {
+  font-family: "Roboto Slab";
+  font-weight: 100;
   font-style: normal;
   background: #fff;
   position: relative;
 }
-h5:focus {
+.h5-titulo:focus {
   outline: none;
 }

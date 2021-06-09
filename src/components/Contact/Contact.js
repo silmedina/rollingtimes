@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Col, Card } from "react-bootstrap";
+import { Container, Form, Col, Card } from "react-bootstrap";
 import {
   validarNombre,
   validarEmail,
@@ -67,9 +67,9 @@ const Contact = () => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 ml-2">
       <Form.Row className="d-flex row justify-content-center">
-        <h2 className="text-center mb-3">¿Como contactarnos?</h2>
+        <h2 className="text-center mb-3 color2">¿Como contactarnos?</h2>
         <Iframe
           url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4233.6870551495285!2d-65.2094817776788!3d-26.837017462470826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94225d3ad7f30f1d%3A0xf8606cd659b8e3e4!2sRollingCode%20School!5e0!3m2!1ses-419!2sar!4v1622330168946!5m2!1ses-419!2sar"
           width="900"
@@ -80,7 +80,7 @@ const Contact = () => {
         ></Iframe>
       </Form.Row>
       <Form.Row>
-        <Col className="mr-4">
+        <Col className="mx-2">
           <h2 className="text-center color2 mb-4">Mensajes y consultas</h2>
           <p>Complete el formulario para enviar su consulta y/o sugerencia.</p>
           <p className="mb-4">
@@ -157,16 +157,18 @@ const Contact = () => {
               </div>
               <small>Le contestaremos a la brevedad</small>
             </Form.Group>
-            <Button type="submit" className="w-50 my-4 color2">
+            <div className="text-center">
+            <button type="submit" className="w-50 my-4 button-send-close background-orange text-center mr-4">
               Enviar
-            </Button>
+            </button>
+            </div>
           </Form>
         </Col>
         <Col>
           <article>
-            <div className="d-flex row justify-content-center">
+            <div className="d-flex row justify-content-center mx-1">
               <Card border="dark" style={{ width: "23rem" }}>
-                <Card.Header className="text-center">
+                <Card.Header className="text-center p-1">
                   {" "}
                   <img src={LogoSm} alt="Logo" />{" "}
                 </Card.Header>
