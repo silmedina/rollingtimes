@@ -160,7 +160,7 @@ function App() {
           <Error404 />
         </Route>
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   );
 }
