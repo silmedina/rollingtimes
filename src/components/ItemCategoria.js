@@ -57,7 +57,7 @@ const ItemCategoria = (props) => {
           <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
         </Link>
         <Button
-          variant="danger"
+          className="btn btn-primary btn-eliminar-categoria"
           onClick={() => eliminarCategoria(props.categoria._id)}
         >
           <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>

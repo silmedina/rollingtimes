@@ -9,8 +9,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 const ListarCategorias = (props) => {
     return (
         <Container>
-            <h1 className='text-center my-5'>Lista de Categorias</h1>
-            <Link className='btn btn-success text-light'to={`/categorias/nuevo`}><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar nueva Categoria</Link>
+            <h1 className='text-center my-5 categoria-titulo'>Lista de Categorias</h1>
+            <Link className='btn btn-primary btn-primario-categoria'to={`/categorias/nuevo`}><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar nueva Categoria</Link>
             <ListGroup className='my-5'>
                 {
                     props.categorias.map((cat) => <ItemCategoria categoria={cat} key={cat._id} consultarCategorias={props.consultarCategorias}></ItemCategoria>)
