@@ -78,26 +78,26 @@ const Login = () => {
           <h3 className="text-center login-title">Inicio de Sesión</h3>
           <Form onSubmit={handleSubmit}>
             <h5 className="text-center mx-1 py-2 my-0">
-              <i className="pl-1">Ingresa con tus redes sociales</i>
+              <i className="pl-1 titulo-secundario">Ingresa con tus redes sociales</i>
             </h5>
             <div className="my-4">
             <Col className="text-center m-2">
-              <Button className="boton-facebook">Facebook</Button>
+              <button className="button-send-close boton-facebook">Facebook</button>
             </Col>
             <Col className="text-center m-2">
-              <Button className="boton-google">Google</Button>
+              <button className="button-send-close boton-google">Google</button>
             </Col>
             </div>
 
             <h5 className="text-center mx-1 py-2 ">
-              <i className="pl-1">Ingresa con tus credenciales</i>
+              <i className="pl-1 titulo-secundario">Ingresa con tus credenciales</i>
             </h5>
             <Form.Row className="mx-4">
               <Col>
                 <Form.Group>
                   <div className="col-login">
                     <input
-                      className="effect-input"
+                      className="effect-input input-email"
                       name="email"
                       type="email"
                       placeholder="Email"
@@ -112,7 +112,7 @@ const Login = () => {
                 <Form.Group>
                   <div className="col-login">
                     <input
-                      className="effect-input"
+                      className="effect-input input-password"
                       name="password"
                       type="password"
                       placeholder="Contraseña"

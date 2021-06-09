@@ -11,6 +11,7 @@ import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import LogoSm from "../common/img/logoSm.png";
 import { Link } from "react-router-dom";
+import "./Contact.css";
 
 const Contact = () => {
   const [nombre, setNombre] = useState("");
@@ -80,71 +81,83 @@ const Contact = () => {
       </Form.Row>
       <Form.Row>
         <Col className="mr-4">
-          <h2 className="text-center text-primary">Mensajes y consultas</h2>
-          <p>
-            Complete el formulario para enviar su consulta y/o sugerencia.
-          </p>( <span className="text-danger">*</span> ) CAMPOS OBLIGATORIOS
+          <h2 className="text-center color2 mb-4">Mensajes y consultas</h2>
+          <p>Complete el formulario para enviar su consulta y/o sugerencia.</p>
+          <p className="mb-4">
+            ( <span className="text-danger">*</span> ) CAMPOS OBLIGATORIOS
+          </p>
+
           <Form className="mt-3" onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>
-                <span className="text-danger">*</span> Nombre Completo
-              </Form.Label>
-              <Form.Control
-                name="nombre"
-                type="text"
-                placeholder="Matias Rodriguez"
-                onChange={(e) => setNombre(e.target.value)}
-                minLength={6}
-                required
-              />
+              <div className="col-login">
+                <input
+                  className="effect-contact input-text pb-2"
+                  name="nombre"
+                  type="text"
+                  placeholder="* Nombre Completo"
+                  onChange={(e) => setNombre(e.target.value)}
+                  minLength={4}
+                  maxLength={30}
+                  required
+                />
+                <span className="focus-border"></span>
+              </div>
             </Form.Group>
             <Form.Group>
-              <Form.Label>
-                <span className="text-danger">*</span> Email
-              </Form.Label>
-              <Form.Control
-                name="email"
-                type="email"
-                placeholder="example@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <div className="col-login">
+                <input
+                  className="effect-contact input-email pb-2"
+                  name="email"
+                  type="email"
+                  placeholder="* Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  minLength={10}
+                  maxLength={40}
+                  required
+                />
+                <span className="focus-border"></span>
+              </div>
             </Form.Group>
             <Form.Group>
-              <Form.Label>
-                <span className="text-danger">*</span> Categorias
-              </Form.Label>
-              <Form.Control
-                name="tipoConsulta"
-                as="select"
-                onChange={(e) => setTipoConsulta(e.target.value)}
-                required
-              >
-                <option></option>
-                <option>Noticias guardadas</option>
-                <option>Problemas con la web</option>
-                <option>Funcionalidades de la web</option>
-                <option>Información erronea</option>
-                <option>Otros</option>
-              </Form.Control>
+              <div className="col-login mt-3">
+                <Form.Control
+                  className="input-email"
+                  id="input-select"
+                  name="tipoConsulta"
+                  as="select"
+                  onChange={(e) => setTipoConsulta(e.target.value)}
+                  required
+                >
+                  <option>* Seleccione una categoria</option>
+                  <option>Sugerencias a la web</option>
+                  <option>Noticias errónea</option>
+                  <option>Problemas tecnicos con la web</option>
+                  <option>Funcionalidades de la web</option>
+                  <option>Información erronea</option>
+                  <option>Otros</option>
+                </Form.Control>
+                <span className="focus-border"></span>
+              </div>
             </Form.Group>
             <Form.Group>
-              <Form.Label>
-                <span className="text-danger">*</span> Escriba su consulta
-                (Entre 10 a 250 caracteres)
-              </Form.Label>
-              <Form.Control
-                name="textArea"
-                as="textarea"
-                rows={4}
-                onChange={(e) => setTextArea(e.target.value)}
-                minLength={10}
-                maxLength={250}
-                required
-              />
+              <div className="col-login mt-3">
+                <textarea
+                  className="effect-textArea input-text  input-textArea"
+                  name="textArea"
+                  as="textarea"
+                  type="text"
+                  placeholder="* Escriba su consulta (Entre 10 a 300 caracteres)"
+                  onChange={(e) => setTextArea(e.target.value)}
+                  minLength={10}
+                  maxLength={300}
+                  rows={6}
+                  required
+                />
+                <span className="focus-border"></span>
+              </div>
               <small>Le contestaremos a la brevedad</small>
             </Form.Group>
-            <Button type="submit" variant="primary" className="w-50 my-4">
+            <Button type="submit" className="w-50 my-4 color2">
               Enviar
             </Button>
           </Form>
@@ -158,11 +171,11 @@ const Contact = () => {
                   <img src={LogoSm} alt="Logo" />{" "}
                 </Card.Header>
                 <Card.Body>
-                  <h4 className="text-primary">Casa Central</h4>
+                  <h4 className="color2">Casa Central</h4>
                   <div className="pb-3">
                     <strong>Gral. Paz 547 - San Miguel de Tucumán</strong>
                   </div>
-                  <h4 className="text-primary">Telefono de contacto</h4>
+                  <h4 className="color2">Telefono de contacto</h4>
                   <div className="pb-3">
                     <small>Enviá tu denuncia a nuestra linea exclusiva</small>
                     <p className="my-1">
@@ -173,9 +186,9 @@ const Contact = () => {
                       protegerá tu identidad
                     </small>
                   </div>
-                  <h4 className="text-primary">Correo de contacto</h4>
+                  <h4 className="color2">Correo de contacto</h4>
                   <div className="pb-3">
-                    Para publicitar en la web:
+                    <p>Para publicitar en la web:</p>
                     <p>
                       <strong>rollingnews-contacto@gmail.com</strong>
                     </p>
@@ -186,11 +199,8 @@ const Contact = () => {
             <div>
               <h6 className="text-center my-4">
                 También te sugerimos visitar
-                <Link
-                  className="mx-1 outline-dark"
-                  to={`/error404`}
-                >
-                 Preguntas Frecuentes
+                <Link className="mx-1 outline-dark" to={`/error404`}>
+                  Preguntas Frecuentes
                 </Link>
               </h6>
               <span></span>

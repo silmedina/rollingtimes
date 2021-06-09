@@ -88,7 +88,7 @@ const Navegacion = (props) => {
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
-              <h2>hola</h2>
+              
               <Logo />
               <Cotizacion
                 dolar={props.dolar}
