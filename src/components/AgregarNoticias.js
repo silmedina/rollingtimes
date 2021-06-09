@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Alert, Form, Container } from "react-bootstrap";
+import { Button, Alert, Form, Container, Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useParams, withRouter } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { validarNombre, validarNombreCategoria, validarTextArea, validarUrlImagen } from "./Validaciones";
+import CategoriasButton from './CategoriasButton';
 
 
 const Noticias = (props) => {
@@ -65,7 +66,7 @@ const Noticias = (props) => {
           body: JSON.stringify(noticia)
         }
 
-        const respuesta = await fetch(URLNOT,configuracion)
+        const respuesta = await fetch(URLNOT, configuracion)
         console.log(respuesta)
         if (respuesta.status === 201) {
           // mostrar cartel de que se agrego el producto
@@ -81,6 +82,8 @@ const Noticias = (props) => {
       }
     }
   };
+console.log(props.categorias);
+
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSubmit}>
@@ -143,52 +146,31 @@ const Noticias = (props) => {
             onChange={(e) => setFecha(e.target.value)}
           ></Form.Control>
         </Form.Group>
+        <Form.Select aria-label="Default select example" eventKey={categoria._id}>
+        {
+          props.categorias.map((cat) => <CategoriasButton categoria={cat}></CategoriasButton>)
+        }
+        </Form.Select>
 
-        <Form.Group>
-          <Form.Label>categoria</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingrese la categoria"
-            onChange={(e) => setCategoria(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        {/* <CategoriasButton categoria={props.categorias}></CategoriasButton> */}
 
+        
+          {/* <Form.Select aria-label="Default select example" eventKey={categoria._id}>
+          {props.categorias.map((categoria) => (
+            <option>{categoria.nombre}</option>
+            ))}
+          </Form.Select> */}
 
-        {/* <h3 className="text-center my-4">Categoria</h3>
-        <div className="text-center">
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Bebida caliente"
-            value="bebidaCaliente"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Bebida Fria"
-            value="bebidaFria"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Dulce"
-            value="dulce"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Salado"
-            value="salado"
-            onChange={cambioCategoria}
-          ></Form.Check>
-        </div> */}
+        {/* <CategoriasButton/> */}
+
+          {/* {props.categoria.map((cat) => (
+          <Form.Select aria-label="Default select example" eventKey={cat._id}>
+            <option>{props.cat.nombre}</option>
+          </Form.Select>
+        ))} */}
+
+         
+
         <Button variant="danger" type="submit" className="w-100 my-5">
           Guardar
         </Button>
@@ -202,4 +184,4 @@ const Noticias = (props) => {
   );
 };
 
-export default withRouter(Noticias);
+export default Noticias;
