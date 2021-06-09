@@ -1,0 +1,131 @@
+/* COLORES */
+.background-black{
+    background-color: #222222;
+}
+.background-orange{
+    background-color: #EC4E20;
+}
+.background-pink{
+    background-color: #F6E8EA;
+}
+.background-blue{
+    background-color: #537D8D;
+}
+#modal-background{
+    border-radius: 100px;
+}
+
+/* TITULO MODAL */
+
+.login-title{
+    font-family: 'Damion', cursive;
+    background-color: #222222;
+    padding: 15px;
+    color:#fff;
+}
+
+/* INPUT + EFECTOS */
+
+input[type="email"]{
+    /* font: 15px/24px 'Muli', sans-serif; */
+    color: #333; width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+input[type="password"]{
+    /* font: 15px/24px 'Muli', sans-serif; */
+    color: #333; width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+input:focus{outline: none;}
+
+.effect-input{
+    border: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.effect-input ~ .focus-border{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background-color: #222222;
+    transition: 0.4s;
+}
+.effect-input:focus ~ .focus-border{
+    width: 100%;
+    transition: 0.4s;
+}
+
+.col-login{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* BOTONES + EFECTOS */
+
+.boton-facebook{
+    border-radius: 5px;
+    padding-left: 30%;
+    padding-right: 30%;
+    transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+    background-color: #247df1;
+}
+.boton-google{
+    border-radius: 5px;
+    padding-left: 33%;
+    padding-right: 33%;
+    background-color: #EC4E20;
+    transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+}
+.boton-google:hover{
+    background-color: rgb(240, 33, 26);
+}
+
+.button-send-close {
+    font-family: 'Damion', cursive;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px;
+    width: 200px;
+    color: white;
+    margin-left: 25px;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+}
+.button-send-close:hover { 
+  transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+}
+
+/* TITULO */
+
+h5 {
+    font-family: 'Damion', cursive;
+    font-weight: 400;
+    color: #222222;
+    font-size: 25px;
+    text-align: center;
+    position: relative;
+}
+h5:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    left: 0;
+    top: 22px;
+    background: #222222;
+    height: 1px;
+}
+h5 i {
+    font-style: normal;
+    background: #fff;
+    position: relative;
+}
+h5:focus{outline: none;}

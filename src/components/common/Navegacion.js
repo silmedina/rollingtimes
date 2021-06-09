@@ -106,9 +106,10 @@ const Navegacion = (props) => {
               ))}
             </Nav>
             <Nav>
-              <Button className="mx-2 my-1" variant="outline-dark">
+              <Login className=""/>
+              {/* <Button className="mx-2 my-1" variant="outline-dark">
                 Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-              </Button>
+              </Button> */}
               <Button className="mx-2 my-1" variant="outline-dark">
                 Suscribite
               </Button>

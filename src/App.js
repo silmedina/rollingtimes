@@ -136,6 +136,9 @@ function App() {
         <Route exact path="/administracion">
           <Administracion />
         </Route>
+        <Route exact path="/detallenoticia">
+          <DetalleNoticia />
+        </Route>
         <Route exact path="/noticias">
           <ListarNoticias
             noticias={noticias}
