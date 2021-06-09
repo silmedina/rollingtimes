@@ -15,20 +15,6 @@ import Login from '../Login/Login';
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
 
-  const cambiarNav = () => {
-    if (window.scrollY.isDesktop >= 30) {
-      const nuevaClaseExpa = document.getElementById("navExpand");
-      if (nuevaClaseExpa) {
-        nuevaClaseExpa.style.display = "none";
-        setcompactNav(true);
-      }
-    } else if (window.scrollY.isDesktop < 30) {
-      const nuevaClaseExpa = document.getElementById("navExpand");
-      nuevaClaseExpa.style.display = "block";
-      setcompactNav(false);
-    }
-  };
-  window.addEventListener("scroll", cambiarNav);
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -39,21 +25,48 @@ const Navegacion = (props) => {
     const isMobile = useMediaQuery({ minWidth: 350, maxWidth: 991 });
     return isMobile ? children : null;
   };
+  
+  const cambiarNav = () => {
+    if (window.scrollY >= 10) {
+      const nuevaClaseExpa = document.getElementById("navExpand");
+      // if (nuevaClaseExpa) {
+      nuevaClaseExpa.style.display = "none";
+      console.log("hola");
+      setcompactNav(true);
+      // }
+    } else if (window.scrollY < 10) {
+      setcompactNav(false);
+    }
+  };
+  window.addEventListener("scroll", cambiarNav);
+
+
 
   return (
     <Fragment>
-
       <Desktop>
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column sticky-top" id="navDesk">
           <div className="bg3" id="navDesk">
-            <Navbar collapseOnSelect expand="lg" className="bg5" id="navBlock">
+            <Navbar collapseOnSelect expand="lg" className="bg5" >
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
               {compactNav === true ? (
                 <Menudespleg categorias={props.categorias} />
               ) : null}
               {compactNav === true ? (
                 <img className="mr-3" src={logoSm} alt="logo" />
               ) : null}
+{/* {compactNav === true ? (
+              <div className="" id="">
+                <Menudespleg categorias={props.categorias} />
+                <img className="mr-3" src={logoSm} alt="logo" />
+              </div> ) : null} */}
+
+              {/* <div className="" id="compactNav">
+                <Menudespleg categorias={props.categorias} />
+                <img className="mr-3" src={logoSm} alt="logo" />
+              </div> */}
+
               <Form inline className="m-3">
                 <Form.Control
                   type="text"
@@ -65,7 +78,7 @@ const Navegacion = (props) => {
                 </Button>
               </Form>
               <Nav className="ml-auto">
-                <Login/>
+                <Login />
                 {/* <Button className="mx-2 my-1" variant="outline-dark">
                   Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                 </Button> */}
@@ -75,6 +88,7 @@ const Navegacion = (props) => {
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
+              <h2>hola</h2>
               <Logo />
               <Cotizacion
                 dolar={props.dolar}
@@ -87,13 +101,13 @@ const Navegacion = (props) => {
         </div>
       </Desktop>
 
-      <Mobile>
-        <Navbar collapseOnSelect expand="lg" bg="" className="bg5">
+      <Mobile> 
+        <Navbar collapseOnSelect expand="lg" bg="" className="bg5 stiky-top" id="mobilNav">
           <div className="mr-2">
             <img src={LogoNav} alt="logo" />
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav" >
             <Form>
               <Form.Control type="text" placeholder="Buscar" className="mr-2" />
               <Button className="my-2" variant="outline-dark">
@@ -116,7 +130,6 @@ const Navegacion = (props) => {
           </Navbar.Collapse>
         </Navbar>
       </Mobile>
-    
     </Fragment>
   );
 };
