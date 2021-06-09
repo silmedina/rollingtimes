@@ -11,6 +11,8 @@ import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import LogoSm from "../common/img/logoSm.png";
 import { Link } from "react-router-dom";
+import { FaPhone, FaQuestionCircle } from "react-icons/fa"
+import { MdEmail, MdLocationOn } from "react-icons/md"
 import "./Contact.css";
 
 const Contact = () => {
@@ -155,7 +157,7 @@ const Contact = () => {
                 />
                 <span className="focus-border"></span>
               </div>
-              <small>Le contestaremos a la brevedad</small>
+              <p>Muchas gracias por su consulta y/o sugerencia, le contestaremos a la brevedad.</p>
             </Form.Group>
             <div className="text-center">
             <button type="submit" className="w-50 my-4 button-send-close background-orange text-center mr-4">
@@ -175,13 +177,13 @@ const Contact = () => {
                 <Card.Body>
                   <h4 className="color2">Casa Central</h4>
                   <div className="pb-3">
-                    <strong>Gral. Paz 547 - San Miguel de Tucumán</strong>
+                    <strong><MdLocationOn className="mb-1 mr-2"/>Gral. Paz 547 - San Miguel de Tucumán</strong>
                   </div>
                   <h4 className="color2">Telefono de contacto</h4>
                   <div className="pb-3">
                     <small>Enviá tu denuncia a nuestra linea exclusiva</small>
                     <p className="my-1">
-                      <strong>+54 9 (381) - 3242 445</strong>
+                      <strong><FaPhone className="mb-1 mr-2"/>+54 9 (381) - 3242 445</strong>
                     </p>
                     <small>
                       La información será evaluada y en caso de publicarse se
@@ -192,7 +194,7 @@ const Contact = () => {
                   <div className="pb-3">
                     <p>Para publicitar en la web:</p>
                     <p>
-                      <strong>rollingnews-contacto@gmail.com</strong>
+                      <strong><MdEmail className="mb-1 mr-2"/>rollingnews-contacto@gmail.com</strong>
                     </p>
                   </div>
                 </Card.Body>
@@ -202,7 +204,7 @@ const Contact = () => {
               <h6 className="text-center my-4">
                 También te sugerimos visitar
                 <Link className="mx-1 outline-dark" to={`/error404`}>
-                  Preguntas Frecuentes
+                  Preguntas Frecuentes <FaQuestionCircle className="mb-1 mr-2"/>
                 </Link>
               </h6>
               <span></span>

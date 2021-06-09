@@ -6,6 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
+import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -83,12 +84,12 @@ const Login = () => {
             <div className="my-4">
             <Col className="text-center m-2">
               <Link to="/error404">
-              <button className="boton-facebook" onClick={handleClose}>Facebook</button>
+              <button className="boton-facebook" onClick={handleClose}><FaFacebookF className="mb-1 mr-2"/>Facebook</button>
               </Link>
             </Col>
             <Col className="text-center m-2">
               <Link to="/error404">
-              <button className="boton-google" onClick={handleClose}>Google</button>
+              <button className="boton-google" onClick={handleClose}><FaGoogle className="mb-1 mr-2"/>Google</button>
               </Link>
             </Col>
             </div>

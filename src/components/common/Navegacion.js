@@ -43,7 +43,7 @@ const Navegacion = (props) => {
     <Fragment>
       <Desktop>
         <div
-          className="d-flex row justify-content-center sticky-top"
+          className="d-flex row justify-content-center sticky-top m-0"
           id="navDesk"
         >
           <div className="bg3" id="navDesk">
@@ -90,7 +90,7 @@ const Navegacion = (props) => {
           collapseOnSelect
           expand="lg"
           bg=""
-          className="d-flex row justify-content-center bg5 stiky-top p-0"
+          className="d-flex row justify-content-center bg5 stiky-top p-0 m-0"
         >
           <div className="text-center">
             <img src={LogoNav} alt="logo" className="w-75 p-2" />
