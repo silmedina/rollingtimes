@@ -94,7 +94,6 @@ const Navegacion = (props) => {
         >
           <div className="text-center">
             <img src={LogoNav} alt="logo" className="w-75 p-2" />
-
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav ">
               <div className="text-center">
