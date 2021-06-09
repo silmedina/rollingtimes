@@ -30,7 +30,7 @@ const Climate =  (props) => {
         case '03d':
             output += 'wi-cloud';
           break;
-        case '04n':
+        case '04d':
             output += 'wi-cloudy';
           break;
         case '09d':
@@ -57,7 +57,7 @@ console.log(output);
             <div className="cards">
              <p>{ciudad}, {pais}</p>
             {/* icon  */}
-            <h3><i class={`wi ${output}`}></i></h3>
+            <h3><i className={`wi ${output}`}></i></h3>
             <h5 className="">{temperatura}°C</h5>
             {/* <p>Min: {minTemp}°C - Max: {maxTemp}°C </p> */}
             {/* <p>Humedad: {humedad} </p>  */}

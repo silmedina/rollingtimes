@@ -14,9 +14,9 @@ const Logo = () => {
 
     //    Clima 
 
-    useEffect(() => {
-        ejecutarClima();
-    }, []);
+    // useEffect(() => {
+    //     ejecutarClima();
+    // }, []);
 
     const ejecutarClima = async () => {
         const respuesta = await fetch(URL_Clima);
