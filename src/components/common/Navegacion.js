@@ -10,6 +10,7 @@ import Cotizacion from "./Cotizacion";
 import Logo from "./Logo";
 import Menudespleg from "./Menudespleg";
 import Login from "../Login/Login";
+import { Link } from "react-router-dom";
 
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
@@ -57,7 +58,7 @@ const Navegacion = (props) => {
               ) : null}
               <Form inline className="m-3">
                 <Form.Control
-                  type="text" 
+                  type="text"
                   placeholder="Search"
                   className="mr-sm-2"
                 />
@@ -67,9 +68,11 @@ const Navegacion = (props) => {
               </Form>
               <Nav className="ml-auto">
                 <Login />
-                <Button className="mx-2 my-1" variant="outline-dark">
-                  Suscribite
-                </Button>
+                <Link to={"/suscripcion"}>
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Suscribite
+                  </Button>
+                </Link>
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
@@ -116,9 +119,11 @@ const Navegacion = (props) => {
               </Nav>
               <Nav>
                 <Login />
-                <Button className="mx-2 my-1" variant="outline-dark">
-                  Suscribite
-                </Button>
+                <Link to={"/suscripcion"}>
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Suscribite
+                  </Button>
+                </Link>
               </Nav>
             </Navbar.Collapse>
           </div>
