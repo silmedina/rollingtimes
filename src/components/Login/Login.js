@@ -143,7 +143,7 @@ const Login = () => {
             </Form.Row>
             <div className="text-center p-3">
               <button
-                className="mx-2 my-1 background-orange button-send-close"
+                className="mx-2 my-1 bg2 button-send-close"
                 type="submit"
               >
                 Enviar

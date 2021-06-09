@@ -1,32 +1,50 @@
 import React, { useState } from "react";
-import cardlogo from "../../assets/card-logo.png";
-import { Button } from "react-bootstrap";
 //import FormularioReg from "./FormularioReg";
 import FormRegistro from "./FormRegistro";
+import "./Subscription.css";
 
 const Card = (props) => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="card">
-      <div className="p-1">
-        <div className="card-body text-center">
-          <img src={cardlogo} alt="cardlogo.png"></img>
+    <div className="col-sm-12 ">
+      <div className="px-0 border border-dark tamaño-card">
+        <div className="card-body text-center p-0">
+          <img
+            src={props.reference}
+            alt="cardlogo"
+            className="w-100 card-img"
+          ></img>
         </div>
-        <h3 className="card-title text-center">{props.title}</h3>
-        <h4 className="text-center pt-2">{props.precio}</h4>
+        <h4 className=" card-title pl-3 pt-3" id="h4-titulo">
+          <span>Paquete: </span>
+          {props.title}
+        </h4>
+        <h5 className=" pl-3 pt-2">{props.precio}</h5>
         <div className="p-3">
-          <h6>Beneficios</h6>
-          <p className="card-text text-secondary">{props.texto}</p>
-          <div className="text-center pb-4">
-            <Button
-              className="btn btn-outline-secondary text-light"
-              onClick={() => setModalShow(true)}
-            >
-              Suscribirme
-            </Button>
+          <div className="beneficios-card">
+            <h5 className="color2">Beneficios</h5>
+            <p className="card-text text-secondary"></p>
+            <ul className="pl-3">
+              <li>Acceso limitado online a RollingTimes</li>
+              <li>Acceso a los comentarios</li>
+              {props.texto}
+            </ul>
           </div>
+          {/* <div className="text-center pb-4">
+          </div> */}
+
           <FormRegistro show={modalShow} onHide={() => setModalShow(false)} />
+        </div>
+        <div className="d-block d-md-none d-lg-block d-xl-none mb-4"></div>
+        <div className="d-flex row justify-content-center align-self-end">
+          
+        <button
+          className="button-send-close bg2 text-center "
+          onClick={() => setModalShow(true)}
+        >
+          Suscribirme
+        </button>
         </div>
       </div>
     </div>

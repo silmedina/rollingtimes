@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Col, Modal } from "react-bootstrap";
+import { Container, Form, Col, Modal } from "react-bootstrap";
 import {
   validarNombre,
   validarApellido,
@@ -67,11 +67,14 @@ const FormRegistro = (props) => {
           postal,
         };
 
-        const respuesta = await fetch('http://localhost:4001/api/suscripcion/', {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(suscripcionNueva),
-        });
+        const respuesta = await fetch(
+          "http://localhost:4001/api/suscripcion/",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(suscripcionNueva),
+          }
+        );
 
         console.log(respuesta);
 
@@ -81,7 +84,6 @@ const FormRegistro = (props) => {
             "La suscripcion se realizo correctamente!",
             "success"
           );
-          
         } else {
           if (respuesta.status === 404) {
             Swal.fire(
@@ -89,7 +91,7 @@ const FormRegistro = (props) => {
               "Por algun motivo no se pudo suscribir correctamente.",
               "error"
             );
-          }else{
+          } else {
             Swal.fire(
               "El usuario y/o telefono ya se encuentra registrado",
               "Intente suscribirse con otro correo electronico y/o telefono",
@@ -126,138 +128,149 @@ const FormRegistro = (props) => {
     <div>
       <Container>
         <Modal {...props} keyboard={false} size="lg">
-          <Modal.Header closeButton>
-            <Modal.Title>Suscripcion RollingTimes</Modal.Title>
+          <Modal.Header className="p-0 d-block">
+            
+            <div className="text-center color2">
+              <h3 className="login-title m-0">Suscripcion RollingTimes</h3>
+            </div>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Nombre
-                    </Form.Label>
-                    <Form.Control
-                      name="nombre"
-                      type="text"
-                      placeholder="Matias Francisco"
-                      onChange={(e) => setNombre(e.target.value)}
-                      minLength={3}
-                      maxLength={15}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Apellido
-                    </Form.Label>
-                    <Form.Control
+                <Form.Group className="col-md-12 col-lg-6 mb-0">
+                  <div>
+                    <div className="col-login">
+                      <input
+                        className="effect-input input-text"
+                        name="nombre"
+                        type="text"
+                        placeholder="Nombre"
+                        onChange={(e) => setNombre(e.target.value)}
+                        minLength={3}
+                        maxLength={24}
+                        required
+                      />
+                      <span className="focus-border"></span>
+                    </div>
+                  </div>
+                </Form.Group>
+                <Form.Group className="col-md-12 col-lg-6 mb-0">
+                  <div className="col-login">
+                    <input
+                      className="effect-input input-text"
                       name="apellido"
                       type="text"
-                      placeholder="Rodriguez"
+                      placeholder="Apellido"
                       onChange={(e) => setApellido(e.target.value)}
                       minLength={3}
-                      maxLength={20}
+                      maxLength={24}
                       required
                     />
-                  </Form.Group>
-                </Col>
+                    <span className="focus-border"></span>
+                  </div>
+                </Form.Group>
               </Form.Row>
               <Form.Row>
                 <Col>
                   <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Localidad
-                    </Form.Label>
-                    <Form.Control
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-text"
                       name="localidad"
                       type="text"
-                      placeholder="San Miguel de Tucumán"
+                      placeholder="Localidad"
                       onChange={(e) => setLocalidad(e.target.value)}
                       minLength={4}
                       maxLength={40}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Dirección
-                    </Form.Label>
-                    <Form.Control
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-text"
                       name="direccion"
                       type="text"
-                      placeholder="Gral. Paz 547"
+                      placeholder="Dirección"
                       onChange={(e) => setDireccion(e.target.value)}
                       minLength={4}
                       maxLength={40}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Correo Electronico
-                    </Form.Label>
-                    <Form.Control
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-email"
                       name="email"
                       type="email"
-                      placeholder="rollingnews.contacto@gmail.com"
+                      placeholder="Email"
                       onChange={(e) => setEmail(e.target.value)}
                       minLength={10}
                       maxLength={40}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Contraseña
-                    </Form.Label>
-                    <Form.Control
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-password"
                       name="password"
                       type="password"
+                      placeholder="Contraseña"
                       onChange={(e) => setPassword(e.target.value)}
                       minLength={4}
                       maxLength={20}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
                 </Col>
               </Form.Row>
               <Form.Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Telefono (Sin
-                      espacios)
-                    </Form.Label>
-                    <Form.Control
+                <Form.Group className="col-md-12 col-lg-6 mb-0">
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-text"
                       name="telefono"
                       type="text"
-                      placeholder="3813242445"
+                      placeholder="Telefono"
                       onChange={(e) => setTelefono(e.target.value)}
                       minLength={7}
                       maxLength={14}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>
-                      <span className="text-danger">*</span> Postal
-                    </Form.Label>
-                    <Form.Control
+                  <Form.Group className="col-md-12 col-lg-6">
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-text"
                       name="postal"
                       type="text"
-                      placeholder="4000"
+                      placeholder="Postal"
+                      onChange={(e) => setPostal(e.target.value)}
                       minLength={4}
                       maxLength={4}
-                      onChange={(e) => setPostal(e.target.value)}
                       required
                     />
+                    <span className="focus-border"></span>
+                  </div>
                   </Form.Group>
-                </Col>
               </Form.Row>
               <Form.Group>
                 <Form.Check
@@ -268,9 +281,15 @@ const FormRegistro = (props) => {
                   required
                 ></Form.Check>
               </Form.Group>
-              <Button variant="primary" type="submit" onClick={hideModal}>
-                Enviar
-              </Button>
+              <div className="text-center">
+                <button
+                  className="button-send-close bg2"
+                  type="submit"
+                  onClick={hideModal}
+                >
+                  Enviar
+                </button>
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
