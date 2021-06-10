@@ -84,7 +84,7 @@ const Navegacion = (props) => {
                 </Button>
               </Form>
               <Nav className="ml-auto">
-                <Login noticias={noticias} consultarNoticias={consultarNoticias}/>
+                <Login/>
               </Nav>
             </Navbar>
             <div className="" id="navExpand">

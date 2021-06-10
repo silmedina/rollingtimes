@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,8 +7,10 @@ import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import loginService from "./logged";
+import noteService from './notes'
 
-const Login = (props) => {
+const Login = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,8 +20,19 @@ const Login = (props) => {
   const [log, setLog] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [user, setUser] = useState(null);
-  let token = '';
-  let role = '';
+
+
+  useEffect(() => {
+    const logged = localStorage.getItem('logged')
+    if (logged){
+      const user = JSON.parse(logged);
+      setUser(user);
+      noteService.setToken(user.token)
+    }
+  }, [])
+
+  
+
   const desloguear = () => {
     Swal.fire({
       title: "Estas seguro que quieres desconectarte?",
@@ -34,32 +47,45 @@ const Login = (props) => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //const {token} = user;
+
+    // noteService.create(noteObject, {token})
+    // .then(returnedNote => {
+    //   setNotes(notes.concat(returnedNote))
+    //   setNewNote('')
+
+    // })
+
+    
     if (validarEmail(email)) {
       try {
         const loginComparacion = {
           email,
-          password,
-          token,
-          role
+          password
         };
-        
         const configuracion = {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify(loginComparacion)
-        }
+          body: JSON.stringify(loginComparacion),
+        };
         
-        const respuesta = await fetch("http://localhost:4001/api/login/", configuracion);
-
-        console.log(respuesta);
-        console.log(loginComparacion);
-
+        const user = await loginService.login({
+          email,
+          password,
+        });
+        const respuesta = await fetch(
+          "http://localhost:4001/api/login/",
+          configuracion
+          );
+          
+          console.log("llego aqui?");
+          console.log(user);
+          
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -67,6 +93,9 @@ const Login = (props) => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
+          localStorage.setItem("logged", JSON.stringify(user));
+          noteService.setToken(user.token)
+
           setAdmin(true);
           handleClose();
           setLog(true);
@@ -78,10 +107,13 @@ const Login = (props) => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
+            localStorage.setItem("logged", JSON.stringify(user));
+            noteService.setToken(user.token)
+
             handleClose();
             setLog(true);
           } else {
-            if (respuesta.status === 301) {
+            if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
             } else {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -147,7 +179,7 @@ const Login = (props) => {
           </div>
         )}
       </div>
-      
+
       <Modal show={show} onHide={handleClose} keyboard={false} className="px-0">
         <Modal.Body className="p-0">
           <h3 className="text-center login-title">Inicio de Sesión</h3>

@@ -101,12 +101,12 @@ function App() {
 
   return (
     <Router>
-      {/* <Navegacion
+      <Navegacion
         dolar={dolar}
         euro={euro}
         real={real}
         categorias={categorias}
-      /> */}
+      />
       <Switch>
         <Route exact path="/">
           <Inicio noticias={noticias} />
