@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,10 +16,23 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [log, setLog] = useState(false);
-  const [admin, setAdmin] = useState(false);
-  //const [user, setUser] = useState(null);
-  //let token="";
+  const [log, setLog] = useState(null);
+  const [regularUser, setRegularUser] = useState(localStorage.getItem(log));
+  const [adminUser, setAdminUser] = useState(localStorage.getItem(log));
+  let token = "";
+
+  useEffect(() => {
+    //consultarEstado();;
+    if (log && adminUser) {
+      setAdminUser(true);
+    } else {
+      if (log) {
+        setRegularUser(true);
+      } else {
+        
+      }
+    }
+  });
 
   const desloguear = () => {
     Swal.fire({
@@ -30,9 +43,18 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
+        setRegularUser(false);
+        setAdminUser(false);
         setLog(false);
+        consultarEstado();
       }
     });
+  };
+
+  const consultarEstado = () => {
+    setAdminUser(localStorage.getItem(adminUser));
+    setRegularUser(localStorage.getItem(regularUser));
+    setLog(localStorage.getItem(log));
   };
 
   const handleSubmit = async (e) => {
@@ -41,17 +63,18 @@ const Login = () => {
       try {
         const loginComparacion = {
           email,
-          password
+          password,
         };
         const configuracion = {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-access-token": token,
           },
           body: JSON.stringify(loginComparacion),
         };
-        
-        const user = await loginService.login({
+
+        const user = await loginService.loginS({
           email,
           password,
         });
@@ -59,12 +82,12 @@ const Login = () => {
         const respuesta = await fetch(
           "http://localhost:4001/api/login/",
           configuracion
-          );
-          
-          console.log("llego aqui?");
-          console.log(user);
+        );
 
-        //window.localStorage.setItem("logged", JSON.stringify(user));
+        console.log(respuesta);
+        console.log(user);
+        //setRegularUser(user);
+        //localStorage.setItem("logged", JSON.stringify(user));
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -72,11 +95,12 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          //localStorage.setItem("logged", JSON.stringify(user));
+          localStorage.setItem("logged", JSON.stringify(user));
 
-          setAdmin(true);
-          handleClose();
           setLog(true);
+          setAdminUser(true);
+          handleClose();
+          localStorage.setItem("log", JSON.stringify(log));
         } else {
           if (respuesta.status === 201) {
             console.log("Paso por aqui 201");
@@ -85,10 +109,12 @@ const Login = () => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            //localStorage.setItem("logged", JSON.stringify(user));
+            localStorage.setItem("logged", JSON.stringify(user));
 
             handleClose();
             setLog(true);
+            localStorage.setItem("log", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -113,24 +139,18 @@ const Login = () => {
   return (
     <div>
       <div className="text-center d-flex">
-        {log ? (
-          <div className="d-flex">
-            {admin ? (
-              <div>
-                <Link to="/categorias">
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Panel de Control Categorias
-                  </Button>
-                </Link>
-                <Link to="/noticias">
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Panel de Control Noticias
-                  </Button>
-                </Link>
-              </div>
-            ) : (
-              <div></div>
-            )}
+        {adminUser ? (
+          <div>
+            <Link to="/categorias">
+              <Button className="mx-2 my-1" variant="outline-dark">
+                Panel de Control Categorias
+              </Button>
+            </Link>
+            <Link to="/noticias">
+              <Button className="mx-2 my-1" variant="outline-dark">
+                Panel de Control Noticias
+              </Button>
+            </Link>
             <Button
               className="mx-2 my-1"
               onClick={desloguear}
@@ -141,18 +161,32 @@ const Login = () => {
           </div>
         ) : (
           <div>
-            <Button
-              className="mx-2 my-1"
-              onClick={handleShow}
-              variant="outline-dark"
-            >
-              Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-            </Button>
-            <Link to={"/suscripcion"}>
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Suscribite
-              </Button>
-            </Link>
+            {log ? (
+              <div>
+                <Button
+                  className="mx-2 my-1"
+                  onClick={desloguear}
+                  variant="outline-dark"
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  className="mx-2 my-1"
+                  onClick={handleShow}
+                  variant="outline-dark"
+                >
+                  Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                </Button>
+                <Link to={"/suscripcion"}>
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Suscribite
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
