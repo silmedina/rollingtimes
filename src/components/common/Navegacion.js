@@ -14,21 +14,21 @@ import { Link } from "react-router-dom";
 
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
-
+  
   const cambiarNav = () => {
-    if (window.screen.width > 992 && window.scrollY > 5) {
+    if (window.screen.width > 992 && window.scrollY > 0) {
       const nuevaClaseExpa = document.getElementById("navExpand");
       // if (nuevaClaseExpa) {
       nuevaClaseExpa.style.display = "none";
       setcompactNav(true);
       // }
-    } else if (window.screen.width > 992 && window.scrollY <= 5) {
+    } else if (window.screen.width > 992 && window.scrollY <= 0) {
       const nuevaClaseExpa = document.getElementById("navExpand");
       nuevaClaseExpa.style.display = "inline";
       setcompactNav(false);
     }
   };
-  window.addEventListener("scroll", cambiarNav);
+  //window.addEventListener("scroll", cambiarNav);
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -67,12 +67,7 @@ const Navegacion = (props) => {
                 </Button>
               </Form>
               <Nav className="ml-auto">
-                <Login />
-                <Link to={"/suscripcion"}>
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Suscribite
-                  </Button>
-                </Link>
+                <Login/>
               </Nav>
             </Navbar>
             <div className="" id="navExpand">

@@ -7,9 +7,9 @@ import {
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import logoSm from "./img/logoSm.png";
-import { FaPhone } from "react-icons/fa"
-import { MdEmail, MdLocationOn } from "react-icons/md"
-import { Link } from "react-router-dom"
+import { FaPhone } from "react-icons/fa";
+import { MdEmail, MdLocationOn } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -47,24 +47,27 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        
       </header>
       <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
-      <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
+        <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
           <img src={logoSm} alt="logo" className="w-75 p-0" />
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0 m-0">
           <Link className="mx-1 outline-dark" to={"/about"}>
             <h4 className="m-0 color2">Sobre Nosotros</h4>
           </Link>
-        <div className="px-2">
-            <p className="mb-4">Somos una pequeña empresa argentina dedicada al diario digital en estos tiempos de pandemia, lo que es fundamental poder mantener a todos los argentinos informados del dia a dia.</p>
-        </div>
+          <div className="px-2">
+            <p className="mb-4">
+              Somos una pequeña empresa argentina dedicada al diario digital en
+              estos tiempos de pandemia, lo que es fundamental poder mantener a
+              todos los argentinos informados del dia a dia.
+            </p>
+          </div>
         </div>
         <div className=" col-sm-12 col-md-6 col-lg-4 p-0 m-0">
-          <a className="color1" href="#">
+          <Link className="mx-1 outline-dark" to={"/about"}>
             <h4 className="pb-1 color2 pt-4">Contacto</h4>
-          </a>
+          </Link>
           <div>
             <strong>
               <MdLocationOn className="mb-1 mr-2" />

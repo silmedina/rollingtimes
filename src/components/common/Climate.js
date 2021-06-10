@@ -49,9 +49,9 @@ const Climate =  (props) => {
             output += 'wi-day-haze';
           break;
         default:
-          console.log(icono);
+          //console.log(icono);
       }
-console.log(output);
+//console.log(output);
     return (
         <div className="container">
             <div className="cards">

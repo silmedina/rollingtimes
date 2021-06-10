@@ -6,7 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
-import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -15,6 +15,22 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [log, setLog] = useState(true);
+
+  const desloguear = () => {
+    
+    Swal.fire({
+      title: 'Estas seguro que quieres desconectarte?',
+      showDenyButton: true,
+      confirmButtonText: `Desloguear`,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Te deslogueaste exitosamente!', '', 'success');
+        setLog(true);
+      }
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +59,7 @@ const Login = () => {
             "success"
           );
           handleClose();
+          setLog(false);
         } else {
           if (respuesta.status === 201) {
             Swal.fire("Error", "Password incorrecta!", "error");
@@ -66,36 +83,59 @@ const Login = () => {
   return (
     <div>
       <div className="text-center">
-        <Button
-          className="mx-2 my-1"
-          onClick={handleShow}
-          variant="outline-dark"
-        >
-          Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-        </Button>
+        {log ? (
+          <div>
+            <Button
+            className="mx-2 my-1"
+            onClick={handleShow}
+            variant="outline-dark"
+          >
+            Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+          </Button>
+          <Link to={"/suscripcion"}>
+          <Button className="mx-2 my-1" variant="outline-dark">
+            Suscribite
+          </Button>
+        </Link>
+          </div>
+        ) : (
+          <Button className="mx-2 my-1" onClick={desloguear} variant="outline-dark">
+            Logout
+          </Button>
+        )}
       </div>
       <Modal show={show} onHide={handleClose} keyboard={false} className="px-0">
         <Modal.Body className="p-0">
           <h3 className="text-center login-title">Inicio de Sesión</h3>
           <Form onSubmit={handleSubmit}>
             <h5 className="text-center mx-1 py-2 h5-titulo my-0">
-              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus redes sociales</i>
+              <i className="pl-1 titulo-secundario i-titulo">
+                Ingresa con tus redes sociales
+              </i>
             </h5>
             <div className="my-4">
-            <Col className="text-center m-2">
-              <Link to="/error404">
-              <button className="boton-facebook" onClick={handleClose}><FaFacebookF className="mb-1 mr-2"/>Facebook</button>
-              </Link>
-            </Col>
-            <Col className="text-center m-2">
-              <Link to="/error404">
-              <button className="boton-google" onClick={handleClose}><FaGoogle className="mb-1 mr-2"/>Google</button>
-              </Link>
-            </Col>
+              <Col className="text-center m-2">
+                <Link to="/error404">
+                  <button className="boton-facebook" onClick={handleClose}>
+                    <FaFacebookF className="mb-1 mr-2" />
+                    Facebook
+                  </button>
+                </Link>
+              </Col>
+              <Col className="text-center m-2">
+                <Link to="/error404">
+                  <button className="boton-google" onClick={handleClose}>
+                    <FaGoogle className="mb-1 mr-2" />
+                    Google
+                  </button>
+                </Link>
+              </Col>
             </div>
 
             <h5 className="text-center mx-1 py-2 h5-titulo ">
-              <i className="pl-1 titulo-secundario i-titulo">Ingresa con tus credenciales</i>
+              <i className="pl-1 titulo-secundario i-titulo">
+                Ingresa con tus credenciales
+              </i>
             </h5>
             <Form.Row className="mx-4">
               <Col>
@@ -142,10 +182,7 @@ const Login = () => {
               </Col>
             </Form.Row>
             <div className="text-center p-3">
-              <button
-                className="mx-2 my-1 bg2 button-send-close"
-                type="submit"
-              >
+              <button className="mx-2 my-1 bg2 button-send-close" type="submit">
                 Enviar
               </button>
               <button

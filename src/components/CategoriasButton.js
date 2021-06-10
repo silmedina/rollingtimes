@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { validarNombre, validarNombreCategoria, validarTextArea, validarUrlImagen } from "./Validaciones";
 
 const CategoriasButton = (cat) => {
-    console.log(cat.categoria.nombre);
 
     return (
         <Fragment>

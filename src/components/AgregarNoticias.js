@@ -39,8 +39,10 @@ const Noticias = (props) => {
     ) {
       // validacion falla, entonces mostrar un cartel de error
       setError(true);
+      console.log("Fallo validacion");
     } else {
       setError(false);
+      
       // si esta bien la validacion entonces agregar el producto en la API
 
       //crear el objeto que tengo que enviar a la API
@@ -65,9 +67,12 @@ const Noticias = (props) => {
           },
           body: JSON.stringify(noticia)
         }
+        console.log("A resp");
+        const respuesta = await fetch("http://localhost:4001/api/noticias/", configuracion)
+        console.log("D resp");
+        console.log(respuesta);
+        console.log("D Console resp");
 
-        const respuesta = await fetch(URLNOT, configuracion)
-        console.log(respuesta)
         if (respuesta.status === 201) {
           // mostrar cartel de que se agrego el producto
           Swal.fire(
