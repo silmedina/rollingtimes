@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Alert, Form, Container } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   validarNombre,
@@ -32,13 +33,12 @@ const Noticias = (props) => {
       validarNombre(autor)
     ) {
       // validacion falla, entonces mostrar un cartel de error
+      setError(false);
+    } else {
       setError(true);
       console.log("Fallo validacion");
-    } else {
-      setError(false);
-
-      // si esta bien la validacion entonces agregar el producto en la API
-
+      return;      // si esta bien la validacion entonces agregar el producto en la API
+    }
       //crear el objeto que tengo que enviar a la API
 
       const noticia = {
@@ -77,6 +77,7 @@ const Noticias = (props) => {
             "success"
           );
           props.consultarNoticias();
+          props.history.push('/noticias');
         } else if (respuesta.status === 500) {
           Swal.fire(
             "Error",
@@ -88,7 +89,6 @@ const Noticias = (props) => {
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
-    }
   };
 
   useEffect(() => {
@@ -201,5 +201,4 @@ const Noticias = (props) => {
     </Container>
   );
 };
-
-export default Noticias;
+export default withRouter(Noticias);
