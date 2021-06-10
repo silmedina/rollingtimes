@@ -11,6 +11,7 @@ import Logo from "./Logo";
 import Menudespleg from "./Menudespleg";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
+import {withRouter} from 'react-router-dom';
 
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
@@ -41,6 +42,11 @@ const Navegacion = (props) => {
     return isMobile ? children : null;
   };
 
+  const home = () => {
+    props.history.push("/");
+    cambiarNav();
+  }
+
   return (
     <Fragment>
       <Desktop>
@@ -55,7 +61,7 @@ const Navegacion = (props) => {
                 <Menudespleg categorias={props.categorias} />
               ) : null}
               {compactNav === true ? (
-                <img className="mr-3" src={logoSm} alt="logo" />
+                <img className="mr-3 logo-icono-mano" src={logoSm} alt="logo" onClick={()=>home()} />
               ) : null}
               <Form inline className="m-3">
                 <Form.Control
@@ -129,4 +135,4 @@ const Navegacion = (props) => {
   );
 };
 
-export default Navegacion;
+export default withRouter(Navegacion);
