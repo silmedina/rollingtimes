@@ -15,23 +15,22 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [log, setLog] = useState(true);
+  const [log, setLog] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   const desloguear = () => {
-    
     Swal.fire({
-      title: 'Estas seguro que quieres desconectarte?',
+      title: "Estas seguro que quieres desconectarte?",
       showDenyButton: true,
       confirmButtonText: `Desloguear`,
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Te deslogueaste exitosamente!', '', 'success');
-        setLog(true);
+        Swal.fire("Te deslogueaste exitosamente!", "", "success");
+        setLog(false);
       }
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,10 +40,7 @@ const Login = () => {
         const loginComparacion = {
           email,
           password,
-          role
         };
-
-        console.log(loginComparacion);
 
         const respuesta = await fetch("http://localhost:4001/api/login/", {
           method: "POST",
@@ -56,19 +52,29 @@ const Login = () => {
 
         if (respuesta.status === 200) {
           Swal.fire(
-            "Bien hecho!",
+            "Bienvenido administrador!",
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          loginComparacion.role=respuesta.status;
-          console.log(loginComparacion);
+          setAdmin(true);
           handleClose();
-          setLog(false);
+          setLog(true);
         } else {
           if (respuesta.status === 201) {
-            Swal.fire("Error", "Password incorrecta!", "error");
+            console.log("Paso por aqui 201");
+            Swal.fire(
+              "Bien hecho!",
+              "El inicio de sesion se realizo correctamente!",
+              "success"
+            );
+            handleClose();
+            setLog(true);
           } else {
-            Swal.fire("Error", "Usuario no encontrado!", "error");
+            if (respuesta.status === 301) {
+              Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
+            } else {
+              Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
+            }
           }
         }
       } catch (error) {
@@ -86,26 +92,48 @@ const Login = () => {
 
   return (
     <div>
-      <div className="text-center">
+      <div className="text-center d-flex">
         {log ? (
-          <div>
+          <div className="d-flex">
+            {admin ? (
+              <div>
+                <Link to="/categorias">
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Panel de Control Categorias
+                  </Button>
+                </Link>
+                <Link to="/noticias">
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Panel de Control Noticias
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
             <Button
-            className="mx-2 my-1"
-            onClick={handleShow}
-            variant="outline-dark"
-          >
-            Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          </Button>
-          <Link to={"/suscripcion"}>
-          <Button className="mx-2 my-1" variant="outline-dark">
-            Suscribite
-          </Button>
-        </Link>
+              className="mx-2 my-1"
+              onClick={desloguear}
+              variant="outline-dark"
+            >
+              Logout
+            </Button>
           </div>
         ) : (
-          <Button className="mx-2 my-1" onClick={desloguear} variant="outline-dark">
-            Logout
-          </Button>
+          <div>
+            <Button
+              className="mx-2 my-1"
+              onClick={handleShow}
+              variant="outline-dark"
+            >
+              Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+            </Button>
+            <Link to={"/suscripcion"}>
+              <Button className="mx-2 my-1" variant="outline-dark">
+                Suscribite
+              </Button>
+            </Link>
+          </div>
         )}
       </div>
       <Modal show={show} onHide={handleClose} keyboard={false} className="px-0">
