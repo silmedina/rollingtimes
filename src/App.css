@@ -68,7 +68,9 @@
   color:#f7f7f7;
 }
 
-/* estilos barra menu */
+Label{
+  font-family: "Roboto Slab", serif;
+}
 
 #compactNav{
   /* display: none; */
