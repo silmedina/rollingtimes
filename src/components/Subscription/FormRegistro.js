@@ -5,6 +5,7 @@ import {
   validarApellido,
   validarDireccion,
   validarLocalidad,
+  validarPassword,
   validarPostal,
   validarTelefono,
   validarEmail,
@@ -36,6 +37,7 @@ const FormRegistro = (props) => {
       validarEmail(email) &&
       validarTelefono(telefono) &&
       validarPostal(postal) &&
+      validarPassword(password) &&
       terminos
     ) {
       props.onHide();

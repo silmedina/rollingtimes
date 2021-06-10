@@ -15,6 +15,7 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [log, setLog] = useState(true);
 
   const desloguear = () => {
@@ -40,6 +41,7 @@ const Login = () => {
         const loginComparacion = {
           email,
           password,
+          role
         };
 
         console.log(loginComparacion);
@@ -58,6 +60,8 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
+          loginComparacion.role=respuesta.status;
+          console.log(loginComparacion);
           handleClose();
           setLog(false);
         } else {

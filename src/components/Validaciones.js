@@ -46,6 +46,13 @@ const validarEmail = (email) => {
     return false;
   }
 };
+const validarPassword = (password) =>{
+  if(password !== "" && password.length>=4){
+    return true;
+  }else{
+    return false;
+  }
+}
 const validarTelefono = (telefono) => {
   const expresion = /^[0-9]/;
   if (telefono.trim() !== "" && expresion.test(telefono)) {
@@ -138,5 +145,6 @@ export {
   validarUrlImagen,
   validarTitulo,
   validarSubtitulo,
-  validarCuerpo
+  validarCuerpo,
+  validarPassword
 };
