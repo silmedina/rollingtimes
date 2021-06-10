@@ -16,22 +16,22 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [log, setLog] = useState(null);
-  const [regularUser, setRegularUser] = useState(localStorage.getItem(log));
-  const [adminUser, setAdminUser] = useState(localStorage.getItem(log));
+  const [log, setLog] = useState(0);
+  const [regularUser, setRegularUser] = useState(null);
+  const [adminUser, setAdminUser] = useState(null);
   let token = "";
 
   useEffect(() => {
     //consultarEstado();;
-    if (log && adminUser) {
+    if(localStorage.getItem(adminUser) === true){
       setAdminUser(true);
-    } else {
-      if (log) {
-        setRegularUser(true);
-      } else {
-        
-      }
     }
+    else{
+      if(localStorage.getItem(regularUser) === true){
+        setRegularUser(true);
+        }
+      }
+
   });
 
   const desloguear = () => {
@@ -97,10 +97,11 @@ const Login = () => {
           );
           localStorage.setItem("logged", JSON.stringify(user));
 
-          setLog(true);
+          setLog(respuesta.status);
           setAdminUser(true);
           handleClose();
           localStorage.setItem("log", JSON.stringify(log));
+          localStorage.setItem("adminUser", JSON.stringify(adminUser));
         } else {
           if (respuesta.status === 201) {
             console.log("Paso por aqui 201");
@@ -112,9 +113,10 @@ const Login = () => {
             localStorage.setItem("logged", JSON.stringify(user));
 
             handleClose();
-            setLog(true);
-            localStorage.setItem("log", JSON.stringify(user));
-            localStorage.setItem("user", JSON.stringify(user));
+            setLog(respuesta.status);
+            setRegularUser(true);
+            localStorage.setItem("log", JSON.stringify(log));
+            localStorage.setItem("regularUser", JSON.stringify(regularUser));
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -200,23 +202,23 @@ const Login = () => {
                 Ingresa con tus redes sociales
               </i>
             </h5>
-            <div className="my-4">
-              <Col className="text-center m-2">
+            <div className="col-sm-4 my-4">
+              <div className="col-sm-4 text-center m-2">
                 <Link to="/error404">
                   <button className="boton-facebook" onClick={handleClose}>
                     <FaFacebookF className="mb-1 mr-2" />
                     Facebook
                   </button>
                 </Link>
-              </Col>
-              <Col className="text-center m-2">
+              </div>
+              <div className="col-sm-4 text-center m-2">
                 <Link to="/error404">
                   <button className="boton-google" onClick={handleClose}>
                     <FaGoogle className="mb-1 mr-2" />
                     Google
                   </button>
                 </Link>
-              </Col>
+              </div>
             </div>
 
             <h5 className="text-center mx-1 py-2 h5-titulo ">

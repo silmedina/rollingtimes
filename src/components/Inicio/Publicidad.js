@@ -21,16 +21,16 @@ const Publicidad = ({ publicidad = 1 }) => {
     return (
       <div
         className="publicidad-container"
-        style={{ backgroundColor: "black" }}
+        style={{ backgroundColor: "black"  }}
       >
         <div className="title-logo-container">
-          <img src={ad1logo} alt="ad" style={{ maxWidth: "150px" }} />
+          <img src={ad1logo}  alt="ad" style={{ maxWidth: "150px" }} />
           <h1 className="title1 title" style={{ color: "white" }}>
             JOIN THE CAREER OF THE FUTURE
           </h1>
         </div>
         <img
-          className="ad-gif"
+          className="ad-gif "
           src={ad1gif}
           alt="ad"
           style={{ maxWidth: "180px" }}

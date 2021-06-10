@@ -11,7 +11,7 @@ const inicio = (props) => {
     <div id='InicioContainer'>
       <CarouselNoticias noticias={props.noticias} />
 
-      <div style={{ padding: "2rem 0" }}>
+      <div style={{ padding: "0.5rem 0" }}>
         <BannerCovid />
       </div>
 

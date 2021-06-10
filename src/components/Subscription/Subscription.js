@@ -9,12 +9,12 @@ import diarioDigital3 from "../../assets/diarioDigital3.jpg";
 const Subscription = () => {
   return (
     <div className="bg5">
-      <Container className="">
+      <Container className="p-0">
         <h2 className="text-center pt-5 pb-3 ">Informate de la actualidad</h2>
         <h4 className="text-center text-secondary">
           No te quedes desinformado del dia a dia
         </h4>
-        <Row className="d-flex  h-100 py-5">
+        <Row className="d-flex  h-100 py-5 ">
           <div className="mb-3 col-sm-12 col-md-6 col-lg-4 mb-5">
             <Card
               title="Básico"

@@ -12,7 +12,7 @@ const CarouselNoticias = (props) => {
 
   return (
     <div>
-      <Carousel activeIndex={index} onSelect={handleSelect}>
+      <Carousel activeIndex={index} onSelect={handleSelect} className="" >
         {props.noticias.reverse().map((noticia, index) => {
           return (
             <Carousel.Item key={index} id="noticiaContainer">
@@ -32,7 +32,7 @@ const CarouselNoticias = (props) => {
                     <p>{noticia.fecha}</p>
                   </div>
                   <h3>{noticia.titulo}</h3>
-                  <p>{noticia.subtitulo}</p>
+                  <small className="mt-5">{noticia.subtitulo}</small>
                 </Carousel.Caption>
               </Link>
             </Carousel.Item>

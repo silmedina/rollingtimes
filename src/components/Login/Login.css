@@ -134,7 +134,7 @@ small {
   cursor: pointer;
   border-radius: 6px;
   padding: 6px;
-  width: 400px;
+  width: 200px;
   color: white;
 }
 .boton-google {
@@ -150,7 +150,7 @@ small {
   cursor: pointer;
   border-radius: 6px;
   padding: 6px;
-  width: 400px;
+  width: 200px;
   color: white;
 }
 .boton-facebook:hover {
