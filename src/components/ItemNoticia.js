@@ -51,7 +51,7 @@ const ItemNoticia = (props) => {
 
     return (
      <ListGroup.Item className="d-flex justify-content-between">
-        <p>{props.noticia.titular}</p>
+        <p>{props.noticia.titulo}</p>
         <div>
           <Link className="btn btn-warning mr-3 text-light" to={`/noticias/editar/${props.noticia._id}`} >
             <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
