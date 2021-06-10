@@ -84,7 +84,7 @@ const Noticias = (props) => {
         console.log(error);
       }
   };
-
+  }
   useEffect(() => {
     if (props.categorias.length !== 0) {
       setCategoria(props.categorias[0].nombre);
