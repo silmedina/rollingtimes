@@ -6,16 +6,16 @@ import BoardNoticias from "./Inicio/BoardNoticias";
 
 import "./Inicio/inicio.css";
 
-const inicio = () => {
+const inicio = (props) => {
   return (
     <div id='InicioContainer'>
-      <CarouselNoticias />
+      <CarouselNoticias noticias={props.noticias} />
 
       <div style={{ padding: "2rem 0" }}>
         <BannerCovid />
       </div>
 
-      <BoardNoticias />
+      <BoardNoticias noticias={props.noticias} />
     </div>
   );
 };
