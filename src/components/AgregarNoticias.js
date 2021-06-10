@@ -52,7 +52,6 @@ const Noticias = (props) => {
         imagen,
         categoria,
         autor,
-        fecha,
       };
       console.log(noticia);
       //  enviar el request o solicitud POST
@@ -161,15 +160,7 @@ const Noticias = (props) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Fecha</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingrese la fecha"
-            onChange={(e) => setFecha(e.target.value)}
-            value={formatYmd(new Date())}
-          ></Form.Control>
-        </Form.Group>
-
+        <Form.Label>Categoria</Form.Label>
         <Form.Control
           as="select"
           name=""
@@ -181,7 +172,7 @@ const Noticias = (props) => {
             <option key={idx} value={cat.nombre}>{cat.nombre}</option>
           ))}
         </Form.Control>
-
+        </Form.Group>
         {/* <Form.Select aria-label="Default select example" eventKey={categoria._id}>
         {
           props.categorias.map((cat) => <CategoriasButton categoria={cat}></CategoriasButton>)

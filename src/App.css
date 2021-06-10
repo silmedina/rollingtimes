@@ -152,3 +152,7 @@
     background-color: #537D8D !important; 
     border-color: #537D8D
 }
+
+.logo-icono-mano{
+  cursor: pointer;
+}

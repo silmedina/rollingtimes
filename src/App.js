@@ -15,7 +15,6 @@ import Administracion from "./components/Administracion.js";
 import AgregarNoticias from "./components/AgregarNoticias";
 import ListarNoticias from "./components/ListarNoticias";
 import EditarNoticia from "./components/EditarNoticia";
-//import Login from './components/Login/Login';
 import AboutUs from "./components/AboutUs/AboutUs";
 import DetalleNoticia from "./components/DetalleNoticia";
 
@@ -25,14 +24,25 @@ function App() {
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
   const [noticias, setNoticias] = useState([]);
+  const [clima, setClima] = useState({})
 
   useEffect(() => {
     consultarCategorias();
     consultarDolar();
     consultarEuro();
     consultarReal();
+    ejecutarClima();
     consultarNoticias();
   }, []);
+
+  const ejecutarClima = async () => {
+    const ciudad = 'san miguel de tucuman';
+    const getCiudad = ciudad.replace(/ /g, "%20").toLowerCase();
+    const URL_Clima = `http://api.openweathermap.org/data/2.5/weather?q=${getCiudad}&appid=70bea3ec52e1948d8099a3d90fe8f150&units=metric`;
+    const respuesta = await fetch(URL_Clima);
+    const data = await respuesta.json();
+    setClima(data);
+  }
 
   const consultarDolar = async () => {
     try {
@@ -106,6 +116,10 @@ function App() {
         euro={euro}
         real={real}
         categorias={categorias}
+<<<<<<< HEAD
+=======
+        clima={clima}
+>>>>>>> 7d1d77c392955238b0154a05e4dd80ea62f7ba94
       />
       <Switch>
         <Route exact path="/">
