@@ -98,9 +98,8 @@ const EditarNoticia = (props) => {
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSudmit}>
-        <h1 className="text-center my-5">Editar la nota</h1>
-        {/* <Link className='btn mx-2 my-1 background-orange text-light'to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link> */}
-        {/* titular */}
+        <h1 className="text-center my-2">Editar la nota</h1>
+        <hr className="mb-5"/>
         <Form.Group>
           <Form.Label>Titulo de Noticia (Titular)</Form.Label>
           <Form.Control
@@ -110,26 +109,31 @@ const EditarNoticia = (props) => {
             defaultValue={noticia.titulo}
           ></Form.Control>
         </Form.Group>
+
         {/* subtitulo */}
         <Form.Group>
           <Form.Label>Descripcion breve (copete o subtitulo)</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese una descripcion breve"
+            style={{ height: '100px' }}
             ref={subtituloRef}
             defaultValue={noticia.subtitulo}
           ></Form.Control>
         </Form.Group>
+
         {/* cuerpo */}
         <Form.Group>
           <Form.Label>Cuerpo de la noticia</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
+            style={{ height: '200px' }}
             ref={cuerpoRef}
             defaultValue={noticia.texto}
           ></Form.Control>
         </Form.Group>
+
         {/* imagen */}
         <Form.Group>
           <Form.Label>Imagen</Form.Label>

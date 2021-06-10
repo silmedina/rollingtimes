@@ -47,9 +47,9 @@ const Noticias = (props) => {
         autor,
       };
       console.log(noticia);
-      //  enviar el request o solicitud POST
+      
       try {
-        //  codigo normal
+        
         const configuracion = {
           method: "POST",
           headers: {
@@ -64,7 +64,6 @@ const Noticias = (props) => {
         );
        
         if (respuesta.status === 201) {
-          // mostrar cartel de que se agrego el producto
           Swal.fire(
             "Noticia creada",
             "La noticia se agrego correctamente",
