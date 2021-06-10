@@ -47,6 +47,7 @@ const Climate = (props) => {
           <p>
             {ciudad}, {pais}
           </p>
+      
           <h3>
             <i className={`wi ${output}`}></i> {temperatura}°C
           </h3>
