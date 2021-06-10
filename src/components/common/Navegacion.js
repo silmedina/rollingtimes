@@ -16,17 +16,19 @@ const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
 
   const cambiarNav = () => {
-    if (window.screen.width > 992 && window.scrollY > 5) {
-      const nuevaClaseExpa = document.getElementById("navExpand");
-      // if (nuevaClaseExpa) {
-      nuevaClaseExpa.style.display = "none";
-      setcompactNav(true);
-      // }
-    } else if (window.screen.width > 992 && window.scrollY <= 5) {
-      const nuevaClaseExpa = document.getElementById("navExpand");
-      nuevaClaseExpa.style.display = "inline";
-      setcompactNav(false);
-    }
+    const nuevaClaseExpa = document.getElementById("navExpand");
+    if (window.screen.width > 992 && window.scrollY > 250) {
+      
+      if (nuevaClaseExpa) {
+       nuevaClaseExpa.style.display = "none";
+       setcompactNav(true);
+      }
+   } else if (window.screen.width > 992 && window.scrollY <= 5) {
+     if (nuevaClaseExpa) { 
+       nuevaClaseExpa.style.display = "inline";
+     }
+     setcompactNav(false);
+   }
   };
   window.addEventListener("scroll", cambiarNav);
 
