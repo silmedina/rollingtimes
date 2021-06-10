@@ -99,6 +99,7 @@ const EditarNoticia = (props) => {
     <Container>
       <Form className="my-5" onSubmit={handleSudmit}>
         <h1 className="text-center my-5">Editar la nota</h1>
+        {/* <Link className='btn mx-2 my-1 background-orange text-light'to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link> */}
         {/* titular */}
         <Form.Group>
           <Form.Label>Titulo de Noticia (Titular)</Form.Label>
@@ -170,7 +171,7 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button variant="danger" type="submit" className="w-100 my-5">
+        <Button variant="warning" type="submit" className="w-100 my-5">
           Guardar
         </Button>
         {error ? (
