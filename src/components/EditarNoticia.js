@@ -4,9 +4,7 @@ import { useParams, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   validarNombre,
-  validarNombreCategoria,
   validarTitulo,
-  validarUrlImagen,
   validarSubtitulo,
   validarCuerpo,
 } from "./Validaciones";
@@ -17,15 +15,10 @@ const EditarNoticia = (props) => {
   const subtituloRef = useRef("");
   const cuerpoRef = useRef("");
   const imagenRef = useRef("");
-  //cambiar a categoria a state
-  const categoriaRef = useRef("");
   const autorRef = useRef("");
-  const fechaRef = useRef("");
   const [noticia, setNoticia] = useState({});
   const [error, setError] = useState(false);
-  const [mensajeError, setMensajeError] = useState("");
   const URLNOT = process.env.REACT_APP_URL_NOTICIA + "/" + id;
-
   const [categoria, setCategoria] = useState("");
 
   useEffect(() => {
@@ -57,31 +50,26 @@ const EditarNoticia = (props) => {
     e.preventDefault();
 
     if (
-      // validar los campos (no validar imagen)
       validarTitulo(titularRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
       validarCuerpo(cuerpoRef.current.value) &&
-      /* validarUrlImagen(imagenRef.current.value) && */
       validarNombre(autorRef.current.value)
     ) {
       setError(false);
       try {
         const noticiaModificada = {
-          titular: titularRef.current.value,
+          titulo: titularRef.current.value,
           subtitulo: subtituloRef.current.value,
           texto: cuerpoRef.current.value,
           imagen: imagenRef.current.value,
           categoria: categoria,
           autor: autorRef.current.value,
-          fecha: fechaRef.current.value,
         };
-        const respuesta = await fetch(URLNOT /* 'http://localhost:4001/api/noticia/' */, {
+        const respuesta = await fetch(URLNOT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(noticiaModificada),
         });
-
-        // const informacion = await respuesta.json();
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -92,14 +80,13 @@ const EditarNoticia = (props) => {
           props.consultarNoticias();
           props.history.push("/noticias");
         } else {
-            console.log(respuesta);
+          console.log(respuesta);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
       setError(true);
-      // setMensajeError(validacionCategoriaResult.mensaje);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -155,7 +142,7 @@ const EditarNoticia = (props) => {
 
         {/* categoria */}
         <Form.Group>
-        <Form.Label>Categoria</Form.Label>
+          <Form.Label>Categoria</Form.Label>
           <Form.Control
             as="select"
             name=""
@@ -164,8 +151,10 @@ const EditarNoticia = (props) => {
             value={noticia.categoria}
           >
             <option value={noticia.categoria}>{noticia.categoria}</option>
-            {props.categorias.map((cat,idx) => (
-              <option key={idx} value={cat.nombre}>{cat.nombre}</option>
+            {props.categorias.map((cat, idx) => (
+              <option key={idx} value={cat.nombre}>
+                {cat.nombre}
+              </option>
             ))}
           </Form.Control>
         </Form.Group>
@@ -181,51 +170,6 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Fecha</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingrese la fecha"
-            ref={fechaRef}
-            defaultValue={noticia.fecha}
-          ></Form.Control>
-        </Form.Group>
-
-        {/* <h3 className="text-center my-4">Categoria</h3>
-        <div className="text-center">
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Bebida caliente"
-            value="bebidaCaliente"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Bebida Fria"
-            value="bebidaFria"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Dulce"
-            value="dulce"
-            onChange={cambioCategoria}
-          ></Form.Check>
-          <Form.Check
-            type="radio"
-            name="categoria"
-            inline
-            label="Salado"
-            value="salado"
-            onChange={cambioCategoria}
-          ></Form.Check>
-        </div> */}
         <Button variant="danger" type="submit" className="w-100 my-5">
           Guardar
         </Button>
