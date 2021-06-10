@@ -1,51 +1,19 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import LogoNav from './img/LogoNav.png';
-import { Nav } from 'react-bootstrap';
-import Climate from './Climate';
+import React from "react";
+import LogoNav from "./img/LogoNav.png";
+import { Nav } from "react-bootstrap";
+import Climate from "./Climate";
 
-
-const Logo = () => {
-    const [clima, setClima] = useState({})
-    const ciudad = 'san miguel de tucuman';
-    const getCiudad = ciudad.replace(/ /g, "%20").toLowerCase();
-    // CambiarKEY-------------------------------------------------------------------------------------------
-    const URL_Clima = `http://api.openweathermap.org/data/2.5/weather?q=${getCiudad}&appid=70bea3ec52e1948d8099a3d90fe8f150&units=metric`;
-
-
-    //    Clima 
-
-    // useEffect(() => {
-    //     ejecutarClima();
-    // }, []);
-
-    const ejecutarClima = async () => {
-        const respuesta = await fetch(URL_Clima);
-        const data = await respuesta.json();
-        // console.log(data);
-      setClima(data);
-    }
-    
-
-
-    // console.log(icono);
-
-
-    return (
-        <Nav className=' bg5 px-5 py-3 d-flex align-items-center'>
-            <div className='mr-auto'>
-                <img src={LogoNav} alt="logo" />
-            </div>
-            <div>
-                {/* <div>
-                <input type="text" placeholder="ciudad"/>
-                <input type="text" placeholder="pais" />
-                <button>Buscar</button>
-                </div> */}
-                <Climate clima = {clima}/>
-            </div>
-        </Nav>
-
-    );
+const Logo = (props) => {
+  return (
+    <Nav className=" bg5 px-5 py-3 d-flex align-items-center">
+      <div className="mr-auto">
+        <img src={LogoNav} alt="logo" />
+      </div>
+      <div>
+        <Climate clima={props.clima} />
+      </div>
+    </Nav>
+  );
 };
 
 export default Logo;
