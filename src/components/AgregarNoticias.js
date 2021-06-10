@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, Alert, Form, Container } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom';
 import Swal from "sweetalert2";
 import {
   validarNombre,
@@ -9,16 +13,14 @@ import {
 } from "./Validaciones";
 
 const Noticias = (props) => {
-  const URLNOT = process.env.REACT_APP_URL_NOTICIA;
   const [titulo, setTitulo] = useState("");
   const [subtitulo, setSubtitulo] = useState("");
   const [texto, setTexto] = useState("");
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
-  const [fecha, setFecha] = useState("");
   const [error, setError] = useState(false);
-  const [mensajeError, setMensajeError] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,15 +33,11 @@ const Noticias = (props) => {
       validarNombreCategoria(categoria) &&
       validarNombre(autor)
     ) {
-      // validacion falla, entonces mostrar un cartel de error
+
       setError(true);
       console.log("Fallo validacion");
     } else {
       setError(false);
-
-      // si esta bien la validacion entonces agregar el producto en la API
-
-      //crear el objeto que tengo que enviar a la API
 
       const noticia = {
         titulo,
@@ -50,9 +48,9 @@ const Noticias = (props) => {
         autor,
       };
       console.log(noticia);
-      //  enviar el request o solicitud POST
+      
       try {
-        //  codigo normal
+        
         const configuracion = {
           method: "POST",
           headers: {
@@ -65,18 +63,15 @@ const Noticias = (props) => {
           "http://localhost:4001/api/noticia/",
           configuracion
         );
-        console.log("D resp");
-        console.log(respuesta);
-        console.log("D Console resp");
-
+       
         if (respuesta.status === 201) {
-          // mostrar cartel de que se agrego el producto
           Swal.fire(
             "Noticia creada",
             "La noticia se agrego correctamente",
             "success"
           );
           props.consultarNoticias();
+          props.history.push('/noticias');
         } else if (respuesta.status === 500) {
           Swal.fire(
             "Error",
@@ -88,9 +83,8 @@ const Noticias = (props) => {
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
-    }
   };
-
+  }
   useEffect(() => {
     if (props.categorias.length !== 0) {
       setCategoria(props.categorias[0].nombre);
@@ -104,7 +98,9 @@ const Noticias = (props) => {
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSubmit}>
-        <h1 className="text-center my-5">Agregar Noticia</h1>
+        <h1 className="text-center my-2">Agregar Noticia</h1>
+        <Link className='btn mx-2 my-1 background-orange text-light'to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link>
+        <hr />
         {/* titulo */}
         <Form.Group>
           <Form.Label>Titulo de Noticia (titulo)</Form.Label>
@@ -124,12 +120,12 @@ const Noticias = (props) => {
           ></Form.Control>
         </Form.Group>
         {/* texto */}
-
         <Form.Group>
-          <Form.Label>texto de la noticia</Form.Label>
+          <Form.Label>Texto de la noticia</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
+            style={{ height: '200px' }}
             onChange={(e) => setTexto(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -138,7 +134,7 @@ const Noticias = (props) => {
           <Form.Label>Imagen</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Pegue la URL de la imagen"
+            placeholder="Agregar URL"
             onChange={(e) => setImagen(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -169,29 +165,8 @@ const Noticias = (props) => {
           ))}
         </Form.Control>
         </Form.Group>
-        {/* <Form.Select aria-label="Default select example" eventKey={categoria._id}>
-        {
-          props.categorias.map((cat) => <CategoriasButton categoria={cat}></CategoriasButton>)
-        }
-        </Form.Select> */}
 
-        {/* <CategoriasButton categoria={props.categorias}></CategoriasButton> */}
-
-        {/* <Form.Select aria-label="Default select example" eventKey={categoria._id}>
-          {props.categorias.map((categoria) => (
-            <option>{categoria.nombre}</option>
-            ))}
-          </Form.Select> */}
-
-        {/* <CategoriasButton/> */}
-
-        {/* {props.categoria.map((cat) => (
-          <Form.Select aria-label="Default select example" eventKey={cat._id}>
-            <option>{props.cat.nombre}</option>
-          </Form.Select>
-        ))} */}
-
-        <Button variant="danger" type="submit" className="w-100 my-5">
+        <Button variant="warning" type="submit" className="w-100 my-5">
           Guardar
         </Button>
         {error === true ? (
@@ -201,5 +176,4 @@ const Noticias = (props) => {
     </Container>
   );
 };
-
-export default Noticias;
+export default withRouter(Noticias);

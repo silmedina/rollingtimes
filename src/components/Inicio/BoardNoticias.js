@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 export const CardSmall = ({ noticia = {} }) => {
   return (
     <Link to={'/noticia/' + noticia._id} style={{ textDecoration: "none" }}>
-      <div id="CardNoticiaContainer">
-        <div id="CardNoticiaInfo">
+      <div className="col-sm-12 col-md-8" id="CardNoticiaContainer">
+        <div className="col-sm-12 col-md-8" id="CardNoticiaInfo">
           <p>{noticia.categoria}</p>
           <img src={noticia.imagen} style={{ width: "100%" }} alt="noticia-imagen" />
         </div>
 
-        <div id="CardNoticiaBody">
+        <div className="col-sm-12 col-md-8" id="CardNoticiaBody">
           <div id="CardNoticiaTitulos">
             <div id="CardFechaContainer">
               <h1>20</h1>

@@ -68,7 +68,7 @@ const Navegacion = (props) => {
                   placeholder="Search"
                   className="mr-sm-2"
                 />
-                <Button className="" variant="outline-dark">
+                <Button className="" variant="outline-dark" href="*">
                   <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </Button>
               </Form>

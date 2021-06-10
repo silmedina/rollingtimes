@@ -7,6 +7,7 @@ import {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
+  validarUrlImagen
 } from "./Validaciones";
 
 const EditarNoticia = (props) => {
@@ -53,6 +54,7 @@ const EditarNoticia = (props) => {
       validarTitulo(titularRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
       validarCuerpo(cuerpoRef.current.value) &&
+      validarUrlImagen(imagenRef.current.value) &&
       validarNombre(autorRef.current.value)
     ) {
       setError(false);
@@ -98,8 +100,8 @@ const EditarNoticia = (props) => {
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSudmit}>
-        <h1 className="text-center my-5">Editar la nota</h1>
-        {/* titular */}
+        <h1 className="text-center my-2">Editar la nota</h1>
+        <hr className="mb-5"/>
         <Form.Group>
           <Form.Label>Titulo de Noticia (Titular)</Form.Label>
           <Form.Control
@@ -109,26 +111,31 @@ const EditarNoticia = (props) => {
             defaultValue={noticia.titulo}
           ></Form.Control>
         </Form.Group>
+
         {/* subtitulo */}
         <Form.Group>
           <Form.Label>Descripcion breve (copete o subtitulo)</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese una descripcion breve"
+            style={{ height: '100px' }}
             ref={subtituloRef}
             defaultValue={noticia.subtitulo}
           ></Form.Control>
         </Form.Group>
+
         {/* cuerpo */}
         <Form.Group>
           <Form.Label>Cuerpo de la noticia</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
+            style={{ height: '200px' }}
             ref={cuerpoRef}
             defaultValue={noticia.texto}
           ></Form.Control>
         </Form.Group>
+
         {/* imagen */}
         <Form.Group>
           <Form.Label>Imagen</Form.Label>
@@ -170,7 +177,7 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button variant="danger" type="submit" className="w-100 my-5">
+        <Button variant="warning" type="submit" className="w-100 my-5">
           Guardar
         </Button>
         {error ? (

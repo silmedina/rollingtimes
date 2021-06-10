@@ -18,8 +18,8 @@
 
 /* Main container Card */
 #CardNoticiaContainer {
-  min-height: 400px;
-  max-width: 400px;
+  /* min-height: 400px; */
+  /* max-width: 400px; */
   background-color: white;
   margin: 15px;
   overflow: hidden;
