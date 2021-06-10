@@ -124,8 +124,7 @@ function App() {
           <DetalleNoticia />
         </Route>
         <Route exact path="/categorias/nuevo">
-          {/* <AgregarCategoria consultarCategorias={consultarCategorias}/> */}
-          <AgregarCategoria consultarCategorias={consultarNoticias} />
+          <AgregarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
         <Route exact path="/suscripcion">
           <Subscription />
