@@ -14,6 +14,21 @@ import { Link } from "react-router-dom";
 
 const Navegacion = (props) => {
   const [compactNav, setcompactNav] = useState(false);
+  const [noticias, setNoticias] = useState([]);
+
+  const consultarNoticias = async () => {
+    try {
+      const urln = process.env.REACT_APP_URL_NOTICIA;
+      const resp = await fetch(urln);
+      const data = await resp.json();
+      if (resp.status === 200) {
+        setNoticias(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   
   const cambiarNav = () => {
     const nuevaClaseExpa = document.getElementById("navExpand");
@@ -69,7 +84,7 @@ const Navegacion = (props) => {
                 </Button>
               </Form>
               <Nav className="ml-auto">
-                <Login/>
+                <Login noticias={noticias} consultarNoticias={consultarNoticias}/>
               </Nav>
             </Navbar>
             <div className="" id="navExpand">

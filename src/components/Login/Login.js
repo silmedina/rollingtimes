@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
-const Login = () => {
+const Login = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -17,7 +17,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [log, setLog] = useState(false);
   const [admin, setAdmin] = useState(false);
-
+  const [user, setUser] = useState(null);
+  let token = '';
+  let role = '';
   const desloguear = () => {
     Swal.fire({
       title: "Estas seguro que quieres desconectarte?",
@@ -32,6 +34,7 @@ const Login = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,15 +43,23 @@ const Login = () => {
         const loginComparacion = {
           email,
           password,
+          token,
+          role
         };
-
-        const respuesta = await fetch("http://localhost:4001/api/login/", {
+        
+        const configuracion = {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(loginComparacion),
-        });
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginComparacion)
+        }
+        
+        const respuesta = await fetch("http://localhost:4001/api/login/", configuracion);
 
         console.log(respuesta);
+        console.log(loginComparacion);
+
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -136,6 +147,7 @@ const Login = () => {
           </div>
         )}
       </div>
+      
       <Modal show={show} onHide={handleClose} keyboard={false} className="px-0">
         <Modal.Body className="p-0">
           <h3 className="text-center login-title">Inicio de Sesión</h3>
