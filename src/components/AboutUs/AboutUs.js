@@ -2,7 +2,7 @@ import React from "react";
 import AboutUsCard from "./AboutUsCard";
 import "./AboutUs.css";
 import SIL from "../../assets/SIL.jpg";
-import img1 from "../../assets/imgPorDefecto.png";
+import BENJA from "../../assets/BENJA.jpeg";
 import DAVID from "../../assets/DAVID.jpg";
 import TULIO from "../../assets/TULIO.jpeg";
 
@@ -29,7 +29,7 @@ const AboutUs = () => {
                 title="Tulio"
                 text1="Developer"
                 text2="Frase"
-                width={"14rem"}
+                width={"13rem"}
               />
             </div>
             <div className="m-3">
@@ -43,8 +43,8 @@ const AboutUs = () => {
             </div>
             <div className="m-3">
               <AboutUsCard
-                image={img1}
-                title="Benjamín Dracnizarek"
+                image={BENJA}
+                title="Benjamín Draniczarek"
                 text1="Developer"
                 text2='Frase '
                 width={"14rem"}

@@ -116,10 +116,7 @@ function App() {
         euro={euro}
         real={real}
         categorias={categorias}
-<<<<<<< HEAD
-=======
         clima={clima}
->>>>>>> 7d1d77c392955238b0154a05e4dd80ea62f7ba94
       />
       <Switch>
         <Route exact path="/">

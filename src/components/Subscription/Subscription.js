@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import "./Subscription.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import diarioDigital from "../../assets/diarioDigital.jpg";
 import diarioDigital2 from "../../assets/diarioDigital2.jpg";
 import diarioDigital3 from "../../assets/diarioDigital3.jpg";

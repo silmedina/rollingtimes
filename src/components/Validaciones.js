@@ -95,7 +95,7 @@ const validarNombreCategoria = (nombreCategoria) => {
 }
 
 const validarUrlImagen = (urlImagen) => {
-  const expresion = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  const expresion = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-/]))?/;
   if (urlImagen !== "" && expresion.test(urlImagen)) {
     return true;
   } else {

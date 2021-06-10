@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import Publicidad from "./Publicidad";
 import "./boardNoticias.css";
 import { Link } from "react-router-dom";

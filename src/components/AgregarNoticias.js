@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Alert, Form, Container, Dropdown } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useParams, withRouter } from "react-router-dom";
+import { Button, Alert, Form, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import {
   validarNombre,
@@ -10,7 +7,6 @@ import {
   validarTextArea,
   validarUrlImagen,
 } from "./Validaciones";
-import CategoriasButton from "./CategoriasButton";
 
 const Noticias = (props) => {
   const URLNOT = process.env.REACT_APP_URL_NOTICIA;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import loginService from "./logged";
-import noteService from './notes'
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -19,19 +18,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [log, setLog] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const [user, setUser] = useState(null);
-
-
-  useEffect(() => {
-    const logged = localStorage.getItem('logged')
-    if (logged){
-      const user = JSON.parse(logged);
-      setUser(user);
-      noteService.setToken(user.token)
-    }
-  }, [])
-
-  
+  //const [user, setUser] = useState(null);
+  //let token="";
 
   const desloguear = () => {
     Swal.fire({
@@ -49,17 +37,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //const {token} = user;
-
-    // noteService.create(noteObject, {token})
-    // .then(returnedNote => {
-    //   setNotes(notes.concat(returnedNote))
-    //   setNewNote('')
-
-    // })
-
-    
     if (validarEmail(email)) {
       try {
         const loginComparacion = {
@@ -78,6 +55,7 @@ const Login = () => {
           email,
           password,
         });
+        console.log("hola");
         const respuesta = await fetch(
           "http://localhost:4001/api/login/",
           configuracion
@@ -85,7 +63,8 @@ const Login = () => {
           
           console.log("llego aqui?");
           console.log(user);
-          
+
+        //window.localStorage.setItem("logged", JSON.stringify(user));
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -93,8 +72,7 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          localStorage.setItem("logged", JSON.stringify(user));
-          noteService.setToken(user.token)
+          //localStorage.setItem("logged", JSON.stringify(user));
 
           setAdmin(true);
           handleClose();
@@ -107,8 +85,7 @@ const Login = () => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            localStorage.setItem("logged", JSON.stringify(user));
-            noteService.setToken(user.token)
+            //localStorage.setItem("logged", JSON.stringify(user));
 
             handleClose();
             setLog(true);

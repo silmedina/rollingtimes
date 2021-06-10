@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import FormularioReg from "./FormularioReg";
 import FormRegistro from "./FormRegistro";
 import "./Subscription.css";
 
@@ -31,8 +30,6 @@ const Card = (props) => {
               {props.texto}
             </ul>
           </div>
-          {/* <div className="text-center pb-4">
-          </div> */}
 
           <FormRegistro show={modalShow} onHide={() => setModalShow(false)} />
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Alert, Form, Container } from "react-bootstrap";
+import { Alert, Form, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { useParams, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { validarNombreCategoria } from "./Validaciones";
 
 const AgregarCategoria = (props) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { CardXSmall } from "./Inicio/BoardNoticias";
 import Publicidad from "./Inicio/Publicidad";
 import "./Noticia/detalleNoticia.css";

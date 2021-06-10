@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Button, Alert, Form, Container } from 'react-bootstrap';
+import { Alert, Form, Container } from 'react-bootstrap';
 import { useParams, withRouter } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { validarNombreCategoria } from "./Validaciones";

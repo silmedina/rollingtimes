@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -17,34 +17,33 @@ const Footer = () => {
       <header className="bg5 d-flex row m-0 p-0">
         <div className="col-sm-12 col-md-12 d-flex row justify-content-center p-0 m-0">
           <div>
-            <a
+            <Link to="/"
               className="mx-2 my-3 color1"
               style={{ fontSize: "30px" }}
-              href="#"
             >
               <FontAwesomeIcon icon={faFacebookSquare} />
-            </a>
-            <a
+            </Link>
+            <Link to="/"
               className="mx-2 my-3 color1"
               href=""
               style={{ fontSize: "30px" }}
             >
               <FontAwesomeIcon icon={faInstagramSquare} />
-            </a>
-            <a
+            </Link>
+            <Link to="/"
               className="mx-2 my-3 color1"
               href=""
               style={{ fontSize: "30px" }}
             >
               <FontAwesomeIcon icon={faTwitterSquare} />
-            </a>
-            <a
+            </Link>
+            <Link to="/"
               className="mx-2 my-3 color1"
               href=""
               style={{ fontSize: "30px" }}
             >
               <FontAwesomeIcon icon={faYoutubeSquare} />
-            </a>
+            </Link>
           </div>
         </div>
       </header>
