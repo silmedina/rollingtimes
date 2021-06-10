@@ -75,9 +75,10 @@ const AgregarCategoria = (props) => {
             maxLength='35'
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" className="w-100 my-5 btn btn-primary btn-primario-categoria">
-          Guardar
-        </Button>
+        <button
+          className="w-100 my-5 background-orange button-send-close"
+          type="submit"
+        >Guardar</button>
         {error ? (
           <Alert variant="warning">
             {mensajeError}

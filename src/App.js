@@ -16,7 +16,7 @@ import AgregarNoticias from "./components/AgregarNoticias";
 import ListarNoticias from "./components/ListarNoticias";
 import EditarNoticia from "./components/EditarNoticia";
 //import Login from './components/Login/Login';
-import AboutUs from './components/AboutUs/AboutUs'
+import AboutUs from "./components/AboutUs/AboutUs";
 import DetalleNoticia from "./components/DetalleNoticia";
 
 function App() {
@@ -97,19 +97,19 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Router>
-      <Navegacion
+      {/* <Navegacion
         dolar={dolar}
         euro={euro}
         real={real}
         categorias={categorias}
-      />
+      /> */}
       <Switch>
         <Route exact path="/">
-          <Inicio />
+          <Inicio noticias={noticias} />
         </Route>
         <Route exact path="/categorias">
           <ListarCategorias
@@ -121,11 +121,10 @@ function App() {
           <EditarCategoria consultarCategorias={consultarCategorias} />
         </Route>
         <Route exact path="/noticia/:id">
-          <DetalleNoticia />
+          <DetalleNoticia noticias={noticias} />
         </Route>
         <Route exact path="/categorias/nuevo">
-          {/* <AgregarCategoria consultarCategorias={consultarCategorias}/> */}
-          <AgregarCategoria consultarCategorias={consultarNoticias} />
+          <AgregarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
         <Route exact path="/suscripcion">
           <Subscription />
@@ -149,12 +148,14 @@ function App() {
           />
         </Route>
         <Route exact path="/noticias/editar/:id">
-          <EditarNoticia consultarNoticias={consultarNoticias} />
+         
+          <EditarNoticia  categorias={categorias} consultarNoticias={consultarNoticias} />
         </Route>
         <Route exact path="/noticias/agregar">
-          <AgregarNoticias 
-          categorias={categorias}
-          consultarNoticias={consultarNoticias} />
+          <AgregarNoticias
+            categorias={categorias}
+            consultarNoticias={consultarNoticias}
+          />
         </Route>
         <Route path="*">
           <Error404 />
