@@ -86,7 +86,7 @@ const validarNombreCategoria = (nombreCategoria) => {
     return { esValido: false, mensaje: 'Debe ingresar una categoria de menos de 30 caracteres' }
   }
 
-  const expresion = /^[a-zA-Z\s]*$/;
+  let expresion = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
   if (!expresion.test(nombreCategoria)) {
     return { esValido: false, mensaje: 'Debe ingresar caracteres validos para el nombre de categoria' }
   }
