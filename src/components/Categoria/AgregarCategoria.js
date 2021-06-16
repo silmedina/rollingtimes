@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Form, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { withRouter } from "react-router-dom";
-import { validarNombreCategoria } from "./Validaciones";
+import { validarNombreCategoria } from "../Validaciones";
 
 const AgregarCategoria = (props) => {
   const [nombreCategoria, setNombreCategoria] = useState("");

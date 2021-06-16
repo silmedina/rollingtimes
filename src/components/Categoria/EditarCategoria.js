@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Alert, Form, Container } from 'react-bootstrap';
 import { useParams, withRouter } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { validarNombreCategoria } from "./Validaciones";
+import { validarNombreCategoria } from "../Validaciones";
 
 const EditarCategoria = (props) => {
     const id = useParams().id;
