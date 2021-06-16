@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -51,17 +51,23 @@ const ItemCategoria = (props) => {
       <p>{props.categoria.nombre}</p>
       <div>
         <Link
-          className="btn btn-warning mr-3 text-light"
+          className="btn btn-warning mr-1 text-light"
           to={`/categorias/editar/${props.categoria._id}`}
         >
           <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
         </Link>
         <Button
-          className="btn btn-primary btn-eliminar-categoria"
+          className="btn btn-primary btn-eliminar-categoria mr-1"
           onClick={() => eliminarCategoria(props.categoria._id)}
         >
           <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-        </Button>
+        </Button>  
+        <Link
+          className="btn mr-1 text-light btn-editar-categoria"
+          to={`/categorias/listado-noticias/${props.categoria.nombre}`}
+        >
+          <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+        </Link>
       </div>
     </ListGroup.Item>
   );

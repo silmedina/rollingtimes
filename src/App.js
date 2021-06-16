@@ -17,6 +17,7 @@ import ListarNoticias from "./components/ListarNoticias";
 import EditarNoticia from "./components/EditarNoticia";
 import AboutUs from "./components/AboutUs/AboutUs";
 import DetalleNoticia from "./components/DetalleNoticia";
+import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
@@ -136,6 +137,9 @@ function App() {
         </Route>
         <Route exact path="/categorias/nuevo">
           <AgregarCategoria consultarCategorias={consultarCategorias}/>
+        </Route>
+        <Route exact path="/categorias/listado-noticias/:nombreCategoria">
+          <CategoriaListadoNoticias/>
         </Route>
         <Route exact path="/suscripcion">
           <Subscription />
