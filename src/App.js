@@ -21,6 +21,7 @@ import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNot
 
 function App() {
   const [categorias, setCategorias] = useState([]);
+  const [cargandoCategorias, setCargandoCategorias] = useState(false);
   const [dolar, setDolar] = useState({});
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
@@ -86,13 +87,16 @@ function App() {
 
   const consultarCategorias = async () => {
     try {
+      setCargandoCategorias(true);
       const url = process.env.REACT_APP_URL_CATEGORIA;
       const respuesta = await fetch(url);
       const informacion = await respuesta.json();
       if (respuesta.status === 200) {
+        setCargandoCategorias(false);
         setCategorias(informacion);
       }
     } catch (error) {
+      setCargandoCategorias(false);
       console.log(error);
     }
   };
@@ -127,6 +131,7 @@ function App() {
           <ListarCategorias
             categorias={categorias}
             consultarCategorias={consultarCategorias}
+            cargando={cargandoCategorias}
           />
         </Route>
         <Route exact path="/categorias/editar/:id">
