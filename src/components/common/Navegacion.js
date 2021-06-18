@@ -119,7 +119,7 @@ const Navegacion = (props) => {
                 ))}
               </Nav>
               <Nav>
-                <div className="d-flex row justify-content-center">
+                <div className="d-flex row justify-content-center mx-0">
                 <Login />
                 </div>
                 
