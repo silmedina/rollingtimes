@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Alert, Form, Container } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
@@ -30,12 +31,13 @@ const Noticias = (props) => {
     // validacion
 
     if (
-      validarTitulo(titulo) &&
-      validarSubtitulo(subtitulo) &&
-      validarCuerpo(texto) &&
-      // validarUrlImagen(imagen)&&
-      categoria !== ""
-
+      // validacionTituloResult.esValido && validacionSutituloResult.esValido 
+validarTitulo(titulo) &&
+validarSubtitulo(subtitulo) &&
+validarCuerpo(texto) &&
+// validarUrlImagen(imagen)&&
+categoria !== ""
+ 
     ) {
       setError(false);
 
@@ -71,6 +73,7 @@ const Noticias = (props) => {
             "success"
           );
           props.consultarNoticias();
+          props.history.push('/noticias');
         } else if (respuesta.status === 500) {
           console.log('desde el codigo 500');
           Swal.fire(
@@ -83,33 +86,35 @@ const Noticias = (props) => {
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
-
-
+     
     } else {
-      // setError(true);
+      
+      setError(true);
       console.log("Fallo validacion");
 
-      if (validarTitulo(titulo) === false) {
-        setError(true);
-        setMensajeError("Titulo no es valido");
+
+      if(validarTitulo(titulo) === false){
+      setError(true);
+      console.log("pase por titulo");
+       setMensajeError("Titulo no es valido");
       }
-      if (validarSubtitulo(subtitulo) === false) {
-        setError(true);
+       if(validarSubtitulo(subtitulo) === false){
+      setError(true);
+      console.log("pase por subtitulo");
         setMensajeError("Subtitulo no es  valido");
       }
-      if (validarCuerpo(texto) === false) {
-        setError(true);
+      if (validarCuerpo(texto) === false){
+        console.log("pase por texto");
+         setError(true);
         setMensajeError("El cuerpo del texto no valido");
       }
-      if (categoria === "") {
-        setError(true);
+       if(categoria === ""){
+      setError(true);
         setMensajeError("Debe seleccionar una categoria");
-      } else {
       }
 
-    }
   };
-
+  }
   useEffect(() => {
     if (props.categorias.length !== 0) {
       setCategoria(props.categorias[0].nombre);
@@ -196,11 +201,10 @@ const Noticias = (props) => {
           Guardar
         </Button>
         {error === true ? (
-          <Alert variant="warning">hola we {mensajeError}</Alert>
+          <Alert variant="warning">{mensajeError}</Alert>
         ) : null}
       </Form>
     </Container>
   );
 };
-
-export default Noticias;
+export default withRouter(Noticias);

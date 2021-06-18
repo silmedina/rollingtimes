@@ -119,12 +119,10 @@ const Navegacion = (props) => {
                 ))}
               </Nav>
               <Nav>
+                <div className="d-flex row justify-content-center">
                 <Login />
-                <Link to={"/suscripcion"}>
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Suscribite
-                  </Button>
-                </Link>
+                </div>
+                
               </Nav>
             </Navbar.Collapse>
           </div>

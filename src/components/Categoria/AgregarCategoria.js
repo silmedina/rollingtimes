@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Alert, Form, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { withRouter } from "react-router-dom";
-import { validarNombreCategoria } from "./Validaciones";
+import { validarNombreCategoria } from "../Validaciones";
 
 const AgregarCategoria = (props) => {
   const [nombreCategoria, setNombreCategoria] = useState("");
   const [error, setError] = useState(false);
-  const [mensajeError, setMensajeError] = useState('');
+  const [mensajeError, setMensajeError] = useState("");
 
   const URL = process.env.REACT_APP_URL_CATEGORIA;
 
@@ -40,15 +40,14 @@ const AgregarCategoria = (props) => {
 
           props.consultarCategorias();
           props.history.push("/categorias");
-        } else if (respuesta.status === 500){
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: informacion.mensaje,
-              });
+        } else if (respuesta.status === 500) {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: informacion.mensaje,
+          });
         }
       } catch (error) {
-         
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -61,29 +60,45 @@ const AgregarCategoria = (props) => {
     }
   };
 
+  const retornarListadoCategorias = () => {
+    props.history.push("/categorias");
+  };
+
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSudmit}>
-        <h1 className="text-center my-5 categoria-titulo">Agregar nueva Categoria</h1>
+        <h1 className="text-center my-5 categoria-titulo">
+          Agregar nueva Categoria
+        </h1>
         <Form.Group>
-          <Form.Label className="categoria-texto">Nombre de Categoria*</Form.Label>
+          <Form.Label className="categoria-texto">
+            Nombre de Categoria*
+          </Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
               setNombreCategoria(e.target.value);
             }}
-            maxLength='35'
+            maxLength="35"
           ></Form.Control>
         </Form.Group>
+        <div className="d-flex justify-content-lg-end">
         <button
-          className="w-100 my-5 background-orange button-send-close"
+          className="my-5 mr-2 background-black button-send-close"
+          type="button"
+          onClick={() => retornarListadoCategorias()}
+        >
+          Cancelar
+        </button>
+        <button
+          className="my-5 background-orange button-send-close"
           type="submit"
-        >Guardar</button>
-        {error ? (
-          <Alert variant="warning">
-            {mensajeError}
-          </Alert>
-        ) : null}
+        >
+          Guardar
+        </button>
+
+        </div>
+        {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
       </Form>
     </Container>
   );

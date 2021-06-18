@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,10 +16,23 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [log, setLog] = useState(false);
-  const [admin, setAdmin] = useState(false);
-  //const [user, setUser] = useState(null);
-  //let token="";
+  const [log, setLog] = useState(0);
+  const [regularUser, setRegularUser] = useState(null);
+  const [adminUser, setAdminUser] = useState(null);
+  let token = "";
+
+  useEffect(() => {
+    //consultarEstado();;
+    if(localStorage.getItem(adminUser) === true){
+      setAdminUser(true);
+    }
+    else{
+      if(localStorage.getItem(regularUser) === true){
+        setRegularUser(true);
+        }
+      }
+
+  });
 
   const desloguear = () => {
     Swal.fire({
@@ -30,9 +43,18 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
+        setRegularUser(false);
+        setAdminUser(false);
         setLog(false);
+        consultarEstado();
       }
     });
+  };
+
+  const consultarEstado = () => {
+    setAdminUser(localStorage.getItem(adminUser));
+    setRegularUser(localStorage.getItem(regularUser));
+    setLog(localStorage.getItem(log));
   };
 
   const handleSubmit = async (e) => {
@@ -41,17 +63,18 @@ const Login = () => {
       try {
         const loginComparacion = {
           email,
-          password
+          password,
         };
         const configuracion = {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-access-token": token,
           },
           body: JSON.stringify(loginComparacion),
         };
-        
-        const user = await loginService.login({
+
+        const user = await loginService.loginS({
           email,
           password,
         });
@@ -59,12 +82,12 @@ const Login = () => {
         const respuesta = await fetch(
           "http://localhost:4001/api/login/",
           configuracion
-          );
-          
-          console.log("llego aqui?");
-          console.log(user);
+        );
 
-        //window.localStorage.setItem("logged", JSON.stringify(user));
+        console.log(respuesta);
+        console.log(user);
+        //setRegularUser(user);
+        //localStorage.setItem("logged", JSON.stringify(user));
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -72,11 +95,13 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          //localStorage.setItem("logged", JSON.stringify(user));
+          localStorage.setItem("logged", JSON.stringify(user));
 
-          setAdmin(true);
+          setLog(respuesta.status);
+          setAdminUser(true);
           handleClose();
-          setLog(true);
+          localStorage.setItem("log", JSON.stringify(log));
+          localStorage.setItem("adminUser", JSON.stringify(adminUser));
         } else {
           if (respuesta.status === 201) {
             console.log("Paso por aqui 201");
@@ -85,10 +110,13 @@ const Login = () => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            //localStorage.setItem("logged", JSON.stringify(user));
+            localStorage.setItem("logged", JSON.stringify(user));
 
             handleClose();
-            setLog(true);
+            setLog(respuesta.status);
+            setRegularUser(true);
+            localStorage.setItem("log", JSON.stringify(log));
+            localStorage.setItem("regularUser", JSON.stringify(regularUser));
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -113,24 +141,18 @@ const Login = () => {
   return (
     <div>
       <div className="text-center d-flex">
-        {log ? (
-          <div className="d-flex">
-            {admin ? (
-              <div>
-                <Link to="/categorias">
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Panel de Control Categorias
-                  </Button>
-                </Link>
-                <Link to="/noticias">
-                  <Button className="mx-2 my-1" variant="outline-dark">
-                    Panel de Control Noticias
-                  </Button>
-                </Link>
-              </div>
-            ) : (
-              <div></div>
-            )}
+        {adminUser ? (
+          <div>
+            <Link to="/categorias">
+              <Button className="mx-2 my-1" variant="outline-dark">
+                Panel de Control Categorias
+              </Button>
+            </Link>
+            <Link to="/noticias">
+              <Button className="mx-2 my-1" variant="outline-dark">
+                Panel de Control Noticias
+              </Button>
+            </Link>
             <Button
               className="mx-2 my-1"
               onClick={desloguear}
@@ -141,18 +163,32 @@ const Login = () => {
           </div>
         ) : (
           <div>
-            <Button
-              className="mx-2 my-1"
-              onClick={handleShow}
-              variant="outline-dark"
-            >
-              Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-            </Button>
-            <Link to={"/suscripcion"}>
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Suscribite
-              </Button>
-            </Link>
+            {log ? (
+              <div>
+                <Button
+                  className="mx-2 my-1"
+                  onClick={desloguear}
+                  variant="outline-dark"
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  className="mx-2 my-1"
+                  onClick={handleShow}
+                  variant="outline-dark"
+                >
+                  Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                </Button>
+                <Link to={"/suscripcion"}>
+                  <Button className="mx-2 my-1" variant="outline-dark">
+                    Suscribite
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -166,23 +202,23 @@ const Login = () => {
                 Ingresa con tus redes sociales
               </i>
             </h5>
-            <div className="my-4">
-              <Col className="text-center m-2">
+            <div className="col-sm-4 my-4">
+              <div className="col-sm-4 text-center m-2">
                 <Link to="/error404">
                   <button className="boton-facebook" onClick={handleClose}>
                     <FaFacebookF className="mb-1 mr-2" />
                     Facebook
                   </button>
                 </Link>
-              </Col>
-              <Col className="text-center m-2">
+              </div>
+              <div className="col-sm-4 text-center m-2">
                 <Link to="/error404">
                   <button className="boton-google" onClick={handleClose}>
                     <FaGoogle className="mb-1 mr-2" />
                     Google
                   </button>
                 </Link>
-              </Col>
+              </div>
             </div>
 
             <h5 className="text-center mx-1 py-2 h5-titulo ">

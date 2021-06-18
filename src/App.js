@@ -5,9 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navegacion from "./components/common/Navegacion";
 import Footer from "./components/common/Footer";
 import Inicio from "./components/Inicio";
-import ListarCategorias from "./components/ListarCategorias";
-import EditarCategoria from "./components/EditarCategoria";
-import AgregarCategoria from "./components/AgregarCategoria";
+import ListarCategorias from "./components/Categoria/ListarCategorias";
+import EditarCategoria from "./components/Categoria/EditarCategoria";
+import AgregarCategoria from "./components/Categoria/AgregarCategoria";
 import Subscription from "./components/Subscription/Subscription";
 import Error404 from "./components/Error404";
 import Contact from "./components/Contact/Contact";
@@ -17,9 +17,11 @@ import ListarNoticias from "./components/ListarNoticias";
 import EditarNoticia from "./components/EditarNoticia";
 import AboutUs from "./components/AboutUs/AboutUs";
 import DetalleNoticia from "./components/DetalleNoticia";
+import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
+  const [cargandoCategorias, setCargandoCategorias] = useState(false);
   const [dolar, setDolar] = useState({});
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
@@ -85,13 +87,16 @@ function App() {
 
   const consultarCategorias = async () => {
     try {
+      setCargandoCategorias(true);
       const url = process.env.REACT_APP_URL_CATEGORIA;
       const respuesta = await fetch(url);
       const informacion = await respuesta.json();
       if (respuesta.status === 200) {
+        setCargandoCategorias(false);
         setCategorias(informacion);
       }
     } catch (error) {
+      setCargandoCategorias(false);
       console.log(error);
     }
   };
@@ -126,6 +131,7 @@ function App() {
           <ListarCategorias
             categorias={categorias}
             consultarCategorias={consultarCategorias}
+            cargando={cargandoCategorias}
           />
         </Route>
         <Route exact path="/categorias/editar/:id">
@@ -136,6 +142,9 @@ function App() {
         </Route>
         <Route exact path="/categorias/nuevo">
           <AgregarCategoria consultarCategorias={consultarCategorias}/>
+        </Route>
+        <Route exact path="/categorias/listado-noticias/:nombreCategoria">
+          <CategoriaListadoNoticias/>
         </Route>
         <Route exact path="/suscripcion">
           <Subscription />

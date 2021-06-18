@@ -7,6 +7,7 @@ import {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
+  validarUrlImagen
 } from "./Validaciones";
 
 const EditarNoticia = (props) => {
@@ -53,6 +54,7 @@ const EditarNoticia = (props) => {
       validarTitulo(titularRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
       validarCuerpo(cuerpoRef.current.value) &&
+      validarUrlImagen(imagenRef.current.value) &&
       validarNombre(autorRef.current.value)
     ) {
       setError(false);

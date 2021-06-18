@@ -10,7 +10,7 @@ export const CardSmall = ({ noticia = {} }) => {
       <div className="col-sm-12 col-md-8" id="CardNoticiaContainer">
         <div className="col-sm-12 col-md-8" id="CardNoticiaInfo">
           <p>{noticia.categoria}</p>
-          <img src={noticia.imagen} alt="noticia-imagen" />
+          <img src={noticia.imagen} style={{ width: "100%" }} alt="noticia-imagen" />
         </div>
 
         <div className="col-sm-12 col-md-8" id="CardNoticiaBody">
@@ -69,7 +69,7 @@ export const CardBig = ({ noticia = {} }) => {
           <img
             src={noticia.imagen}
             alt="noticia-imagen"
-            style={{ maxWidth: "900px", marginTop: "-15%" }}
+            style={{ maxWidth: "100%", marginTop: "-15%" }}
           />
         </div>
       </div>
@@ -96,7 +96,7 @@ export const CardXSmall = ({ noticia = {} }) => {
           <img
             src={noticia.imagen}
             alt="noticia-imagen"
-            style={{ maxWidth: "300px" }}
+            style={{ maxWidth: "100%" }}
           />
         </div>
 
@@ -151,7 +151,7 @@ const BoardNoticias = ({ noticias = [] }) => {
     <div id="BoardNoticiasContainer">
       <NoticiasPricipales noticias={noticias} />
 
-      <div className="seccion-publicidad">
+      <div className="seccion-publicidad d-none d-sm-none d-md-none d-lg-block">
         <Publicidad publicidad={3} />
       </div>
 

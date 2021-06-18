@@ -86,7 +86,7 @@ const validarNombreCategoria = (nombreCategoria) => {
     return { esValido: false, mensaje: 'Debe ingresar una categoria de menos de 30 caracteres' }
   }
 
-  const expresion = /^[a-zA-Z\s]*$/;
+  let expresion = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
   if (!expresion.test(nombreCategoria)) {
     return { esValido: false, mensaje: 'Debe ingresar caracteres validos para el nombre de categoria' }
   }
@@ -107,6 +107,9 @@ const validarUrlImagen = (urlImagen) => {
 //     return {esValido: false, mensaje:"Titulo no es valido"};
 //   } 
 //   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
+//   if (titulo.trim() === "" ) {
+//     return {esValido: false, mensaje:"Titulo no es valido"};
+//   } 
 //   if(expresion.test(titulo)){
 //     return {esValido: false, mensaje:"Titulo no es valido"}
 //   }else {
@@ -115,12 +118,12 @@ const validarUrlImagen = (urlImagen) => {
 // };
 
 // const validarSubtitulo = (subtitulo) => {
-//   if (subtitulo.trim() === "" ) {
-//     return {esValido: false, mensaje:"Subt no es valido"};
-//   } 
 //   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
+//   if (subtitulo.trim() === "" ) {
+//     return {esValido: false, mensaje:"Subtitulo no es valido"};
+//   } 
 //   if(expresion.test(subtitulo)){
-//     return {esValido: false, mensaje:"Sub no es valido"}
+//     return {esValido: false, mensaje:"Subtitulo no es valido"}
 //   }else {
 //     return {esValido:true , mensaje:"Subtitulo valido"} ;
 //   }

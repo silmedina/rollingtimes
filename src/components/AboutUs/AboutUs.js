@@ -8,8 +8,8 @@ import TULIO from "../../assets/TULIO.jpeg";
 
 const AboutUs = () => {
   return (
-    <div className="text-center">
-      <div className="bg-aboutTop">
+    <div className="text-center bg5">
+      <div className="">
         <h1 className="py-5">Acerca de nosotros</h1>
         <div className="d-flex justify-content-center align-items-center">
           <div className="row justify-content-center">
@@ -20,6 +20,7 @@ const AboutUs = () => {
                 text1="Developer"
                 text2='Customer Cure Representative and QA trainee at Rollingcode "Se un punto de referencia de calidad" '
                 width={"14rem"}
+                className=""
               />
             </div>
 
@@ -53,7 +54,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="bg-aboutBottom"></div>
+      <div className=""></div>
     </div>
   );
 };
