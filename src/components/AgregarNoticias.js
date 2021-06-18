@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Alert, Form, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import {
   validarCuerpo,
@@ -29,42 +29,14 @@ const Noticias = (props) => {
     e.preventDefault();
     // validacion
 
-    // const validacionTituloResult = validarTitulo(titulo);
-    // const validacionSutituloResult = validarSubtitulo(subtitulo);
-
-
     if (
-      // validacionTituloResult.esValido && validacionSutituloResult.esValido 
-validarTitulo(titulo) ||
-// validarSubtitulo(subtitulo)||
-validarCuerpo(texto) ||
-// validarUrlImagen(imagen)&&
-categoria !== ""
- 
+      validarTitulo(titulo) &&
+      validarSubtitulo(subtitulo) &&
+      validarCuerpo(texto) &&
+      // validarUrlImagen(imagen)&&
+      categoria !== ""
+
     ) {
-      // setError(true);
-      console.log("Fallo validacion");
-
-
-      if(validarTitulo(titulo)){
-      setError(true);
-       setMensajeError("Titulo no es valido");
-      }
-      //  if(validarSubtitulo(subtitulo)){
-      // setError(true);
-      //   setMensajeError("Subtitulo no es  valido");
-      // }
-       if (validarCuerpo(texto)){
-      setError(true);
-        setMensajeError("El cuerpo del texto no valido");
-      }
-       if(categoria === ""){
-      setError(true);
-        setMensajeError("Debe seleccionar una categoria");
-      }else{
-      }
-     
-    } else {
       setError(false);
 
       const noticia = {
@@ -76,9 +48,9 @@ categoria !== ""
         autor,
       };
       console.log(noticia);
-      
+
       try {
-        
+
         const configuracion = {
           method: "POST",
           headers: {
@@ -91,7 +63,7 @@ categoria !== ""
           "http://localhost:4001/api/noticia/",
           configuracion
         );
-       
+
         if (respuesta.status === 201) {
           Swal.fire(
             "Noticia creada",
@@ -100,9 +72,10 @@ categoria !== ""
           );
           props.consultarNoticias();
         } else if (respuesta.status === 500) {
+          console.log('desde el codigo 500');
           Swal.fire(
             "Error",
-            "Hay un error en uno o más campos. En caso de que el error persista, comuniquese con atención al cliente.",
+            "Hae.",
             "error"
           );
         }
@@ -110,6 +83,30 @@ categoria !== ""
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
+
+
+    } else {
+      // setError(true);
+      console.log("Fallo validacion");
+
+      if (validarTitulo(titulo) === false) {
+        setError(true);
+        setMensajeError("Titulo no es valido");
+      }
+      if (validarSubtitulo(subtitulo) === false) {
+        setError(true);
+        setMensajeError("Subtitulo no es  valido");
+      }
+      if (validarCuerpo(texto) === false) {
+        setError(true);
+        setMensajeError("El cuerpo del texto no valido");
+      }
+      if (categoria === "") {
+        setError(true);
+        setMensajeError("Debe seleccionar una categoria");
+      } else {
+      }
+
     }
   };
 
@@ -127,7 +124,7 @@ categoria !== ""
     <Container>
       <Form className="my-5" onSubmit={handleSubmit}>
         <h1 className="text-center my-2">Agregar Noticia</h1>
-        <Link className='btn mx-2 my-1 background-orange text-light'to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link>
+        <Link className='btn mx-2 my-1 background-orange text-light' to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link>
         <hr />
         {/* titulo */}
         <Form.Group>
@@ -181,18 +178,18 @@ categoria !== ""
         </Form.Group>
 
         <Form.Group>
-        <Form.Label>Categoria</Form.Label>
-        <Form.Control
-          as="select"
-          name=""
-          id=""
-          onChange={(e) => setCategoria(e.target.value)}
-          value={categoria}
-        >
-          {props.categorias.map((cat, idx) => (
-            <option key={idx} value={cat.nombre}>{cat.nombre}</option>
-          ))}
-        </Form.Control>
+          <Form.Label>Categoria</Form.Label>
+          <Form.Control
+            as="select"
+            name=""
+            id=""
+            onChange={(e) => setCategoria(e.target.value)}
+            value={categoria}
+          >
+            {props.categorias.map((cat, idx) => (
+              <option key={idx} value={cat.nombre}>{cat.nombre}</option>
+            ))}
+          </Form.Control>
         </Form.Group>
 
         <Button variant="warning" type="submit" className="w-100 my-5">

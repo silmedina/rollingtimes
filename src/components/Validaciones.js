@@ -102,17 +102,17 @@ const validarUrlImagen = (urlImagen) => {
     return false;
   }
 };
-const validarTitulo = (titulo) => {
-  if (titulo.trim() === "" ) {
-    return {esValido: false, mensaje:"Titulo no es valido"};
-  } 
-  const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
-  if(expresion.test(titulo)){
-    return {esValido: false, mensaje:"Titulo no es valido"}
-  }else {
-    return {esValido:true , mensaje:"Titulo valido"} ;
-  }
-};
+// const validarTitulo = (titulo) => {
+//   if (titulo.trim() === "" ) {
+//     return {esValido: false, mensaje:"Titulo no es valido"};
+//   } 
+//   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
+//   if(expresion.test(titulo)){
+//     return {esValido: false, mensaje:"Titulo no es valido"}
+//   }else {
+//     return {esValido:true , mensaje:"Titulo valido"} ;
+//   }
+// };
 
 // const validarSubtitulo = (subtitulo) => {
 //   if (subtitulo.trim() === "" ) {
@@ -125,14 +125,14 @@ const validarTitulo = (titulo) => {
 //     return {esValido:true , mensaje:"Subtitulo valido"} ;
 //   }
 // };
-// const validarTitulo = (titulo) => {
-//   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
-//   if (titulo.trim() !== "" && expresion.test(titulo)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
+const validarTitulo = (titulo) => {
+  const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
+  if (titulo.trim() !== "" && expresion.test(titulo)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 const validarSubtitulo = (subtitulo) => {
   const expresion = /^[a-zA-Z0-9À-ÿ\s]{10,90}/; 
   if (subtitulo.trim() !== "" && expresion.test(subtitulo)) {
