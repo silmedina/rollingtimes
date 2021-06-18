@@ -36,13 +36,13 @@ const Noticias = (props) => {
     if (
       // validacionTituloResult.esValido && validacionSutituloResult.esValido 
 validarTitulo(titulo) ||
-validarSubtitulo(subtitulo)||
-validarCuerpo(texto)||
+// validarSubtitulo(subtitulo)||
+validarCuerpo(texto) ||
 // validarUrlImagen(imagen)&&
 categoria !== ""
  
     ) {
-      setError(true);
+      // setError(true);
       console.log("Fallo validacion");
 
 
@@ -50,10 +50,10 @@ categoria !== ""
       setError(true);
        setMensajeError("Titulo no es valido");
       }
-       if(validarSubtitulo(subtitulo)){
-      setError(true);
-        setMensajeError("Subtitulo no es  valido");
-      }
+      //  if(validarSubtitulo(subtitulo)){
+      // setError(true);
+      //   setMensajeError("Subtitulo no es  valido");
+      // }
        if (validarCuerpo(texto)){
       setError(true);
         setMensajeError("El cuerpo del texto no valido");
