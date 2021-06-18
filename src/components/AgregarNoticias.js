@@ -36,36 +36,13 @@ const Noticias = (props) => {
 
     if (
       // validacionTituloResult.esValido && validacionSutituloResult.esValido 
-validarTitulo(titulo) ||
-validarSubtitulo(subtitulo)||
-validarCuerpo(texto)||
+validarTitulo(titulo) &&
+validarSubtitulo(subtitulo) &&
+validarCuerpo(texto) &&
 // validarUrlImagen(imagen)&&
 categoria !== ""
  
     ) {
-      setError(true);
-      console.log("Fallo validacion");
-
-
-      if(validarTitulo(titulo)){
-      setError(true);
-       setMensajeError("Titulo no es valido");
-      }
-       if(validarSubtitulo(subtitulo)){
-      setError(true);
-        setMensajeError("Subtitulo no es  valido");
-      }
-       if (validarCuerpo(texto)){
-      setError(true);
-        setMensajeError("El cuerpo del texto no valido");
-      }
-       if(categoria === ""){
-      setError(true);
-        setMensajeError("Debe seleccionar una categoria");
-      }else{
-      }
-     
-    } else {
       setError(false);
 
       const noticia = {
@@ -112,6 +89,33 @@ categoria !== ""
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
+     
+    } else {
+      
+      setError(true);
+      console.log("Fallo validacion");
+
+
+      if(validarTitulo(titulo) === false){
+      setError(true);
+      console.log("pase por titulo");
+       setMensajeError("Titulo no es valido");
+      }
+       if(validarSubtitulo(subtitulo) === false){
+      setError(true);
+      console.log("pase por subtitulo");
+        setMensajeError("Subtitulo no es  valido");
+      }
+      if (validarCuerpo(texto) === false){
+        console.log("pase por texto");
+         setError(true);
+        setMensajeError("El cuerpo del texto no valido");
+      }
+       if(categoria === ""){
+      setError(true);
+        setMensajeError("Debe seleccionar una categoria");
+      }
+
   };
   }
   useEffect(() => {
@@ -200,7 +204,7 @@ categoria !== ""
           Guardar
         </Button>
         {error === true ? (
-          <Alert variant="warning">hola we {mensajeError}</Alert>
+          <Alert variant="warning">{mensajeError}</Alert>
         ) : null}
       </Form>
     </Container>
