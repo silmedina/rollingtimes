@@ -20,6 +20,7 @@ const FormRegistro = (props) => {
   const [direccion, setDireccion] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [telefono, setTelefono] = useState();
   const [postal, setPostal] = useState();
   const [terminos, setTerminos] = useState(false);
@@ -29,6 +30,7 @@ const FormRegistro = (props) => {
   };
 
   const hideModal = () => {
+
     if (
       validarNombre(nombre) &&
       validarApellido(apellido) &&
@@ -38,14 +40,28 @@ const FormRegistro = (props) => {
       validarTelefono(telefono) &&
       validarPostal(postal) &&
       validarPassword(password) &&
+      validarPassword(password2) &&
       terminos
     ) {
       props.onHide();
     }
   };
 
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const comparePassword = () => {
+      if(password === password2){
+        return true;
+      }
+      else{
+        console.log("password no coinciden");
+        return false;
+      }
+    }
+
 
     if (
       validarNombre(nombre) &&
@@ -55,6 +71,9 @@ const FormRegistro = (props) => {
       validarEmail(email) &&
       validarTelefono(telefono) &&
       validarPostal(postal) &&
+      validarPassword(password) &&
+      validarPassword(password2) &&
+      comparePassword() &&
       terminos
     ) {
       try {
@@ -95,7 +114,7 @@ const FormRegistro = (props) => {
             );
           } else {
             Swal.fire(
-              "El usuario y/o telefono ya se encuentra registrado",
+              "El email y/o telefono ya se encuentra registrado",
               "Intente suscribirse con otro correo electronico y/o telefono",
               "error"
             );
@@ -122,7 +141,11 @@ const FormRegistro = (props) => {
       setTerminos(false);
     } else {
       console.log("error validacion");
-      Swal.fire("Error", "Algun campo no se completo como deberia!", "error");
+      if(comparePassword()){
+        Swal.fire("Error", "Algun campo no se completo como deberia!", "error");
+      }else{
+        Swal.fire("Error", "Las contraseñas no coinciden", "error");
+      }
     }
   };
 
@@ -238,6 +261,22 @@ const FormRegistro = (props) => {
                     <span className="focus-border"></span>
                   </div>
                   </Form.Group>
+                  <Form.Group>
+                    
+                    <div className="col-login">
+                    <input
+                      className="effect-input input-password"
+                      name="password2"
+                      type="password"
+                      placeholder="Confirmar Contraseña"
+                      onChange={(e) => setPassword2(e.target.value)}
+                      minLength={4}
+                      maxLength={20}
+                      required
+                    />
+                    <span className="focus-border"></span>
+                  </div>
+                  </Form.Group>
                 </Col>
               </Form.Row>
               <Form.Row>
@@ -247,7 +286,7 @@ const FormRegistro = (props) => {
                     <input
                       className="effect-input input-text"
                       name="telefono"
-                      type="text"
+                      type="number"
                       placeholder="Telefono"
                       onChange={(e) => setTelefono(e.target.value)}
                       minLength={7}
@@ -263,7 +302,7 @@ const FormRegistro = (props) => {
                     <input
                       className="effect-input input-text"
                       name="postal"
-                      type="text"
+                      type="number"
                       placeholder="Postal"
                       onChange={(e) => setPostal(e.target.value)}
                       minLength={4}

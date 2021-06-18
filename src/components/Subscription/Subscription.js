@@ -10,12 +10,14 @@ const Subscription = () => {
   return (
     <div className="bg5">
       <Container className="p-0">
+        <div className="px-3">
         <h2 className="text-center pt-5 pb-3 ">Informate de la actualidad</h2>
         <h4 className="text-center text-secondary">
           No te quedes desinformado del dia a dia
         </h4>
-        <Row className="d-flex  h-100 py-5 ">
-          <div className="mb-3 col-sm-12 col-md-6 col-lg-4 mb-5">
+        </div>
+        <Row className="d-flex h-100 py-5 mx-3">
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-5">
             <Card
               title="Básico"
               precio="Sin Costo"
@@ -24,7 +26,7 @@ const Subscription = () => {
             ></Card>
           </div>
 
-          <div className="mb-3 col-sm-12 col-md-6 col-lg-4 mb-5">
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-5">
             <Card
               title="Estandar"
               precio="Precio: $150"
@@ -34,7 +36,7 @@ const Subscription = () => {
           </div>
           <div className="d-block d-md-block d-lg-none col-md-3"></div>
           
-          <div className="mb-3 col-sm-12 col-md-6 col-lg-4">
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-3">
               <Card
                 title="Premium"
                 tex
