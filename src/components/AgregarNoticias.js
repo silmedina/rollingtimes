@@ -6,9 +6,12 @@ import { faList } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 import Swal from "sweetalert2";
 import {
+  validarCuerpo,
   validarNombre,
   validarNombreCategoria,
+  validarSubtitulo,
   validarTextArea,
+  validarTitulo,
   validarUrlImagen,
 } from "./Validaciones";
 
@@ -20,22 +23,48 @@ const Noticias = (props) => {
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
   const [error, setError] = useState(false);
+  const [mensajeError, setMensajeError] = useState("");
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // validacion
-    if (
-      validarTextArea(titulo) &&
-      validarTextArea(subtitulo) &&
-      validarTextArea(texto) &&
-      validarUrlImagen(imagen) &&
-      validarNombreCategoria(categoria) &&
-      validarNombre(autor)
-    ) {
 
+    // const validacionTituloResult = validarTitulo(titulo);
+    // const validacionSutituloResult = validarSubtitulo(subtitulo);
+
+
+    if (
+      // validacionTituloResult.esValido && validacionSutituloResult.esValido 
+validarTitulo(titulo) ||
+validarSubtitulo(subtitulo)||
+validarCuerpo(texto)||
+// validarUrlImagen(imagen)&&
+categoria !== ""
+ 
+    ) {
       setError(true);
       console.log("Fallo validacion");
+
+
+      if(validarTitulo(titulo)){
+      setError(true);
+       setMensajeError("Titulo no es valido");
+      }
+       if(validarSubtitulo(subtitulo)){
+      setError(true);
+        setMensajeError("Subtitulo no es  valido");
+      }
+       if (validarCuerpo(texto)){
+      setError(true);
+        setMensajeError("El cuerpo del texto no valido");
+      }
+       if(categoria === ""){
+      setError(true);
+        setMensajeError("Debe seleccionar una categoria");
+      }else{
+      }
+     
     } else {
       setError(false);
 
@@ -109,6 +138,7 @@ const Noticias = (props) => {
             placeholder="Ingrese un titulo"
             onChange={(e) => setTitulo(e.target.value)}
           ></Form.Control>
+
         </Form.Group>
         {/* subtitulo */}
         <Form.Group>
@@ -170,7 +200,7 @@ const Noticias = (props) => {
           Guardar
         </Button>
         {error === true ? (
-          <Alert variant="warning">Todos los campos son obligatorios</Alert>
+          <Alert variant="warning">hola we {mensajeError}</Alert>
         ) : null}
       </Form>
     </Container>
