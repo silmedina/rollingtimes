@@ -117,7 +117,6 @@ const EditarCategoria = (props) => {
         >
           Guardar
         </button>
-            
         </div>
         {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
       </Form>

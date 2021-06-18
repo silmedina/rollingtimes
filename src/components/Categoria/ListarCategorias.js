@@ -1,5 +1,5 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React from "react";
 import { Container, ListGroup } from "react-bootstrap";
 import ItemCategoria from "./ItemCategoria";
 import Spinner from "../common/Spinner";
