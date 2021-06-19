@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, ListGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -49,31 +49,33 @@ const ItemNoticia = (props) => {
     });
   };
 
-  
+
 
   return (
-    <ListGroup.Item className="d-flex justify-content-between">
-      <div className="col-sm-10 col-md-9 bg2">
-        <p>{props.noticia.titulo}</p>
-      </div>
-      <div className="d-flex justify-content-between col-sm-2 col-md-3 ">
-        <Link className="btn btn-warning text-light" to={`/noticias/editar/${props.noticia._id}`} >
-          <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
-        </Link>
-        <Button
-          variant="danger"
-          onClick={() => eliminarNoticia(props.noticia._id)}>
-          <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+    <tr>
+      <td>{props.noticia.titulo}</td>
+      <td>{props.noticia.categoria}</td>
+      <td className="d-flex justify-content-between">
+        <Button className="">
+          <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
         <Button className="">
-        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
         </Button>
-        <Button className="">
-        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-        </Button>
-       
-      </div>
-    </ListGroup.Item>
+      </td>
+      <td>
+        <div className="d-flex justify-content-between">
+          <Link className="btn btn-warning text-light" to={`/noticias/editar/${props.noticia._id}`} >
+            <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
+          </Link>
+          <Button
+            variant="danger"
+            onClick={() => eliminarNoticia(props.noticia._id)}>
+            <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+          </Button>
+        </div>
+      </td>
+    </tr>
   );
 };
 

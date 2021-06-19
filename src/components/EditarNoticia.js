@@ -12,15 +12,17 @@ import {
 
 const EditarNoticia = (props) => {
   const { id } = useParams();
-  const titularRef = useRef("");
+  const tituloRef = useRef("");
   const subtituloRef = useRef("");
-  const cuerpoRef = useRef("");
+  const textoRef = useRef("");
   const imagenRef = useRef("");
   const autorRef = useRef("");
   const [noticia, setNoticia] = useState({});
   const [error, setError] = useState(false);
   const URLNOT = process.env.REACT_APP_URL_NOTICIA + "/" + id;
   const [categoria, setCategoria] = useState("");
+  const [mensajeError, setMensajeError] = useState("");
+
 
   useEffect(() => {
     getNoticia();
@@ -51,18 +53,18 @@ const EditarNoticia = (props) => {
     e.preventDefault();
 
     if (
-      validarTitulo(titularRef.current.value) &&
+      validarTitulo(tituloRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
-      validarCuerpo(cuerpoRef.current.value) &&
+      validarCuerpo(textoRef.current.value) &&
       validarUrlImagen(imagenRef.current.value) &&
       validarNombre(autorRef.current.value)
     ) {
       setError(false);
       try {
         const noticiaModificada = {
-          titulo: titularRef.current.value,
+          titulo: tituloRef.current.value,
           subtitulo: subtituloRef.current.value,
-          texto: cuerpoRef.current.value,
+          texto: textoRef.current.value,
           imagen: imagenRef.current.value,
           categoria: categoria,
           autor: autorRef.current.value,
@@ -88,11 +90,32 @@ const EditarNoticia = (props) => {
         console.log(error);
       }
     } else {
-      setError(true);
+      // setError(true);
+      
+      if(validarTitulo(tituloRef.current.value) === false){
+        setError(true);
+        console.log("pase por titulo");
+         setMensajeError("Titulo no es valido. Titulo debe tener un minimo de 7 letras y un maximo de 50");
+        }
+         if(validarSubtitulo(subtituloRef.current.value) === false){
+        setError(true);
+        console.log("pase por subtitulo");
+          setMensajeError("Subtitulo no es  valido. Subtitulo debe tener un minimo de 10 letras y un maximo de 90");
+        }
+        if (validarCuerpo(textoRef.current.value) === false){
+          console.log("pase por texto");
+           setError(true);
+          setMensajeError("El texto del texto no valido");
+        }
+         if(categoria === ""){
+        setError(true);
+          setMensajeError("Debe seleccionar una categoria");
+        }
+
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "No se pudo editar la nota. Revisa todos los campos e intentalo de nuevo.",
+        text: "No se pudo editar la nota.",
       });
     }
   };
@@ -103,11 +126,11 @@ const EditarNoticia = (props) => {
         <h1 className="text-center my-2">Editar la nota</h1>
         <hr className="mb-5"/>
         <Form.Group>
-          <Form.Label>Titulo de Noticia (Titular)</Form.Label>
+          <Form.Label>Titulo de Noticia (titulo)</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese un titulo"
-            ref={titularRef}
+            ref={tituloRef}
             defaultValue={noticia.titulo}
           ></Form.Control>
         </Form.Group>
@@ -118,20 +141,19 @@ const EditarNoticia = (props) => {
           <Form.Control
             type="text"
             placeholder="Ingrese una descripcion breve"
-            style={{ height: '100px' }}
             ref={subtituloRef}
             defaultValue={noticia.subtitulo}
           ></Form.Control>
         </Form.Group>
 
-        {/* cuerpo */}
+        {/* texto */}
         <Form.Group>
-          <Form.Label>Cuerpo de la noticia</Form.Label>
+          <Form.Label>Texto de la noticia</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
             style={{ height: '200px' }}
-            ref={cuerpoRef}
+            ref={textoRef}
             defaultValue={noticia.texto}
           ></Form.Control>
         </Form.Group>
@@ -181,7 +203,7 @@ const EditarNoticia = (props) => {
           Guardar
         </Button>
         {error ? (
-          <Alert variant="warning">Todos los campos son reuqeridos.</Alert>
+          <Alert variant="warning">{mensajeError}</Alert>
         ) : null}
       </Form>
     </Container>

@@ -6,13 +6,10 @@ import { faList } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import {
-  validarCuerpo,
-  validarNombre,
-  validarNombreCategoria,
-  validarSubtitulo,
-  validarTextArea,
   validarTitulo,
-  validarUrlImagen,
+  validarSubtitulo,
+  validarCuerpo,
+  validarUrlImagen
 } from "./Validaciones";
 
 const Noticias = (props) => {
@@ -31,13 +28,12 @@ const Noticias = (props) => {
     // validacion
 
     if (
-      // validacionTituloResult.esValido && validacionSutituloResult.esValido 
-validarTitulo(titulo) &&
-validarSubtitulo(subtitulo) &&
-validarCuerpo(texto) &&
-// validarUrlImagen(imagen)&&
-categoria !== ""
- 
+      validarTitulo(titulo) &&
+      validarSubtitulo(subtitulo) &&
+      validarCuerpo(texto) &&
+      // validarUrlImagen(imagen)&&
+      categoria !== ""
+
     ) {
       setError(false);
 
@@ -50,9 +46,7 @@ categoria !== ""
         autor,
       };
       console.log(noticia);
-
       try {
-
         const configuracion = {
           method: "POST",
           headers: {
@@ -86,34 +80,34 @@ categoria !== ""
         Swal.fire("Error", "La noticia no se agregó", "error");
         console.log(error);
       }
-     
+
     } else {
-      
+
       setError(true);
       console.log("Fallo validacion");
 
 
-      if(validarTitulo(titulo) === false){
-      setError(true);
-      console.log("pase por titulo");
-       setMensajeError("Titulo no es valido");
+      if (validarTitulo(titulo) === false) {
+        setError(true);
+        console.log("pase por titulo");
+        setMensajeError("Titulo no es valido. Titulo debe tener un minimo de 7 letras y un maximo de 50");
       }
-       if(validarSubtitulo(subtitulo) === false){
-      setError(true);
-      console.log("pase por subtitulo");
-        setMensajeError("Subtitulo no es  valido");
+      if (validarSubtitulo(subtitulo) === false) {
+        setError(true);
+        console.log("pase por subtitulo");
+        setMensajeError("Subtitulo no es  valido. Subtitulo debe tener un minimo de 10 letras y un maximo de 90");
       }
-      if (validarCuerpo(texto) === false){
+      if (validarCuerpo(texto) === false) {
         console.log("pase por texto");
-         setError(true);
+        setError(true);
         setMensajeError("El cuerpo del texto no valido");
       }
-       if(categoria === ""){
-      setError(true);
+      if (categoria === "") {
+        setError(true);
         setMensajeError("Debe seleccionar una categoria");
       }
 
-  };
+    };
   }
   useEffect(() => {
     if (props.categorias.length !== 0) {
@@ -171,17 +165,6 @@ categoria !== ""
         </Form.Group>
 
         {/* categoria */}
-
-        {/* autor */}
-        <Form.Group>
-          <Form.Label>Autor</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nombre del autor"
-            onChange={(e) => setAutor(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
         <Form.Group>
           <Form.Label>Categoria</Form.Label>
           <Form.Control
@@ -195,6 +178,15 @@ categoria !== ""
               <option key={idx} value={cat.nombre}>{cat.nombre}</option>
             ))}
           </Form.Control>
+        </Form.Group>
+        {/* autor */}
+        <Form.Group>
+          <Form.Label>Autor</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Nombre del autor"
+            onChange={(e) => setAutor(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Button variant="warning" type="submit" className="w-100 my-5">

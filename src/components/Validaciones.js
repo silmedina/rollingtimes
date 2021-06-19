@@ -102,32 +102,6 @@ const validarUrlImagen = (urlImagen) => {
     return false;
   }
 };
-// const validarTitulo = (titulo) => {
-//   if (titulo.trim() === "" ) {
-//     return {esValido: false, mensaje:"Titulo no es valido"};
-//   } 
-//   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
-//   if (titulo.trim() === "" ) {
-//     return {esValido: false, mensaje:"Titulo no es valido"};
-//   } 
-//   if(expresion.test(titulo)){
-//     return {esValido: false, mensaje:"Titulo no es valido"}
-//   }else {
-//     return {esValido:true , mensaje:"Titulo valido"} ;
-//   }
-// };
-
-// const validarSubtitulo = (subtitulo) => {
-//   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
-//   if (subtitulo.trim() === "" ) {
-//     return {esValido: false, mensaje:"Subtitulo no es valido"};
-//   } 
-//   if(expresion.test(subtitulo)){
-//     return {esValido: false, mensaje:"Subtitulo no es valido"}
-//   }else {
-//     return {esValido:true , mensaje:"Subtitulo valido"} ;
-//   }
-// };
 const validarTitulo = (titulo) => {
   const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
   if (titulo.trim() !== "" && expresion.test(titulo)) {
@@ -152,10 +126,6 @@ const validarCuerpo = (cuerpo) => {
     return false;
   }
 };
-
-
-
-
 
 export {
   validarNombre,
