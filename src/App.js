@@ -164,6 +164,7 @@ function App() {
         <Route exact path="/noticias">
           <ListarNoticias
             noticias={noticias}
+            categorias={categorias}
             consultarNoticias={consultarNoticias}
           />
         </Route>

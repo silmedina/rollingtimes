@@ -55,8 +55,8 @@ const ItemNoticia = (props) => {
     <tr>
       <td>{props.noticia.titulo}</td>
       <td>{props.noticia.categoria}</td>
-      <td className="d-flex justify-content-between">
-        <Button className="">
+      <td className="d-flex justify-content-center">
+        <Button className="mr-2">
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
         <Button className="">
@@ -64,8 +64,8 @@ const ItemNoticia = (props) => {
         </Button>
       </td>
       <td>
-        <div className="d-flex justify-content-between">
-          <Link className="btn btn-warning text-light" to={`/noticias/editar/${props.noticia._id}`} >
+        <div className="d-flex justify-content-center">
+          <Link className="btn btn-warning text-light mr-2" to={`/noticias/editar/${props.noticia._id}`} >
             <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
           </Link>
           <Button

@@ -15,10 +15,17 @@ const ListarNoticias = (props) => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Titulo</th>
-                        <th>Categoria</th>
-                        <th>Publicar/Destacar</th>
-                        <th>Editar/Borrar</th>
+                        <th className="col-sm-9 col-md-8">Titulo</th>
+                        <th className="col-sm-1 col-md-2">Categorias
+                            <select name="categorias" id="categoriasSelect">
+                                {
+                                props.categorias.map((cat, idx) => 
+                                    (<option key={idx} value={cat.nombre}>{cat.nombre}</option>))
+                                }
+                            </select>
+                        </th>
+                        <th className="col-sm-1 col-md-1">Publicar / Destacar</th>
+                        <th className="col-sm-1 col-md-1">Editar / Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,12 +33,9 @@ const ListarNoticias = (props) => {
                         props.noticias.map((nota) => <ItemNoticia noticia={nota} key={nota._id} consultarNoticias={props.consultarNoticias}></ItemNoticia>)
                     }
                 </tbody>
-                </Table>
-                {/* <ListGroup className='my-5'>
-
-                </ListGroup> */}
+            </Table>
         </Container>
-            );
+    );
 };
 
-            export default ListarNoticias;
+export default ListarNoticias;
