@@ -77,6 +77,22 @@ const validarConsulta = (tipoConsulta) => {
   }
 };
 
+const validarCategoria = (categoria) => {
+  if (categoria === "seleccione una opcion") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const validarAutor = (autor) => {
+  if (autor === "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const validarNombreCategoria = (nombreCategoria) => {
   if (nombreCategoria.trim() === '') {
     return { esValido: false, mensaje: 'Debe ingresar un nombre de categoria' }
@@ -146,5 +162,7 @@ export {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarPassword
+  validarPassword,
+  validarCategoria,
+  validarAutor
 };
