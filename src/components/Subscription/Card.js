@@ -6,7 +6,7 @@ const Card = (props) => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="col-sm-12 ">
+    <div className="col-sm-12 px-0">
       <div className="px-0 border border-dark tamaño-card">
         <div className="card-body text-center p-0">
           <img
@@ -35,13 +35,12 @@ const Card = (props) => {
         </div>
         <div className="d-block d-md-none d-lg-block d-xl-none mb-4"></div>
         <div className="d-flex row justify-content-center align-self-end">
-          
-        <button
-          className="button-send-close bg2 text-center "
-          onClick={() => setModalShow(true)}
-        >
-          Suscribirme
-        </button>
+          <button
+            className="button-send-close bg2 text-center "
+            onClick={() => setModalShow(true)}
+          >
+            Suscribirme
+          </button>
         </div>
       </div>
     </div>

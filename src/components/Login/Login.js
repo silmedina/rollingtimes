@@ -202,18 +202,18 @@ const Login = () => {
                 Ingresa con tus redes sociales
               </i>
             </h5>
-            <div className="col-sm-4 my-4">
-              <div className="col-sm-4 text-center m-2">
+            <div className="col-sm-12 my-4">
+              <div className="col-sm-12 text-center m-2 pr-4">
                 <Link to="/error404">
-                  <button className="boton-facebook" onClick={handleClose}>
+                  <button className="w-100 boton-facebook" onClick={handleClose}>
                     <FaFacebookF className="mb-1 mr-2" />
                     Facebook
                   </button>
                 </Link>
               </div>
-              <div className="col-sm-4 text-center m-2">
+              <div className="col-sm-12 text-center m-2 pr-4">
                 <Link to="/error404">
-                  <button className="boton-google" onClick={handleClose}>
+                  <button className="w-100 boton-google" onClick={handleClose}>
                     <FaGoogle className="mb-1 mr-2" />
                     Google
                   </button>

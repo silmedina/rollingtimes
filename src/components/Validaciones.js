@@ -55,7 +55,7 @@ const validarPassword = (password) =>{
 }
 const validarTelefono = (telefono) => {
   const expresion = /^[0-9]/;
-  if (telefono.trim() !== "" && expresion.test(telefono)) {
+  if (telefono !== "" && expresion.test(telefono)) {
     return true;
   } else {
     return false;
@@ -63,7 +63,7 @@ const validarTelefono = (telefono) => {
 };
 const validarTextArea = (textArea) => {
   const expresion = /^[a-zA-ZÀ-ÿ\s]{10,250}/;
-  if (textArea.trim() !== "" && expresion.test(textArea)) {
+  if (textArea !== "" && expresion.test(textArea)) {
     return true;
   } else {
     return false;
