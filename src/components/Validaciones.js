@@ -81,9 +81,13 @@ const validarNombreCategoria = (nombreCategoria) => {
   if (nombreCategoria.trim() === '') {
     return { esValido: false, mensaje: 'Debe ingresar un nombre de categoria' }
   }
-
+  
   if (nombreCategoria.trim().length > 35) {
     return { esValido: false, mensaje: 'Debe ingresar una categoria de menos de 30 caracteres' }
+  }
+
+  if (nombreCategoria.trim().length < 3) {
+    return { esValido: false, mensaje: 'Debe ingresar una categoria de por lo menos tres caracteres' }
   }
 
   let expresion = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
