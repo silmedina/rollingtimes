@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Alert, Form, Container } from "react-bootstrap";
+import { Alert, Form, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +12,7 @@ import {
   validarCategoria,
   validarAutor
 } from "./Validaciones";
+import Spinner from "../components/common/Spinner";
 
 const Noticias = (props) => {
   const [titulo, setTitulo] = useState("");
@@ -128,10 +129,18 @@ const Noticias = (props) => {
 
   return (
     <Container>
-      <Form className="my-5" onSubmit={handleSubmit}>
-        <h1 className="text-center my-2">Agregar Noticia</h1>
+      <h1 className="text-center my-2">Agregar Noticia</h1>
         <Link className='btn mx-2 my-1 background-orange text-light' to={`/noticias`}><FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista de notas</Link>
-        <hr />
+      <hr />
+
+      {props.cargandoCategorias && (
+        <div  className='container d-flex flex-column my-5 align-items-center'>
+          <Spinner></Spinner>
+          <span>Cargando...</span>
+        </div>
+      )}
+      {!props.cargandoCategorias && (
+        <Form className="my-5" onSubmit={handleSubmit}>
         {/* titulo */}
         <Form.Group>
           <Form.Label>Titulo de Noticia *</Form.Label>
@@ -220,7 +229,8 @@ const Noticias = (props) => {
           </button>
         </div>
 
-      </Form>
+        </Form>
+      )}
     </Container>
   );
 };

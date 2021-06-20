@@ -26,15 +26,16 @@ function App() {
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
   const [noticias, setNoticias] = useState([]);
+  const [cargandoNoticias, setCargandoNoticias] = useState(false);
   const [clima, setClima] = useState({})
 
   useEffect(() => {
+    consultarNoticias();
     consultarCategorias();
     consultarDolar();
     consultarEuro();
     consultarReal();
     ejecutarClima();
-    consultarNoticias();
   }, []);
 
   const ejecutarClima = async () => {
@@ -103,13 +104,16 @@ function App() {
 
   const consultarNoticias = async () => {
     try {
+      setCargandoNoticias(true);
       const urln = process.env.REACT_APP_URL_NOTICIA;
       const resp = await fetch(urln);
       const data = await resp.json();
       if (resp.status === 200) {
+        setCargandoNoticias(false);
         setNoticias(data);
       }
     } catch (error) {
+      setCargandoNoticias(false);
       console.log(error);
     }
   };
@@ -166,6 +170,8 @@ function App() {
             noticias={noticias}
             categorias={categorias}
             consultarNoticias={consultarNoticias}
+            cargando={cargandoNoticias}
+            cargandoCategorias={cargandoCategorias}
           />
         </Route>
         <Route exact path="/noticias/editar/:id">

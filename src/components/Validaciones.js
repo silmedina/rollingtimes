@@ -123,7 +123,7 @@ const validarUrlImagen = (urlImagen) => {
   }
 };
 const validarTitulo = (titulo) => {
-  const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,50}/;  
+  const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,150}/;  
   if (titulo.trim() !== "" && expresion.test(titulo)) {
     return true;
   } else {

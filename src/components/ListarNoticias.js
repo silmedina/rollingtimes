@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import ItemNoticia from './ItemNoticia';
-
+import Spinner from "../components/common/Spinner";
 
 const ListarNoticias = (props) => {
     return (
@@ -12,7 +12,19 @@ const ListarNoticias = (props) => {
             <h1 className='text-center my-2'>Lista de Noticias</h1>
             <Link className='btn mx-2 my-1 background-orange text-light' to={`/noticias/agregar`}><FontAwesomeIcon icon={faPlus} className="pr-1"></FontAwesomeIcon>Agregar noticias</Link>
             <hr />
-            <Table striped bordered hover>
+            {!props.noticias.length && !props.cargando && (
+                <div  className='container d-flex flex-column my-5 align-items-center'>
+                <span>Sin noticias</span>
+            </div>
+            )}
+            {props.cargando && (
+                <div  className='container d-flex flex-column my-5 align-items-center'>
+                <Spinner></Spinner>
+                <span>Cargando...</span>
+                </div>
+            )}
+            {!props.cargando && props.noticias.length !== 0 && (
+                <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th className="col-sm-9 col-md-8">Titulo</th>
@@ -34,6 +46,7 @@ const ListarNoticias = (props) => {
                     }
                 </tbody>
             </Table>
+            )}
         </Container>
     );
 };
