@@ -48,6 +48,7 @@ const EditarNoticia = (props) => {
       });
     }
   };
+ 
 
   const handleSudmit = async (e) => {
     e.preventDefault();
@@ -55,10 +56,11 @@ const EditarNoticia = (props) => {
     if (
       validarTitulo(tituloRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
-      validarCuerpo(textoRef.current.value) &&
-      validarUrlImagen(imagenRef.current.value) &&
-      validarNombre(autorRef.current.value)
+      validarCuerpo(textoRef.current.value)
+      // validarUrlImagen(imagenRef.current.value) &&
+      // validarNombre(autorRef.current.value)
     ) {
+      
       setError(false);
       try {
         const noticiaModificada = {
@@ -84,47 +86,48 @@ const EditarNoticia = (props) => {
           props.consultarNoticias();
           props.history.push("/noticias");
         } else {
-          console.log(respuesta);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo modificar la nota.",
+          });
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      // setError(true);
-      
-      if(validarTitulo(tituloRef.current.value) === false){
+
+      if (validarTitulo(tituloRef.current.value) === false) {
         setError(true);
         console.log("pase por titulo");
-         setMensajeError("Titulo no es valido. Titulo debe tener un minimo de 7 letras y un maximo de 50");
-        }
-         if(validarSubtitulo(subtituloRef.current.value) === false){
+        setMensajeError("El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50");
+      }
+      if (validarSubtitulo(subtituloRef.current.value) === false) {
         setError(true);
         console.log("pase por subtitulo");
-          setMensajeError("Subtitulo no es  valido. Subtitulo debe tener un minimo de 10 letras y un maximo de 90");
-        }
-        if (validarCuerpo(textoRef.current.value) === false){
-          console.log("pase por texto");
-           setError(true);
-          setMensajeError("El texto del texto no valido");
-        }
-         if(categoria === ""){
+        setMensajeError("El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90");
+      }
+      if (validarCuerpo(textoRef.current.value) === false) {
+        console.log("pase por texto");
         setError(true);
-          setMensajeError("Debe seleccionar una categoria");
-        }
-
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "No se pudo editar la nota.",
-      });
+        setMensajeError("El texto no valido");
+      }
+      if (categoria === "") {
+        setError(true);
+        setMensajeError("Debe seleccionar una categoria");
+      }
     }
   };
+
+  const retornarListadoNoticias = () => {
+    props.history.push("/noticias");
+  }
 
   return (
     <Container>
       <Form className="my-5" onSubmit={handleSudmit}>
         <h1 className="text-center my-2">Editar la nota</h1>
-        <hr className="mb-5"/>
+        <hr className="mb-5" />
         <Form.Group>
           <Form.Label>Titulo de Noticia (titulo)</Form.Label>
           <Form.Control
@@ -199,12 +202,25 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button variant="warning" type="submit" className="w-100 my-5">
-          Guardar
-        </Button>
         {error ? (
-          <Alert variant="warning">{mensajeError}</Alert>
+          <Alert variant="danger">{mensajeError}</Alert>
         ) : null}
+
+        <div className="d-flex justify-content-lg-end">
+          <button
+            className="my-5 mr-2 background-black button-send-close"
+            type="button"
+            onClick={() => retornarListadoNoticias()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="my-5 background-orange button-send-close"
+            type="submit"
+          >
+            Guardar
+          </button>
+        </div>
       </Form>
     </Container>
   );

@@ -23,6 +23,7 @@ const Noticias = (props) => {
   const [mensajeError, setMensajeError] = useState("");
 
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // validacion
@@ -90,6 +91,7 @@ const Noticias = (props) => {
       if (validarTitulo(titulo) === false) {
         setError(true);
         console.log("pase por titulo");
+        
         setMensajeError("Titulo no es valido. Titulo debe tener un minimo de 7 letras y un maximo de 50");
       }
       if (validarSubtitulo(subtitulo) === false) {
@@ -116,6 +118,10 @@ const Noticias = (props) => {
       setCategoria("General");
     }
   }, [props]);
+
+  const retornarListadoNoticias = () => {
+    props.history.push("/noticias");
+  }
 
   const formatYmd = (date) => date.toISOString().slice(0, 10);
 
@@ -189,12 +195,26 @@ const Noticias = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button variant="warning" type="submit" className="w-100 my-5">
-          Guardar
-        </Button>
         {error === true ? (
           <Alert variant="warning">{mensajeError}</Alert>
         ) : null}
+
+        <div className="d-flex justify-content-lg-end">
+          <button
+            className="my-5 mr-2 background-black button-send-close"
+            type="button"
+            onClick={() => retornarListadoNoticias()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="my-5 background-orange button-send-close"
+            type="submit"
+          >
+            Guardar
+          </button>
+        </div>
+
       </Form>
     </Container>
   );
