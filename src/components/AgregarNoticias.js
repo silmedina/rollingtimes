@@ -121,22 +121,10 @@ const Noticias = (props) => {
       }
     };
   }
-<<<<<<< HEAD
-  useEffect(() => {
-    if (props.categorias.length !== 0) {
-      setCategoria(props.categorias[0].nombre);
-    } else {
-      setCategoria("General");
-    }
-  }, [props]);
 
   const retornarListadoNoticias = () => {
     props.history.push("/noticias");
   }
-
-  const formatYmd = (date) => date.toISOString().slice(0, 10);
-=======
->>>>>>> 270de7d84e4aeeb6f1fe300f7e918f6c61439fec
 
   return (
     <Container>
