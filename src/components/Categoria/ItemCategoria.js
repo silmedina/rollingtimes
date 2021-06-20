@@ -24,6 +24,7 @@ const ItemCategoria = (props) => {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
           });
+          const informacion = await respuesta.json();
 
           if (respuesta.status === 200) {
             Swal.fire(
@@ -33,6 +34,12 @@ const ItemCategoria = (props) => {
             );
 
             props.consultarCategorias();
+          } else if (respuesta.status === 500) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: informacion.mensaje,
+            });
           }
         } catch (error) {
           console.log(error);

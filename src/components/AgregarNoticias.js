@@ -9,7 +9,8 @@ import {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarUrlImagen
+  validarCategoria,
+  validarAutor
 } from "./Validaciones";
 
 const Noticias = (props) => {
@@ -21,20 +22,21 @@ const Noticias = (props) => {
   const [autor, setAutor] = useState("");
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
-
+  
+  useEffect(() => {
+    setCategoria("seleccione una opcion");
+  }, []);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // validacion
 
     if (
       validarTitulo(titulo) &&
       validarSubtitulo(subtitulo) &&
       validarCuerpo(texto) &&
-      // validarUrlImagen(imagen)&&
-      categoria !== ""
-
+      validarCategoria(categoria) &&
+      validarAutor(autor) 
     ) {
       setError(false);
 
@@ -46,7 +48,7 @@ const Noticias = (props) => {
         categoria,
         autor,
       };
-      console.log(noticia);
+
       try {
         const configuracion = {
           method: "POST",
@@ -55,11 +57,9 @@ const Noticias = (props) => {
           },
           body: JSON.stringify(noticia),
         };
-        console.log("A resp");
-        const respuesta = await fetch(
-          "http://localhost:4001/api/noticia/",
-          configuracion
-        );
+        
+        const respuesta = await fetch("http://localhost:4001/api/noticia/", configuracion);
+        const informacion = await respuesta.json();
 
         if (respuesta.status === 201) {
           Swal.fire(
@@ -70,47 +70,58 @@ const Noticias = (props) => {
           props.consultarNoticias();
           props.history.push('/noticias');
         } else if (respuesta.status === 500) {
-          console.log('desde el codigo 500');
-          Swal.fire(
-            "Error",
-            "Hae.",
-            "error"
-          );
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: informacion.mensaje,
+          });
         }
       } catch (error) {
-        Swal.fire("Error", "La noticia no se agregó", "error");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Ha ocurrido un error al guardar la noticia",
+        });
         console.log(error);
       }
-
     } else {
-
       setError(true);
-      console.log("Fallo validacion");
-
-
       if (validarTitulo(titulo) === false) {
         setError(true);
         console.log("pase por titulo");
         
         setMensajeError("Titulo no es valido. Titulo debe tener un minimo de 7 letras y un maximo de 50");
+        return;
       }
+
       if (validarSubtitulo(subtitulo) === false) {
         setError(true);
         console.log("pase por subtitulo");
         setMensajeError("Subtitulo no es  valido. Subtitulo debe tener un minimo de 10 letras y un maximo de 90");
+        return;
       }
+
       if (validarCuerpo(texto) === false) {
         console.log("pase por texto");
         setError(true);
         setMensajeError("El cuerpo del texto no valido");
-      }
-      if (categoria === "") {
-        setError(true);
-        setMensajeError("Debe seleccionar una categoria");
+        return;
       }
 
+      if (validarCategoria(categoria) === false) {
+        setError(true);
+        setMensajeError("Debe seleccionar una categoria");
+        return;
+      }
+
+      if (validarAutor(autor) === false) {
+        setError(true);
+        setMensajeError("Debe ingresar un autor");
+        return;
+      }
     };
   }
+<<<<<<< HEAD
   useEffect(() => {
     if (props.categorias.length !== 0) {
       setCategoria(props.categorias[0].nombre);
@@ -124,6 +135,8 @@ const Noticias = (props) => {
   }
 
   const formatYmd = (date) => date.toISOString().slice(0, 10);
+=======
+>>>>>>> 270de7d84e4aeeb6f1fe300f7e918f6c61439fec
 
   return (
     <Container>
@@ -133,26 +146,27 @@ const Noticias = (props) => {
         <hr />
         {/* titulo */}
         <Form.Group>
-          <Form.Label>Titulo de Noticia (titulo)</Form.Label>
+          <Form.Label>Titulo de Noticia *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese un titulo"
             onChange={(e) => setTitulo(e.target.value)}
           ></Form.Control>
-
         </Form.Group>
+
         {/* subtitulo */}
         <Form.Group>
-          <Form.Label>Descripcion breve (copete o subtitulo)</Form.Label>
+          <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese una descripcion breve"
             onChange={(e) => setSubtitulo(e.target.value)}
           ></Form.Control>
         </Form.Group>
+
         {/* texto */}
         <Form.Group>
-          <Form.Label>Texto de la noticia</Form.Label>
+          <Form.Label>Texto de la noticia *</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
@@ -160,6 +174,7 @@ const Noticias = (props) => {
             onChange={(e) => setTexto(e.target.value)}
           ></Form.Control>
         </Form.Group>
+
         {/* imagen */}
         <Form.Group>
           <Form.Label>Imagen</Form.Label>
@@ -172,7 +187,7 @@ const Noticias = (props) => {
 
         {/* categoria */}
         <Form.Group>
-          <Form.Label>Categoria</Form.Label>
+          <Form.Label>Categoria *</Form.Label>
           <Form.Control
             as="select"
             name=""
@@ -183,11 +198,13 @@ const Noticias = (props) => {
             {props.categorias.map((cat, idx) => (
               <option key={idx} value={cat.nombre}>{cat.nombre}</option>
             ))}
+            <option disabled value={"seleccione una opcion"} key={-1}>Seleccione una opcion</option>
           </Form.Control>
         </Form.Group>
+
         {/* autor */}
         <Form.Group>
-          <Form.Label>Autor</Form.Label>
+          <Form.Label>Autor *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Nombre del autor"
