@@ -10,7 +10,7 @@ import Cotizacion from "./Cotizacion";
 import Logo from "./Logo";
 import Menudespleg from "./Menudespleg";
 import Login from "../Login/Login";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 const Navegacion = (props) => {
   //const [compactNav, setcompactNav] = useState(false);
@@ -43,7 +43,7 @@ const Navegacion = (props) => {
   const home = () => {
     props.history.push("/");
     //cambiarNav();
-  }
+  };
 
   return (
     <Fragment>
@@ -55,27 +55,34 @@ const Navegacion = (props) => {
           <div className="bg3" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              
-                {/* <Menudespleg categorias={props.categorias} /> */}
-                <img className="mr-3 logo-icono-mano" src={logoSm} alt="logo" onClick={()=>home()} />
+
+              {/* <Menudespleg categorias={props.categorias} /> */}
+              <img
+                className="mr-3 logo-icono-mano"
+                src={logoSm}
+                alt="logo"
+                onClick={() => home()}
+              />
               <Form inline className="m-0">
-                <Form.Control
-                  type="text"
-                  placeholder="Search"
-                  className="mr-sm-2"
-                />
+                <div className="col-login my-0 w-75 mr-2">
+                  <input
+                    className="effect-textArea input-text  input-textArea border"
+                    type="text"
+                    placeholder=" Buscar"
+                    
+                  />
+                  <span className="focus-border"><i></i></span>
+                </div>
                 <Button className="" variant="outline-dark" href="*">
                   <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </Button>
-                
               </Form>
-                <Logo clima={props.clima}/>
+              <Logo clima={props.clima} />
               <Nav className="ml-auto">
                 <Login />
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
-              
               <Cotizacion
                 dolar={props.dolar}
                 euro={props.euro}
@@ -100,11 +107,15 @@ const Navegacion = (props) => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <div className="text-center">
                 <Form className="d-flex pt-3 w-100 px-3">
-                  <Form.Control
+                <div className="col-login my-0 mr-2">
+                  <input
+                    className="effect-textArea input-text  input-textArea border"
                     type="text"
-                    placeholder="Buscar"
-                    className="mr-1"
+                    placeholder=" Buscar"
+                    
                   />
+                  <span className="focus-border"><i></i></span>
+                </div>
                   <Button variant="outline-dark">
                     <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                   </Button>
@@ -118,9 +129,8 @@ const Navegacion = (props) => {
               </Nav>
               <Nav>
                 <div className="d-flex row justify-content-center mx-0 mb-2">
-                <Login />
+                  <Login />
                 </div>
-                
               </Nav>
             </Navbar.Collapse>
           </div>

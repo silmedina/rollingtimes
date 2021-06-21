@@ -142,20 +142,20 @@ const Contact = () => {
               </div>
             </Form.Group>
             <Form.Group>
-              <div className="col-login mt-3">
+              <div className="col-login">
                 <textarea
                   className="effect-textArea input-text  input-textArea"
                   name="textArea"
                   as="textarea"
                   type="text"
-                  placeholder="* Escriba su consulta (Entre 10 a 300 caracteres)"
+                  placeholder=" * Escriba su consulta (Entre 10 a 300 caracteres)"
                   onChange={(e) => setTextArea(e.target.value)}
                   minLength={10}
                   maxLength={300}
                   rows={6}
                   required
                 />
-                <span className="focus-border"></span>
+                <span className="focus-border"><i></i></span>
               </div>
               <p>Muchas gracias por su consulta y/o sugerencia, le contestaremos a la brevedad.</p>
             </Form.Group>
