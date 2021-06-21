@@ -16,12 +16,11 @@ const Login = () => {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [log, setLog] = useState(0);
-  const [token, setToken] = useState("");
   const [jwt, setJwt] = useState(() => localStorage.getItem("jwt"));
   const [jwtRegular, setJwtRegular] = useState(() =>
     localStorage.getItem("jwtRegular")
   );
+  let token="";
 
   const desloguear = () => {
     Swal.fire({
@@ -89,7 +88,6 @@ const Login = () => {
             );
             localStorage.setItem("jwtRegular", JSON.stringify(user));
             setJwtRegular(user);
-
             handleClose();
           } else {
             if (respuesta.status === 401) {
