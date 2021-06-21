@@ -43,12 +43,12 @@ const Climate = (props) => {
   return (
     <div className="container">
       {temperatura ? (
-        <div className="cards">
-          <p>
+        <div className="cards d-flex row pt-2">
+          <p className="col-5">
             {ciudad}, {pais}
           </p>
       
-          <h3>
+          <h3 className="pt-2">
             <i className={`wi ${output}`}></i> {temperatura}°C
           </h3>
         </div>

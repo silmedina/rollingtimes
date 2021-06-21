@@ -10,10 +10,10 @@ const Logo = (props) => {
   };
 
   return (
-    <Nav className=" bg5 px-5 py-3 d-flex align-items-center">
-      <div className="mr-auto">
+    <Nav className=" bg5 p-0 d-flex align-items-center">
+      {/* <div className="mr-auto">
         <img src={LogoNav} alt="logo" onClick={() => home()} className="logo-icono-mano"/>
-      </div>
+      </div> */}
       <div>
         <Climate clima={props.clima} />
       </div>

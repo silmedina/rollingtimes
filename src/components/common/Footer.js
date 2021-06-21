@@ -49,7 +49,7 @@ const Footer = () => {
       </header>
       <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
         <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
-          <img src={logoSm} alt="logo" className="w-75 p-0" />
+          <Link to="/" ><img src={logoSm} alt="logo" className="w-75 p-0" /></Link>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0 m-0">
           <Link className="mx-1 outline-dark" to={"/about"}>

@@ -10,26 +10,25 @@ import Cotizacion from "./Cotizacion";
 import Logo from "./Logo";
 import Menudespleg from "./Menudespleg";
 import Login from "../Login/Login";
-import { Link } from "react-router-dom";
 import {withRouter} from 'react-router-dom';
 
 const Navegacion = (props) => {
-  const [compactNav, setcompactNav] = useState(false);
-  const cambiarNav = () => {
-    const nuevaClaseExpa = document.getElementById("navExpand");
-    if (window.screen.width > 992 && window.scrollY > 250) {
-      if (nuevaClaseExpa) {
-        nuevaClaseExpa.style.display = "none";
-        setcompactNav(true);
-      }
-    } else if (window.screen.width > 992 && window.scrollY <= 5) {
-      if (nuevaClaseExpa) {
-        nuevaClaseExpa.style.display = "inline";
-      }
-      setcompactNav(false);
-    }
-  };
-  window.addEventListener("scroll", cambiarNav);
+  //const [compactNav, setcompactNav] = useState(false);
+  // const cambiarNav = () => {
+  //   const nuevaClaseExpa = document.getElementById("navExpand");
+  //   if (window.screen.width > 992 && window.scrollY > 250) {
+  //     if (nuevaClaseExpa) {
+  //       nuevaClaseExpa.style.display = "none";
+  //       setcompactNav(true);
+  //     }
+  //   } else if (window.screen.width > 992 && window.scrollY <= 5) {
+  //     if (nuevaClaseExpa) {
+  //       nuevaClaseExpa.style.display = "inline";
+  //     }
+  //     setcompactNav(false);
+  //   }
+  // };
+  // window.addEventListener("scroll", cambiarNav);
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -43,7 +42,7 @@ const Navegacion = (props) => {
 
   const home = () => {
     props.history.push("/");
-    cambiarNav();
+    //cambiarNav();
   }
 
   return (
@@ -56,12 +55,9 @@ const Navegacion = (props) => {
           <div className="bg3" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              {compactNav === true ? (
-                <Menudespleg categorias={props.categorias} />
-              ) : null}
-              {compactNav === true ? (
+              
+                {/* <Menudespleg categorias={props.categorias} /> */}
                 <img className="mr-3 logo-icono-mano" src={logoSm} alt="logo" onClick={()=>home()} />
-              ) : null}
               <Form inline className="m-3">
                 <Form.Control
                   type="text"
@@ -71,13 +67,15 @@ const Navegacion = (props) => {
                 <Button className="" variant="outline-dark" href="*">
                   <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </Button>
+                
               </Form>
+                <Logo clima={props.clima}/>
               <Nav className="ml-auto">
                 <Login />
               </Nav>
             </Navbar>
             <div className="" id="navExpand">
-              <Logo clima={props.clima} />
+              
               <Cotizacion
                 dolar={props.dolar}
                 euro={props.euro}
