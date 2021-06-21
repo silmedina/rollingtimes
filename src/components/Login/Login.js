@@ -17,10 +17,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [log, setLog] = useState(0);
-  const [regularUser, setRegularUser] = useState(null);
-  const [adminUser, setAdminUser] = useState(null);
   const [token, setToken] = useState("");
-  const [jwt, setJwt] = useState(() => localStorage.getItem('jwt'))
+  const [jwt, setJwt] = useState(() => localStorage.getItem('jwt'));
+  const [jwtRegular, setJwtRegular] = useState (() => localStorage.getItem('jwtRegular'));
 
   const desloguear = () => {
     Swal.fire({
@@ -32,7 +31,9 @@ const Login = () => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
         localStorage.removeItem('jwt');
+        localStorage.removeItem('jwtRegular');
         setJwt(false);
+        setJwtRegular(false);
       }
     });
   };
@@ -65,16 +66,9 @@ const Login = () => {
           configuracion
         );
 
-        console.log(respuesta);
-        console.log(user);
-        //setToken(user.token);
-        //console.log(user.token);
-        //console.log(token);
+        // console.log(respuesta);
+        // console.log(user);
 
-        localStorage.setItem("jwt",JSON.stringify(user));
-        setJwt(user);
-        //setRegularUser(user);
-        //localStorage.setItem("logged", JSON.stringify(user));
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -82,17 +76,18 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          setAdminUser(true);
+          localStorage.setItem("jwt",JSON.stringify(user));
+          setJwt(user);
           handleClose();
         } else {
           if (respuesta.status === 201) {
-            console.log("Paso por aqui 201");
             Swal.fire(
               "Bien hecho!",
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            
+            localStorage.setItem("jwtRegular",JSON.stringify(user));
+            setJwtRegular(user);
 
             handleClose();
             
@@ -145,7 +140,7 @@ const Login = () => {
           </div>
         ) : (
           <div>
-            {log ? (
+            {jwtRegular ? (
               <div>
                 <Button
                   className="mx-2 my-1"
