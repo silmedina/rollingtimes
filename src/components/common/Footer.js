@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
         <div className=" col-sm-12 col-md-6 col-lg-4 p-0 m-0">
           <Link className="mx-1 outline-dark" to={"/contacto"}>
-            <h4 className="pb-1 color2 pt-4">Contacto</h4>
+            <h4 className="pb-1 color2 pt-0">Contacto</h4>
           </Link>
           <div>
             <strong>

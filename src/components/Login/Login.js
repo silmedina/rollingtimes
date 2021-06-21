@@ -11,7 +11,6 @@ import loginService from "./logged";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
@@ -51,7 +50,7 @@ const Login = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": token,
+            "Authorization": token,
           },
           body: JSON.stringify(loginComparacion),
         };
@@ -66,9 +65,6 @@ const Login = () => {
           "http://localhost:4001/api/login/",
           configuracion
         );
-
-        // console.log(respuesta);
-        // console.log(user);
 
         if (respuesta.status === 200) {
           Swal.fire(
