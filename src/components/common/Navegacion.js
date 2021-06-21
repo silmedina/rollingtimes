@@ -58,7 +58,7 @@ const Navegacion = (props) => {
               
                 {/* <Menudespleg categorias={props.categorias} /> */}
                 <img className="mr-3 logo-icono-mano" src={logoSm} alt="logo" onClick={()=>home()} />
-              <Form inline className="m-3">
+              <Form inline className="m-0">
                 <Form.Control
                   type="text"
                   placeholder="Search"
@@ -97,7 +97,7 @@ const Navegacion = (props) => {
           <div className="text-center">
             <img src={LogoNav} alt="logo" className="w-75 p-2" />
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav ">
+            <Navbar.Collapse id="responsive-navbar-nav">
               <div className="text-center">
                 <Form className="d-flex pt-3 w-100 px-3">
                   <Form.Control
@@ -117,7 +117,7 @@ const Navegacion = (props) => {
                 ))}
               </Nav>
               <Nav>
-                <div className="d-flex row justify-content-center mx-0">
+                <div className="d-flex row justify-content-center mx-0 mb-2">
                 <Login />
                 </div>
                 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Form, Col } from "react-bootstrap";
+import { Modal, Button, Form, Col, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -19,20 +19,8 @@ const Login = () => {
   const [log, setLog] = useState(0);
   const [regularUser, setRegularUser] = useState(null);
   const [adminUser, setAdminUser] = useState(null);
-  let token = "";
-
-  useEffect(() => {
-    //consultarEstado();;
-    if(localStorage.getItem(adminUser) === true){
-      setAdminUser(true);
-    }
-    else{
-      if(localStorage.getItem(regularUser) === true){
-        setRegularUser(true);
-        }
-      }
-
-  });
+  const [token, setToken] = useState("");
+  const [jwt, setJwt] = useState(() => localStorage.getItem('jwt'))
 
   const desloguear = () => {
     Swal.fire({
@@ -43,18 +31,10 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
-        setRegularUser(false);
-        setAdminUser(false);
-        setLog(false);
-        consultarEstado();
+        localStorage.removeItem('jwt');
+        setJwt(false);
       }
     });
-  };
-
-  const consultarEstado = () => {
-    setAdminUser(localStorage.getItem(adminUser));
-    setRegularUser(localStorage.getItem(regularUser));
-    setLog(localStorage.getItem(log));
   };
 
   const handleSubmit = async (e) => {
@@ -63,7 +43,7 @@ const Login = () => {
       try {
         const loginComparacion = {
           email,
-          password,
+          password
         };
         const configuracion = {
           method: "POST",
@@ -77,8 +57,9 @@ const Login = () => {
         const user = await loginService.loginS({
           email,
           password,
+          token
         });
-        console.log("hola");
+
         const respuesta = await fetch(
           "http://localhost:4001/api/login/",
           configuracion
@@ -86,6 +67,12 @@ const Login = () => {
 
         console.log(respuesta);
         console.log(user);
+        //setToken(user.token);
+        //console.log(user.token);
+        //console.log(token);
+
+        localStorage.setItem("jwt",JSON.stringify(user));
+        setJwt(user);
         //setRegularUser(user);
         //localStorage.setItem("logged", JSON.stringify(user));
 
@@ -95,13 +82,8 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          localStorage.setItem("logged", JSON.stringify(user));
-
-          setLog(respuesta.status);
           setAdminUser(true);
           handleClose();
-          localStorage.setItem("log", JSON.stringify(log));
-          localStorage.setItem("adminUser", JSON.stringify(adminUser));
         } else {
           if (respuesta.status === 201) {
             console.log("Paso por aqui 201");
@@ -110,13 +92,10 @@ const Login = () => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            localStorage.setItem("logged", JSON.stringify(user));
+            
 
             handleClose();
-            setLog(respuesta.status);
-            setRegularUser(true);
-            localStorage.setItem("log", JSON.stringify(log));
-            localStorage.setItem("regularUser", JSON.stringify(regularUser));
+            
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -141,18 +120,21 @@ const Login = () => {
   return (
     <div>
       <div className="text-center d-flex">
-        {adminUser ? (
-          <div>
-            <Link to="/categorias">
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Panel de Control Categorias
-              </Button>
-            </Link>
-            <Link to="/noticias">
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Panel de Control Noticias
-              </Button>
-            </Link>
+        {jwt ? (
+          <div className="d-flex row">
+            <Dropdown>
+              <Dropdown.Toggle
+                className="mx-2 my-1"
+                variant="outline-dark"
+                id="dropdown-basic"
+              >
+                Panel de Control
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="text-center">
+                <Dropdown.Item href="/categorias">Categorias</Dropdown.Item>
+                <Dropdown.Item href="/noticias">Noticias</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <Button
               className="mx-2 my-1"
               onClick={desloguear}
@@ -205,7 +187,10 @@ const Login = () => {
             <div className="col-sm-12 my-4">
               <div className="col-sm-12 text-center m-2 pr-4">
                 <Link to="/error404">
-                  <button className="w-100 boton-facebook" onClick={handleClose}>
+                  <button
+                    className="w-100 boton-facebook"
+                    onClick={handleClose}
+                  >
                     <FaFacebookF className="mb-1 mr-2" />
                     Facebook
                   </button>
