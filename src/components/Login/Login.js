@@ -18,8 +18,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [log, setLog] = useState(0);
   const [token, setToken] = useState("");
-  const [jwt, setJwt] = useState(() => localStorage.getItem('jwt'));
-  const [jwtRegular, setJwtRegular] = useState (() => localStorage.getItem('jwtRegular'));
+  const [jwt, setJwt] = useState(() => localStorage.getItem("jwt"));
+  const [jwtRegular, setJwtRegular] = useState(() =>
+    localStorage.getItem("jwtRegular")
+  );
 
   const desloguear = () => {
     Swal.fire({
@@ -30,8 +32,8 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('jwtRegular');
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("jwtRegular");
         setJwt(false);
         setJwtRegular(false);
       }
@@ -44,7 +46,7 @@ const Login = () => {
       try {
         const loginComparacion = {
           email,
-          password
+          password,
         };
         const configuracion = {
           method: "POST",
@@ -58,7 +60,7 @@ const Login = () => {
         const user = await loginService.loginS({
           email,
           password,
-          token
+          token,
         });
 
         const respuesta = await fetch(
@@ -69,14 +71,13 @@ const Login = () => {
         // console.log(respuesta);
         // console.log(user);
 
-
         if (respuesta.status === 200) {
           Swal.fire(
             "Bienvenido administrador!",
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          localStorage.setItem("jwt",JSON.stringify(user));
+          localStorage.setItem("jwt", JSON.stringify(user));
           setJwt(user);
           handleClose();
         } else {
@@ -86,11 +87,10 @@ const Login = () => {
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            localStorage.setItem("jwtRegular",JSON.stringify(user));
+            localStorage.setItem("jwtRegular", JSON.stringify(user));
             setJwtRegular(user);
 
             handleClose();
-            
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -130,13 +130,15 @@ const Login = () => {
                 <Dropdown.Item href="/noticias">Noticias</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Button
-              className="mx-2 my-1"
-              onClick={desloguear}
-              variant="outline-dark"
-            >
-              Logout
-            </Button>
+            <div>
+              <Button
+                className="mx-2 my-1"
+                onClick={desloguear}
+                variant="outline-dark"
+              >
+                Logout
+              </Button>
+            </div>
           </div>
         ) : (
           <div>
