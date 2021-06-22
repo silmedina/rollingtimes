@@ -12,11 +12,11 @@ const CarouselNoticias = (props) => {
 
   return (
     <div>
-      <Carousel activeIndex={index} onSelect={handleSelect} className="" >
-        {props.noticias.reverse().map((noticia, index) => {
+      <Carousel activeIndex={index} onSelect={handleSelect}>
+        {props.noticias.map((noticia, index) => {
           return (
             <Carousel.Item key={index} id="noticiaContainer">
-              <div className="black-gradient-bg" />
+              {/* <div className="black-gradient-bg" /> */}
               <img
                 className="d-block w-100 imagen-noticia"
                 src={noticia.imagen}

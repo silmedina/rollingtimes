@@ -17,7 +17,7 @@ const Categoria = (props) => {
         </Nav.Item>
 
         {props.categorias.map((categoria) => (
-          <Nav.Item>
+          <Nav.Item key={categoria._id}>
             <Nav.Link className="color1" eventKey={categoria._id}>
               {categoria.nombre}
             </Nav.Link>

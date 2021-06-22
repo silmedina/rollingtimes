@@ -32,11 +32,12 @@ function App() {
   useEffect(() => {
     consultarNoticias();
     consultarCategorias();
-    consultarDolar();
-    consultarEuro();
-    consultarReal();
-    ejecutarClima();
+    // consultarDolar();
+    // consultarEuro();
+    // consultarReal();
+    // ejecutarClima();
   }, []);
+
 
   const ejecutarClima = async () => {
     const ciudad = 'san miguel de tucuman';
@@ -117,6 +118,8 @@ function App() {
       console.log(error);
     }
   };
+
+  console.log([noticias])
 
   return (
     <Router>
