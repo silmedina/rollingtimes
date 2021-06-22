@@ -49,6 +49,10 @@ const ItemNoticia = (props) => {
     });
   };
 
+  const destacar = () => {
+    console.log(props)
+    
+  }
 
 
   return (
@@ -60,7 +64,7 @@ const ItemNoticia = (props) => {
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
         <Button className="">
-          <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faStar} onClick={() => destacar(props.noticia)}></FontAwesomeIcon>
         </Button>
       </td>
       <td>
