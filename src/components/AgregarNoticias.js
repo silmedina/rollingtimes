@@ -21,6 +21,8 @@ const Noticias = (props) => {
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
+  const destacar = false;
+  const publicar = false;
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
   
@@ -48,6 +50,8 @@ const Noticias = (props) => {
         imagen,
         categoria,
         autor,
+        destacar,
+        publicar,
       };
 
       try {
@@ -122,10 +126,19 @@ const Noticias = (props) => {
       }
     };
   }
+  useEffect(() => {
+    if (props.categorias.length !== 0) {
+      setCategoria(props.categorias[0].nombre);
+    } else {
+      setCategoria("General");
+    }
+  }, [props]);
 
   const retornarListadoNoticias = () => {
     props.history.push("/noticias");
   }
+
+  const formatYmd = (date) => date.toISOString().slice(0, 10);
 
   return (
     <Container>
