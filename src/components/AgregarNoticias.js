@@ -21,8 +21,8 @@ const Noticias = (props) => {
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
-  const destacar = false;
-  const publicar = false;
+  let destacar = false;
+  let publicar = false;
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
   
