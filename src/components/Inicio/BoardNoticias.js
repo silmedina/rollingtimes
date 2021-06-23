@@ -27,7 +27,8 @@ export const CardSmall = ({ noticia = {} }) => {
 
           <div id="CardNoticiaDescripcion">
             <p style={{color: 'rgba(0,0,0,0.85)'}}> {noticia.texto} </p>
-            <a href="."> Seguir leyendo.</a>
+            {/* <a href="."> </a> */}
+            <p>Seguir leyendo.</p>
           </div>
         </div>
 

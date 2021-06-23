@@ -33,11 +33,12 @@ function App() {
   useEffect(() => {
     consultarNoticias();
     consultarCategorias();
-    consultarDolar();
-    consultarEuro();
-    consultarReal();
-    ejecutarClima();
+    // consultarDolar();
+    // consultarEuro();
+    // consultarReal();
+    // ejecutarClima();
   }, []);
+
 
   const ejecutarClima = async () => {
     const ciudad = 'san miguel de tucuman';
