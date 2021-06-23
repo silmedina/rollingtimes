@@ -119,8 +119,6 @@ function App() {
     }
   };
 
-  console.log([noticias])
-
   return (
     <Router>
       <Navegacion

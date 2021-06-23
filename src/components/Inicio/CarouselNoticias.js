@@ -5,12 +5,13 @@ import "./carouselNoticias.css";
 
 const CarouselNoticias = (props) => {
   const [index, setIndex] = useState(0);
+  const [noticiasDestacadas, setNoticiasDestacadas] = useState([]);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-
   
+  //console.log(props.noticias[0].destacar)
 
   return (
     <div>
