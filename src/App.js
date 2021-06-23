@@ -18,6 +18,7 @@ import EditarNoticia from "./components/EditarNoticia";
 import AboutUs from "./components/AboutUs/AboutUs";
 import DetalleNoticia from "./components/DetalleNoticia";
 import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
+import BuscarNoticias from "./components/Noticia/BuscarNoticias";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
@@ -183,6 +184,9 @@ function App() {
             categorias={categorias}
             consultarNoticias={consultarNoticias}
           />
+        </Route>
+        <Route exact path="/buscar/:terminoBusqueda">
+          <BuscarNoticias />
         </Route>
         <Route path="*">
           <Error404 />

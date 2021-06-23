@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import LogoNav from "./img/LogoNav.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,27 +8,11 @@ import logoSm from "./img/logoSm.png";
 import Categoria from "./Categoria.js";
 import Cotizacion from "./Cotizacion";
 import Logo from "./Logo";
-import Menudespleg from "./Menudespleg";
 import Login from "../Login/Login";
 import { withRouter } from "react-router-dom";
 
 const Navegacion = (props) => {
-  //const [compactNav, setcompactNav] = useState(false);
-  // const cambiarNav = () => {
-  //   const nuevaClaseExpa = document.getElementById("navExpand");
-  //   if (window.screen.width > 992 && window.scrollY > 250) {
-  //     if (nuevaClaseExpa) {
-  //       nuevaClaseExpa.style.display = "none";
-  //       setcompactNav(true);
-  //     }
-  //   } else if (window.screen.width > 992 && window.scrollY <= 5) {
-  //     if (nuevaClaseExpa) {
-  //       nuevaClaseExpa.style.display = "inline";
-  //     }
-  //     setcompactNav(false);
-  //   }
-  // };
-  // window.addEventListener("scroll", cambiarNav);
+  const textInput = useRef("");
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -42,9 +26,12 @@ const Navegacion = (props) => {
 
   const home = () => {
     props.history.push("/");
-    //cambiarNav();
   };
 
+  function buscarNoticias() {
+    props.history.push(`/buscar/${textInput.current.value}`);
+  }
+  
   return (
     <Fragment>
       <Desktop>
@@ -55,28 +42,25 @@ const Navegacion = (props) => {
           <div className="bg3" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
-              {/* <Menudespleg categorias={props.categorias} /> */}
               <img
                 className="mr-3 logo-icono-mano"
                 src={logoSm}
                 alt="logo"
                 onClick={() => home()}
               />
+
+              {/* Buscador */}
               <Form inline className="m-0">
                 <div className="col-login my-0 w-75 mr-2">
-                  <input
-                    className="effect-textArea input-text  input-textArea border"
-                    type="text"
-                    placeholder=" Buscar"
-                    
-                  />
+                <input ref={textInput} placeholder="Buscar..." className="effect-textArea input-text  input-textArea border"/>
                   <span className="focus-border"><i></i></span>
                 </div>
-                <Button className="" variant="outline-dark" href="*">
+                <Button variant="outline-dark" onClick={buscarNoticias}>
                   <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </Button>
               </Form>
+              {/* FIN Buscador */}
+
               <Logo clima={props.clima} />
               <Nav className="ml-auto">
                 <Login />
@@ -107,15 +91,15 @@ const Navegacion = (props) => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <div className="text-center">
                 <Form className="d-flex pt-3 w-100 px-3">
-                <div className="col-login my-0 mr-2">
-                  <input
-                    className="effect-textArea input-text  input-textArea border"
-                    type="text"
-                    placeholder=" Buscar"
-                    
-                  />
-                  <span className="focus-border"><i></i></span>
-                </div>
+                  <div className="col-login my-0 mr-2">
+                    <input
+                      className="effect-textArea input-text  input-textArea border"
+                      type="text"
+                      placeholder=" Buscar"
+                      
+                    />
+                    <span className="focus-border"><i></i></span>
+                  </div>
                   <Button variant="outline-dark">
                     <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                   </Button>

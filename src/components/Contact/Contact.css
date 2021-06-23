@@ -39,7 +39,7 @@
 
 .effect-textArea {
   border: 0px solid #ccc;
-  padding: 7px 0px;
+  padding: 7px 5px;
   transition: 0.4s;
   background: transparent;
 }
