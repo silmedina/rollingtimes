@@ -21,6 +21,8 @@ const Noticias = (props) => {
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
+  let destacar = false;
+  let publicar = false;
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
   
@@ -48,6 +50,8 @@ const Noticias = (props) => {
         imagen,
         categoria,
         autor,
+        destacar,
+        publicar,
       };
 
       try {
@@ -126,6 +130,8 @@ const Noticias = (props) => {
   const retornarListadoNoticias = () => {
     props.history.push("/noticias");
   }
+
+  const formatYmd = (date) => date.toISOString().slice(0, 10);
 
   return (
     <Container>

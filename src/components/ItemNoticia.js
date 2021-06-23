@@ -49,6 +49,20 @@ const ItemNoticia = (props) => {
     });
   };
 
+  
+
+  const destacarNot = () => {
+    // let cambiarColor = document.getElementsByClassName("destacarBtn");
+    if(props.noticia.destacar === false){
+      props.noticia.destacar = true
+      // cambiarColor.style.color = "#ec4e20" ;
+      console.log(props);
+    }else{
+      props.noticia.destacar = false
+      // cambiarColor.style.color = "#ec4e20" ;
+
+    }
+  }
 
 
   return (
@@ -59,8 +73,8 @@ const ItemNoticia = (props) => {
         <Button className="mr-2">
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
-        <Button className="">
-          <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+        <Button className="destacarBtn">
+          <FontAwesomeIcon className="" icon={faStar} onClick={() => destacarNot(props.noticia)}></FontAwesomeIcon>
         </Button>
       </td>
       <td>

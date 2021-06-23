@@ -10,6 +10,8 @@ const CarouselNoticias = (props) => {
     setIndex(selectedIndex);
   };
 
+  
+
   return (
     <div>
       <Carousel activeIndex={index} onSelect={handleSelect} className="" >
