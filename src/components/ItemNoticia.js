@@ -11,7 +11,7 @@ import {useParams, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ItemNoticia = (props) => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const [destacar, setDestacar] = useState(false)
 
   
@@ -63,13 +63,17 @@ const ItemNoticia = (props) => {
 
   const destacarNot = async (id) => {
     // console.log(destacar);
+   const botonColor = document.getElementById('destacarBoton')
     console.log(props.noticia.destacar);
 
     try{
     if(destacar === false){
       setDestacar(true)
+      botonColor.style.color="red";
     }else{
       setDestacar(false)
+      botonColor.style.color=""
+
     }
     const modificarNoticia = {
       destacar: destacar,
@@ -170,9 +174,11 @@ console.log(modificarNoticia);
         <Button className="mr-2">
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
+           
         <Button className="destacarBtn">
           <FontAwesomeIcon
             className=""
+            id="destacarBoton"
             icon={faStar}
             onClick={() => destacarNot(props.noticia._id)}
           ></FontAwesomeIcon>
