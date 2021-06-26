@@ -28,6 +28,8 @@ function App() {
   const [noticias, setNoticias] = useState([]);
   const [cargandoNoticias, setCargandoNoticias] = useState(false);
   const [clima, setClima] = useState({})
+  const [destacar, setDestacar] = useState()
+
 
   useEffect(() => {
     consultarNoticias();
@@ -36,6 +38,7 @@ function App() {
     // consultarEuro();
     // consultarReal();
     // ejecutarClima();
+    setDestacar();
   }, []);
 
 
@@ -170,6 +173,7 @@ function App() {
           <ListarNoticias
             noticias={noticias}
             categorias={categorias}
+            destacar = {destacar}
             consultarNoticias={consultarNoticias}
             cargando={cargandoNoticias}
             cargandoCategorias={cargandoCategorias}

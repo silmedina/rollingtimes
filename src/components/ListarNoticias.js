@@ -7,6 +7,11 @@ import ItemNoticia from './ItemNoticia';
 import Spinner from "../components/common/Spinner";
 
 const ListarNoticias = (props) => {
+
+
+
+
+
     return (
         <Container>
             <h1 className='text-center my-2'>Lista de Noticias</h1>
@@ -42,7 +47,7 @@ const ListarNoticias = (props) => {
                 </thead>
                 <tbody>
                     {
-                        props.noticias.map((nota) => <ItemNoticia noticia={nota} key={nota._id} consultarNoticias={props.consultarNoticias}></ItemNoticia>)
+                        props.noticias.map((nota) => <ItemNoticia noticia={nota} destacar={props.destacar} key={nota._id} consultarNoticias={props.consultarNoticias}></ItemNoticia>)
                     }
                 </tbody>
             </Table>
