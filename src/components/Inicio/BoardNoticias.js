@@ -12,17 +12,20 @@ const BoardNoticias = (props) => {
   return (
     <Container className="mb-4 mt-4">
       <CardDeck>
-        {props.noticias.map((not) => (
+        {props.noticias.map((noticia) => (
           <Card>
-            <Card.Img variant="top" src={not.imagen} />
+            <Card.Img variant="top" src={noticia.imagen} />
             <Card.Body>
-              <Card.Title>{not.titulo}</Card.Title>
+              <Card.Title>{noticia.titulo}</Card.Title>
               <Card.Text>
-                {not.text}
+                {noticia.subtitulo}
+                <div id="notfoundlinks" className="mt-3">
+                  <Card.Link href={`/noticia/${noticia._id}`}>Ir a la noticia</Card.Link>
+                </div>
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <small className="text-muted">{formatearFecha(not.fecha)}</small>
+              <small className="text-muted">{formatearFecha(noticia.fecha)}</small>
             </Card.Footer>
           </Card>
         ))}
