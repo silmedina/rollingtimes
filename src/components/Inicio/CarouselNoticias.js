@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./carouselNoticias.css";
+import Moment from 'moment';
 
 const CarouselNoticias = (props) => {
   const [index, setIndex] = useState(0);
-  const [noticiasDestacadas, setNoticiasDestacadas] = useState([]);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
   
-  //console.log(props.noticias[0].destacar)
+  const formatearFecha = (fecha) => {
+    Moment.locale('es');
+    let fechaFormateada = Moment(fecha).format('LLLL');
+    return fechaFormateada;
+  }
 
   return (
     <div>
@@ -19,9 +23,8 @@ const CarouselNoticias = (props) => {
         {props.noticias.map((noticia, index) => {
           return (
             <Carousel.Item key={index} id="noticiaContainer">
-              {/* <div className="black-gradient-bg" /> */}
               <img
-                className="d-block w-100 imagen-noticia"
+                className="d-block w-100"
                 src={noticia.imagen}
                 alt={"slide" + index}
               />
@@ -31,8 +34,8 @@ const CarouselNoticias = (props) => {
                   style={{ cursor: "pointer" }}
                 >
                   <div id="noticiaInfo">
-                    <p>{noticia.categoria}</p>
-                    <p>{noticia.fecha}</p>
+                    <p>{noticia.categoria}&nbsp;</p>
+                    <p>&nbsp;{formatearFecha(noticia.fecha)}</p>
                   </div>
                   <h3>{noticia.titulo}</h3>
                   <small className="mt-5">{noticia.subtitulo}</small>

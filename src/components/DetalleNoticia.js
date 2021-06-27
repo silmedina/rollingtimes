@@ -55,15 +55,6 @@ const DetalleNoticia = ({ noticias = [] }) => {
         <Col md={9} className="flex-column">
           <Noticia noticia={noticia} />
         </Col>
-
-        <Col md={3} className="flex-column side-noticias">
-          {noticias
-            .reverse()
-            .slice(0, 3)
-            .map((noticia, idx) => (
-              <CardXSmall key={idx} noticia={noticia} />
-            ))}
-        </Col>
       </Row>
 
       <div className="pulicidad-section">

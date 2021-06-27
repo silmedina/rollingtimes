@@ -1,163 +1,36 @@
 import React from "react";
-import { Row } from "react-bootstrap";
-import Publicidad from "./Publicidad";
-import "./boardNoticias.css";
-import { Link } from "react-router-dom";
+import { Card, CardDeck, Container } from "react-bootstrap";
+import Moment from 'moment';
 
-export const CardSmall = ({ noticia = {} }) => {
-  return (
-    <Link to={'/noticia/' + noticia._id} style={{ textDecoration: "none" }}>
-      <div className="col-sm-12 col-md-8" id="CardNoticiaContainer">
-        <div className="col-sm-12 col-md-8" id="CardNoticiaInfo">
-          <p>{noticia.categoria}</p>
-          <img src={noticia.imagen} style={{ width: "100%" }} alt="noticia-imagen" />
-        </div>
-
-        <div className="col-sm-12 col-md-8" id="CardNoticiaBody">
-          <div id="CardNoticiaTitulos">
-            <div id="CardFechaContainer">
-              <h1>20</h1>
-              <div id="CardFechaContainer-MY">
-                <p>Abril</p>
-                <p>1990</p>
-              </div>
-            </div>
-            <h4 style={{color: 'rgba(0,0,0,0.85)'}}>{noticia.titulo}</h4>
-          </div>
-
-          <div id="CardNoticiaDescripcion">
-            <p style={{color: 'rgba(0,0,0,0.85)'}}> {noticia.texto} </p>
-            {/* <a href="."> </a> */}
-            <p>Seguir leyendo.</p>
-          </div>
-        </div>
-
-        <div id="CardNoticiaFooter">
-          <p>Hace 5 minutos</p>
-          <p>50 comentarios</p>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-export const CardBig = ({ noticia = {} }) => {
-  return (
-    <Link to={'/noticia/' + noticia._id} style={{ textDecoration: "none" }}>
-      <div id="CardNoticiaContainer" style={{ maxWidth: "900px" }}>
-        <div id="CardNoticiaBody">
-          <div id="CardNoticiaTitulos">
-            <h4
-              style={{ padding: 0, fontSize: "40px" }}
-              className="colorized-font"
-            >
-              {noticia.titulo}
-            </h4>
-          </div>
-
-          <div id="CardNoticiaDescripcion">
-            <p style={{color: 'rgba(0,0,0,0.85)'}}> {noticia.texto} </p>
-            <p>
-              <strong style={{color: 'rgba(0,0,0,0.85)'}}> {noticia.autor || "Por Benjamin D."} </strong>
-            </p>
-          </div>
-        </div>
-
-        <div id="CardNoticiaInfo" style={{ maxHeight: "900px" }}>
-          <p>
-            <strong>¡ÚLTIMO MOMENTO!</strong>
-          </p>
-          <img
-            src={noticia.imagen}
-            alt="noticia-imagen"
-            style={{ maxWidth: "100%", marginTop: "-15%" }}
-          />
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-export const CardXSmall = ({ noticia = {} }) => {
-  const primeraPalabra = noticia.titulo.split(" ")[0];
-  const restoTitulo = noticia.titulo.split(" ").slice(1).join(" ");
+const BoardNoticias = (props) => {
+  const formatearFecha = (fecha) => {
+    Moment.locale('es');
+    let fechaFormateada = Moment(fecha).format('LLLL');
+    return fechaFormateada;
+  }
 
   return (
-    <Link to={'/noticia/' + noticia._id} style={{ textDecoration: "none" }}>
-      <div
-        id="CardNoticiaContainer"
-        style={{
-          minHeight: "auto",
-          padding: 0,
-          backgroundColor: "transparent",
-        }}
-      >
-        <div id="CardNoticiaInfo" style={{ padding: 0, maxHeight: "auto" }}>
-          <p>{noticia.categoria}</p>
-          <img
-            src={noticia.imagen}
-            alt="noticia-imagen"
-            style={{ maxWidth: "100%" }}
-          />
-        </div>
-
-        <div id="CardNoticiaBody" style={{ padding: 0 }}>
-          <div
-            id="CardNoticiaTitulos"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              padding: "1rem 0",
-            }}
-          >
-            <h4 style={{ padding: "0" }}>
-              <strong className="colorized-font">{primeraPalabra}</strong>{" "}
-              {restoTitulo}
-            </h4>
-            <p style={{ padding: 0, margin: 0 }}>
-              <strong> {noticia.autor || "Por Benjamin D."} </strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-export const NoticiasSecundarias = ({ noticias }) => {
-  return (
-    <Row id="NoticiasSecundariasContainer">
-      {noticias.map((noticia, idx) => {
-        return <CardSmall key={idx} noticia={noticia} />;
-      })}
-    </Row>
-  );
-};
-
-export const NoticiasPricipales = ({ noticias = [] }) => {
-  return (
-    <Row id="NoticiasSecundariasContainer">
-      {noticias[0] && <CardBig noticia={noticias[0]} />}
-      <div>
-        {noticias[1] && <CardXSmall noticia={noticias[1]} />}
-        {noticias[2] && <CardXSmall noticia={noticias[2]} />}
-      </div>
-    </Row>
-  );
-};
-
-const BoardNoticias = ({ noticias = [] }) => {
-  return (
-    <div id="BoardNoticiasContainer">
-      <NoticiasPricipales noticias={noticias} />
-
-      <div className="seccion-publicidad d-none d-sm-none d-md-none d-lg-block">
-        <Publicidad publicidad={3} />
-      </div>
-
-      <NoticiasSecundarias noticias={noticias.reverse()} />
-    </div>
+    <Container className="mb-4 mt-4">
+      <CardDeck>
+        {props.noticias.map((noticia) => (
+          <Card>
+            <Card.Img variant="top" src={noticia.imagen} />
+            <Card.Body>
+              <Card.Title>{noticia.titulo}</Card.Title>
+              <Card.Text>
+                {noticia.subtitulo}
+                <div id="notfoundlinks" className="mt-3">
+                  <Card.Link href={`/noticia/${noticia._id}`}>Ir a la noticia</Card.Link>
+                </div>
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">{formatearFecha(noticia.fecha)}</small>
+            </Card.Footer>
+          </Card>
+        ))}
+      </CardDeck>
+    </Container>
   );
 };
 

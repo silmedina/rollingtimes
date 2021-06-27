@@ -4,7 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navegacion from "./components/common/Navegacion";
 import Footer from "./components/common/Footer";
-import Inicio from "./components/Inicio";
+import Inicio from "./components/Inicio/Inicio";
 import ListarCategorias from "./components/Categoria/ListarCategorias";
 import EditarCategoria from "./components/Categoria/EditarCategoria";
 import AgregarCategoria from "./components/Categoria/AgregarCategoria";
@@ -33,10 +33,10 @@ function App() {
   useEffect(() => {
     consultarNoticias();
     consultarCategorias();
-    // consultarDolar();
-    // consultarEuro();
-    // consultarReal();
-    // ejecutarClima();
+    consultarDolar();
+    consultarEuro();
+    consultarReal();
+    ejecutarClima();
   }, []);
 
 
@@ -129,10 +129,12 @@ function App() {
         categorias={categorias}
         clima={clima}
       />
-      <Switch>
+
+      <Switch>        
         <Route exact path="/">
-          <Inicio noticias={noticias} />
+          <Inicio noticias={noticias} cargando={cargandoNoticias} />
         </Route>
+
         <Route exact path="/categorias">
           <ListarCategorias
             categorias={categorias}
@@ -140,33 +142,43 @@ function App() {
             cargando={cargandoCategorias}
           />
         </Route>
+
         <Route exact path="/categorias/editar/:id">
           <EditarCategoria consultarCategorias={consultarCategorias} />
         </Route>
+
         <Route exact path="/noticia/:id">
           <DetalleNoticia noticias={noticias} />
         </Route>
+
         <Route exact path="/categorias/nuevo">
           <AgregarCategoria consultarCategorias={consultarCategorias}/>
         </Route>
+
         <Route exact path="/categorias/listado-noticias/:nombreCategoria">
           <CategoriaListadoNoticias/>
         </Route>
+
         <Route exact path="/suscripcion">
           <Subscription />
         </Route>
+
         <Route exact path="/contacto">
           <Contact />
         </Route>
+
         <Route exact path="/about">
           <AboutUs />
         </Route>
+
         <Route exact path="/administracion">
           <Administracion />
         </Route>
+
         <Route exact path="/detallenoticia">
           <DetalleNoticia />
         </Route>
+
         <Route exact path="/noticias">
           <ListarNoticias
             noticias={noticias}
@@ -176,22 +188,26 @@ function App() {
             cargandoCategorias={cargandoCategorias}
           />
         </Route>
+
         <Route exact path="/noticias/editar/:id">
-         
           <EditarNoticia  categorias={categorias} consultarNoticias={consultarNoticias} />
         </Route>
+
         <Route exact path="/noticias/agregar">
           <AgregarNoticias
             categorias={categorias}
             consultarNoticias={consultarNoticias}
           />
         </Route>
+
         <Route exact path="/buscar/:terminoBusqueda">
           <BuscarNoticias />
         </Route>
+
         <Route path="*">
           <Error404 />
         </Route>
+
       </Switch>
       <Footer />
     </Router>
