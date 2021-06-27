@@ -25,6 +25,8 @@ const Noticias = (props) => {
   let publicar = false;
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
+
+  let token = localStorage.getItem("jwt");
   
   useEffect(() => {
     setCategoria("seleccione una opcion");
@@ -39,7 +41,7 @@ const Noticias = (props) => {
       validarSubtitulo(subtitulo) &&
       validarCuerpo(texto) &&
       validarCategoria(categoria) &&
-      validarAutor(autor) 
+      validarAutor(autor)
     ) {
       setError(false);
 
@@ -53,42 +55,60 @@ const Noticias = (props) => {
         destacar,
         publicar,
       };
-
-      try {
-        const configuracion = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(noticia),
-        };
-        
-        const respuesta = await fetch("http://localhost:4001/api/noticia/", configuracion);
-        const informacion = await respuesta.json();
-
-        if (respuesta.status === 201) {
-          Swal.fire(
-            "Noticia creada",
-            "La noticia se agrego correctamente",
-            "success"
-          );
-          props.consultarNoticias();
-          props.history.push('/noticias');
-        } else if (respuesta.status === 500) {
+      if(token !== null){
+        try {
+          const configuracion = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(noticia),
+          };
+          console.log(token);
+  
+          const respuesta = await fetch("http://localhost:4001/api/noticia", configuracion);
+          const informacion = await respuesta.json();
+  
+          console.log(respuesta);
+          if (respuesta.status === 201) {
+            Swal.fire(
+              "Noticia creada",
+              "La noticia se agrego correctamente",
+              "success"
+            );
+            props.consultarNoticias();
+            props.history.push('/noticias');
+          } else if (respuesta.status === 500) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: informacion.mensaje,
+            });
+          }else{
+            if(respuesta.status === 403){
+              Swal.fire({
+                icon: "error",
+                title: "No tienes los permisos para realizar esta accion",
+                text: informacion.mensaje,
+              });
+            }
+          }
+        } catch (error) {
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: informacion.mensaje,
+            text: "Ha ocurrido un error al guardar la noticia",
           });
+          console.log(error);
         }
-      } catch (error) {
+      }else{
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Ha ocurrido un error al guardar la noticia",
+          title: "No tienes los permisos para realizar esta accion",
         });
-        console.log(error);
       }
+      
     } else {
       setError(true);
       if (validarTitulo(titulo) === false) {

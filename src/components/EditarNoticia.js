@@ -7,7 +7,7 @@ import {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarUrlImagen
+  validarUrlImagen,
 } from "./Validaciones";
 
 const EditarNoticia = (props) => {
@@ -24,7 +24,7 @@ const EditarNoticia = (props) => {
   const URLNOT = process.env.REACT_APP_URL_NOTICIA + "/" + id;
   const [categoria, setCategoria] = useState("");
   const [mensajeError, setMensajeError] = useState("");
-
+  let token = localStorage.getItem("jwt");
 
   useEffect(() => {
     getNoticia();
@@ -37,11 +37,13 @@ const EditarNoticia = (props) => {
   const getNoticia = async () => {
     try {
       const respuesta = await fetch(URLNOT);
+
       if (respuesta.status === 200) {
         const resp = await respuesta.json();
         setNoticia(resp);
       }
     } catch (error) {
+      console.log("error");
       console.log(error);
       Swal.fire({
         icon: "error",
@@ -50,7 +52,6 @@ const EditarNoticia = (props) => {
       });
     }
   };
- 
 
   const handleSudmit = async (e) => {
     e.preventDefault();
@@ -62,54 +63,69 @@ const EditarNoticia = (props) => {
       // validarUrlImagen(imagenRef.current.value) &&
       // validarNombre(autorRef.current.value)
     ) {
-      
       setError(false);
-      try {
-        const noticiaModificada = {
-          titulo: tituloRef.current.value,
-          subtitulo: subtituloRef.current.value,
-          texto: textoRef.current.value,
-          imagen: imagenRef.current.value,
-          categoria: categoria,
-          autor: autorRef.current.value,
-          destacar: false,
-          publicar: false,
-        };
-        const respuesta = await fetch(URLNOT, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(noticiaModificada),
-        });
-
-        if (respuesta.status === 200) {
-          Swal.fire(
-            "Nota Modificada",
-            "La nota se modifico con exito",
-            "success"
-          );
-          props.consultarNoticias();
-          props.history.push("/noticias");
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No se pudo modificar la nota.",
+      if(token !== null){
+        try {
+          const noticiaModificada = {
+            titulo: tituloRef.current.value,
+            subtitulo: subtituloRef.current.value,
+            texto: textoRef.current.value,
+            imagen: imagenRef.current.value,
+            categoria: categoria,
+            autor: autorRef.current.value,
+            destacar: false,
+            publicar: false,
+          };
+          console.log(token)
+          const respuesta = await fetch(URLNOT, {
+            method: "PUT",
+            headers: { 
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+             },
+            body: JSON.stringify(noticiaModificada),
           });
+          console.log(respuesta);
+  
+          if (respuesta.status === 200) {
+            Swal.fire(
+              "Nota Modificada",
+              "La nota se modifico con exito",
+              "success"
+            );
+            props.consultarNoticias();
+            props.history.push("/noticias");
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "No se pudo modificar la nota.",
+            });
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "No tienes los permisos para realizar esta accion",
+        });
       }
+      
     } else {
-
       if (validarTitulo(tituloRef.current.value) === false) {
         setError(true);
         console.log("pase por titulo");
-        setMensajeError("El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50");
+        setMensajeError(
+          "El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50"
+        );
       }
       if (validarSubtitulo(subtituloRef.current.value) === false) {
         setError(true);
         console.log("pase por subtitulo");
-        setMensajeError("El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90");
+        setMensajeError(
+          "El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90"
+        );
       }
       if (validarCuerpo(textoRef.current.value) === false) {
         console.log("pase por texto");
@@ -125,7 +141,7 @@ const EditarNoticia = (props) => {
 
   const retornarListadoNoticias = () => {
     props.history.push("/noticias");
-  }
+  };
 
   return (
     <Container>
@@ -159,7 +175,7 @@ const EditarNoticia = (props) => {
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
-            style={{ height: '200px' }}
+            style={{ height: "200px" }}
             ref={textoRef}
             defaultValue={noticia.texto}
           ></Form.Control>
@@ -206,9 +222,7 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        {error ? (
-          <Alert variant="danger">{mensajeError}</Alert>
-        ) : null}
+        {error ? <Alert variant="danger">{mensajeError}</Alert> : null}
 
         <div className="d-flex justify-content-lg-end">
           <button

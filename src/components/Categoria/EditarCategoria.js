@@ -12,6 +12,7 @@ const EditarCategoria = (props) => {
   const [mensajeError, setMensajeError] = useState("");
 
   const URL = process.env.REACT_APP_URL_CATEGORIA + "/" + id;
+  let token = localStorage.getItem("jwt");
 
   useEffect(() => {
     consultarCategoria();
@@ -49,7 +50,10 @@ const EditarCategoria = (props) => {
 
         const respuesta = await fetch(URL, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+          },
           body: JSON.stringify(categoriaModificada),
         });
 
@@ -84,9 +88,9 @@ const EditarCategoria = (props) => {
     }
   };
 
-  const retornarListadoCategorias = ()=>{
+  const retornarListadoCategorias = () => {
     props.history.push("/categorias");
-  }
+  };
 
   return (
     <Container>
@@ -104,19 +108,19 @@ const EditarCategoria = (props) => {
           ></Form.Control>
         </Form.Group>
         <div className="d-flex justify-content-lg-end">
-        <button
-          className="my-5 mr-2 background-black button-send-close"
-          type="button"
-          onClick={()=>retornarListadoCategorias()}
-        >
-          Cancelar
-        </button>
-        <button
-          className="my-5 background-orange button-send-close"
-          type="submit"
-        >
-          Guardar
-        </button>
+          <button
+            className="my-5 mr-2 background-black button-send-close"
+            type="button"
+            onClick={() => retornarListadoCategorias()}
+          >
+            Cancelar
+          </button>
+          <button
+            className="my-5 background-orange button-send-close"
+            type="submit"
+          >
+            Guardar
+          </button>
         </div>
         {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
       </Form>

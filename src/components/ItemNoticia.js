@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,11 +9,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const ItemNoticia = (props) => {
   let noticiaModificada = {
-    destacar:null
-  }
+    destacar: null,
+  };
+  let token = "";
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -33,6 +35,7 @@ const ItemNoticia = (props) => {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
+              "Authorization": token,
             },
           });
           console.log(respuesta);
@@ -61,7 +64,7 @@ const ItemNoticia = (props) => {
     // let cambiarColor = document.getElementsByClassName("destacarBtn");
 
     let destacado = props.noticia.destacar;
-    console.log("La noticia esta destacada?" + destacado)
+    console.log("La noticia esta destacada?" + destacado);
     Swal.fire({
       title: "Estas seguro de destacar la noticia?",
       icon: "warning",
@@ -74,7 +77,7 @@ const ItemNoticia = (props) => {
       if (result.isConfirmed) {
         try {
           const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
-        
+
           if (destacado === false) {
             noticiaModificada = {
               destacar: true,
@@ -87,22 +90,24 @@ const ItemNoticia = (props) => {
 
           const respuesta = await fetch(URLNOT, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": token,
+            },
             body: JSON.stringify(noticiaModificada),
           });
 
           console.log(respuesta);
 
           if (respuesta.status === 200) {
-            
-            if(destacado === false){
+            if (destacado === false) {
               Swal.fire({
                 icon: "success",
                 title: "La noticia se ha agregado a Destacados!",
                 text: "La noticia esta destacada actualmente",
               });
-              destacado =true;
-            }else{
+              destacado = true;
+            } else {
               Swal.fire({
                 icon: "success",
                 title: "La noticia se ha quitado de Destacados!",
@@ -110,7 +115,7 @@ const ItemNoticia = (props) => {
               });
               destacado = false;
             }
-            console.log("destacado: "+ destacado)
+            console.log("Nuevo estado del destacado: " + destacado);
           } else {
             console.log("error");
           }
