@@ -13,6 +13,7 @@ const Inicio = (props) => {
 
   useEffect(() => {
   buscarDestacadas();
+
   });
 
   // console.log(props.noticias);
@@ -32,7 +33,8 @@ const Inicio = (props) => {
   //     }
   //   }
   // }
-  console.log(props.noticias);
+  console.log(props.noticias.length);
+  const noticiasDes = [];
 
   const buscarDestacadas = async () => {
     const arrayNoticias = await props.noticias;
@@ -40,6 +42,7 @@ const Inicio = (props) => {
       const notasDestacadas = props.noticias[i].destacar;
       if (notasDestacadas === true) {
         const data = props.noticias[i];
+
         console.log(data);
         // setNoticiasDestacadas(data)
 
