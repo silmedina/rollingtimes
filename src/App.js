@@ -32,13 +32,13 @@ function App() {
 
 
   useEffect(() => {
-    consultarNoticias();
     consultarCategorias();
+    consultarNoticias();
     // consultarDolar();
     // consultarEuro();
     // consultarReal();
     // ejecutarClima();
-    setDestacar();
+    // setDestacar();
   }, []);
 
 
@@ -133,7 +133,7 @@ function App() {
       />
       <Switch>
         <Route exact path="/">
-            
+
           <Inicio noticias={noticias} />
         </Route>
         <Route exact path="/categorias">
@@ -150,10 +150,10 @@ function App() {
           <DetalleNoticia noticias={noticias} />
         </Route>
         <Route exact path="/categorias/nuevo">
-          <AgregarCategoria consultarCategorias={consultarCategorias}/>
+          <AgregarCategoria consultarCategorias={consultarCategorias} />
         </Route>
         <Route exact path="/categorias/listado-noticias/:nombreCategoria">
-          <CategoriaListadoNoticias/>
+          <CategoriaListadoNoticias />
         </Route>
         <Route exact path="/suscripcion">
           <Subscription />
@@ -174,15 +174,15 @@ function App() {
           <ListarNoticias
             noticias={noticias}
             categorias={categorias}
-            destacar = {destacar}
+            destacar={destacar}
             consultarNoticias={consultarNoticias}
             cargando={cargandoNoticias}
             cargandoCategorias={cargandoCategorias}
           />
         </Route>
         <Route exact path="/noticias/editar/:id">
-         
-          <EditarNoticia  categorias={categorias} consultarNoticias={consultarNoticias} />
+
+          <EditarNoticia categorias={categorias} consultarNoticias={consultarNoticias} />
         </Route>
         <Route exact path="/noticias/agregar">
           <AgregarNoticias
