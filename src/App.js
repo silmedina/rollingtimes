@@ -133,6 +133,7 @@ function App() {
       />
       <Switch>
         <Route exact path="/">
+            
           <Inicio noticias={noticias} />
         </Route>
         <Route exact path="/categorias">

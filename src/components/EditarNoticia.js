@@ -17,7 +17,7 @@ const EditarNoticia = (props) => {
   const textoRef = useRef("");
   const imagenRef = useRef("");
   const autorRef = useRef("");
-  const destacarRef = useRef()
+  const destacarRef = useRef(false)
   // let destacar = false;
   let publicar = false;
   const [noticia, setNoticia] = useState({});
