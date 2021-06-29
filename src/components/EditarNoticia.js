@@ -2,12 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { Button, Alert, Form, Container } from "react-bootstrap";
 import { useParams, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
+import Spinner from "../components/common/Spinner";
 import {
   validarNombre,
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarUrlImagen
+  validarUrlImagen,
 } from "./Validaciones";
 
 const EditarNoticia = (props) => {
@@ -24,7 +25,6 @@ const EditarNoticia = (props) => {
   const URLNOT = process.env.REACT_APP_URL_NOTICIA + "/" + id;
   const [categoria, setCategoria] = useState("");
   const [mensajeError, setMensajeError] = useState("");
-
 
   useEffect(() => {
     getNoticia();
@@ -50,7 +50,6 @@ const EditarNoticia = (props) => {
       });
     }
   };
- 
 
   const handleSudmit = async (e) => {
     e.preventDefault();
@@ -62,7 +61,6 @@ const EditarNoticia = (props) => {
       // validarUrlImagen(imagenRef.current.value) &&
       // validarNombre(autorRef.current.value)
     ) {
-      
       setError(false);
       try {
         const noticiaModificada = {
@@ -100,16 +98,19 @@ const EditarNoticia = (props) => {
         console.log(error);
       }
     } else {
-
       if (validarTitulo(tituloRef.current.value) === false) {
         setError(true);
         console.log("pase por titulo");
-        setMensajeError("El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50");
+        setMensajeError(
+          "El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50"
+        );
       }
       if (validarSubtitulo(subtituloRef.current.value) === false) {
         setError(true);
         console.log("pase por subtitulo");
-        setMensajeError("El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90");
+        setMensajeError(
+          "El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90"
+        );
       }
       if (validarCuerpo(textoRef.current.value) === false) {
         console.log("pase por texto");
@@ -125,13 +126,24 @@ const EditarNoticia = (props) => {
 
   const retornarListadoNoticias = () => {
     props.history.push("/noticias");
-  }
+  };
 
   return (
     <Container>
-      <Form className="my-5" onSubmit={handleSudmit}>
-        <h1 className="text-center my-2">Editar la nota</h1>
-        <hr className="mb-5" />
+      <h1 className="text-center my-5 categoria-titulo">Editar la noticia</h1>
+      {!props.categorias.length && !props.cargandoCategorias && (
+        <div className="container d-flex flex-column my-5 align-items-center">
+          <span>Sin categorias</span>
+        </div>
+      )}
+      {props.cargandoCategorias  && (
+        <div className="container d-flex flex-column my-5 align-items-center">
+          <Spinner></Spinner>
+          <span>Cargando...</span>
+        </div>
+      )}
+      {!props.cargandoCategorias && (
+        <Form className="my-5" onSubmit={handleSudmit}>
         <Form.Group>
           <Form.Label>Titulo de Noticia (titulo)</Form.Label>
           <Form.Control
@@ -159,7 +171,7 @@ const EditarNoticia = (props) => {
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
-            style={{ height: '200px' }}
+            style={{ height: "200px" }}
             ref={textoRef}
             defaultValue={noticia.texto}
           ></Form.Control>
@@ -206,9 +218,7 @@ const EditarNoticia = (props) => {
           ></Form.Control>
         </Form.Group>
 
-        {error ? (
-          <Alert variant="danger">{mensajeError}</Alert>
-        ) : null}
+        {error ? <Alert variant="danger">{mensajeError}</Alert> : null}
 
         <div className="d-flex justify-content-lg-end">
           <button
@@ -226,6 +236,9 @@ const EditarNoticia = (props) => {
           </button>
         </div>
       </Form>
+      )}
+
+      
     </Container>
   );
 };

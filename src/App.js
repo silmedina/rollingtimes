@@ -190,7 +190,11 @@ function App() {
         </Route>
 
         <Route exact path="/noticias/editar/:id">
-          <EditarNoticia  categorias={categorias} consultarNoticias={consultarNoticias} />
+          <EditarNoticia 
+            categorias={categorias} 
+            cargandoCategorias={cargandoCategorias} 
+            consultarNoticias={consultarNoticias} 
+          />
         </Route>
 
         <Route exact path="/noticias/agregar">
