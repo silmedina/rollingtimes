@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, Alert, Form, Container } from "react-bootstrap";
+import { Alert, Form, Container } from "react-bootstrap";
 import { useParams, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 import Spinner from "../components/common/Spinner";
 import {
-  validarNombre,
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarUrlImagen,
+  validarCategoria,
+  validarAutor
 } from "./Validaciones";
 
 const EditarNoticia = (props) => {
@@ -21,6 +21,7 @@ const EditarNoticia = (props) => {
   let destacar = false;
   let publicar = false;
   const [noticia, setNoticia] = useState({});
+  const [cargandoNoticia, setCargandoNoticia] = useState(false);
   const [error, setError] = useState(false);
   const URLNOT = process.env.REACT_APP_URL_NOTICIA + "/" + id;
   const [categoria, setCategoria] = useState("");
@@ -36,12 +37,16 @@ const EditarNoticia = (props) => {
 
   const getNoticia = async () => {
     try {
+      setCargandoNoticia(true);
       const respuesta = await fetch(URLNOT);
       if (respuesta.status === 200) {
         const resp = await respuesta.json();
         setNoticia(resp);
+        setCategoria(resp.categoria);
       }
+      setCargandoNoticia(false);
     } catch (error) {
+      setCargandoNoticia(false);
       console.log(error);
       Swal.fire({
         icon: "error",
@@ -57,9 +62,9 @@ const EditarNoticia = (props) => {
     if (
       validarTitulo(tituloRef.current.value) &&
       validarSubtitulo(subtituloRef.current.value) &&
-      validarCuerpo(textoRef.current.value)
-      // validarUrlImagen(imagenRef.current.value) &&
-      // validarNombre(autorRef.current.value)
+      validarCuerpo(textoRef.current.value) &&
+      validarCategoria(categoria) &&
+      validarAutor(autorRef.current.value) 
     ) {
       setError(false);
       try {
@@ -73,6 +78,7 @@ const EditarNoticia = (props) => {
           destacar: false,
           publicar: false,
         };
+
         const respuesta = await fetch(URLNOT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -81,8 +87,8 @@ const EditarNoticia = (props) => {
 
         if (respuesta.status === 200) {
           Swal.fire(
-            "Nota Modificada",
-            "La nota se modifico con exito",
+            "Noticia Modificada",
+            "La noticia se modifico con exito",
             "success"
           );
           props.consultarNoticias();
@@ -91,35 +97,43 @@ const EditarNoticia = (props) => {
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: "No se pudo modificar la nota.",
+            text: "No se pudo modificar la noticia.",
           });
         }
       } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Ha ocurrido un error al guardar la noticia",
+        });
         console.log(error);
       }
     } else {
+      setError(true);
       if (validarTitulo(tituloRef.current.value) === false) {
-        setError(true);
-        console.log("pase por titulo");
         setMensajeError(
           "El titulo no es valido. El titulo debe tener un minimo de 7 caracteres y un maximo de 50"
         );
+        return;
       }
       if (validarSubtitulo(subtituloRef.current.value) === false) {
-        setError(true);
-        console.log("pase por subtitulo");
-        setMensajeError(
-          "El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90"
-        );
+        setMensajeError("El subtitulo no es valido. Subtitulo debe tener un minimo de 10 caracteres y un maximo de 90");
+        return;
       }
+
       if (validarCuerpo(textoRef.current.value) === false) {
-        console.log("pase por texto");
-        setError(true);
         setMensajeError("El texto no valido");
+        return;
       }
-      if (categoria === "") {
-        setError(true);
+
+      if (validarCategoria(categoria) === false) {
         setMensajeError("Debe seleccionar una categoria");
+        return;
+      }
+
+      if (validarAutor(autorRef.current.value) === false) {
+        setMensajeError("Debe ingresar un autor");
+        return;
       }
     }
   };
@@ -128,24 +142,27 @@ const EditarNoticia = (props) => {
     props.history.push("/noticias");
   };
 
+  const cargandoCategorias = ()=>{
+    return props.cargandoCategorias || cargandoNoticia;
+  }
+
+  const cargandoNoticiaSpinner = ()=>{
+    return !props.cargandoCategorias && !cargandoNoticia;
+  }
+
   return (
     <Container>
       <h1 className="text-center my-5 categoria-titulo">Editar la noticia</h1>
-      {!props.categorias.length && !props.cargandoCategorias && (
-        <div className="container d-flex flex-column my-5 align-items-center">
-          <span>Sin categorias</span>
-        </div>
-      )}
-      {props.cargandoCategorias  && (
+      {cargandoCategorias() && (
         <div className="container d-flex flex-column my-5 align-items-center">
           <Spinner></Spinner>
           <span>Cargando...</span>
         </div>
       )}
-      {!props.cargandoCategorias && (
+      {cargandoNoticiaSpinner() && (
         <Form className="my-5" onSubmit={handleSudmit}>
         <Form.Group>
-          <Form.Label>Titulo de Noticia (titulo)</Form.Label>
+          <Form.Label>Titulo de Noticia *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese un titulo"
@@ -156,7 +173,7 @@ const EditarNoticia = (props) => {
 
         {/* subtitulo */}
         <Form.Group>
-          <Form.Label>Descripcion breve (copete o subtitulo)</Form.Label>
+          <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ingrese una descripcion breve"
@@ -167,7 +184,7 @@ const EditarNoticia = (props) => {
 
         {/* texto */}
         <Form.Group>
-          <Form.Label>Texto de la noticia</Form.Label>
+          <Form.Label>Texto de la noticia *</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Ingrese una descripcion detallada"
@@ -190,15 +207,12 @@ const EditarNoticia = (props) => {
 
         {/* categoria */}
         <Form.Group>
-          <Form.Label>Categoria</Form.Label>
+          <Form.Label>Categoria *</Form.Label>
           <Form.Control
             as="select"
-            name=""
-            id=""
             onChange={(e) => setCategoria(e.target.value)}
-            value={noticia.categoria}
+            value={categoria}
           >
-            <option value={noticia.categoria}>{noticia.categoria}</option>
             {props.categorias.map((cat, idx) => (
               <option key={idx} value={cat.nombre}>
                 {cat.nombre}
@@ -209,7 +223,7 @@ const EditarNoticia = (props) => {
 
         {/* autor */}
         <Form.Group>
-          <Form.Label>Autor</Form.Label>
+          <Form.Label>Autor *</Form.Label>
           <Form.Control
             type="text"
             placeholder="Nombre del autor"

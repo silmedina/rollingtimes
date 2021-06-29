@@ -193,8 +193,6 @@ const Noticias = (props) => {
           <Form.Label>Categoria *</Form.Label>
           <Form.Control
             as="select"
-            name=""
-            id=""
             onChange={(e) => setCategoria(e.target.value)}
             value={categoria}
           >
