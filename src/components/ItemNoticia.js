@@ -9,10 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaStar, FaRegStar } from 'react-icons/fa';
+
 
 const ItemNoticia = (props) => {
   const [destacar, setDestacar] = useState(false)
-
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -58,16 +59,14 @@ const ItemNoticia = (props) => {
 
   const destacarNot = async (id) => {
     const botonColor = document.getElementById('destacarBoton')
-    console.log(props.noticia.destacar);
+    console.log(botonColor);
 
     try {
       if (destacar === false) {
         setDestacar(true)
-        botonColor.style.backgroundColor = "red";
+        
       } else {
         setDestacar(false)
-        botonColor.style.color = ""
-
       }
       const modificarNoticia = {
         destacar: destacar,
@@ -95,10 +94,9 @@ const ItemNoticia = (props) => {
         <Button className="mr-2">
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
-
-        <Button variant="outline-primary" className="destacarBtn">
+        <Button variant="secondary" className="destacarBtn">
           <FontAwesomeIcon
-            className=""
+            className="color2"
             id="destacarBoton"
             icon={faStar}
             onClick={() => destacarNot(props.noticia._id)}
@@ -111,7 +109,7 @@ const ItemNoticia = (props) => {
             className="btn btn-warning text-light mr-2"
             to={`/noticias/editar/${props.noticia._id}`}
           >
-            <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
+            <FontAwesomeIcon className="" icon={faPencilAlt}></FontAwesomeIcon>
           </Link>
           <Button
             variant="danger"
