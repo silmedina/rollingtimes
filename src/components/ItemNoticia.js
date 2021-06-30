@@ -9,11 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaStar, FaRegStar } from 'react-icons/fa';
+
 
 const ItemNoticia = (props) => {
-  let noticiaModificada = {
-    destacar:null
-  }
+  const [destacar, setDestacar] = useState(false)
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -58,73 +58,33 @@ const ItemNoticia = (props) => {
   };
 
   const destacarNot = async (id) => {
-    // let cambiarColor = document.getElementsByClassName("destacarBtn");
+    const botonColor = document.getElementById('destacarBoton')
+    console.log(botonColor);
 
-    let destacado = props.noticia.destacar;
-    console.log("La noticia esta destacada?" + destacado)
-    Swal.fire({
-      title: "Estas seguro de destacar la noticia?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Destacar",
-      cancelButtonText: "Cancelar",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
+    try {
+      if (destacar === false) {
+        setDestacar(true)
         
-          if (destacado === false) {
-            noticiaModificada = {
-              destacar: true,
-            };
-          } else {
-            noticiaModificada = {
-              destacar: false,
-            };
-          }
-
-          const respuesta = await fetch(URLNOT, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(noticiaModificada),
-          });
-
-          console.log(respuesta);
-
-          if (respuesta.status === 200) {
-            
-            if(destacado === false){
-              Swal.fire({
-                icon: "success",
-                title: "La noticia se ha agregado a Destacados!",
-                text: "La noticia esta destacada actualmente",
-              });
-              destacado =true;
-            }else{
-              Swal.fire({
-                icon: "success",
-                title: "La noticia se ha quitado de Destacados!",
-                text: "La noticia esta destacada actualmente",
-              });
-              destacado = false;
-            }
-            console.log("destacado: "+ destacado)
-          } else {
-            console.log("error");
-          }
-        } catch (error) {
-          console.log(error);
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Ha ocurrido un error al eliminar la noticia",
-          });
-        }
+      } else {
+        setDestacar(false)
       }
-    });
-  };
+      const modificarNoticia = {
+        destacar: destacar,
+      }
+      console.log(modificarNoticia);
+
+      const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
+      const respuesta = await fetch(URLNOT, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(modificarNoticia),
+      });
+      console.log(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 
   return (
     <tr>
@@ -134,9 +94,10 @@ const ItemNoticia = (props) => {
         <Button className="mr-2">
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Button>
-        <Button className="destacarBtn">
+        <Button variant="secondary" className="destacarBtn">
           <FontAwesomeIcon
-            className=""
+            className="color2"
+            id="destacarBoton"
             icon={faStar}
             onClick={() => destacarNot(props.noticia._id)}
           ></FontAwesomeIcon>
@@ -148,7 +109,7 @@ const ItemNoticia = (props) => {
             className="btn btn-warning text-light mr-2"
             to={`/noticias/editar/${props.noticia._id}`}
           >
-            <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
+            <FontAwesomeIcon className="" icon={faPencilAlt}></FontAwesomeIcon>
           </Link>
           <Button
             variant="danger"

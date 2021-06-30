@@ -29,10 +29,12 @@ function App() {
   const [noticias, setNoticias] = useState([]);
   const [cargandoNoticias, setCargandoNoticias] = useState(false);
   const [clima, setClima] = useState({})
+  const [destacar, setDestacar] = useState()
+
 
   useEffect(() => {
-    consultarNoticias();
     consultarCategorias();
+    consultarNoticias();
     consultarDolar();
     consultarEuro();
     consultarReal();
@@ -119,6 +121,8 @@ function App() {
       console.log(error);
     }
   };
+  
+
 
   return (
     <Router>
@@ -152,11 +156,11 @@ function App() {
         </Route>
 
         <Route exact path="/categorias/nuevo">
-          <AgregarCategoria consultarCategorias={consultarCategorias}/>
+          <AgregarCategoria consultarCategorias={consultarCategorias} />
         </Route>
 
         <Route exact path="/categorias/listado-noticias/:nombreCategoria">
-          <CategoriaListadoNoticias/>
+          <CategoriaListadoNoticias />
         </Route>
 
         <Route exact path="/suscripcion">
@@ -183,6 +187,7 @@ function App() {
           <ListarNoticias
             noticias={noticias}
             categorias={categorias}
+            destacar={destacar}
             consultarNoticias={consultarNoticias}
             cargando={cargandoNoticias}
             cargandoCategorias={cargandoCategorias}
