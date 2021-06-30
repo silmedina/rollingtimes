@@ -43,8 +43,7 @@ const CategoriaListadoNoticias = () => {
     return fechaFormateada;
   }
 
-  const retornarListadoCategorias = ()=>{
-    
+  const retornarListadoCategorias = () => {
     history.push("/categorias");
   }
 

@@ -7,40 +7,40 @@ import ItemNoticia from './ItemNoticia';
 import Spinner from "../components/common/Spinner";
 
 const ListarNoticias = (props) => {
-
-
-
-
+    const redirigirAgregarNoticia = () => {
+        props.history.push("/noticias/agregar");
+    };
 
     return (
         <Container>
-            <h1 className='text-center my-2'>Lista de Noticias</h1>
-            <Link className='btn mx-2 my-1 background-orange text-light' to={`/noticias/agregar`}><FontAwesomeIcon icon={faPlus} className="pr-1"></FontAwesomeIcon>Agregar noticias</Link>
-            <hr />
+            <h1 className='text-center my-5 categoria-titulo'>Lista de Noticias</h1>
+            <button
+                className="mx-2 my-1 background-orange button-send-close"
+                type="button"
+                onClick={() => redirigirAgregarNoticia()}
+            >
+                <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar noticia
+            </button>
+            
             {!props.noticias.length && !props.cargando && (
-                <div  className='container d-flex flex-column my-5 align-items-center'>
+                <div className='container d-flex flex-column my-5 align-items-center'>
                 <span>Sin noticias</span>
             </div>
             )}
+
             {props.cargando && (
                 <div  className='container d-flex flex-column my-5 align-items-center'>
                 <Spinner></Spinner>
                 <span>Cargando...</span>
                 </div>
             )}
+
             {!props.cargando && props.noticias.length !== 0 && (
-                <Table striped bordered hover>
+                <Table striped bordered hover  className="my-5">
                 <thead>
                     <tr>
                         <th className="col-sm-9 col-md-8">Titulo</th>
-                        <th className="col-sm-1 col-md-2">Categorias
-                            <select name="categorias" id="categoriasSelect">
-                                {
-                                props.categorias.map((cat, idx) => 
-                                    (<option key={idx} value={cat.nombre}>{cat.nombre}</option>))
-                                }
-                            </select>
-                        </th>
+                        <th className="col-sm-1 col-md-2">Categorias</th>
                         <th className="col-sm-1 col-md-1">Publicar / Destacar</th>
                         <th className="col-sm-1 col-md-1">Editar / Borrar</th>
                     </tr>

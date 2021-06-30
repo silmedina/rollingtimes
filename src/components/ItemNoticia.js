@@ -7,13 +7,14 @@ import {
   faStar,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
 
 const ItemNoticia = (props) => {
-  const [destacar, setDestacar] = useState(false)
+  const [destacar, setDestacar] = useState(false);
+  let history = useHistory();
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -84,16 +85,18 @@ const ItemNoticia = (props) => {
       console.log(error);
     }
   }
-  
 
   return (
     <tr>
       <td>{props.noticia.titulo}</td>
       <td>{props.noticia.categoria}</td>
       <td className="d-flex justify-content-center">
-        <Button className="mr-2">
+        <Link
+          className="btn mr-1 text-light btn-editar-categoria"
+          to={`/noticia/${props.noticia._id}`}
+        >
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-        </Button>
+        </Link>
         <Button variant="secondary" className="destacarBtn">
           <FontAwesomeIcon
             className="color2"
