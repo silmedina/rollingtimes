@@ -1,20 +1,13 @@
 import React, {useState} from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faPencilAlt,
-  faStar,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link, useHistory } from "react-router-dom";
+import { faEye, faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FaStar, FaRegStar } from 'react-icons/fa';
-
 
 const ItemNoticia = (props) => {
   const [destacar, setDestacar] = useState(false);
-  let history = useHistory();
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -97,11 +90,11 @@ const ItemNoticia = (props) => {
         >
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
         </Link>
-        <Button variant="secondary" className="destacarBtn">
+        <Button variant="link" className="destacarBtn">
           <FontAwesomeIcon
             className="color2"
             id="destacarBoton"
-            icon={faStar}
+            icon={props.noticia.destacar ? faStar : farStar}
             onClick={() => destacarNot(props.noticia._id)}
           ></FontAwesomeIcon>
         </Button>

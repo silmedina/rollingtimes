@@ -2,13 +2,15 @@ import React from 'react';
 import { Container, Table } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ItemNoticia from './ItemNoticia';
 import Spinner from "../components/common/Spinner";
 
 const ListarNoticias = (props) => {
+    let history = useHistory();
+
     const redirigirAgregarNoticia = () => {
-        props.history.push("/noticias/agregar");
+        history.push("/noticias/agregar");
     };
 
     return (
