@@ -31,7 +31,7 @@ const ItemNoticia = (props) => {
           });
           if (respuesta.status === 200) {
             Swal.fire(
-              "noticia Eliminada",
+              "Noticia eliminada",
               "La noticia se elimino correctamente",
               "success"
             );

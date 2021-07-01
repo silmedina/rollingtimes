@@ -18,7 +18,6 @@ const EditarNoticia = (props) => {
   const textoRef = useRef("");
   const imagenRef = useRef("");
   const autorRef = useRef("");
-  const destacarRef = useRef(false)
   const [noticia, setNoticia] = useState({});
   const [cargandoNoticia, setCargandoNoticia] = useState(false);
   const [error, setError] = useState(false);
@@ -74,7 +73,6 @@ const EditarNoticia = (props) => {
           imagen: imagenRef.current.value,
           categoria: categoria,
           autor: autorRef.current.value,
-          destacar: destacarRef,
         };
 
         const respuesta = await fetch(URLNOT, {
