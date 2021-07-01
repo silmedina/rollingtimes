@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useHistory } from 'react-router-dom';
 import ItemNoticia from './ItemNoticia';
-import Spinner from "../components/common/Spinner";
+import Spinner from "../Common/Spinner";
 
 const ListarNoticias = (props) => {
     let history = useHistory();
@@ -43,13 +43,13 @@ const ListarNoticias = (props) => {
                     <tr>
                         <th className="col-sm-9 col-md-8">Titulo</th>
                         <th className="col-sm-1 col-md-2">Categorias</th>
-                        <th className="col-sm-1 col-md-1">Publicar / Destacar</th>
+                        <th className="col-sm-1 col-md-1">Detalle / Destacar</th>
                         <th className="col-sm-1 col-md-1">Editar / Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        props.noticias.map((nota) => <ItemNoticia noticia={nota} destacar={props.destacar} key={nota._id} consultarNoticias={props.consultarNoticias}></ItemNoticia>)
+                        props.noticias.map((nota) => <ItemNoticia noticia={nota} key={nota._id} consultarNoticias={props.consultarNoticias}></ItemNoticia>)
                     }
                 </tbody>
             </Table>

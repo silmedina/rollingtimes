@@ -29,7 +29,6 @@ const ItemNoticia = (props) => {
               "Content-Type": "application/json",
             },
           });
-          console.log(respuesta);
           if (respuesta.status === 200) {
             Swal.fire(
               "noticia Eliminada",
@@ -52,31 +51,49 @@ const ItemNoticia = (props) => {
   };
 
   const destacarNot = async (id) => {
-    const botonColor = document.getElementById('destacarBoton')
-    console.log(botonColor);
+    Swal.fire({
+      title: "Confirmacion",
+      text: !props.noticia.destacar?"Estas seguro de destacar esta noticia?":"Quitar de destacados?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: !props.noticia.destacar?"Destacar":"Quitar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const modificarNoticia = {
+            destacar: !props.noticia.destacar,
+          }
 
-    try {
-      if (destacar === false) {
-        setDestacar(true)
-        
-      } else {
-        setDestacar(false)
-      }
-      const modificarNoticia = {
-        destacar: destacar,
-      }
-      console.log(modificarNoticia);
+          const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/destacar/${id}`;
+          const respuesta = await fetch(URLNOT, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(modificarNoticia),
+          });
+          if (respuesta.status === 200) {
+            Swal.fire(
+              "La noticia se edito correctamente",
+              !props.noticia.destacar?"Noticia Destacada":"Se elminino de destacados",
+              "success"
+            );
 
-      const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
-      const respuesta = await fetch(URLNOT, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(modificarNoticia),
-      });
-      console.log(respuesta);
-    } catch (error) {
-      console.log(error);
-    }
+            props.consultarNoticias();
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ha ocurrido un error al editar la noticia",
+          });
+        }
+      }
+    });
   }
 
   return (

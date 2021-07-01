@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import Moment from "moment";
 import "moment/locale/es";
-import Spinner from "../common/Spinner";
+import Spinner from "../Common/Spinner";
 
 const BuscarNoticias = () => {
   const terminoBusqueda = useParams().terminoBusqueda;

@@ -2,7 +2,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Container, ListGroup } from "react-bootstrap";
 import ItemCategoria from "./ItemCategoria";
-import Spinner from "../common/Spinner";
+import Spinner from "../Common/Spinner";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

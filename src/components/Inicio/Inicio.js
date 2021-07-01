@@ -3,7 +3,7 @@ import CarouselNoticias from "./CarouselNoticias";
 import BoardNoticias from "./BoardNoticias";
 import Publicidad from "./Publicidad";
 import "./inicio.css";
-import Spinner from "../common/Spinner";
+import Spinner from "../Common/Spinner";
 
 const Inicio = (props) => {
   const [noticiasDestacadas, setNoticiasDestacadas] = useState([]);

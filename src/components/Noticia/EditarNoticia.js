@@ -2,14 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { Alert, Form, Container } from "react-bootstrap";
 import { useParams, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
-import Spinner from "../components/common/Spinner";
+import Spinner from "../Common/Spinner";
 import {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
   validarCategoria,
   validarAutor
-} from "./Validaciones";
+} from "../Validaciones";
 
 const EditarNoticia = (props) => {
   const { id } = useParams();
@@ -19,8 +19,6 @@ const EditarNoticia = (props) => {
   const imagenRef = useRef("");
   const autorRef = useRef("");
   const destacarRef = useRef(false)
-  // let destacar = false;
-  let publicar = false;
   const [noticia, setNoticia] = useState({});
   const [cargandoNoticia, setCargandoNoticia] = useState(false);
   const [error, setError] = useState(false);
@@ -77,7 +75,6 @@ const EditarNoticia = (props) => {
           categoria: categoria,
           autor: autorRef.current.value,
           destacar: destacarRef,
-          publicar: false,
         };
 
         const respuesta = await fetch(URLNOT, {

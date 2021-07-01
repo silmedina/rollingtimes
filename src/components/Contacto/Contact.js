@@ -9,7 +9,7 @@ import {
 import Iframe from "react-iframe";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
-import LogoSm from "../common/img/logoSm.png";
+import LogoSm from "../Common/img/logoSm.png";
 import { Link } from "react-router-dom";
 import { FaPhone, FaQuestionCircle } from "react-icons/fa"
 import { MdEmail, MdLocationOn } from "react-icons/md"
