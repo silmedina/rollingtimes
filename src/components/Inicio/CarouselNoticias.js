@@ -48,5 +48,4 @@ const CarouselNoticias = (props) => {
     </div>
   );
 };
-
 export default CarouselNoticias;

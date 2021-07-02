@@ -14,9 +14,13 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <header className="bg5 d-flex row m-0 p-0">
-        <div className="col-sm-12 col-md-12 d-flex row justify-content-center p-0 m-0">
-          <div>
+      
+      <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
+        <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
+          <p>
+            <Link to="/" ><img src={logoSm} alt="logo" className="w-75 p-0" /></Link>
+            <br />
+            <div className="mt-2">
             <Link to="/"
               className="mx-2 my-3 color1"
               style={{ fontSize: "30px" }}
@@ -45,12 +49,16 @@ const Footer = () => {
               <FontAwesomeIcon icon={faYoutubeSquare} />
             </Link>
           </div>
+          </p>
+          
         </div>
-      </header>
-      <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
-        <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
-          <Link to="/" ><img src={logoSm} alt="logo" className="w-75 p-0" /></Link>
+        
+
+        {/* <header className="bg5 d-flex row m-0 p-0">
+        <div className="col-sm-12 col-md-12 d-flex row justify-content-center p-0 m-0">
+          
         </div>
+      </header> */}
         <div className="col-sm-12 col-md-6 col-lg-4 p-0 m-0">
           <Link className="mx-1 outline-dark" to={"/about"}>
             <h4 className="m-0 color2">Sobre Nosotros</h4>

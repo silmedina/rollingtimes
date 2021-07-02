@@ -2,12 +2,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Container, ListGroup } from "react-bootstrap";
 import ItemCategoria from "./ItemCategoria";
-import Spinner from "../common/Spinner";
+import Spinner from "../Common/Spinner";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListarCategorias = (props) => {
-  const redirigirAgregarNoticia = () => {
+  const redirigirAgregarCategoria = () => {
     props.history.push("/categorias/nuevo");
   };
 
@@ -17,21 +17,24 @@ const ListarCategorias = (props) => {
       <button
         className="mx-2 my-1 background-orange button-send-close"
         type="button"
-        onClick={() => redirigirAgregarNoticia()}
+        onClick={() => redirigirAgregarCategoria()}
       >
         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar categoria
       </button>
+
       {!props.categorias.length && !props.cargando && (
-        <div  className='container d-flex flex-column my-5 align-items-center'>
+        <div className='container d-flex flex-column my-5 align-items-center'>
         <span>Sin categorias</span>
       </div>
       )}
+
       {props.cargando && (
         <div  className='container d-flex flex-column my-5 align-items-center'>
           <Spinner></Spinner>
           <span>Cargando...</span>
         </div>
       )}
+
       {!props.cargando && (
         <ListGroup className="my-5">
           {props.categorias.map((cat) => (

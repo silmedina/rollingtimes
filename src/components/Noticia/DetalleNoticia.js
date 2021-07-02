@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import { CardXSmall } from "./Inicio/BoardNoticias";
-import Publicidad from "./Inicio/Publicidad";
-import "./Noticia/detalleNoticia.css";
+import { CardXSmall } from "../Inicio/BoardNoticias";
+import Publicidad from "../Inicio/Publicidad";
+import "./detalleNoticia.css";
 import { useParams } from "react-router-dom";
 
 export const Noticia = ({ noticia = {} }) => {

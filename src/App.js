@@ -1,53 +1,52 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navegacion from "./components/common/Navegacion";
-import Footer from "./components/common/Footer";
+import Navegacion from "./components/Common/Navegacion";
+import Footer from "./components/Common/Footer";
 import Inicio from "./components/Inicio/Inicio";
 import ListarCategorias from "./components/Categoria/ListarCategorias";
 import EditarCategoria from "./components/Categoria/EditarCategoria";
 import AgregarCategoria from "./components/Categoria/AgregarCategoria";
-import Subscription from "./components/Subscription/Subscription";
+import Subscription from "./components/Suscripcion/Subscription";
 import Error404 from "./components/Error404";
-import Contact from "./components/Contact/Contact";
+import Contact from "./components/Contacto/Contact";
 import Administracion from "./components/Administracion.js";
-import AgregarNoticias from "./components/AgregarNoticias";
-import ListarNoticias from "./components/ListarNoticias";
-import EditarNoticia from "./components/EditarNoticia";
-import AboutUs from "./components/AboutUs/AboutUs";
-import DetalleNoticia from "./components/DetalleNoticia";
+import AgregarNoticias from "./components/Noticia/AgregarNoticias";
+import ListarNoticias from "./components/Noticia/ListarNoticias";
+import EditarNoticia from "./components/Noticia/EditarNoticia";
+import AboutUs from "./components/AcercaDe/AboutUs";
+import DetalleNoticia from "./components/Noticia/DetalleNoticia";
 import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 import BuscarNoticias from "./components/Noticia/BuscarNoticias";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [categorias, setCategorias] = useState([]);
   const [cargandoCategorias, setCargandoCategorias] = useState(false);
+  const [noticias, setNoticias] = useState([]);
+  const [cargandoNoticias, setCargandoNoticias] = useState(false);
   const [dolar, setDolar] = useState({});
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
-  const [noticias, setNoticias] = useState([]);
-  const [cargandoNoticias, setCargandoNoticias] = useState(false);
-  const [clima, setClima] = useState({})
+  const [clima, setClima] = useState({});
 
   useEffect(() => {
-    consultarNoticias();
     consultarCategorias();
+    consultarNoticias();
     consultarDolar();
     consultarEuro();
     consultarReal();
     ejecutarClima();
   }, []);
 
-
   const ejecutarClima = async () => {
-    const ciudad = 'san miguel de tucuman';
+    const ciudad = "san miguel de tucuman";
     const getCiudad = ciudad.replace(/ /g, "%20").toLowerCase();
     const URL_Clima = `http://api.openweathermap.org/data/2.5/weather?q=${getCiudad}&appid=70bea3ec52e1948d8099a3d90fe8f150&units=metric`;
     const respuesta = await fetch(URL_Clima);
     const data = await respuesta.json();
     setClima(data);
-  }
+  };
 
   const consultarDolar = async () => {
     try {
@@ -130,7 +129,7 @@ function App() {
         clima={clima}
       />
 
-      <Switch>        
+      <Switch>
         <Route exact path="/">
           <Inicio noticias={noticias} cargando={cargandoNoticias} />
         </Route>
@@ -152,11 +151,11 @@ function App() {
         </Route>
 
         <Route exact path="/categorias/nuevo">
-          <AgregarCategoria consultarCategorias={consultarCategorias}/>
+          <AgregarCategoria consultarCategorias={consultarCategorias} />
         </Route>
 
         <Route exact path="/categorias/listado-noticias/:nombreCategoria">
-          <CategoriaListadoNoticias/>
+          <CategoriaListadoNoticias />
         </Route>
 
         <Route exact path="/suscripcion">
@@ -190,7 +189,11 @@ function App() {
         </Route>
 
         <Route exact path="/noticias/editar/:id">
-          <EditarNoticia  categorias={categorias} consultarNoticias={consultarNoticias} />
+          <EditarNoticia
+            categorias={categorias}
+            cargandoCategorias={cargandoCategorias}
+            consultarNoticias={consultarNoticias}
+          />
         </Route>
 
         <Route exact path="/noticias/agregar">
@@ -207,7 +210,6 @@ function App() {
         <Route path="*">
           <Error404 />
         </Route>
-
       </Switch>
       <Footer />
     </Router>

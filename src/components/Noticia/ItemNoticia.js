@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faPencilAlt,
-  faStar,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const ItemNoticia = (props) => {
-  let noticiaModificada = {
-    destacar: null,
-  };
-  let token = "";
+  const [destacar, setDestacar] = useState(false);
 
   const eliminarNoticia = (id) => {
     Swal.fire({
@@ -38,10 +31,9 @@ const ItemNoticia = (props) => {
               "Authorization": token,
             },
           });
-          console.log(respuesta);
           if (respuesta.status === 200) {
             Swal.fire(
-              "noticia Eliminada",
+              "Noticia eliminada",
               "La noticia se elimino correctamente",
               "success"
             );
@@ -61,88 +53,67 @@ const ItemNoticia = (props) => {
   };
 
   const destacarNot = async (id) => {
-    // let cambiarColor = document.getElementsByClassName("destacarBtn");
-
-    let destacado = props.noticia.destacar;
-    console.log("La noticia esta destacada?" + destacado);
     Swal.fire({
-      title: "Estas seguro de destacar la noticia?",
+      title: "Confirmacion",
+      text: !props.noticia.destacar?"Estas seguro de destacar esta noticia?":"Quitar de destacados?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Destacar",
+      confirmButtonText: !props.noticia.destacar?"Destacar":"Quitar",
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/${id}`;
-
-          if (destacado === false) {
-            noticiaModificada = {
-              destacar: true,
-            };
-          } else {
-            noticiaModificada = {
-              destacar: false,
-            };
+          const modificarNoticia = {
+            destacar: !props.noticia.destacar,
           }
 
+          const URLNOT = `${process.env.REACT_APP_URL_NOTICIA}/destacar/${id}`;
           const respuesta = await fetch(URLNOT, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": token,
             },
-            body: JSON.stringify(noticiaModificada),
+            body: JSON.stringify(modificarNoticia),
           });
-
-          console.log(respuesta);
-
           if (respuesta.status === 200) {
-            if (destacado === false) {
-              Swal.fire({
-                icon: "success",
-                title: "La noticia se ha agregado a Destacados!",
-                text: "La noticia esta destacada actualmente",
-              });
-              destacado = true;
-            } else {
-              Swal.fire({
-                icon: "success",
-                title: "La noticia se ha quitado de Destacados!",
-                text: "La noticia esta destacada actualmente",
-              });
-              destacado = false;
-            }
-            console.log("Nuevo estado del destacado: " + destacado);
-          } else {
-            console.log("error");
+            Swal.fire(
+              "La noticia se edito correctamente",
+              !props.noticia.destacar?"Noticia Destacada":"Se elminino de destacados",
+              "success"
+            );
+
+            props.consultarNoticias();
           }
         } catch (error) {
           console.log(error);
           Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Ha ocurrido un error al eliminar la noticia",
+            text: "Ha ocurrido un error al editar la noticia",
           });
         }
       }
     });
-  };
+  }
 
   return (
     <tr>
       <td>{props.noticia.titulo}</td>
       <td>{props.noticia.categoria}</td>
       <td className="d-flex justify-content-center">
-        <Button className="mr-2">
+        <Link
+          className="btn mr-1 text-light btn-editar-categoria"
+          to={`/noticia/${props.noticia._id}`}
+        >
           <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-        </Button>
-        <Button className="destacarBtn">
+        </Link>
+        <Button variant="link" className="destacarBtn">
           <FontAwesomeIcon
-            className=""
-            icon={faStar}
+            className="color2"
+            id="destacarBoton"
+            icon={props.noticia.destacar ? faStar : farStar}
             onClick={() => destacarNot(props.noticia._id)}
           ></FontAwesomeIcon>
         </Button>
@@ -153,7 +124,7 @@ const ItemNoticia = (props) => {
             className="btn btn-warning text-light mr-2"
             to={`/noticias/editar/${props.noticia._id}`}
           >
-            <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
+            <FontAwesomeIcon className="" icon={faPencilAlt}></FontAwesomeIcon>
           </Link>
           <Button
             variant="danger"
