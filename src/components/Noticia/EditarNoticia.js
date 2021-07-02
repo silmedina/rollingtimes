@@ -113,8 +113,6 @@ const EditarNoticia = (props) => {
               text: "No se pudo modificar la nota.",
             });
           }
-        } catch (error) {
-          console.log(error);
         }
       } catch (error) {
         Swal.fire({
