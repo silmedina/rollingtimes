@@ -32,6 +32,12 @@ const Navegacion = (props) => {
     props.history.push(`/buscar/${textInput.current.value}`);
   }
   
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      buscarNoticias();
+    }
+  }
+
   return (
     <Fragment>
       <Desktop>
@@ -52,7 +58,7 @@ const Navegacion = (props) => {
               {/* Buscador */}
               <Form inline className="m-0">
                 <div className="col-login my-0 w-75 mr-2">
-                <input ref={textInput} placeholder="Buscar..." className="effect-textArea input-text  input-textArea border"/>
+                <input ref={textInput} placeholder="Buscar..." onKeyPress={handleKeyPress} className="effect-textArea input-text  input-textArea border"/>
                   <span className="focus-border"><i></i></span>
                 </div>
                 <Button variant="outline-dark" onClick={buscarNoticias}>
