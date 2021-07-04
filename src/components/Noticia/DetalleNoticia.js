@@ -46,6 +46,7 @@ const DetalleNoticia = ({ noticias = [] }) => {
   const [noticia, setNoticia] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setNoticia(noticias.find(noti => noti._id === id))
   }, [noticias]);
 

@@ -13,11 +13,11 @@ const BuscarNoticias = () => {
   let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     consultarNoticias();
   }, [terminoBusqueda]);
 
   const consultarNoticias = async () => {
-    console.log("se llama a consultar noticias")
     try {
       setCargando(true);
       const URL =
