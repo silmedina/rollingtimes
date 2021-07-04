@@ -14,9 +14,10 @@ const BuscarNoticias = () => {
 
   useEffect(() => {
     consultarNoticias();
-  }, []);
+  }, [terminoBusqueda]);
 
   const consultarNoticias = async () => {
+    console.log("se llama a consultar noticias")
     try {
       setCargando(true);
       const URL =
@@ -25,6 +26,7 @@ const BuscarNoticias = () => {
       if (respuesta.status === 200) {
         const resp = await respuesta.json();
         setNoticias(resp);
+        console.log(resp)
         setCargando(false);
       }
     } catch (error) {
