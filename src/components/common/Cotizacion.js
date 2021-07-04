@@ -22,14 +22,28 @@ const Cotizacion = (props) => {
           ) : null}
           {props.euro.compra ? (
             <th className="d-flex justify-content-center flex-fill bd-highlight pt-0 align-items-center">
-              <div className="d-flex"><h5 className="color2 mr-1 mb-0 ">Euro:</h5> <p className="color4 mr-2 mb-0  "> Compra </p> {props.euro.compra}</div>
-              <div className="d-flex"><p className="color4 px-2 mb-0  ">  Venta</p> {props.euro.venta}</div>
+              <div className="d-flex">
+                <h5 className="color2 mr-1 mb-0 ">Euro:</h5> 
+                <p className="color4 mr-2 mb-0  "> Compra </p>
+                 {props.euro.compra}
+                 </div>
+              <div className="d-flex">
+                <p className="color4 px-2 mb-0  ">  Venta</p>
+                 {props.euro.venta}
+                 </div>
             </th>
           ) : null}
           {props.real.compra ? (
             <th className="d-flex justify-content-center flex-fill bd-highlight pt-0 align-items-center">
-              <div className="d-flex"><h5 className="color2 mr-1 mb-0">Real:</h5> <p className="color4 mr-2 mb-0"> Compra </p> {props.real.compra}</div>
-              <div className="d-flex"><p className="color4 px-2 mb-0">  Venta</p> {props.real.venta}</div>
+              <div className="d-flex">
+                <h5 className="color2 mr-1 mb-0">Real:</h5>
+                 <p className="color4 mr-2 mb-0"> Compra </p> 
+                 {props.real.compra}
+                 </div>
+              <div className="d-flex">
+                <p className="color4 px-2 mb-0">  Venta</p>
+                 {props.real.venta}
+                 </div>
             </th>
           ) : null}
         </tr>

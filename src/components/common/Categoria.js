@@ -11,15 +11,15 @@ const Categoria = (props) => {
         id="nav"
       >
         <Nav.Item>
-          <Nav.Link className="color1" href="/">
-            Home
+          <Nav.Link className="color1 bg5" href="/">
+           <p className="mb-0">Home</p> 
           </Nav.Link>
         </Nav.Item>
 
         {props.categorias.map((categoria) => (
           <Nav.Item key={categoria._id}>
-            <Nav.Link className="color1" eventKey={categoria._id}>
-              {categoria.nombre}
+            <Nav.Link className="color1 bg5" eventKey={categoria._id}>
+             <p className="mb-0">{categoria.nombre}</p> 
             </Nav.Link>
           </Nav.Item>
         ))}

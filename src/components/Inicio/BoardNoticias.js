@@ -10,7 +10,7 @@ const BoardNoticias = (props) => {
   };
 
   return (
-    <Container className="mb-4 mt-4">
+    <Container className="pb-4 mt-4">
       <div className="row">
         <CardDeck>
           {props.noticias.map((noticia) => (

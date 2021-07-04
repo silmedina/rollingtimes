@@ -7,9 +7,9 @@ import { useMediaQuery } from "react-responsive";
 import logoSm from "./img/logoSm.png";
 import Categoria from "./Categoria.js";
 import Cotizacion from "./Cotizacion";
-import Logo from "./Logo";
 import Login from "../Login/Login";
 import { withRouter } from "react-router-dom";
+import Climate from "./Climate";
 
 const Navegacion = (props) => {
   const textInput = useRef("");
@@ -37,9 +37,8 @@ const Navegacion = (props) => {
       <Desktop>
         <div
           className="d-flex row justify-content-center sticky-top m-0"
-          id="navDesk"
-        >
-          <div className="bg3" id="navDesk">
+          id="navDesk">
+          <div className="" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <img
@@ -51,7 +50,7 @@ const Navegacion = (props) => {
 
               {/* Buscador */}
               <Form inline className="m-0">
-                <div className="col-login my-0 w-75 mr-2">
+                <div className="col-login my-0 w-75 pr-2">
                 <input ref={textInput} placeholder="Buscar..." className="effect-textArea input-text  input-textArea border"/>
                   <span className="focus-border"><i></i></span>
                 </div>
@@ -61,20 +60,21 @@ const Navegacion = (props) => {
               </Form>
               {/* FIN Buscador */}
 
-              <Logo clima={props.clima} />
+              <Climate clima={props.clima} />
               <Nav className="ml-auto">
                 <Login />
               </Nav>
             </Navbar>
-            <div className="" id="navExpand">
+            
+            <div id="navExpand">
               <Cotizacion
                 dolar={props.dolar}
                 euro={props.euro}
                 real={props.real}
               />
-              <Categoria categorias={props.categorias} />
+            <Categoria categorias={props.categorias} />        
             </div>
-          </div>
+            </div>
         </div>
       </Desktop>
 
