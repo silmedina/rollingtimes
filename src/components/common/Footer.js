@@ -26,27 +26,27 @@ const Footer = () => {
             </Link>
             <br />
             <div className="mt-2">
-            <Link to="/"
+            <Link to="/*"
               className="mx-2 my-3 color2"
               style={{ fontSize: "30px" }}
             >
               <FontAwesomeIcon icon={faFacebook} />
             </Link>
-            <Link to="/"
+            <Link to="/*"
               className="mx-2 my-3 color2"
               href=""
               style={{ fontSize: "35px" }}
             >
               <FontAwesomeIcon icon={faInstagram} />
             </Link>
-            <Link to="/"
+            <Link to="/*"
               className="mx-2 my-3 color2"
               href=""
               style={{ fontSize: "30px" }}
             >
               <FontAwesomeIcon icon={faTwitter} />
             </Link>
-            <Link to="/"
+            <Link to="/*"
               className="mx-2 my-3 color2"
               href=""
               style={{ fontSize: "30px" }}
