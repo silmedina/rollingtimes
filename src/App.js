@@ -136,7 +136,7 @@ function App() {
           <Inicio noticias={noticias} cargando={cargandoNoticias} />
         </Route>
 
-        <Route exact path="/:nombreCategoria">
+        <Route exact path="/cat/:nombreCategoria">
           <Tabs/>
         </Route>
 
