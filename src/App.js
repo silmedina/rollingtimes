@@ -254,6 +254,10 @@ function App() {
             }}
         />
 
+        <Route exact path="/cat/:nombreCategoria">
+          <Tabs/>
+        </Route>
+
         <Route path="*">
           <Error404 />
         </Route>
