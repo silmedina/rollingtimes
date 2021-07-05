@@ -9,10 +9,10 @@
     transform: translateY(-3px);
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   }
-.card-img{
+#card-img{
     opacity: 0.80;
-    border-start-start-radius: 13px;
-    border-start-end-radius: 13px;
+    border-top-left-radius: calc(0.8rem - 1px);
+    border-top-right-radius: calc(0.8rem - 1px);
 }
 
 ul{
