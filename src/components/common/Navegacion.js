@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
 import LogoNav from "./img/LogoNav.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -58,7 +58,7 @@ const Navegacion = (props) => {
               {/* Buscador */}
               <Form inline className="m-0">
                 <div className="col-login my-0 w-75 mr-2">
-                <input ref={textInput} placeholder="Buscar..." onKeyPress={handleKeyPress} className="effect-textArea input-text  input-textArea border"/>
+                <input ref={textInput} placeholder="Buscar..." onKeyPress={handleKeyPress} className="effect-textArea input-text  input-textArea border border-buscador"/>
                   <span className="focus-border"><i></i></span>
                 </div>
                 <Button variant="outline-dark" onClick={buscarNoticias}>

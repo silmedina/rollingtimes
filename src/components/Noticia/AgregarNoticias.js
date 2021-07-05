@@ -158,48 +158,67 @@ const Noticias = (props) => {
           {/* titulo */}
           <Form.Group>
             <Form.Label>Titulo de Noticia *</Form.Label>
-            <Form.Control
+            <div className="col-login">
+            <input
+            className="effect-input input-text"
               type="text"
               placeholder="Ingrese un titulo"
               onChange={(e) => setTitulo(e.target.value)}
-            ></Form.Control>
+            ></input>
+            <span className="focus-border"></span>
+            </div>
+            
           </Form.Group>
 
           {/* subtitulo */}
           <Form.Group>
             <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
-            <Form.Control
+            <div className="col-login">
+            <input
+            className="effect-input input-text"
               type="text"
               placeholder="Ingrese una descripcion breve"
               onChange={(e) => setSubtitulo(e.target.value)}
-            ></Form.Control>
+            ></input>
+            <span className="focus-border"></span>
+            </div>
           </Form.Group>
 
           {/* texto */}
           <Form.Group>
             <Form.Label>Texto de la noticia *</Form.Label>
-            <Form.Control
+            <div className="col-login">
+            <textarea
+            className="effect-textArea input-text  input-textArea"
               as="textarea"
               placeholder="Ingrese una descripcion detallada"
               style={{ height: "200px" }}
               onChange={(e) => setTexto(e.target.value)}
-            ></Form.Control>
+            ></textarea>
+            <span className="focus-border"><i></i></span>
+            </div>
           </Form.Group>
 
           {/* imagen */}
           <Form.Group>
             <Form.Label>Imagen</Form.Label>
-            <Form.Control
+            <div className="col-login">
+            <input
+            className="effect-input input-text"
               type="text"
               placeholder="Agregar URL"
               onChange={(e) => setImagen(e.target.value)}
-            ></Form.Control>
+            ></input>
+            <span className="focus-border"></span>
+            </div>
           </Form.Group>
 
           {/* categoria */}
           <Form.Group>
             <Form.Label>Categoria *</Form.Label>
+            <div className="col-login">
             <Form.Control
+              className="input-email"
               as="select"
               onChange={(e) => setCategoria(e.target.value)}
               value={categoria}
@@ -213,16 +232,22 @@ const Noticias = (props) => {
                 Seleccione una opcion
               </option>
             </Form.Control>
+            <span className="focus-border"></span>
+            </div>
           </Form.Group>
 
           {/* autor */}
           <Form.Group>
             <Form.Label>Autor *</Form.Label>
-            <Form.Control
+            <div className="col-login">
+            <input
+            className="effect-input input-text"
               type="text"
               placeholder="Nombre del autor"
               onChange={(e) => setAutor(e.target.value)}
-            ></Form.Control>
+            ></input>
+            <span className="focus-border"></span>
+            </div>
           </Form.Group>
 
           {error === true ? (

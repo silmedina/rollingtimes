@@ -106,10 +106,12 @@ small {
   height: 2px;
   background-color: #222222;
   transition: 0.4s;
+  border-radius: 5px;
 }
 .effect-input:focus ~ .focus-border {
   width: 100%;
   transition: 0.4s;
+  border-radius: 5px;
 }
 
 .col-login {
@@ -117,6 +119,10 @@ small {
   width: 100%;
   margin-bottom: 20px;
   position: relative;
+}
+
+.border-buscador{
+  border-radius: 5px;
 }
 
 /* BOTONES + EFECTOS */
