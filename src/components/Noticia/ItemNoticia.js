@@ -5,10 +5,10 @@ import { faEye, faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const ItemNoticia = (props) => {
   const [destacar, setDestacar] = useState(false);
+  let token="";
 
   const eliminarNoticia = (id) => {
     Swal.fire({
