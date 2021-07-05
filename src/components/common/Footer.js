@@ -17,7 +17,7 @@ const Footer = () => {
       <hr className="my-0 bg3"/>
       <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
         <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
-          <p>
+          <div>
             <Link to="/" >
               <img 
                 src={logoSm} 
@@ -54,8 +54,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faYoutube} />
             </Link>
           </div>
-          </p>
-          
+          </div>
         </div>
         
 
@@ -86,18 +85,18 @@ const Footer = () => {
               Gral. Paz 547 - San Miguel de Tucumán
             </strong>
           </div>
-          <p className="my-3">
+          <div className="my-3">
             <strong>
               <FaPhone className="mb-1 mr-2 color4" />
               +54 9 (381) - 3242 445
             </strong>
-          </p>
-          <p>
+          </div>
+          <div>
             <strong>
               <MdEmail className="mb-1 mr-2 color4" />
               rollingnews-contacto@gmail.com
             </strong>
-          </p>
+          </div>
         </div>
       </section>
       <footer className="text-center bg5 m-0 pt-2 ">

@@ -17,6 +17,8 @@ import AboutUs from "./components/AcercaDe/AboutUs";
 import DetalleNoticia from "./components/Noticia/DetalleNoticia";
 import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 import BuscarNoticias from "./components/Noticia/BuscarNoticias";
+import Tabs from "./components/Common/Tabs";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -132,6 +134,10 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Inicio noticias={noticias} cargando={cargandoNoticias} />
+        </Route>
+
+        <Route exact path="/:nombreCategoria">
+          <Tabs/>
         </Route>
 
         <Route exact path="/categorias">

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPencilAlt, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ItemNoticia = (props) => {
-  const [destacar, setDestacar] = useState(false);
 
   const eliminarNoticia = (id) => {
     Swal.fire({

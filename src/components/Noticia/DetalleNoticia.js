@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
-import { CardXSmall } from "../Inicio/BoardNoticias";
 import Publicidad from "../Inicio/Publicidad";
 import "./detalleNoticia.css";
 import { useParams } from "react-router-dom";
 
 export const Noticia = ({ noticia = {} }) => {
   return (
-    <div id="NoticiaContainer" className="flex-column">
+    <div id="NoticiaContainer" className="flex-column pt-3">
       <p id="CategoriaRoot">Rolling Times - {noticia.categoria}</p>
       <h1 className="noticia-titulo">{noticia.titulo}</h1>
       <p>{noticia.fecha || "10 Junio de 2021"}</p>
@@ -50,16 +48,13 @@ const DetalleNoticia = ({ noticias = [] }) => {
   }, [noticias]);
 
   return (
-    <div id="DetalleNoticiaContainer">
-      <Row style={{ padding: 0, margin: 0 }}>
-        <Col md={9} className="flex-column">
-          <Noticia noticia={noticia} />
-        </Col>
-      </Row>
-
-      <div className="pulicidad-section">
-        <Publicidad publicidad={1} />
+    <div className="col-sm-12">
+      <div id="DetalleNoticiaContainer" className="col-sm-12 col-md-9">
+            <Noticia noticia={noticia} />
       </div>
+       <div className="pulicidad-section">
+       <Publicidad publicidad={1} />
+     </div>
     </div>
   );
 };

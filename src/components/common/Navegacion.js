@@ -72,7 +72,9 @@ const Navegacion = (props) => {
                 euro={props.euro}
                 real={props.real}
               />
-            <Categoria categorias={props.categorias} />        
+            <Categoria 
+              categorias={props.categorias}
+              noticias={props.noticias}/>        
             </div>
             </div>
         </div>
@@ -108,7 +110,7 @@ const Navegacion = (props) => {
               <hr />
               <Nav className="ml-5 mr-5 dark">
                 {props.categorias.map((categoria) => (
-                  <Nav.Link key={categoria._id} href="/">{categoria.nombre}</Nav.Link>
+                  <Nav.Link key={categoria._id} href={`/${categoria.nombre}`}>{categoria.nombre}</Nav.Link>
                 ))}
               </Nav>
               <Nav>
