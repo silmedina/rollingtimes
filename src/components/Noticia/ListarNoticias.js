@@ -38,7 +38,7 @@ const ListarNoticias = (props) => {
             )}
 
             {!props.cargando && props.noticias.length !== 0 && (
-                <Table striped bordered hover  className="my-5">
+                <Table striped bordered hover responsive="sm" className="my-5">
                 <thead>
                     <tr>
                         <th className="col-sm-9 col-md-8">Titulo</th>

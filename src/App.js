@@ -17,6 +17,8 @@ import DetalleNoticia from "./components/Noticia/DetalleNoticia";
 import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 import BuscarNoticias from "./components/Noticia/BuscarNoticias";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import Tabs from "./components/Common/Tabs";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
