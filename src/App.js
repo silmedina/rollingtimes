@@ -9,7 +9,6 @@ import AgregarCategoria from "./components/Categoria/AgregarCategoria";
 import Subscription from "./components/Suscripcion/Subscription";
 import Error404 from "./components/Error404";
 import Contact from "./components/Contacto/Contact";
-import Administracion from "./components/Administracion.js";
 import AgregarNoticias from "./components/Noticia/AgregarNoticias";
 import ListarNoticias from "./components/Noticia/ListarNoticias";
 import EditarNoticia from "./components/Noticia/EditarNoticia";
@@ -17,6 +16,7 @@ import AboutUs from "./components/AcercaDe/AboutUs";
 import DetalleNoticia from "./components/Noticia/DetalleNoticia";
 import CategoriaListadoNoticias from "./components/Categoria/CategoriaListadoNoticias";
 import BuscarNoticias from "./components/Noticia/BuscarNoticias";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -29,6 +29,7 @@ function App() {
   const [euro, setEuro] = useState({});
   const [real, setReal] = useState({});
   const [clima, setClima] = useState({});
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
 
   useEffect(() => {
     consultarCategorias();
@@ -38,6 +39,21 @@ function App() {
     consultarReal();
     ejecutarClima();
   }, []);
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      const jwt = localStorage.getItem("jwt");
+      const jwtRegular = localStorage.getItem("jwtRegular");
+      const flag = jwt !== null || jwtRegular !== null ? true : false;
+      userHasAuthenticated(flag);
+    } catch (e) {
+      alert(e);
+    }
+  }
 
   const ejecutarClima = async () => {
     const ciudad = "san miguel de tucuman";
@@ -134,30 +150,6 @@ function App() {
           <Inicio noticias={noticias} cargando={cargandoNoticias} />
         </Route>
 
-        <Route exact path="/categorias">
-          <ListarCategorias
-            categorias={categorias}
-            consultarCategorias={consultarCategorias}
-            cargando={cargandoCategorias}
-          />
-        </Route>
-
-        <Route exact path="/categorias/editar/:id">
-          <EditarCategoria consultarCategorias={consultarCategorias} />
-        </Route>
-
-        <Route exact path="/noticia/:id">
-          <DetalleNoticia noticias={noticias} />
-        </Route>
-
-        <Route exact path="/categorias/nuevo">
-          <AgregarCategoria consultarCategorias={consultarCategorias} />
-        </Route>
-
-        <Route exact path="/categorias/listado-noticias/:nombreCategoria">
-          <CategoriaListadoNoticias />
-        </Route>
-
         <Route exact path="/suscripcion">
           <Subscription />
         </Route>
@@ -170,47 +162,101 @@ function App() {
           <AboutUs />
         </Route>
 
-        <Route exact path="/administracion">
-          <Administracion />
-        </Route>
-
-        <Route exact path="/detallenoticia">
-          <DetalleNoticia />
-        </Route>
-
-        <Route exact path="/noticias">
-          <ListarNoticias
-            noticias={noticias}
-            categorias={categorias}
-            consultarNoticias={consultarNoticias}
-            cargando={cargandoNoticias}
-            cargandoCategorias={cargandoCategorias}
-          />
-        </Route>
-
-        <Route exact path="/noticias/editar/:id">
-          <EditarNoticia
-            categorias={categorias}
-            cargandoCategorias={cargandoCategorias}
-            consultarNoticias={consultarNoticias}
-          />
-        </Route>
-
-        <Route exact path="/noticias/agregar">
-          <AgregarNoticias
-            categorias={categorias}
-            consultarNoticias={consultarNoticias}
-          />
+        <Route exact path="/noticia/:id">
+          <DetalleNoticia noticias={noticias} />
         </Route>
 
         <Route exact path="/buscar/:terminoBusqueda">
           <BuscarNoticias />
         </Route>
 
+        <Route exact path="/detallenoticia">
+          <DetalleNoticia />
+        </Route>
+
+        <AuthenticatedRoute
+          exact path="/categorias"
+          component={ListarCategorias}
+          appProps={
+            { 
+              isAuthenticated, 
+              categorias: categorias, 
+              consultarCategorias: consultarCategorias, 
+              cargando: cargandoCategorias
+            }}
+        />
+
+        <AuthenticatedRoute
+          exact path="/categorias/editar/:id"
+          component={EditarCategoria}
+          appProps={
+            { 
+              isAuthenticated, 
+              consultarCategorias: consultarCategorias
+            }}
+        />
+
+        <AuthenticatedRoute
+          exact path="/categorias/nuevo"
+          component={AgregarCategoria}
+          appProps={
+            { 
+              isAuthenticated, 
+              consultarCategorias: consultarCategorias
+            }}
+        />
+
+        <AuthenticatedRoute
+          exact path="/categorias/listado-noticias/:nombreCategoria"
+          component={CategoriaListadoNoticias}
+          appProps={
+            { 
+              isAuthenticated
+            }}
+        />
+        
+        <AuthenticatedRoute
+          exact path="/noticias"
+          component={ListarNoticias}
+          appProps={
+            { 
+              isAuthenticated, 
+              noticias: noticias, 
+              categorias: categorias, 
+              consultarNoticias: consultarNoticias, 
+              cargando: cargandoNoticias, 
+              cargandoCategorias:cargandoCategorias 
+            }}
+        />
+
+        <AuthenticatedRoute
+         exact path="/noticias/editar/:id"
+          component={EditarNoticia}
+          appProps={
+            { 
+              isAuthenticated,
+              categorias: categorias, 
+              cargandoCategorias: cargandoCategorias,
+              consultarNoticias: consultarNoticias
+            }}
+        />
+
+        <AuthenticatedRoute
+          exact path="/noticias/agregar"
+          component={AgregarNoticias}
+          appProps={
+            { 
+              isAuthenticated,
+              categorias: categorias, 
+              consultarNoticias: consultarNoticias
+            }}
+        />
+
         <Route path="*">
           <Error404 />
         </Route>
       </Switch>
+
       <Footer />
     </Router>
   );
