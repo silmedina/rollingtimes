@@ -10,12 +10,12 @@ const BoardNoticias = (props) => {
   };
 
   return (
-    <Container className="mb-4 mt-4">
+    <Container className="pb-4 mt-4">
       <div className="row">
         <CardDeck>
           {props.noticias.map((noticia) => (
             <div className="col-md-4 mb-3">
-              <Card>
+              <Card >
                 <Card.Img variant="top" src={noticia.imagen} />
                 <Card.Body>
                   <Card.Title>{noticia.titulo}</Card.Title>

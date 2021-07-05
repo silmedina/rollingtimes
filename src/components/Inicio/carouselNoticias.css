@@ -3,12 +3,6 @@
   overflow: hidden;
 }
 
-#noticiaContainer h3 {
-  font-size: 40px;
-  font-family: "Roboto Slab", serif;
-  font-weight: 600;
-}
-
 .black-gradient-bg {
   background: linear-gradient(
     0deg,
@@ -20,6 +14,12 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+.titulo-carousel{
+  font-size: 50px;
+  color: #f7f7f7;
+  font-family: "Roboto Slab", serif;
+
 }
 
 #noticiaCaption {
@@ -47,4 +47,15 @@
 
 #noticiaInfo p:nth-child(2) {
     background-color: #ec4e20;
+}
+.titulo-carousel{
+  background-color: rgba(34, 34, 34, .7);
+}
+@media (max-width: 600px) {
+  .noticiaInfo {
+    display: none;
+  }
+  .titulo-carousel{
+    font-size: 20px;
+  }
 }

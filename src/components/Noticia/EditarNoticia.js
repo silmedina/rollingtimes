@@ -26,6 +26,7 @@ const EditarNoticia = (props) => {
   const [mensajeError, setMensajeError] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getNoticia();
   }, []);
 
@@ -166,8 +167,10 @@ const EditarNoticia = (props) => {
   }
 
   return (
+    <div className="bg3">
     <Container>
-      <h1 className="text-center my-5 categoria-titulo">Editar la noticia</h1>
+      <h1 className="text-center pt-5 categoria-titulo">Editar la noticia</h1>
+      <hr className="bg4" />
       {cargandoCategorias() && (
         <div className="container d-flex flex-column my-5 align-items-center">
           <Spinner></Spinner>
@@ -269,6 +272,7 @@ const EditarNoticia = (props) => {
 
       
     </Container>
+    </div>
   );
 };
 

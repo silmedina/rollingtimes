@@ -1,13 +1,9 @@
 import React from "react";
 import ad1gif from "../../assets/gifs/sale.gif";
 import ad1logo from "../../assets/gifs/rolling2.png";
-
 import ad2gif from "../../assets/gifs/nike-gif.gif";
-
 import ad3logo1 from "../../assets/gifs/netflix1-logo.png";
 import ad3image from "../../assets/gifs/netflix-series.jpeg";
-
-
 import "./publicidad.css";
 
 const AdLogo = () => {
@@ -24,7 +20,7 @@ const Publicidad = ({ publicidad = 1 }) => {
         style={{ backgroundColor: "black"  }}
       >
         <div className="title-logo-container">
-          <img src={ad1logo}  alt="ad" style={{ maxWidth: "150px" }} />
+          <img className="ad-logo" src={ad1logo}  alt="ad" style={{ maxWidth: "150px" }} />
           <h1 className="title1 title" style={{ color: "white" }}>
             JOIN THE CAREER OF THE FUTURE
           </h1>

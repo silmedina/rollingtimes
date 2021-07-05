@@ -26,6 +26,7 @@ const Noticias = (props) => {
   const [mensajeError, setMensajeError] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setCategoria("seleccione una opcion");
   }, []);
 
@@ -136,16 +137,10 @@ const Noticias = (props) => {
   };
 
   return (
+    <div className="bg3">
     <Container>
-      <h1 className="text-center my-2">Agregar Noticia</h1>
-      <Link
-        className="btn mx-2 my-1 background-orange text-light"
-        to={`/noticias`}
-      >
-        <FontAwesomeIcon icon={faList} className="pr-1"></FontAwesomeIcon>Lista
-        de notas
-      </Link>
-      <hr />
+      <h1 className="text-center py-2">Agregar Noticia</h1>
+      <hr className="bg4" />
 
       {props.cargandoCategorias && (
         <div className="container d-flex flex-column my-5 align-items-center">
@@ -254,7 +249,7 @@ const Noticias = (props) => {
             <Alert variant="warning">{mensajeError}</Alert>
           ) : null}
 
-          <div className="d-flex justify-content-lg-end">
+          <div className="d-flex justify-content-end">
             <button
               className="my-5 mr-2 background-black button-send-close"
               type="button"
@@ -272,6 +267,7 @@ const Noticias = (props) => {
         </Form>
       )}
     </Container>
+    </div>
   );
 };
 export default withRouter(Noticias);

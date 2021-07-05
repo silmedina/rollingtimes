@@ -157,7 +157,7 @@ const Login = () => {
                   Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                 </Button>
                 <Link to={"/suscripcion"}>
-                  <Button className="mx-2 my-1" variant="outline-dark">
+                  <Button className="boton-suscribite mx-2 my-1 dark" variant="outline-dark">
                     Suscribite
                   </Button>
                 </Link>

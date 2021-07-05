@@ -41,16 +41,15 @@ const Climate = (props) => {
       output += "wi-day-cloudy";
   }
   return (
-    <div className="container">
+    <div className="bg5 p-0 d-flex align-items-center">
       {temperatura ? (
         <div className="cards pt-2">
-          <p className="col-12 px-0 mb-0">
-            {ciudad}, {pais}
-          </p>
-      
-          <h3 className="text-center pt-2 px-0 m-0">
+          <h3 className="text-center pt-2 px-0 m-0 color1">
             <i className={`wi ${output}`}></i> {temperatura}°C
           </h3>
+          <p className="col-12 px-0 mb-0 color1">
+            {ciudad}, {pais}
+          </p>
         </div>
       ) : null}
     </div>

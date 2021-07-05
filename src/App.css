@@ -43,7 +43,7 @@
   background-color: #ec4e20;
 }
 .bg3{
-  background-color: #f6e8ea;
+  background-color: #f8f9fa;
 }
 .bg4{
   background-color: #537d8d;
@@ -145,7 +145,8 @@ Label{
 .logo-icono-mano{
   cursor: pointer;
 }
-#destacarBoton{
- /* color: #537d8d; */
- 
+.link:hover{
+  color: #ec4e20;
 }
+
+

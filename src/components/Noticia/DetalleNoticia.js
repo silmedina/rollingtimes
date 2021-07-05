@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
-import { CardXSmall } from "../Inicio/BoardNoticias";
 import Publicidad from "../Inicio/Publicidad";
 import "./detalleNoticia.css";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export const Noticia = ({ noticia = {} }) => {
   return (
-    <div id="NoticiaContainer" className="flex-column">
-      <p id="CategoriaRoot">Rolling Times - {noticia.categoria}</p>
+    <div id="NoticiaContainer" className="flex-column pt-3">
+      <button className="btn btn-outline-dark mx-2" ><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon> Volver</button><p id="CategoriaRoot">Rolling Times - {noticia.categoria}</p>
       <h1 className="noticia-titulo">{noticia.titulo}</h1>
       <p>{noticia.fecha || "10 Junio de 2021"}</p>
       <p>
@@ -46,20 +46,18 @@ const DetalleNoticia = ({ noticias = [] }) => {
   const [noticia, setNoticia] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setNoticia(noticias.find(noti => noti._id === id))
   }, [noticias]);
 
   return (
-    <div id="DetalleNoticiaContainer">
-      <Row style={{ padding: 0, margin: 0 }}>
-        <Col md={9} className="flex-column">
-          <Noticia noticia={noticia} />
-        </Col>
-      </Row>
-
-      <div className="pulicidad-section">
-        <Publicidad publicidad={1} />
+    <div className="bg3 col-sm-12">
+      <div id="DetalleNoticiaContainer" className="col-sm-12 col-md-9">
+            <Noticia noticia={noticia} />
       </div>
+       <div className="pulicidad-section">
+       <Publicidad publicidad={1} />
+     </div>
     </div>
   );
 };

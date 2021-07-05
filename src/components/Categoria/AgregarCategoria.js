@@ -65,8 +65,9 @@ const AgregarCategoria = (props) => {
   };
 
   return (
+    <div className="bg3">
     <Container>
-      <Form className="my-5" onSubmit={handleSudmit}>
+      <Form className="py-5" onSubmit={handleSudmit}>
         <h1 className="text-center my-5 categoria-titulo">
           Agregar nueva Categoria
         </h1>
@@ -86,6 +87,7 @@ const AgregarCategoria = (props) => {
           <span className="focus-border"></span>
           </div>
         </Form.Group>
+        {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
         <div className="d-flex justify-content-lg-end">
         <button
           className="my-5 mr-2 background-black button-send-close"
@@ -102,9 +104,9 @@ const AgregarCategoria = (props) => {
         </button>
 
         </div>
-        {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
       </Form>
     </Container>
+    </div>
   );
 };
 

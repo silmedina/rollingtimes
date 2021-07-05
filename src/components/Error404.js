@@ -7,6 +7,7 @@ import error404 from "../assets/error404.gif";
 
 const Error404 = () => {
   return (
+    <div className="bg3">
     <Container className="text-center pt-lg-5 pb-lg-5">
       <Image src={error404} roundedCircle width={300} alt="Error 404" />
       <h1 className="text-center mt-lg-5 mb-lg-5 categoria-titulo">Pagina no encontrada</h1>
@@ -25,6 +26,7 @@ const Error404 = () => {
         </Link>
       </div>
     </Container>
+    </div>
   );
 };
 

@@ -7,9 +7,10 @@ import { useMediaQuery } from "react-responsive";
 import logoSm from "./img/logoSm.png";
 import Categoria from "./Categoria.js";
 import Cotizacion from "./Cotizacion";
-import Logo from "./Logo";
 import Login from "../Login/Login";
 import { withRouter } from "react-router-dom";
+import Climate from "./Climate";
+
 
 const Navegacion = (props) => {
   const textInput = useRef("");
@@ -32,14 +33,19 @@ const Navegacion = (props) => {
     props.history.push(`/buscar/${textInput.current.value}`);
   }
   
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      buscarNoticias();
+    }
+  }
+
   return (
     <Fragment>
       <Desktop>
         <div
           className="d-flex row justify-content-center sticky-top m-0"
-          id="navDesk"
-        >
-          <div className="bg3" id="navDesk">
+          id="navDesk">
+          <div className="" id="navDesk">
             <Navbar collapseOnSelect expand="lg" className="bg5">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <img
@@ -52,7 +58,7 @@ const Navegacion = (props) => {
               {/* Buscador */}
               <Form inline className="m-0">
                 <div className="col-login my-0 w-75 mr-2">
-                <input ref={textInput} placeholder="Buscar..." className="effect-textArea input-text input-textArea border border-buscador"/>
+                <input ref={textInput} placeholder="Buscar..." onKeyPress={handleKeyPress} className="effect-textArea input-text  input-textArea border border-buscador"/>
                   <span className="focus-border"><i></i></span>
                 </div>
                 <Button variant="outline-dark" onClick={buscarNoticias}>
@@ -61,20 +67,23 @@ const Navegacion = (props) => {
               </Form>
               {/* FIN Buscador */}
 
-              <Logo clima={props.clima} />
+              <Climate clima={props.clima} />
               <Nav className="ml-auto">
                 <Login />
               </Nav>
             </Navbar>
-            <div className="" id="navExpand">
+            
+            <div id="navExpand">
               <Cotizacion
                 dolar={props.dolar}
                 euro={props.euro}
                 real={props.real}
               />
-              <Categoria categorias={props.categorias} />
+            <Categoria 
+              categorias={props.categorias}
+              noticias={props.noticias}/>        
             </div>
-          </div>
+            </div>
         </div>
       </Desktop>
 
@@ -86,29 +95,31 @@ const Navegacion = (props) => {
           className="d-flex row justify-content-center bg5 stiky-top p-0 m-0"
         >
           <div className="text-center">
-            <img src={LogoNav} alt="logo" className="w-75 p-2" />
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
+            <img src={LogoNav} alt="logo" className="w-75 p-2" onClick={() => home()}/>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+            <Navbar.Collapse id="responsive-navbar-nav" className="">
               <div className="text-center">
                 <Form className="d-flex pt-3 w-100 px-3">
                   <div className="col-login my-0 mr-2">
                     <input
+                    ref={textInput}
                       className="effect-textArea input-text  input-textArea border"
                       type="text"
-                      placeholder=" Buscar"
+                      placeholder=" Buscar..."
+                      onKeyPress={handleKeyPress}
                       
                     />
                     <span className="focus-border"><i></i></span>
                   </div>
-                  <Button variant="outline-dark">
+                  <Button variant="outline-dark" onClick={buscarNoticias}>
                     <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                   </Button>
                 </Form>
               </div>
-              <hr />
+              <hr/>
               <Nav className="ml-5 mr-5 dark">
                 {props.categorias.map((categoria) => (
-                  <Nav.Link key={categoria._id} href="/">{categoria.nombre}</Nav.Link>
+                  <Nav.Link key={categoria._id} href={`/cat/${categoria.nombre}`}><p className="color4 link my-0">{categoria.nombre}</p></Nav.Link>
                 ))}
               </Nav>
               <Nav>

@@ -13,8 +13,9 @@ const BuscarNoticias = () => {
   let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     consultarNoticias();
-  }, []);
+  }, [terminoBusqueda]);
 
   const consultarNoticias = async () => {
     try {
@@ -25,6 +26,7 @@ const BuscarNoticias = () => {
       if (respuesta.status === 200) {
         const resp = await respuesta.json();
         setNoticias(resp);
+        console.log(resp)
         setCargando(false);
       }
     } catch (error) {
@@ -48,67 +50,70 @@ const BuscarNoticias = () => {
   };
 
   return (
-    <Container>
-      <h1 className="text-center my-5 categoria-titulo">
-        Resultado busqueda: <span className="color4">{terminoBusqueda}</span>
-      </h1>
+    <div className="bg3">
+      <Container>
+        <h1 className="text-center py-5 categoria-titulo">
+          Resultado busqueda: <span className="color4">{terminoBusqueda}</span>
+        </h1>
 
-      {!noticias.length && !cargando && (
-        <div className="container d-flex flex-column my-5 align-items-center">
-          <span>Sin noticias</span>
-        </div>
-      )}
-      {cargando && (
-        <div className="container d-flex flex-column my-5 align-items-center">
-          <Spinner></Spinner>
-          <span>Cargando...</span>
-        </div>
-      )}
-      {!cargando && (
-        <ListGroup className="my-5">
-          {noticias.map((noticia) => (
-            <Card>
-              <Card.Body>
-                <Card.Title className="categoria-subtitulo">
-                  <strong>{noticia.titulo}</strong>
-                </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted categoria-subtitulo">
-                  {formatearFecha(noticia.fecha)}
-                </Card.Subtitle>
-                <Card.Text>
-                  <div className="d-flex justify-content-between my-3">
+        {!noticias.length && !cargando && (
+          <div className="container d-flex flex-column my-5 align-items-center">
+            <span>Sin noticias</span>
+          </div>
+        )}
+        {cargando && (
+          <div className="container d-flex flex-column my-5 align-items-center">
+            <Spinner></Spinner>
+            <span>Cargando...</span>
+          </div>
+        )}
+        {!cargando && (
+          <ListGroup className="my-3">
+            {noticias.map((noticia) => (
+              <Card>
+                <Card.Body className="row">
+                  <div className="col-sm-12 col-md-4 my-3">
                     <img
                       src={noticia.imagen}
-                      className="col-md-2 img img-fluid"
+                      className="img img-fluid"
                     ></img>
-                    <p className="col-md-10">
-                      <h6 className="categoria-texto">{noticia.subtitulo}</h6>
-                      <footer className="blockquote-footer">
-                        Autor <cite title="Source Title">{noticia.autor}</cite>
-                      </footer>
-                    </p>
                   </div>
-                </Card.Text>
-                <div id="notfoundlinks">
-                  <Card.Link href={`/noticia/${noticia._id}`}>
-                    Ir a la noticia
-                  </Card.Link>
-                </div>
-              </Card.Body>
-            </Card>
-          ))}
-        </ListGroup>
-      )}
-      <div className="d-flex justify-content-lg-end">
-        <button
-          className="my-5 mr-2 background-black button-send-close"
-          type="button"
-          onClick={() => retornarHome()}
-        >
-          Volver
-        </button>
-      </div>
-    </Container>
+                  <div className="col-sm-12 col-md-8">
+                  <Card.Title className="categoria-subtitulo">
+                    <strong>{noticia.titulo}</strong>
+                  </Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted categoria-subtitulo">
+                    {formatearFecha(noticia.fecha)}
+                  </Card.Subtitle>
+                  <Card.Text>
+                        
+                        <h6 className="categoria-texto">{noticia.subtitulo}</h6>
+                        <footer className="blockquote-footer">
+                          Autor <cite title="Source Title">{noticia.autor}</cite>
+                        </footer>
+                  </Card.Text>
+                  <div id="notfoundlinks">
+                    <Card.Link href={`/noticia/${noticia._id}`}>
+                      Ir a la noticia
+                    </Card.Link>
+                  </div>
+                  </div>
+                </Card.Body>
+              </Card>
+            ))}
+          </ListGroup>
+        )}
+        <div className="d-flex justify-content-lg-end">
+          <button
+            className="my-5 mr-2 background-black button-send-close"
+            type="button"
+            onClick={() => retornarHome()}
+          >
+            Volver
+          </button>
+        </div>
+      </Container>
+    </div>
   );
 };
 

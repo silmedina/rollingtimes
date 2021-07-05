@@ -13,6 +13,7 @@ const CategoriaListadoNoticias = () => {
   let history = useHistory();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     consultarNoticias();
   }, []);
 
@@ -48,8 +49,9 @@ const CategoriaListadoNoticias = () => {
   }
 
   return (
+    <div className="bg3">
     <Container>
-      <h1 className="text-center my-5 categoria-titulo">
+      <h1 className="text-center py-5 categoria-titulo">
         Noticias de: <span className="color4">{nombreCategoria}</span>
       </h1>
 
@@ -69,22 +71,22 @@ const CategoriaListadoNoticias = () => {
       <ListGroup className="my-5">
         {noticias.map((noticia) => (
           <Card>
-          <Card.Body>
+          <Card.Body className="row">
+            <div className="col-sm-12 col-md-4 my-3">
+ <img src={noticia.imagen} className="img img-fluid"></img>
+            </div>
+            <div>
             <Card.Title className="categoria-subtitulo"><strong>{noticia.titulo}</strong></Card.Title>
             <Card.Subtitle className="mb-2 text-muted categoria-subtitulo">{formatearFecha(noticia.fecha)}</Card.Subtitle>
             <Card.Text>
-              <div className="d-flex justify-content-between my-3">
-                <img src={noticia.imagen} className="col-md-2 img img-fluid"></img>
-                <p className="col-md-10">
                   <h6 className="categoria-texto">{noticia.subtitulo}</h6>
                   <footer className="blockquote-footer">
                     Autor <cite title="Source Title">{noticia.autor}</cite>
                   </footer>
-                </p>
-              </div>
             </Card.Text>
             <div id="notfoundlinks">
             <Card.Link href={`/noticia/${noticia._id}`}>Ir a la noticia</Card.Link>
+            </div>
             </div>
           </Card.Body>
         </Card>
@@ -101,6 +103,7 @@ const CategoriaListadoNoticias = () => {
         </button>
       </div>
     </Container>
+    </div>
   );
 };
 
