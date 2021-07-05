@@ -52,12 +52,12 @@ const ItemNoticia = (props) => {
   const destacarNot = async (id) => {
     Swal.fire({
       title: "Confirmacion",
-      text: !props.noticia.destacar?"Estas seguro de destacar esta noticia?":"Quitar de destacados?",
+      text: !props.noticia.destacar ? "Estas seguro de destacar esta noticia?" : "Quitar de destacados?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: !props.noticia.destacar?"Destacar":"Quitar",
+      confirmButtonText: !props.noticia.destacar ? "Destacar" : "Quitar",
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -77,7 +77,7 @@ const ItemNoticia = (props) => {
           if (respuesta.status === 200) {
             Swal.fire(
               "La noticia se edito correctamente",
-              !props.noticia.destacar?"Noticia Destacada":"Se elminino de destacados",
+              !props.noticia.destacar ? "Noticia Destacada" : "Se elminino de destacados",
               "success"
             );
 
@@ -100,12 +100,6 @@ const ItemNoticia = (props) => {
       <td>{props.noticia.titulo}</td>
       <td>{props.noticia.categoria}</td>
       <td className="d-flex justify-content-center">
-        <Link
-          className="btn mr-1 text-light btn-editar-categoria"
-          to={`/noticia/${props.noticia._id}`}
-        >
-          <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-        </Link>
         <Button variant="link" className="destacarBtn">
           <FontAwesomeIcon
             className="color2"
@@ -114,6 +108,12 @@ const ItemNoticia = (props) => {
             onClick={() => destacarNot(props.noticia._id)}
           ></FontAwesomeIcon>
         </Button>
+        <Link
+          className="btn mr-1 text-light btn-editar-categoria"
+          to={`/noticia/${props.noticia._id}`}
+        >
+          <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+        </Link>
       </td>
       <td>
         <div className="d-flex justify-content-center">

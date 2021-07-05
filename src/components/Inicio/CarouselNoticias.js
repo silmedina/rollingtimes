@@ -34,11 +34,12 @@ const CarouselNoticias = (props) => {
                   style={{ cursor: "pointer" }}
                 >
                   <div id="noticiaInfo">
-                    <p>{noticia.categoria}&nbsp;</p>
-                    <p>&nbsp;{formatearFecha(noticia.fecha)}</p>
+                    <p className="noticiaInfo">{noticia.categoria}&nbsp;</p>
+                    <p className="noticiaInfo">&nbsp;{formatearFecha(noticia.fecha)}</p>
                   </div>
-                  <h3>{noticia.titulo}</h3>
-                  <small className="mt-5">{noticia.subtitulo}</small>
+                 <div className="titulo-carousel">
+                   <p>{noticia.titulo}</p>
+                  </div> 
                 </Carousel.Caption>
               </Link>
             </Carousel.Item>

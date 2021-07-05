@@ -15,7 +15,7 @@ const BoardNoticias = (props) => {
         <CardDeck>
           {props.noticias.map((noticia) => (
             <div className="col-md-4 mb-3">
-              <Card>
+              <Card >
                 <Card.Img variant="top" src={noticia.imagen} />
                 <Card.Body>
                   <Card.Title>{noticia.titulo}</Card.Title>

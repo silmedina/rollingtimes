@@ -12,8 +12,9 @@ const ListarCategorias = (props) => {
   };
 
   return (
+    <div className="bg3">
     <Container>
-      <h1 className="text-center my-5 categoria-titulo">Lista de Categorias</h1>
+      <h1 className="text-center pt-3 categoria-titulo">Lista de Categorias</h1>
       <button
         className="mx-2 my-1 background-orange button-send-close"
         type="button"
@@ -21,7 +22,7 @@ const ListarCategorias = (props) => {
       >
         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Agregar categoria
       </button>
-
+      <hr className="bg4" />
       {!props.categorias.length && !props.cargando && (
         <div className='container d-flex flex-column my-5 align-items-center'>
         <span>Sin categorias</span>
@@ -47,6 +48,7 @@ const ListarCategorias = (props) => {
         </ListGroup>
       )}
     </Container>
+    </div>
   );
 };
 

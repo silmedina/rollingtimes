@@ -1,16 +1,8 @@
-#DetalleNoticiaContainer {
-  /* width: 100%; */
-}
-
-#DetalleNoticiaContainer * {
-  /* color: rgba(0, 0, 0, 0.85); */
-}
-
 #NoticiaContainer {
   align-items: flex-start;
   /* width: 100%; */
   overflow: hidden;
-  background-color: white;
+  background-color: #f8f9fa;
   /* padding: 5rem; */
 }
 

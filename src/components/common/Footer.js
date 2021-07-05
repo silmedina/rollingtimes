@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <hr className="my-0 bg3"/>
+      <hr className="my-0 bg4"/>
       <section className="bg5 d-flex row justify-content-center m-0 p-0 text-center">
         <div className="col-sm-12 col-md-6 col-lg-4 my-3 p-0 mx-0 text-center align-self-center">
           <div>
@@ -24,45 +24,31 @@ const Footer = () => {
                 alt="logo" 
                 className="w-75 p-0"/>
             </Link>
-            <br />
+            <br/>
             <div className="mt-2">
             <Link to="/*"
-              className="mx-2 my-3 color2"
-              style={{ fontSize: "30px" }}
-            >
+              className="link mx-2 my-3 color1"
+              style={{ fontSize: "30px" }}>
               <FontAwesomeIcon icon={faFacebook} />
             </Link>
             <Link to="/*"
-              className="mx-2 my-3 color2"
-              href=""
-              style={{ fontSize: "35px" }}
-            >
+              className="link mx-2 my-3 color1"
+              style={{ fontSize: "35px" }}>
               <FontAwesomeIcon icon={faInstagram} />
             </Link>
             <Link to="/*"
-              className="mx-2 my-3 color2"
-              href=""
-              style={{ fontSize: "30px" }}
-            >
+              className="link mx-2 my-3 color1"
+              style={{ fontSize: "30px" }}>
               <FontAwesomeIcon icon={faTwitter} />
             </Link>
             <Link to="/*"
-              className="mx-2 my-3 color2"
-              href=""
-              style={{ fontSize: "30px" }}
-            >
+              className="link mx-2 my-3 color1"
+              style={{ fontSize: "30px" }}>
               <FontAwesomeIcon icon={faYoutube} />
             </Link>
           </div>
           </div>
         </div>
-        
-
-        {/* <header className="bg5 d-flex row m-0 p-0">
-        <div className="col-sm-12 col-md-12 d-flex row justify-content-center p-0 m-0">
-          
-        </div>
-      </header> */}
         <div className="col-sm-12 col-md-6 col-lg-4 p-0 m-0">
           <Link className="mx-1 outline-dark" to={"/about"}>
             <h4 className="m-0 color2">Sobre Nosotros</h4>
@@ -76,8 +62,8 @@ const Footer = () => {
           </div>
         </div>
         <div className=" col-sm-12 col-md-6 col-lg-4 p-0 m-0">
-          <Link className="mx-1 outline-dark" to={"/contacto"}>
-            <h4 className="pb-1 color2 pt-0">Contacto</h4>
+          <Link className=" mx-1 outline-dark" to={"/contacto"}>
+            <h4 className=" pb-1 color2 pt-0">Contacto</h4>
           </Link>
           <div>
             <strong>
@@ -99,9 +85,9 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <footer className="text-center bg5 m-0 pt-2 ">
+      <div className="text-center bg5 m-0 pt-2 ">
         <p className="pb-3 m-0 color4">&copy; Todos los derechos reservados</p>
-      </footer>
+      </div>
     </div>
   );
 };

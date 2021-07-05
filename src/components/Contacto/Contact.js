@@ -69,7 +69,8 @@ const Contact = () => {
   };
 
   return (
-    <Container className="my-5">
+    <div className="bg3">
+    <Container className="py-5">
       <Form.Row className="d-flex row justify-content-center">
         <h2 className="text-center mb-3 color2">¿Como contactarnos?</h2>
         <Iframe
@@ -213,6 +214,7 @@ const Contact = () => {
         </Col>
       </Form.Row>
     </Container>
+    </div>
   );
 };
 export default Contact;

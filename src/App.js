@@ -255,7 +255,7 @@ function App() {
         />
 
         <Route exact path="/cat/:nombreCategoria">
-          <Tabs/>
+          <Tabs key={categorias._id}/>
         </Route>
 
         <Route path="*">

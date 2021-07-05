@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { Nav } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const Categoria = (props) => {
   const [tabCategoria, setTabCategoria] = useState('');
@@ -12,21 +14,21 @@ const Categoria = (props) => {
   return (
     <Fragment>
       <Nav
-        fill
-        variant="tabs"
+        // fill
+        // variant="tabs"
         defaultActiveKey="/"
         className="bg5 pt-2 d-flex justify-content-center"
         id="nav"
       >
         <Nav.Item>
-          <Nav.Link className="color1 bg5" href="/">
-            <p className="mb-0">Home</p>
+          <Nav.Link className="link color1 bg5" href="/">
+           <FontAwesomeIcon icon={faHome} className=""></FontAwesomeIcon> Home 
           </Nav.Link>
         </Nav.Item>
 
         {props.categorias.map((categoria) => (
           <Nav.Item key={categoria._id}>
-            <Nav.Link className="color1 bg5" eventKey={categoria._id} onClick={() => toggleTab(categoria.nombre)} href={`/cat/${tabCategoria}`}>
+            <Nav.Link className="link color1 bg5" eventKey={categoria._id} onClick={() => toggleTab(categoria.nombre)} href={`/cat/${tabCategoria}`}>
               <p className="mb-0">{categoria.nombre}</p>
             </Nav.Link>
           </Nav.Item>

@@ -12,6 +12,7 @@ const Tabs = () => {
     const [noticias, setNoticias] = useState([]);
 
     useEffect(() => {
+    window.scrollTo(0, 0);
         consultarNoticias();
     }, []);
 
@@ -44,8 +45,9 @@ const Tabs = () => {
 
 
     return (
-        <Container>
-            <h1 className="text-center my-5 categoria-titulo">
+        <div className="bg3">
+        <Container >
+            <h1 className="text-center pt-5 categoria-titulo">
                 Noticias de: <span className="color4">{nombreCategoria}</span>
             </h1>
 
@@ -62,9 +64,9 @@ const Tabs = () => {
             )}
             {!cargando && (
 
-                <ListGroup className="my-5">
+                <ListGroup className="py-3">
                     {noticias.map((noticia) => (
-                        <Card className=" col-sm-12">
+                        <Card>
                             <Card.Body className="row">
                                 <div className="col-sm-12 col-md-4 my-3">
                                     <img src={noticia.imagen} className="img img-fluid"></img>
@@ -88,6 +90,7 @@ const Tabs = () => {
                 </ListGroup>
             )}
         </Container>
+        </div>
     );
 };
 
