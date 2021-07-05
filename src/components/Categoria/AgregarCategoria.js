@@ -74,13 +74,17 @@ const AgregarCategoria = (props) => {
           <Form.Label className="categoria-texto">
             Nombre de Categoria*
           </Form.Label>
-          <Form.Control
+          <div className="col-login">
+          <input
+            className="effect-input input-text"
             type="text"
             onChange={(e) => {
               setNombreCategoria(e.target.value);
             }}
             maxLength="35"
-          ></Form.Control>
+          ></input>
+          <span className="focus-border"></span>
+          </div>
         </Form.Group>
         <div className="d-flex justify-content-lg-end">
         <button

@@ -12,7 +12,8 @@ const Card = (props) => {
           <img
             src={props.reference}
             alt="cardlogo"
-            className="w-100 card-img"
+            className="w-100"
+            id="card-img"
           ></img>
         </div>
         <h4 className=" card-title pl-3 pt-3" id="h4-titulo">
