@@ -66,46 +66,45 @@ const AgregarCategoria = (props) => {
 
   return (
     <div className="bg3">
-    <Container>
-      <Form className="py-5" onSubmit={handleSudmit}>
-        <h1 className="text-center my-5 categoria-titulo">
-          Agregar nueva Categoria
-        </h1>
-        <Form.Group>
-          <Form.Label className="categoria-texto">
-            Nombre de Categoria*
-          </Form.Label>
-          <div className="col-login">
-          <input
-            className="effect-input input-text"
-            type="text"
-            onChange={(e) => {
-              setNombreCategoria(e.target.value);
-            }}
-            maxLength="35"
-          ></input>
-          <span className="focus-border"></span>
+      <Container>
+        <Form className="py-5" onSubmit={handleSudmit}>
+          <h1 className="text-center my-5 categoria-titulo">
+            Agregar nueva Categoria
+          </h1>
+          <Form.Group>
+            <Form.Label className="categoria-texto">
+              Nombre de Categoria*
+            </Form.Label>
+            <div className="col-login">
+              <input
+                className="effect-input input-text"
+                type="text"
+                onChange={(e) => {
+                  setNombreCategoria(e.target.value);
+                }}
+                maxLength="35"
+              ></input>
+              <span className="focus-border"></span>
+            </div>
+          </Form.Group>
+          {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
+          <div className="d-flex justify-content-end">
+            <button
+                  className="mt-5 px-4 mr-3 background-black button-send-close"
+                  type="button"
+                  onClick={() => retornarListadoCategorias()}
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="mt-5 px-4 mr-3 background-orange button-send-close"
+                  type="submit"
+                >
+                  Guardar
+                </button>
           </div>
-        </Form.Group>
-        {error ? <Alert variant="warning">{mensajeError}</Alert> : null}
-        <div className="d-flex justify-content-lg-end">
-        <button
-          className="my-5 mr-2 background-black button-send-close"
-          type="button"
-          onClick={() => retornarListadoCategorias()}
-        >
-          Cancelar
-        </button>
-        <button
-          className="my-5 background-orange button-send-close"
-          type="submit"
-        >
-          Guardar
-        </button>
-
-        </div>
-      </Form>
-    </Container>
+        </Form>
+      </Container>
     </div>
   );
 };

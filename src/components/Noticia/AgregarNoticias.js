@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Form, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Spinner from "../Common/Spinner";
 import {
@@ -215,6 +212,7 @@ const Noticias = (props) => {
             <Form.Control
               className="input-email"
               as="select"
+              id="input-select2"
               onChange={(e) => setCategoria(e.target.value)}
               value={categoria}
             >
@@ -251,14 +249,14 @@ const Noticias = (props) => {
 
           <div className="d-flex justify-content-end">
             <button
-              className="my-5 mr-2 background-black button-send-close"
+              className="my-5 mr-2 px-4 background-black button-send-close"
               type="button"
               onClick={() => retornarListadoNoticias()}
             >
               Cancelar
             </button>
             <button
-              className="my-5 background-orange button-send-close"
+              className="my-5 px-4 background-orange button-send-close"
               type="submit"
             >
               Guardar

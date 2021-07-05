@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ItemNoticia = (props) => {
+  let token=""
 
   const eliminarNoticia = (id) => {
     Swal.fire({

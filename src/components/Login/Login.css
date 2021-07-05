@@ -75,11 +75,22 @@ small {
   padding: 0 0;
   opacity: 0.8;
 }
+#input-select2 {
+  border: none;
+  padding: 0 0;
+  opacity: 0.8;
+}
 
 #input-select:focus {
   outline: none;
 }
 #input-select:hover {
+  outline: none;
+}
+#input-select2:focus {
+  outline: none;
+}
+#input-select2:hover {
   outline: none;
 }
 .input-email:focus {
