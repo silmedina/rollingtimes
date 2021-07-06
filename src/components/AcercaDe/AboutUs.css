@@ -3,6 +3,10 @@
     border-top-right-radius: 45%;
     border: 0px solid #f5a056;
     box-shadow: 0 10px 10px 0 #f5a056;
+    width: 50%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
 }
 #about-cardRounded2{
     border-radius: 50%;

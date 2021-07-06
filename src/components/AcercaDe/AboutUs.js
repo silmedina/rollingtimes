@@ -52,7 +52,6 @@ const AboutUs = () => {
                 width={"220px"}
               />
             </div>
-            
           </div>
         </div>
     </div>
