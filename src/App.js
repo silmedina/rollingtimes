@@ -49,8 +49,7 @@ function App() {
   async function onLoad() {
     try {
       const jwt = localStorage.getItem("jwt");
-      const jwtRegular = localStorage.getItem("jwtRegular");
-      const flag = jwt !== null || jwtRegular !== null ? true : false;
+      const flag = jwt !== null ? true : false;
       userHasAuthenticated(flag);
     } catch (e) {
       alert(e);
