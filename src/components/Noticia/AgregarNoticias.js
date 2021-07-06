@@ -147,7 +147,7 @@ const Noticias = (props) => {
         )}
         {!props.cargandoCategorias && (
           <Form className="my-5" onSubmit={handleSubmit}>
-            {/* titulo */}
+
             <Form.Group>
               <Form.Label>Titulo de Noticia *</Form.Label>
               <div className="col-login">
@@ -161,7 +161,6 @@ const Noticias = (props) => {
               </div>
             </Form.Group>
 
-            {/* subtitulo */}
             <Form.Group>
               <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
               <div className="col-login">
@@ -175,7 +174,6 @@ const Noticias = (props) => {
               </div>
             </Form.Group>
 
-            {/* texto */}
             <Form.Group>
               <Form.Label>Texto de la noticia *</Form.Label>
               <div className="col-login">
@@ -192,7 +190,6 @@ const Noticias = (props) => {
               </div>
             </Form.Group>
 
-            {/* imagen */}
             <Form.Group>
               <Form.Label>Imagen</Form.Label>
               <div className="col-login">
@@ -206,7 +203,6 @@ const Noticias = (props) => {
               </div>
             </Form.Group>
 
-            {/* categoria */}
             <Form.Group>
               <Form.Label>Categoria *</Form.Label>
               <div className="col-login">
@@ -230,7 +226,6 @@ const Noticias = (props) => {
               </div>
             </Form.Group>
 
-            {/* autor */}
             <Form.Group>
               <Form.Label>Autor *</Form.Label>
               <div className="col-login">

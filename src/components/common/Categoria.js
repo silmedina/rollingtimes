@@ -14,8 +14,6 @@ const Categoria = (props) => {
   return (
     <Fragment>
       <Nav
-        // fill
-        // variant="tabs"
         defaultActiveKey="/"
         className="bg5 pt-2 d-flex justify-content-center"
         id="nav"

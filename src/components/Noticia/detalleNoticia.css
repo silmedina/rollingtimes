@@ -1,9 +1,7 @@
 #NoticiaContainer {
   align-items: flex-start;
-  /* width: 100%; */
   overflow: hidden;
   background-color: #f8f9fa;
-  /* padding: 5rem; */
 }
 
 .flex-column {

@@ -54,8 +54,6 @@ const Navegacion = (props) => {
                 alt="logo"
                 onClick={() => home()}
               />
-
-              {/* Buscador */}
               <Form inline className="m-0">
                 <div className="col-login my-0 w-75 mr-2">
                 <input ref={textInput} placeholder="Buscar..." onKeyPress={handleKeyPress} className="effect-textArea input-text  input-textArea border border-buscador"/>
@@ -65,8 +63,6 @@ const Navegacion = (props) => {
                   <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </Button>
               </Form>
-              {/* FIN Buscador */}
-
               <Climate clima={props.clima} />
               <Nav className="ml-auto">
                 <Login />

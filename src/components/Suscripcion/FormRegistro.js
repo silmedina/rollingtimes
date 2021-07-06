@@ -13,7 +13,6 @@ import {
 import Swal from "sweetalert2";
 
 const FormRegistro = (props) => {
-  //const URL = process.env.REACT_APP_URL_SUSCRIPCION;
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [localidad, setLocalidad] = useState("");

@@ -34,7 +34,6 @@ const Card = (props) => {
 
           <FormRegistro show={modalShow} onHide={() => setModalShow(false)} />
         </div>
-        {/* <div className="d-block d-md-none d-lg-block d-xl-none mb-4"></div> */}
         <div className="d-flex row justify-content-center align-items-end">
           <button
             className="button-send-close bg2 text-center "
