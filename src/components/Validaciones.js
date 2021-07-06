@@ -55,7 +55,7 @@ const validarPassword = (password) =>{
 }
 const validarTelefono = (telefono) => {
   const expresion = /^[0-9]/;
-  if (telefono.trim() !== "" && expresion.test(telefono)) {
+  if (telefono !== "" && expresion.test(telefono)) {
     return true;
   } else {
     return false;
@@ -63,7 +63,7 @@ const validarTelefono = (telefono) => {
 };
 const validarTextArea = (textArea) => {
   const expresion = /^[a-zA-ZÀ-ÿ\s]{10,250}/;
-  if (textArea.trim() !== "" && expresion.test(textArea)) {
+  if (textArea !== "" && expresion.test(textArea)) {
     return true;
   } else {
     return false;
@@ -77,16 +77,36 @@ const validarConsulta = (tipoConsulta) => {
   }
 };
 
+const validarCategoria = (categoria) => {
+  if (categoria === "seleccione una opcion") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const validarAutor = (autor) => {
+  if (autor === "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const validarNombreCategoria = (nombreCategoria) => {
   if (nombreCategoria.trim() === '') {
     return { esValido: false, mensaje: 'Debe ingresar un nombre de categoria' }
   }
-
+  
   if (nombreCategoria.trim().length > 35) {
     return { esValido: false, mensaje: 'Debe ingresar una categoria de menos de 30 caracteres' }
   }
 
-  const expresion = /^[a-zA-Z\s]*$/;
+  if (nombreCategoria.trim().length < 3) {
+    return { esValido: false, mensaje: 'Debe ingresar una categoria de por lo menos tres caracteres' }
+  }
+
+  let expresion = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
   if (!expresion.test(nombreCategoria)) {
     return { esValido: false, mensaje: 'Debe ingresar caracteres validos para el nombre de categoria' }
   }
@@ -103,7 +123,7 @@ const validarUrlImagen = (urlImagen) => {
   }
 };
 const validarTitulo = (titulo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]/;  //{7,50}
+  const expresion = /^[a-zA-Z0-9À-ÿ\s]{7,150}/;  
   if (titulo.trim() !== "" && expresion.test(titulo)) {
     return true;
   } else {
@@ -111,7 +131,7 @@ const validarTitulo = (titulo) => {
   }
 };
 const validarSubtitulo = (subtitulo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{10,250}
+  const expresion = /^[a-zA-Z0-9À-ÿ\s]{10,90}/; 
   if (subtitulo.trim() !== "" && expresion.test(subtitulo)) {
     return true;
   } else {
@@ -119,17 +139,13 @@ const validarSubtitulo = (subtitulo) => {
   }
 };
 const validarCuerpo = (cuerpo) => {
-  const expresion = /^[a-zA-ZÀ-ÿ\s]/; //{90,600}
+  const expresion = /^[a-zA-Z0-9À-ÿ\s]/; //{90,600}
   if (cuerpo.trim() !== "" && expresion.test(cuerpo)) {
     return true;
   } else {
     return false;
   }
 };
-
-
-
-
 
 export {
   validarNombre,
@@ -146,5 +162,7 @@ export {
   validarTitulo,
   validarSubtitulo,
   validarCuerpo,
-  validarPassword
+  validarPassword,
+  validarCategoria,
+  validarAutor
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./carouselNoticias.css";
+import Moment from 'moment';
 
 const CarouselNoticias = (props) => {
   const [index, setIndex] = useState(0);
@@ -9,16 +10,21 @@ const CarouselNoticias = (props) => {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  
+  const formatearFecha = (fecha) => {
+    Moment.locale('es');
+    let fechaFormateada = Moment(fecha).format('LLLL');
+    return fechaFormateada;
+  }
 
   return (
     <div>
-      <Carousel activeIndex={index} onSelect={handleSelect} className="" >
-        {props.noticias.reverse().map((noticia, index) => {
+      <Carousel activeIndex={index} onSelect={handleSelect}>
+        {props.noticias.map((noticia, index) => {
           return (
-            <Carousel.Item key={index} id="noticiaContainer">
-              <div className="black-gradient-bg" />
+            <Carousel.Item key={index} className="noticiaContainer">
               <img
-                className="d-block w-100 imagen-noticia"
+                className="img-fluid w-100"
                 src={noticia.imagen}
                 alt={"slide" + index}
               />
@@ -28,11 +34,12 @@ const CarouselNoticias = (props) => {
                   style={{ cursor: "pointer" }}
                 >
                   <div id="noticiaInfo">
-                    <p>{noticia.categoria}</p>
-                    <p>{noticia.fecha}</p>
+                    <p className="noticiaInfo px-3">{noticia.categoria}&nbsp;</p>
+                    <p className="noticiaInfo px-3">&nbsp;{formatearFecha(noticia.fecha)}</p>
                   </div>
-                  <h3>{noticia.titulo}</h3>
-                  <small className="mt-5">{noticia.subtitulo}</small>
+                 <div className="titulo-carousel">
+                   <p className="px-4 m-0">{noticia.titulo}</p>
+                  </div> 
                 </Carousel.Caption>
               </Link>
             </Carousel.Item>
@@ -42,5 +49,4 @@ const CarouselNoticias = (props) => {
     </div>
   );
 };
-
 export default CarouselNoticias;

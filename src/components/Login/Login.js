@@ -1,38 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Button, Form, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Modal, Button, Form, Col, Dropdown } from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import loginService from "./logged";
+import loginSer from "./logged.jsx";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [log, setLog] = useState(0);
-  const [regularUser, setRegularUser] = useState(null);
-  const [adminUser, setAdminUser] = useState(null);
-  let token = "";
-
-  useEffect(() => {
-    //consultarEstado();;
-    if(localStorage.getItem(adminUser) === true){
-      setAdminUser(true);
-    }
-    else{
-      if(localStorage.getItem(regularUser) === true){
-        setRegularUser(true);
-        }
-      }
-
-  });
+  const [jwt, setJwt] = useState(() => localStorage.getItem("jwt"));
+  const [jwtRegular, setJwtRegular] = useState(() =>
+    localStorage.getItem("jwtRegular")
+  );
+  let token="";
 
   const desloguear = () => {
     Swal.fire({
@@ -43,18 +30,13 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
-        setRegularUser(false);
-        setAdminUser(false);
-        setLog(false);
-        consultarEstado();
+        <Redirect to="/contacto"/>
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("jwtRegular");
+        setJwt(false);
+        setJwtRegular(false);
       }
     });
-  };
-
-  const consultarEstado = () => {
-    setAdminUser(localStorage.getItem(adminUser));
-    setRegularUser(localStorage.getItem(regularUser));
-    setLog(localStorage.getItem(log));
   };
 
   const handleSubmit = async (e) => {
@@ -69,25 +51,21 @@ const Login = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": token,
+            "Authorization": token,
           },
           body: JSON.stringify(loginComparacion),
         };
 
-        const user = await loginService.loginS({
+        const user = await loginSer.loginS({
           email,
           password,
+          token,
         });
-        console.log("hola");
+
         const respuesta = await fetch(
           "http://localhost:4001/api/login/",
           configuracion
         );
-
-        console.log(respuesta);
-        console.log(user);
-        //setRegularUser(user);
-        //localStorage.setItem("logged", JSON.stringify(user));
 
         if (respuesta.status === 200) {
           Swal.fire(
@@ -95,28 +73,19 @@ const Login = () => {
             "El inicio de sesion se realizo correctamente!",
             "success"
           );
-          localStorage.setItem("logged", JSON.stringify(user));
-
-          setLog(respuesta.status);
-          setAdminUser(true);
+          localStorage.setItem("jwt", JSON.stringify(user));
+          setJwt(user);
           handleClose();
-          localStorage.setItem("log", JSON.stringify(log));
-          localStorage.setItem("adminUser", JSON.stringify(adminUser));
         } else {
           if (respuesta.status === 201) {
-            console.log("Paso por aqui 201");
             Swal.fire(
               "Bien hecho!",
               "El inicio de sesion se realizo correctamente!",
               "success"
             );
-            localStorage.setItem("logged", JSON.stringify(user));
-
+            localStorage.setItem("jwtRegular", JSON.stringify(user));
+            setJwtRegular(user);
             handleClose();
-            setLog(respuesta.status);
-            setRegularUser(true);
-            localStorage.setItem("log", JSON.stringify(log));
-            localStorage.setItem("regularUser", JSON.stringify(regularUser));
           } else {
             if (respuesta.status === 401) {
               Swal.fire("Error", "Usuario y/o Password incorrecto!", "error");
@@ -141,29 +110,34 @@ const Login = () => {
   return (
     <div>
       <div className="text-center d-flex">
-        {adminUser ? (
-          <div>
-            <Link to="/categorias">
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Panel de Control Categorias
+        {jwt ? (
+          <div className="d-flex row">
+            <Dropdown>
+              <Dropdown.Toggle
+                className="mx-2 my-1"
+                variant="outline-dark"
+                id="dropdown-basic"
+              >
+                Panel de Control
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="text-center">
+                <Dropdown.Item href="/categorias">Categorias</Dropdown.Item>
+                <Dropdown.Item href="/noticias">Noticias</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <div>
+              <Button
+                className="mx-2 my-1"
+                onClick={desloguear}
+                variant="outline-dark"
+              >
+                Logout
               </Button>
-            </Link>
-            <Link to="/noticias">
-              <Button className="mx-2 my-1" variant="outline-dark">
-                Panel de Control Noticias
-              </Button>
-            </Link>
-            <Button
-              className="mx-2 my-1"
-              onClick={desloguear}
-              variant="outline-dark"
-            >
-              Logout
-            </Button>
+            </div>
           </div>
         ) : (
           <div>
-            {log ? (
+            {jwtRegular ? (
               <div>
                 <Button
                   className="mx-2 my-1"
@@ -183,7 +157,7 @@ const Login = () => {
                   Ingresar <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                 </Button>
                 <Link to={"/suscripcion"}>
-                  <Button className="mx-2 my-1" variant="outline-dark">
+                  <Button className="boton-suscribite mx-2 my-1 dark" variant="outline-dark">
                     Suscribite
                   </Button>
                 </Link>
@@ -202,18 +176,21 @@ const Login = () => {
                 Ingresa con tus redes sociales
               </i>
             </h5>
-            <div className="col-sm-4 my-4">
-              <div className="col-sm-4 text-center m-2">
+            <div className="col-sm-12 my-4">
+              <div className="col-sm-12 text-center m-2 pr-4">
                 <Link to="/error404">
-                  <button className="boton-facebook" onClick={handleClose}>
+                  <button
+                    className="w-100 boton-facebook"
+                    onClick={handleClose}
+                  >
                     <FaFacebookF className="mb-1 mr-2" />
                     Facebook
                   </button>
                 </Link>
               </div>
-              <div className="col-sm-4 text-center m-2">
+              <div className="col-sm-12 text-center m-2 pr-4">
                 <Link to="/error404">
-                  <button className="boton-google" onClick={handleClose}>
+                  <button className="w-100 boton-google" onClick={handleClose}>
                     <FaGoogle className="mb-1 mr-2" />
                     Google
                   </button>

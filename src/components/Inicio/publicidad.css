@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
   cursor: pointer;
   will-change: transform;
 }
@@ -54,4 +54,20 @@
   color: rgb(159, 209, 255);
   border: 2px solid rgb(159, 209, 255);
   border-radius: 4px;
+}
+@media (max-width: 600px) {
+  .publicidad-container {
+    display: block;
+  }
+  .title3, .title1, .title2{
+    padding-top: 8px ;
+font-size: 12px;
+  }
+  .ad-gif{
+    width: 250px;
+  }
+  .ad-logo{
+    padding-top: 5px;
+
+  }
 }
