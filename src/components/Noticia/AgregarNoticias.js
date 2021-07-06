@@ -20,7 +20,7 @@ const Noticias = (props) => {
   const [autor, setAutor] = useState("");
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
-  const destacar=false;
+  const destacar = false;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -135,136 +135,137 @@ const Noticias = (props) => {
 
   return (
     <div className="bg3">
-    <Container>
-      <h1 className="text-center py-2">Agregar Noticia</h1>
-      <hr className="bg4" />
+      <Container>
+        <h1 className="text-center py-2">Agregar Noticia</h1>
+        <hr className="bg4" />
 
-      {props.cargandoCategorias && (
-        <div className="container d-flex flex-column my-5 align-items-center">
-          <Spinner></Spinner>
-          <span>Cargando...</span>
-        </div>
-      )}
-      {!props.cargandoCategorias && (
-        <Form className="my-5" onSubmit={handleSubmit}>
-          {/* titulo */}
-          <Form.Group>
-            <Form.Label>Titulo de Noticia *</Form.Label>
-            <div className="col-login">
-            <input
-            className="effect-input input-text"
-              type="text"
-              placeholder="Ingrese un titulo"
-              onChange={(e) => setTitulo(e.target.value)}
-            ></input>
-            <span className="focus-border"></span>
-            </div>
-            
-          </Form.Group>
-
-          {/* subtitulo */}
-          <Form.Group>
-            <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
-            <div className="col-login">
-            <input
-            className="effect-input input-text"
-              type="text"
-              placeholder="Ingrese una descripcion breve"
-              onChange={(e) => setSubtitulo(e.target.value)}
-            ></input>
-            <span className="focus-border"></span>
-            </div>
-          </Form.Group>
-
-          {/* texto */}
-          <Form.Group>
-            <Form.Label>Texto de la noticia *</Form.Label>
-            <div className="col-login">
-            <textarea
-            className="effect-textArea input-text  input-textArea"
-              as="textarea"
-              placeholder="Ingrese una descripcion detallada"
-              style={{ height: "200px" }}
-              onChange={(e) => setTexto(e.target.value)}
-            ></textarea>
-            <span className="focus-border"><i></i></span>
-            </div>
-          </Form.Group>
-
-          {/* imagen */}
-          <Form.Group>
-            <Form.Label>Imagen</Form.Label>
-            <div className="col-login">
-            <input
-            className="effect-input input-text"
-              type="text"
-              placeholder="Agregar URL"
-              onChange={(e) => setImagen(e.target.value)}
-            ></input>
-            <span className="focus-border"></span>
-            </div>
-          </Form.Group>
-
-          {/* categoria */}
-          <Form.Group>
-            <Form.Label>Categoria *</Form.Label>
-            <div className="col-login">
-            <Form.Control
-              className="input-email"
-              as="select"
-              id="input-select2"
-              onChange={(e) => setCategoria(e.target.value)}
-              value={categoria}
-            >
-              {props.categorias.map((cat, idx) => (
-                <option key={idx} value={cat.nombre}>
-                  {cat.nombre}
-                </option>
-              ))}
-              <option disabled value={"seleccione una opcion"} key={-1}>
-                Seleccione una opcion
-              </option>
-            </Form.Control>
-            <span className="focus-border"></span>
-            </div>
-          </Form.Group>
-
-          {/* autor */}
-          <Form.Group>
-            <Form.Label>Autor *</Form.Label>
-            <div className="col-login">
-            <input
-            className="effect-input input-text"
-              type="text"
-              placeholder="Nombre del autor"
-              onChange={(e) => setAutor(e.target.value)}
-            ></input>
-            <span className="focus-border"></span>
-            </div>
-          </Form.Group>
-
-          {error === true ? (
-            <Alert variant="warning">{mensajeError}</Alert>
-          ) : null}
-
-          <div className="d-flex justify-content-end">
-            <button
-              className="my-5 mr-2 px-4 background-black button-send-close"
-              type="button"
-              onClick={() => retornarListadoNoticias()}
-            >
-              Cancelar
-            </button>
-            <button
-              className="my-5 px-4 background-orange button-send-close"
-              type="submit"
-            >
-              Guardar
-            </button>
+        {props.cargandoCategorias && (
+          <div className="container d-flex flex-column my-5 align-items-center">
+            <Spinner></Spinner>
+            <span>Cargando...</span>
           </div>
-        </Form>
-      )}
-    </Container>
+        )}
+        {!props.cargandoCategorias && (
+          <Form className="my-5" onSubmit={handleSubmit}>
+            {/* titulo */}
+            <Form.Group>
+              <Form.Label>Titulo de Noticia *</Form.Label>
+              <div className="col-login">
+                <input
+                  className="effect-input input-text"
+                  type="text"
+                  placeholder="Ingrese un titulo"
+                  onChange={(e) => setTitulo(e.target.value)}
+                ></input>
+                <span className="focus-border"></span>
+              </div>
+            </Form.Group>
+
+            {/* subtitulo */}
+            <Form.Group>
+              <Form.Label>Descripcion breve (copete o subtitulo) *</Form.Label>
+              <div className="col-login">
+                <input
+                  className="effect-input input-text"
+                  type="text"
+                  placeholder="Ingrese una descripcion breve"
+                  onChange={(e) => setSubtitulo(e.target.value)}
+                ></input>
+                <span className="focus-border"></span>
+              </div>
+            </Form.Group>
+
+            {/* texto */}
+            <Form.Group>
+              <Form.Label>Texto de la noticia *</Form.Label>
+              <div className="col-login">
+                <textarea
+                  className="effect-textArea input-text input-textArea"
+                  as="textarea"
+                  placeholder="Ingrese una descripcion detallada"
+                  style={{ height: "200px" }}
+                  onChange={(e) => setTexto(e.target.value)}
+                ></textarea>
+                <span className="focus-border">
+                  <i></i>
+                </span>
+              </div>
+            </Form.Group>
+
+            {/* imagen */}
+            <Form.Group>
+              <Form.Label>Imagen</Form.Label>
+              <div className="col-login">
+                <input
+                  className="effect-input input-text"
+                  type="text"
+                  placeholder="Agregar URL"
+                  onChange={(e) => setImagen(e.target.value)}
+                ></input>
+                <span className="focus-border"></span>
+              </div>
+            </Form.Group>
+
+            {/* categoria */}
+            <Form.Group>
+              <Form.Label>Categoria *</Form.Label>
+              <div className="col-login">
+                <Form.Control
+                  className="input-email"
+                  as="select"
+                  id="input-select2"
+                  onChange={(e) => setCategoria(e.target.value)}
+                  value={categoria}
+                >
+                  {props.categorias.map((cat, idx) => (
+                    <option key={idx} value={cat.nombre}>
+                      {cat.nombre}
+                    </option>
+                  ))}
+                  <option disabled value={"seleccione una opcion"} key={-1}>
+                    Seleccione una opcion
+                  </option>
+                </Form.Control>
+                <span className="focus-border"></span>
+              </div>
+            </Form.Group>
+
+            {/* autor */}
+            <Form.Group>
+              <Form.Label>Autor *</Form.Label>
+              <div className="col-login">
+                <input
+                  className="effect-input input-text"
+                  type="text"
+                  placeholder="Nombre del autor"
+                  onChange={(e) => setAutor(e.target.value)}
+                ></input>
+                <span className="focus-border"></span>
+              </div>
+            </Form.Group>
+
+            {error === true ? (
+              <Alert variant="warning">{mensajeError}</Alert>
+            ) : null}
+
+            <div className="d-flex justify-content-end">
+              <button
+                className="my-5 mr-2 px-4 background-black button-send-close"
+                type="button"
+                onClick={() => retornarListadoNoticias()}
+              >
+                Cancelar
+              </button>
+              <button
+                className="my-5 px-4 background-orange button-send-close"
+                type="submit"
+              >
+                Guardar
+              </button>
+            </div>
+          </Form>
+        )}
+      </Container>
     </div>
   );
 };

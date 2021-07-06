@@ -32,7 +32,7 @@
 }
 
 #NoticiaImagen {
-  max-width: 950px;
+  width: 100%;
 }
 
 #NoticiaDescripcion {

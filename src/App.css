@@ -145,6 +145,15 @@ Label{
 .logo-icono-mano{
   cursor: pointer;
 }
+.link{
+  text-decoration: none;
+}
+#link-footer1{
+  text-decoration: none;
+}
+#link-footer2{
+  text-decoration: none;
+}
 .link:hover{
   color: #ec4e20;
 }

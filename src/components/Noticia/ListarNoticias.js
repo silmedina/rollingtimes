@@ -44,7 +44,7 @@ const ListarNoticias = (props) => {
                             <tr>
                                 <th className="col-sm-9 col-md-8">Titulo</th>
                                 <th className="col-sm-1 col-md-2">Categorias</th>
-                                <th className="col-sm-1 col-md-1">Detalle / Destacar</th>
+                                <th className="col-sm-1 col-md-1">Destacar / Detalle</th>
                                 <th className="col-sm-1 col-md-1">Editar / Borrar</th>
                             </tr>
                         </thead>

@@ -27,7 +27,7 @@ const AboutUs = () => {
             <div className="m-3">
               <AboutUsCard
                 image={TULIO}
-                title="Tulio"
+                title="Tulio Moya"
                 text1="Developer"
                 text2="Frase"
                 width={"13rem"}
@@ -45,7 +45,7 @@ const AboutUs = () => {
             <div className="m-3">
               <AboutUsCard
                 image={BENJA}
-                title="Benjamín Draniczarek"
+                title="Benjamín Dracnizarek"
                 text1="Developer"
                 text2='Frase '
                 width={"14rem"}

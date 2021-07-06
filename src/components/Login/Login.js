@@ -7,7 +7,7 @@ import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import loginService from "./logged.jsx";
+import loginSer from "./logged.jsx";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ const Login = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Te deslogueaste exitosamente!", "", "success");
-        <Redirect to="/" />
+        <Redirect to="/contacto"/>
         localStorage.removeItem("jwt");
         localStorage.removeItem("jwtRegular");
         setJwt(false);
@@ -56,7 +56,7 @@ const Login = () => {
           body: JSON.stringify(loginComparacion),
         };
 
-        const user = await loginService.loginS({
+        const user = await loginSer.loginS({
           email,
           password,
           token,

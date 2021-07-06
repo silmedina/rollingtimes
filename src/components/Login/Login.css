@@ -68,7 +68,7 @@ small {
 }
 .input-textArea {
   resize: none;
-  border: 0;
+  border: 1;
 }
 #input-select {
   border: none;
@@ -76,6 +76,11 @@ small {
   opacity: 0.8;
 }
 #input-select2 {
+  border: none;
+  padding: 0 0;
+  opacity: 0.8;
+}
+#input-select3 {
   border: none;
   padding: 0 0;
   opacity: 0.8;
@@ -91,6 +96,12 @@ small {
   outline: none;
 }
 #input-select2:hover {
+  outline: none;
+}
+#input-select3:focus {
+  outline: none;
+}
+#input-select3:hover {
   outline: none;
 }
 .input-email:focus {
@@ -216,4 +227,11 @@ small {
 }
 .h5-titulo:focus {
   outline: none;
+}
+
+.imagen-responsive{
+position: center;
+background-position: center;
+size: cover;
+background-size: cover;
 }

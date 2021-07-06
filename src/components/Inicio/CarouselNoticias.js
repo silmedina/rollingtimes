@@ -22,9 +22,9 @@ const CarouselNoticias = (props) => {
       <Carousel activeIndex={index} onSelect={handleSelect}>
         {props.noticias.map((noticia, index) => {
           return (
-            <Carousel.Item key={index} id="noticiaContainer">
+            <Carousel.Item key={index} className="noticiaContainer">
               <img
-                className="d-block w-100"
+                className="img-fluid w-100"
                 src={noticia.imagen}
                 alt={"slide" + index}
               />
@@ -34,11 +34,11 @@ const CarouselNoticias = (props) => {
                   style={{ cursor: "pointer" }}
                 >
                   <div id="noticiaInfo">
-                    <p className="noticiaInfo">{noticia.categoria}&nbsp;</p>
-                    <p className="noticiaInfo">&nbsp;{formatearFecha(noticia.fecha)}</p>
+                    <p className="noticiaInfo px-3">{noticia.categoria}&nbsp;</p>
+                    <p className="noticiaInfo px-3">&nbsp;{formatearFecha(noticia.fecha)}</p>
                   </div>
                  <div className="titulo-carousel">
-                   <p>{noticia.titulo}</p>
+                   <p className="px-4 m-0">{noticia.titulo}</p>
                   </div> 
                 </Carousel.Caption>
               </Link>

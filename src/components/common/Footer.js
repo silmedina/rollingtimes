@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0 m-0">
-          <Link className="mx-1 outline-dark" to={"/about"}>
+          <Link id="link-footer1" className="mx-1 outline-dark" to={"/about"}>
             <h4 className="m-0 color2">Sobre Nosotros</h4>
           </Link>
           <div className="px-2">
@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
         </div>
         <div className=" col-sm-12 col-md-6 col-lg-4 p-0 m-0">
-          <Link className=" mx-1 outline-dark" to={"/contacto"}>
+          <Link id="link-footer2" className=" mx-1 outline-dark" to={"/contacto"}>
             <h4 className=" pb-1 color2 pt-0">Contacto</h4>
           </Link>
           <div>

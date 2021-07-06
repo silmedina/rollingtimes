@@ -1,6 +1,9 @@
-#noticiaContainer {
-  max-height: 75vh;
+.noticiaContainer {
+  max-height: 45vh;
   overflow: hidden;
+}
+.imagen-carrousel{
+  vertical-align: middle;
 }
 
 .black-gradient-bg {
@@ -16,12 +19,11 @@
   right: 0;
 }
 .titulo-carousel{
-  font-size: 50px;
+  font-size: 26px;
   color: #f7f7f7;
   font-family: "Roboto Slab", serif;
-
+  background-color: rgba(34, 34, 34, .7);
 }
-
 #noticiaCaption {
     display: flex;
     flex-direction: column;
@@ -48,14 +50,17 @@
 #noticiaInfo p:nth-child(2) {
     background-color: #ec4e20;
 }
-.titulo-carousel{
-  background-color: rgba(34, 34, 34, .7);
-}
-@media (max-width: 600px) {
+
+
+@media screen and (max-width: 430px){
   .noticiaInfo {
     display: none;
   }
   .titulo-carousel{
-    font-size: 20px;
+    font-size: 10px;
+  }
+  .noticiaContainer {
+    max-height: 18vh;
+    overflow: hidden;
   }
 }
