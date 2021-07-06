@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Form, Col, Card } from "react-bootstrap";
 import {
   validarNombre,
@@ -20,6 +20,10 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [textArea, setTextArea] = useState("");
   const [tipoConsulta, setTipoConsulta] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const sendMail = (e) => {
     emailjs

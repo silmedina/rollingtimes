@@ -36,6 +36,12 @@ Para correr el proyecto ejecutar con npm:
   npm start
 ```
 
+## Admin user 
+
+Usuario Admin de testing:
+- admin@rollingtimes.com
+- 1234
+
 ## Autores
 
 - [Medina Silvia Patricia](https://github.com/silmedina)
