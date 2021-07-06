@@ -15,7 +15,7 @@ const BuscarNoticias = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     consultarNoticias();
-  }, [terminoBusqueda]);
+  }, [terminoBusqueda]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const consultarNoticias = async () => {
     try {
@@ -76,6 +76,7 @@ const BuscarNoticias = () => {
                     <img
                       src={noticia.imagen}
                       className="img img-fluid"
+                      alt="img-notice"
                     ></img>
                   </div>
                   <div className="col-sm-12 col-md-8">

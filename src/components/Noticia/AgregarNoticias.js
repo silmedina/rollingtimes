@@ -18,9 +18,9 @@ const Noticias = (props) => {
   const [imagen, setImagen] = useState("");
   const [categoria, setCategoria] = useState("");
   const [autor, setAutor] = useState("");
-  const [destacar, setDestacar] = useState(false);
   const [error, setError] = useState(false);
   const [mensajeError, setMensajeError] = useState("");
+  const destacar=false;
 
   useEffect(() => {
     window.scrollTo(0, 0);

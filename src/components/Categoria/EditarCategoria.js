@@ -16,7 +16,7 @@ const EditarCategoria = (props) => {
 
   useEffect(() => {
     consultarCategoria();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const consultarCategoria = async () => {
     try {

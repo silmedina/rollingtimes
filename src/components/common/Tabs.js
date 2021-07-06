@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, ListGroup, Card } from "react-bootstrap";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Moment from 'moment';
 import 'moment/locale/es';
@@ -14,7 +14,7 @@ const Tabs = () => {
     useEffect(() => {
     window.scrollTo(0, 0);
         consultarNoticias();
-    }, []);
+    },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const consultarNoticias = async () => {
         try {
@@ -69,7 +69,7 @@ const Tabs = () => {
                         <Card>
                             <Card.Body className="row">
                                 <div className="col-sm-12 col-md-4 my-3">
-                                    <img src={noticia.imagen} className="img img-fluid"></img>
+                                    <img src={noticia.imagen} className="img img-fluid" alt="img-notice"></img>
                                 </div>
                                 <div className="col-sm-12 col-md-8">
                                     <Card.Title className="categoria-subtitulo"><strong>{noticia.titulo}</strong></Card.Title>

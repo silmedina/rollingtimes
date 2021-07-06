@@ -28,7 +28,7 @@ const EditarNoticia = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getNoticia();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setCategoria(noticia.categoria);

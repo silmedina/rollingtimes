@@ -48,7 +48,7 @@ const DetalleNoticia = ({ noticias = [] }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setNoticia(noticias.find(noti => noti._id === id))
-  }, [noticias]);
+  }, [noticias]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="bg3 col-sm-12">

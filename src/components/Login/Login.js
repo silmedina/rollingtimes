@@ -7,7 +7,7 @@ import { validarEmail } from "../Validaciones";
 import Swal from "sweetalert2";
 import "./Login.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import loginService from "./logged";
+import loginService from "./logged.jsx";
 
 const Login = () => {
   const [show, setShow] = useState(false);

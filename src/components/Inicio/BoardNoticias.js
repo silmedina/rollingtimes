@@ -14,19 +14,19 @@ const BoardNoticias = (props) => {
       <div className="row">
         <CardDeck>
           {props.noticias.map((noticia) => (
-            <div className="col-md-4 mb-3">
+            <div key={noticia._id} className="col-md-4 mb-3">
               <Card >
                 <Card.Img variant="top" src={noticia.imagen} />
                 <Card.Body>
                   <Card.Title>{noticia.titulo}</Card.Title>
-                  <Card.Text>
+                  <div>
                     {noticia.subtitulo}
                     <div id="notfoundlinks" className="mt-3">
                       <Card.Link href={`/noticia/${noticia._id}`}>
                         Ir a la noticia
                       </Card.Link>
                     </div>
-                  </Card.Text>
+                  </div>
                 </Card.Body>
                 <Card.Footer>
                   <small className="text-muted">

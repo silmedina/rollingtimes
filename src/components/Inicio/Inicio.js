@@ -10,7 +10,7 @@ const Inicio = (props) => {
 
   useEffect(() => {
     buscarDestacadas();
-  }, [props.noticias]);
+  }, [props.noticias]); // eslint-disable-line react-hooks/exhaustive-deps
   
   const buscarDestacadas = () => {
     const data = [];
