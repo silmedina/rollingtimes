@@ -23,3 +23,9 @@ ul{
     height: 150px;
 }
 
+@media screen and (max-width: 430px){
+    .tamaño-card {
+      height: 500px;
+    }
+   
+  }

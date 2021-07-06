@@ -21,7 +21,7 @@ const Card = (props) => {
           {props.title}
         </h4>
         <h5 className=" pl-3 pt-2">{props.precio}</h5>
-        <div className="p-3">
+        <div className="cardBody p-2 mt-2">
           <div className="beneficios-card">
             <h5 className="color2">Beneficios</h5>
             <p className="card-text text-secondary"></p>
@@ -34,8 +34,8 @@ const Card = (props) => {
 
           <FormRegistro show={modalShow} onHide={() => setModalShow(false)} />
         </div>
-        <div className="d-block d-md-none d-lg-block d-xl-none mb-4"></div>
-        <div className="d-flex row justify-content-center align-self-end">
+        {/* <div className="d-block d-md-none d-lg-block d-xl-none mb-4"></div> */}
+        <div className="d-flex row justify-content-center align-items-end">
           <button
             className="button-send-close bg2 text-center "
             onClick={() => setModalShow(true)}
