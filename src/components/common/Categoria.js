@@ -29,7 +29,7 @@ const Categoria = (props) => {
         {props.categorias.map((categoria) => (
           <Nav.Item key={categoria._id}>
             <Nav.Link className="link color1 bg5" eventKey={categoria._id} onClick={() => toggleTab(categoria.nombre)} href={`/cat/${tabCategoria}`}>
-              <p className="mb-0">{categoria.nombre}</p>
+              <p className={decodeURIComponent(window.location.href).includes(`cat/${categoria.nombre}`)? 'mb-0 color2' : 'mb-0'}>{categoria.nombre}</p>
             </Nav.Link>
           </Nav.Item>
         ))}
