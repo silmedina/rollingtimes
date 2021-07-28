@@ -158,4 +158,13 @@ Label{
   color: #ec4e20;
 }
 
+.slider-responsive{
+  object-fit: cover;
+  height: 550px ;
+}
 
+.col-noticias {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}

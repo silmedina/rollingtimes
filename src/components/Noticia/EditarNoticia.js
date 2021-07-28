@@ -77,6 +77,10 @@ const EditarNoticia = (props) => {
           autor: autorRef.current.value,
         };
 
+        if (!imagenRef.current.value) {
+          noticiaModificada.imagen = "https://i.ibb.co/WxWh5PB/imagen-no-disponible.jpg";
+        }
+
         const respuesta = await fetch(URLNOT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -189,6 +193,7 @@ const EditarNoticia = (props) => {
                   placeholder="Ingrese un titulo"
                   ref={tituloRef}
                   defaultValue={noticia.titulo}
+                  maxLength="80"
                 ></input>
                 <span className="focus-border"></span>
               </div>
@@ -202,6 +207,7 @@ const EditarNoticia = (props) => {
                   placeholder="Ingrese una descripcion breve"
                   ref={subtituloRef}
                   defaultValue={noticia.subtitulo}
+                  maxLength="80"
                 ></input>
                 <span className="focus-border"></span>
               </div>
@@ -254,13 +260,14 @@ const EditarNoticia = (props) => {
             </Form.Group>
             <Form.Group>
               <Form.Label>Autor *</Form.Label>
-              <div className="col-login">
+              <div className="col-noticias">
               <input
               className="effect-input input-text"
                 type="text"
                 placeholder="Nombre del autor"
                 ref={autorRef}
                 defaultValue={noticia.autor}
+                maxLength="30"
               ></input>
               <span className="focus-border"></span>
               </div>

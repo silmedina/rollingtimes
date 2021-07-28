@@ -49,6 +49,10 @@ const Noticias = (props) => {
         destacar,
       };
 
+      if (!imagen) {
+        noticia.imagen = "https://i.ibb.co/WxWh5PB/imagen-no-disponible.jpg";
+      }
+
       try {
         const configuracion = {
           method: "POST",
@@ -156,6 +160,7 @@ const Noticias = (props) => {
                   type="text"
                   placeholder="Ingrese un titulo"
                   onChange={(e) => setTitulo(e.target.value)}
+                  maxLength="80"
                 ></input>
                 <span className="focus-border"></span>
               </div>
@@ -169,6 +174,7 @@ const Noticias = (props) => {
                   type="text"
                   placeholder="Ingrese una descripcion breve"
                   onChange={(e) => setSubtitulo(e.target.value)}
+                  maxLength="80"
                 ></input>
                 <span className="focus-border"></span>
               </div>
@@ -228,12 +234,13 @@ const Noticias = (props) => {
 
             <Form.Group>
               <Form.Label>Autor *</Form.Label>
-              <div className="col-login">
+              <div className="col-noticias">
                 <input
                   className="effect-input input-text"
                   type="text"
                   placeholder="Nombre del autor"
                   onChange={(e) => setAutor(e.target.value)}
+                  maxLength="30"
                 ></input>
                 <span className="focus-border"></span>
               </div>

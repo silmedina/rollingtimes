@@ -24,7 +24,7 @@ const CarouselNoticias = (props) => {
           return (
             <Carousel.Item key={index} className="noticiaContainer">
               <img
-                className="img-fluid w-100"
+                className="d-block w-100 slider-responsive"
                 src={noticia.imagen}
                 alt={"slide" + index}
               />

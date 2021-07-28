@@ -75,7 +75,7 @@ const AgregarCategoria = (props) => {
             <Form.Label className="categoria-texto">
               Nombre de Categoria*
             </Form.Label>
-            <div className="col-login">
+            <div className="col-noticias">
               <input
                 className="effect-input input-text"
                 type="text"
