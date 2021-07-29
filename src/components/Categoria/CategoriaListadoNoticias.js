@@ -69,7 +69,7 @@ const CategoriaListadoNoticias = () => {
         {!cargando && (
           <ListGroup className="my-5">
             {noticias.map((noticia) => (
-              <Card>
+              <Card key={noticia._id}>
                 <Card.Body className="row">
                   <div className="col-sm-12 col-md-4 my-3">
                     <img src={noticia.imagen} className="img img-fluid" alt="img-notice"></img>
@@ -81,7 +81,7 @@ const CategoriaListadoNoticias = () => {
                     <Card.Subtitle className="mb-2 text-muted categoria-subtitulo">
                       {formatearFecha(noticia.fecha)}
                     </Card.Subtitle>
-                    <Card.Text>
+                    <Card.Text as='div'>
                       <h6 className="categoria-texto">{noticia.subtitulo}</h6>
                       <footer className="blockquote-footer">
                         Autor <cite title="Source Title">{noticia.autor}</cite>

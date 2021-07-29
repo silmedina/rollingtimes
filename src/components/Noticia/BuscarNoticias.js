@@ -26,7 +26,6 @@ const BuscarNoticias = () => {
       if (respuesta.status === 200) {
         const resp = await respuesta.json();
         setNoticias(resp);
-        console.log(resp)
         setCargando(false);
       }
     } catch (error) {
@@ -70,7 +69,7 @@ const BuscarNoticias = () => {
         {!cargando && (
           <ListGroup className="my-3">
             {noticias.map((noticia) => (
-              <Card>
+              <Card key={noticia._id}>
                 <Card.Body className="row">
                   <div className="col-sm-12 col-md-4 my-3">
                     <img
@@ -86,12 +85,11 @@ const BuscarNoticias = () => {
                   <Card.Subtitle className="mb-2 text-muted categoria-subtitulo">
                     {formatearFecha(noticia.fecha)}
                   </Card.Subtitle>
-                  <Card.Text>
-                        
-                        <h6 className="categoria-texto">{noticia.subtitulo}</h6>
-                        <footer className="blockquote-footer">
-                          Autor <cite title="Source Title">{noticia.autor}</cite>
-                        </footer>
+                  <Card.Text as='div'>
+                      <h6 className="categoria-texto">{noticia.subtitulo}</h6>
+                      <footer className="blockquote-footer">
+                        Autor <cite title="Source Title">{noticia.autor}</cite>
+                      </footer>
                   </Card.Text>
                   <div id="notfoundlinks">
                     <Card.Link href={`/noticia/${noticia._id}`}>
